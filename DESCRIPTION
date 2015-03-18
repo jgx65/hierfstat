@@ -1,0 +1,11 @@
+Package: hierfstat
+Version: 0.04-14
+Date: 2014-09-25
+Title: Estimation and tests of hierarchical F-statistics
+Author: Jerome Goudet <jerome.goudet@unil.ch>
+Maintainer: Jerome Goudet <jerome.goudet@unil.ch>
+Depends: gtools,ade4
+Suggests: adegenet,ape
+Description: This R package allows the estimation of hierarchical F-statistics from haploid or diploid genetic data with any numbers of levels in the hierarchy, following the algorithm of Yang (Evolution, 1998, 52(4):950-956). Functions are also given to test via randomisations the significance of each F and variance components, using the likelihood-ratio statistics G -see Goudet etal (Genetics, 1996, 144(4): 1933-1940) 
+License: GPL (>= 2)
+URL: http://www.r-project.org, http://www.unil.ch/popgen/softwares/hierfstat.htm

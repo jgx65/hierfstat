@@ -1,0 +1,52 @@
+<html><head><title>Example data set with 4 levels, one diploid and one haploid locus</title>
+<link rel="stylesheet" type="text/css" href="Rchm.css">
+</head>
+<body>
+
+<table width="100%"><tr><td>exhier(hierfstat)</td><td align="right">R Documentation</td></tr></table><object type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="keyword" value="R:   exhier">
+<param name="keyword" value=" Example data set with 4 levels one diploid and one haploid locus">
+</object>
+
+
+<h2>Example data set with 4 levels one diploid and one haploid locus</h2>
+
+
+<h3>Description</h3>
+
+
+
+
+<h3>Usage</h3>
+
+<pre>
+data(exhier)
+</pre>
+
+
+<h3>Format</h3>
+
+<p>
+<dt>lev1</dt><dd>outermost level</dd>
+<dt>lev2</dt><dd>level 2</dd>
+<dt>lev3</dt><dd>Level 3</dd>
+<dt>lev4</dt><dd>Level 4</dd>
+<dt>diplo</dt><dd>Diploid locus</dd>
+<dt>haplo</dt><dd>Haploid locus</dd>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+data(exhier)
+varcomp(exhier[,1:5])
+varcomp(exhier[,c(1:4,6)],diploid=FALSE)
+
+</pre>
+
+
+
+<hr><div align="center"><a href="00Index.html">[Package Contents]</a></div>
+
+</body></html>

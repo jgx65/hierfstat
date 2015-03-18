@@ -1,0 +1,95 @@
+<html><head><title>Bootstrap confidence intervals for variance components</title>
+<link rel="stylesheet" type="text/css" href="Rchm.css">
+</head>
+<body>
+
+<table width="100%"><tr><td>boot.vc(hierfstat)</td><td align="right">R Documentation</td></tr></table><object type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="keyword" value="R:   boot.vc">
+<param name="keyword" value=" Bootstrap confidence intervals for variance components">
+</object>
+
+
+<h2>Bootstrap confidence intervals for variance components</h2>
+
+
+<h3>Description</h3>
+
+<p>
+Provides a bootstrap confidence interval (over loci) for sums of the different variance components (equivalent to gene diversity estimates at the different levels), and the  derived F-statistics, as suggested by Weir and Cockerham (1984). Will not run with less than 5 loci. Raymond and Rousset (199X) points out shortcomings of this method.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+boot.vc(levels=levels,loci=loci,diploid=TRUE,nboot=1000,quant=c(0.025,0.5,0.975))
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>levels</code></td>
+<td>
+a data frame containing the different levels (factors) from the outermost (e.g. region) to the innermost before the individual</td></tr>
+<tr valign="top"><td><code>loci</code></td>
+<td>
+a data frame containing the different loci</td></tr>
+<tr valign="top"><td><code>diploid</code></td>
+<td>
+Specify whether the data are coming from diploid or haploid organisms (diploid is the default)</td></tr>
+<tr valign="top"><td><code>nboot</code></td>
+<td>
+Specify the number of bootstrap to carry out. Default is 1000</td></tr>
+<tr valign="top"><td><code>quant</code></td>
+<td>
+Specify which quantile to produce. Default is c(0.025,0.5,0.975) giving the percentile 95% CI and the median</td></tr>
+</table>
+
+<h3>Value</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>boot</code></td>
+<td>
+a data frame with the bootstrapped variance components. Could be used for obtaining bootstrap ci of statistics not listed here.</td></tr>
+<tr valign="top"><td><code>res</code></td>
+<td>
+a data frame with the bootstrap derived statistics. H stands for gene diversity, F for F-statistics</td></tr>
+<tr valign="top"><td><code>ci</code></td>
+<td>
+Confidence interval for each statistic.</td></tr>
+</table>
+
+<h3>References</h3>
+
+<p>
+Raymond M and Rousset F, 1995. An exact test for population differentiation. Evolution. 49:1280-1283
+</p>
+<p>
+Weir, B.S. (1996) Genetic Data Analysis II. Sinauer Associates.
+</p>
+<p>
+Weir BS and Cockerham CC, 1984. Estimating F-statistics for the analysis of population structure. Evolution 38:1358-1370.
+</p>
+
+
+<h3>See Also</h3>
+
+<p>
+<code><a href="varcomp.glob.html">varcomp.glob</a></code>.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+#load data set
+data(gtrunchier)
+boot.vc(gtrunchier[,c(1:2)],gtrunchier[,-c(1:2)],nboot=100)
+</pre>
+
+
+
+<hr><div align="center">[Package <em>hierfstat</em> version 0.04-1 <a href="00Index.html">Index]</a></div>
+
+</body></html>

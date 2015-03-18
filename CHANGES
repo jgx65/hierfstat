@@ -1,0 +1,81 @@
+#version 0.04-16 18.03.2025
+-
+-
+-
+-
+
+#version 0.04-15 30.09.2014
+-fixed a bug in basic.stats, when only one population with index 2, caused a non conformable array error message. 
+Now add 1 to the last element of the population vector
+
+#version 0.04-14 25.09.2014
+-Modified sim.genot to allow for different island sizes and independant inbreeding coefficient
+
+#version 0.04-12 06.02.2014
+-caught bugs in getal and getal.b relative to number of digits encoding alleles (1001-> modulo 1000 not 100)
+
+
+#version 0.04-11 31.10.2013
+-fixed a bug in boot.ppfst which stop the looping over populations to be carried out correctly
+-basic.stats can now take input from data set made of one sample only (a dummy extra line is added to the data set)
+
+#version 0.04-10 09.04.2013
+-changed the help file for read.fstat and read.fstat.data so that the examples now call find.package rather than .find.package
+-added function to write fstat files, structure files, and sub-sampled individuals from populations
+-changed the printout of basic.stats, now an object
+-created a function (requiring ade4) indpca carrying out a PCA on individual allele frequencies
+-Fixed various other small bugs
+
+
+#version 0.04-9 04.10.2012
+modified bs and wc to allow for haploid data and for better output
+#version 0.04-8 30.07.2012
+modified getal and pp.fst to allow for non continuous numbering of populations
+#version 0.04-7 26.07.2012
+added beta.r for estimation of WH02 beta
+#version 0.04-6 23.11.2011
+cleaned up things to avoid warning messages
+#version 0.04-5 30.07.2010
+changed \format to \value in Rd file
+#version 0.04-4 15.08.2006
+removed data frame names (names.data<-names(data)) in prepdata, caused a bug from R version 2.3.1 when only one level and does not seem to do anything
+
+
+#version 0.04-3 30.06.2006
+fixed a bug in boot.vc, now the function removes monomorphic loci before carrying out the bootstrap, and gives an error message if the number of polymorphic loci is less than 5
+
+#version 0.04-2
+
+fixed a bug in genot2al when alleles were coded with 3 digits but with number not exceeding 9
+
+#version 0.04-1
+
+boot.vc now provides bootstrap CI for variance components.
+
+#version 0.03-4
+
+fixed bug in samp.within, now it can handle lev with only one subgroup
+
+#version 0.03-3
+
+Again fixed bugs in test.between, test.between.within and test.within. replaced as.integer(x) with as.integer(factor(x)) forcing consecutive numbering of factor levels. 
+
+#version 0.03-2
+Again fixed bugs in test.between, test.between.within and test.within. No renumbering of factor levels, factors are just forced as integers and sorted once.
+
+updated some references
+
+#version 0.03-1
+in varcomp.glob, added diploid as a parameter passed to varcomp. Absence of this option caused the function to report an error message when the data were haploid
+Changes were made to functions test.between, test.between.within and test.within. The vector rand.unit and test.lev are transformed such that the different units are numbered consecutively
+Updated the reference list
+
+#version 0.02.2
+in samp.between and samp.within, changed x<-NULL (which caused message Error: more elements supplied than there are to replace) into x<-list().  
+
+#version 0.02
+
+The function test.between, test.between.within and test.within now sort the data before doing the resampling. This avoids errors when the vector within, rand.unit and test.lev are not sorted. 
+
+In function test.between and test.between.within, the vector rand.unit is transformed such that the different units are numbered consecutively
+

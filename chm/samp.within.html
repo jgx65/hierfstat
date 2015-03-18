@@ -1,0 +1,81 @@
+<html><head><title>Shuffles a sequence within groups defined by the input vector</title>
+<link rel="stylesheet" type="text/css" href="Rchm.css">
+</head>
+<body>
+
+<table width="100%"><tr><td>samp.within(hierfstat)</td><td align="right">R Documentation</td></tr></table><object type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="keyword" value="R:   samp.within">
+<param name="keyword" value=" Shuffles a sequence within groups defined by the input vector">
+</object>
+
+
+<h2>Shuffles a sequence within groups defined by the input vector</h2>
+
+
+<h3>Description</h3>
+
+<p>
+Used to generate a permutation of a sequence <KBD>1:length(lev)</KBD>. observations are permutted within blocks, according to the vector <KBD>lev</KBD> passed to the function.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+samp.within(lev)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>lev</code></td>
+<td>
+a vector containing the group to which belongs the observations to be permuted.</td></tr>
+</table>
+
+<h3>Value</h3>
+
+<p>
+a vector <KBD>1:length(lev)</KBD> (with blocks defined by <pre>lev</pre>) randomly permuted. Usually, one passes the result to reorder observations in a data set in order to carry out permutation-based tests.</p>
+
+<h3>Author(s)</h3>
+
+<p>
+Jerome Goudet,
+DEE, UNIL, 
+CH-1015
+Lausanne
+Switzerland 
+</p>
+<p>
+<a href="mailto:jerome.goudet@unil.ch">jerome.goudet@unil.ch</a>
+</p>
+
+
+<h3>References</h3>
+
+<p>
+Goudet J. (2005). Hierfstat, a package for R to compute and test variance components and F-statistics. Molecular Ecology Notes. 5:184-186
+</p>
+
+
+<h3>See Also</h3>
+
+<p>
+<code><a href="samp.between.html">samp.between</a></code>,<code><a href="g.stats.glob.html">g.stats.glob</a></code>.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+samp.within(rep(1:4,each=4))
+#for an application see example in g.stats.glob
+</pre>
+
+
+
+<hr><div align="center">[Package <em>hierfstat</em> version 0.03-1 <a href="00Index.html">Index]</a></div>
+
+</body></html>

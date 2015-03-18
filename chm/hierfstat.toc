@@ -1,0 +1,167 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HEAD></HEAD><HTML><BODY>
+<UL>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Package hierfstat:  Contents">
+<param name="Local" value="00Index.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Package hierfstat:  R objects">
+</OBJECT>
+<UL>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="boot.vc">
+<param name="Local" value="boot.vc.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="exhier">
+<param name="Local" value="exhier.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="g.stats">
+<param name="Local" value="g.stats.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="g.stats.glob">
+<param name="Local" value="g.stats.glob.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="genot2al">
+<param name="Local" value="genot2al.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="gtrunchier">
+<param name="Local" value="gtrunchier.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="hierfstat">
+<param name="Local" value="hierfstat.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="prepdata">
+<param name="Local" value="prepdata.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="read.fstat.data">
+<param name="Local" value="read.fstat.data.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="samp.between">
+<param name="Local" value="samp.between.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="samp.between.within">
+<param name="Local" value="samp.between.within.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="samp.within">
+<param name="Local" value="samp.within.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="test.between">
+<param name="Local" value="test.between.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="test.between.within">
+<param name="Local" value="test.between.within.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="test.g">
+<param name="Local" value="test.g.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="test.within">
+<param name="Local" value="test.within.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="varcomp">
+<param name="Local" value="varcomp.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="varcomp.glob">
+<param name="Local" value="varcomp.glob.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="yangex">
+<param name="Local" value="yangex.html">
+</OBJECT>
+</UL>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Package hierfstat:  Titles">
+</OBJECT>
+<UL>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Bootstrap confidence intervals for variance components">
+<param name="Local" value="boot.vc.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Calculates likelihood-ratio G-statistic on contingency table">
+<param name="Local" value="g.stats.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Estimate variance components and hierarchical F-statistics over all loci">
+<param name="Local" value="varcomp.glob.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Estimates variance components for each allele of a locus">
+<param name="Local" value="varcomp.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Example data set from Yang (1998) appendix">
+<param name="Local" value="yangex.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Example data set with 4 levels, one diploid and one haploid locus">
+<param name="Local" value="exhier.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="General information on the hierfstat package">
+<param name="Local" value="hierfstat.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Genotypes at 6 microsatellite loci of Galba truncatula from different patches in Western Switzerland">
+<param name="Local" value="gtrunchier.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Likelihood ratio G-statistic over loci">
+<param name="Local" value="g.stats.glob.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Reads data from a FSTAT file">
+<param name="Local" value="read.fstat.data.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Separates diploid genotypes in its constituant alleles">
+<param name="Local" value="genot2al.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Shuffles a sequence">
+<param name="Local" value="samp.between.within.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Shuffles a sequence among groups defined by the input vector">
+<param name="Local" value="samp.between.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Shuffles a sequence within groups defined by the input vector">
+<param name="Local" value="samp.within.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Sort and renumber and recode levels for the hierarchical analysis if necessary">
+<param name="Local" value="prepdata.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Tests the significance of the effect of inner.level on genetic differentiation within blocks defined by outer.level">
+<param name="Local" value="test.within.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Tests the significance of the effect of level on genetic differentiation">
+<param name="Local" value="test.g.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Tests the significance of the effect of test.lev on genetic differentiation">
+<param name="Local" value="test.between.within.html">
+</OBJECT>
+</UL>
+</UL>
+</BODY></HTML>

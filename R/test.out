@@ -1,0 +1,94 @@
+**************************************************************************************************************************************
+*   The following results were generated the 08.12.2007 at 20:38:03 with Fstat for windows, V2.9.4  (June. 2003) from file test.dat. *
+**************************************************************************************************************************************
+      		  pop1	  pop2	 All_W	All_UW
+	    Locus: loc1
+	     N	     7	     6
+	p:   1	 0.571	 0.500	 0.538	 0.536
+	p:   2	 0.143	 0.000	 0.077	 0.071
+	p:   3	 0.143	 0.333	 0.231	 0.238
+	p:   4	 0.143	 0.083	 0.115	 0.113
+	p:   5	 0.000	 0.083	 0.038	 0.042
+					
+
+	    Locus: loc2
+	     N	     7	     6
+	p:   1	 0.286	 0.500	 0.385	 0.393
+	p:   2	 0.714	 0.250	 0.500	 0.482
+	p:   3	 0.000	 0.250	 0.115	 0.125
+					
+
+************************************************
+
+	Gene diversity per locus and population : 
+	loc1	 0.679	 0.683
+	loc2	 0.476	 0.733
+
+************************************************
+
+	number of alleles sampled : 
+	loc1	     4	     4	     5
+	loc2	     2	     3	     3
+
+************************************************
+
+	Allelic Richness per locus and population
+	based on min. sample size of:    6 diploid individuals.
+	loc1	 3.967	 4.000	 4.028
+	loc2	 2.000	 3.000	 2.860
+
+************************************************
+
+	Fis Per population : 
+	loc1	 0.368	 0.024
+	loc2	 1.000	 0.773
+
+	All 	 0.629	 0.412
+
+************************************************
+	Nei's estimation of heterozygosity 
+
+	LocName	    Ho	    Hs	    Ht	   Dst	  Dst'	   Ht'	   Fst	  Fst'	   Fis
+	loc1	 0.548	 0.682	 0.668	-0.013	-0.027	 0.655	-0.020	-0.041	 0.197
+	loc2	 0.083	 0.604	 0.641	 0.038	 0.075	 0.679	 0.059	 0.111	 0.862
+
+	Overall	 0.315	 0.643	 0.655	 0.012	 0.024	 0.667	 0.018	 0.036	 0.509
+
+************************************************
+	Weir & Cockerham (1984) estimation of Fit (CapF), Fst (theta) and Fis (smallF).
+	relat is Relatedness estimated following Queller & Goodnight (1989)
+	relatc is relatedness inbreeding corrected following Pamilo (1984, 1985)
+	sig_a, sig_b and sig_w are the component of variance
+	among samples, among individuals within samples and within individuals respectively.
+
+
+	 For locus : loc1
+	Allele	  Capf	 Theta	Smallf	 Relat	Relatc	 Sig_a	 Sig_b	 Sig_w
+	    1	 0.692	-0.143	 0.730	-0.169
+	    2	-0.011	 0.068	-0.085	 0.138
+	    3	-0.237	 0.045	-0.295	 0.118
+	    4	-0.121	-0.060	-0.058	-0.137
+	    5	 0.006	 0.014	-0.008	 0.028
+	  All	 0.177	-0.042	 0.210	-0.072	-0.532	-0.028	 0.143	 0.538
+
+	 For locus : loc2
+	Allele	  Capf	 Theta	Smallf	 Relat	Relatc	 Sig_a	 Sig_b	 Sig_w
+	    1	 1.000	-0.074	 1.000	-0.074
+	    2	 0.873	 0.248	 0.832	 0.265
+	    3	 0.673	 0.161	 0.611	 0.192
+	  All	 0.885	 0.114	 0.870	 0.120	-13.435	 0.076	 0.517	 0.077
+
+************************************************
+
+		 Over all loci
+		  Capf	 Theta	Smallf	 Relat	Relatc	 Sig_a	 Sig_b	 Sig_w
+		 0.535	 0.037	 0.517	 0.048	-2.144	 0.048	 0.660	 0.615
+
+************************************************
+	Could not perform Jackknifing over samples with only 2 samples. exiting.
+
+************************************************
+	Could not perform Jackknifing over loci with only 2 loci. exiting.
+
+************************************************
+	Cannot perform Bootstrap on loci with only 2 loci.

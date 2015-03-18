@@ -1,0 +1,32 @@
+[OPTIONS]
+Auto Index=Yes
+Contents file=hierfstat.toc
+Compatibility=1.1 or later
+Compiled file=hierfstat.chm
+Default topic=00Index.html
+Display compile progress=No
+Full-text search=Yes
+Full text search stop list file=..\..\..\gnuwin32\help\R.stp
+
+
+[FILES]
+00Index.html
+boot.vc.html
+exhier.html
+g.stats.html
+g.stats.glob.html
+genot2al.html
+gtrunchier.html
+hierfstat.html
+prepdata.html
+read.fstat.data.html
+samp.between.html
+samp.between.within.html
+samp.within.html
+test.between.html
+test.between.within.html
+test.g.html
+test.within.html
+varcomp.html
+varcomp.glob.html
+yangex.html

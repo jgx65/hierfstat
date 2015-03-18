@@ -1,0 +1,74 @@
+<html><head><title>Tests the significance of the effect of level on genetic differentiation</title>
+<link rel="stylesheet" type="text/css" href="Rchm.css">
+</head>
+<body>
+
+<table width="100%"><tr><td>test.g(hierfstat)</td><td align="right">R Documentation</td></tr></table><object type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="keyword" value="R:   test.g">
+<param name="keyword" value=" Tests the significance of the effect of level on genetic differentiation">
+</object>
+
+
+<h2>Tests the significance of the effect of level on genetic differentiation</h2>
+
+
+<h3>Description</h3>
+
+
+
+
+<h3>Usage</h3>
+
+<pre>
+test.g(data = data, level, nperm = 100,...)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>data</code></td>
+<td>
+a data frame containing the genotypes for the different loci</td></tr>
+<tr valign="top"><td><code>level</code></td>
+<td>
+A vector containing the assignment of each observation to its level</td></tr>
+<tr valign="top"><td><code>nperm</code></td>
+<td>
+The number of permutations to carry out for the test</td></tr>
+<tr valign="top"><td><code>...</code></td>
+<td>
+Mainly here to allow passing <KBD>diploid=FALSE</KBD> if necessary</td></tr>
+</table>
+
+<h3>Value</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>g.star</code></td>
+<td>
+A vector containing all the generated g-statistics, the last one beeing the observed</td></tr>
+<tr valign="top"><td><code>p.val</code></td>
+<td>
+The p-value associated with the test</td></tr>
+</table>
+
+<h3>Author(s)</h3>
+
+<p>
+Jerome Goudet <a href="mailto:jerome.goudet@unil.ch">jerome.goudet@unil.ch</a>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+data(gtrunchier)
+attach(gtrunchier)
+test.g(gtrunchier[,-c(1,2)],Locality)
+</pre>
+
+
+
+<hr><div align="center"><a href="00Index.html">[Package Contents]</a></div>
+
+</body></html>

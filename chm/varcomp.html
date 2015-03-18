@@ -1,0 +1,121 @@
+<html><head><title>Estimates variance components for each allele of a locus</title>
+<link rel="stylesheet" type="text/css" href="Rchm.css">
+</head>
+<body>
+
+<table width="100%"><tr><td>varcomp(hierfstat)</td><td align="right">R Documentation</td></tr></table><object type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="keyword" value="R:   varcomp">
+<param name="keyword" value=" Estimates variance components for each allele of a locus">
+</object>
+
+
+<h2>Estimates variance components for each allele of a locus</h2>
+
+
+<h3>Description</h3>
+
+<p>
+Estimates variance components for each allele for a (fully) hierarchical random design defined by all but the last column of the data frame  <KBD>data</KBD>, the last column containing the genetic data to analyse. Columns for the hierarchical design should be given from the outermost to the innermost before the individual (e.g. continent, region, population, patch,...)
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+varcomp(data,diploid=TRUE)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>data</code></td>
+<td>
+a data frame that contains the different factors from the outermost (e.g. region)
+to the innermost before the individual. the last column of the data frame 'data' contains the locus to analyse, which can be multiallelic. Missing data are allowed.</td></tr>
+<tr valign="top"><td><code>diploid</code></td>
+<td>
+a boolean stating whether the data come from diploid (TRUE=default) or haploid (FALSE) organisms</td></tr>
+</table>
+
+<h3>Details</h3>
+
+<p>
+The format for genotypes is simply the code for the 2 alleles put one behind the other, without space in between. For instance if allele 1 at the locus has code <KBD>23</KBD> and allele 2 <KBD>39</KBD>, the genotype format is <KBD>2339</KBD>.
+</p>
+
+
+<h3>Value</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>df</code></td>
+<td>
+the degrees of freedom for each level</td></tr>
+<tr valign="top"><td><code>k</code></td>
+<td>
+the k matrix, the coefficients associated with the variance components</td></tr>
+<tr valign="top"><td><code>res</code></td>
+<td>
+the variance components for each allele</td></tr>
+<tr valign="top"><td><code>overall</code></td>
+<td>
+the variance components summed over alleles</td></tr>
+<tr valign="top"><td><code>F</code></td>
+<td>
+a matrix of hierarchical F-statistics type-coefficients
+with the first line corresponding to <i>F_{(n-1)/n}</i>,<i>F_{(n-2)/n}</i>...<i>F_{i/n}</i> and
+the diagonal corresponding to <i>F_{(n-1)/n}</i>, <i>F_{(n-2)/(n-1)}</i>,<i>F_{i/2}</i></td></tr>
+</table>
+
+<h3>Author(s)</h3>
+
+<p>
+Jerome Goudet,
+DEE, UNIL, 
+CH-1015
+Lausanne
+Switzerland 
+</p>
+<p>
+<a href="mailto:jerome.goudet@unil.ch">jerome.goudet@unil.ch</a>
+</p>
+<p>
+<a href="http://www.unil.ch/popgen/people/jerome.htm">http://www.unil.ch/popgen/people/jerome.htm</a>
+</p>
+
+
+<h3>References</h3>
+
+<p>
+Goudet J. (2005). Hierfstat, a package for R to compute and test variance components and F-statistics. Molecular Ecology Notes. 5:184-186
+</p>
+<p>
+Weir, B.S. (1996) Genetic Data Analysis II. Sinauer Associates.
+</p>
+<p>
+Yang, R.C. (1998). Estimating hierarchical F-statistics. Evolution 52(4):950-956
+</p>
+
+
+<h3>See Also</h3>
+
+<p>
+<code><a href="varcomp.glob.html">varcomp.glob</a></code>.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+#load data set
+data(gtrunchier)
+attach(gtrunchier)
+#
+varcomp(data.frame(Locality,Patch,L21.V))
+</pre>
+
+
+
+<hr><div align="center">[Package <em>hierfstat</em> version 0.03-2 <a href="00Index.html">Index]</a></div>
+
+</body></html>

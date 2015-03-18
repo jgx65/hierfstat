@@ -1,0 +1,78 @@
+<html><head><title>Tests the significance of the effect of inner.level on genetic differentiation within blocks defined by outer.level</title>
+<link rel="stylesheet" type="text/css" href="Rchm.css">
+</head>
+<body>
+
+<table width="100%"><tr><td>test.within(hierfstat)</td><td align="right">R Documentation</td></tr></table><object type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="keyword" value="R:   test.within">
+<param name="keyword" value=" Tests the significance of the effect of inner.level on genetic differentiation within blocks defined by outer.level">
+</object>
+
+
+<h2>Tests the significance of the effect of inner.level on genetic differentiation within blocks defined by outer.level</h2>
+
+
+<h3>Description</h3>
+
+
+
+
+<h3>Usage</h3>
+
+<pre>
+test.within(data, within, test.lev, nperm, ...)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>data</code></td>
+<td>
+a data frame containing the genotypes for the different loci</td></tr>
+<tr valign="top"><td><code>within</code></td>
+<td>
+A vector containing the units in which to keep the observations</td></tr>
+<tr valign="top"><td><code>test.lev</code></td>
+<td>
+A vector containing the units from which to construct the contingency tables</td></tr>
+<tr valign="top"><td><code>nperm</code></td>
+<td>
+The number of permutations to carry out for the test</td></tr>
+<tr valign="top"><td><code>...</code></td>
+<td>
+Mainly here to allow passing <KBD>diploid=FALSE</KBD> if necessary</td></tr>
+</table>
+
+<h3>Value</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>g.star</code></td>
+<td>
+A vector containing all the generated g-statistics, the last one beeing the observed</td></tr>
+<tr valign="top"><td><code>p.val</code></td>
+<td>
+The p-value associated with the test</td></tr>
+</table>
+
+<h3>Author(s)</h3>
+
+<p>
+Jerome Goudet <a href="mailto:jerome.goudet@unil.ch">jerome.goudet@unil.ch</a>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+data(gtrunchier)
+attach(gtrunchier)
+#tests whether the patch level has a significant effect on genetic structure
+test.within(gtrunchier[,-c(1,2)],within=Locality,test.lev=Patch)
+</pre>
+
+
+
+<hr><div align="center"><a href="00Index.html">[Package Contents]</a></div>
+
+</body></html>

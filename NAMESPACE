@@ -1,0 +1,22 @@
+export(allele.count,allelic.richness,
+basic.stats,betai,boot.ppfis,boot.ppfst,boot.vc,
+cfe.dist,da.dist,eucl.dist,eucl.dist.trait,
+g.stats,g.stats.glob,
+genot2al,getal,getal.b,
+ind.count,
+indpca,print.indpca,plot.indpca,
+mat2vec,
+nb.alleles,
+nei.dist,pcoa,pop.freq,pp.fst,
+pp.sigma.loc,prepdata,print.pp.fst,
+read.fstat,read.fstat.data,
+samp.between,samp.between.within,samp.within,
+sim.freq,sim.genot,
+subsampind,
+test.between,test.between.within,test.g,test.within,
+varcomp,varcomp.glob,
+vec2mat,wc,write.fstat,write.struct)
+
+# Import all packages listed as Imports or Depends
+importFrom(gtools,"rdirichlet")
+importFrom(ade4,"dudi.pca")

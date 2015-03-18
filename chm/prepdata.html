@@ -1,0 +1,68 @@
+<html><head><title>Sort and renumber and recode levels for the hierarchical analysis if necessary</title>
+<link rel="stylesheet" type="text/css" href="Rchm.css">
+</head>
+<body>
+
+<table width="100%"><tr><td>prepdata(hierfstat)</td><td align="right">R Documentation</td></tr></table><object type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="keyword" value="R:   prepdata">
+<param name="keyword" value=" Sort and renumber and recode levels for the hierarchical analysis if necessary">
+</object>
+
+
+<h2>Sort and renumber and recode levels for the hierarchical analysis if necessary</h2>
+
+
+<h3>Description</h3>
+
+<p>
+Called by varcomp to rearrange data. Should not need to be called directly
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+prepdata(data)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>data</code></td>
+<td>
+takes as input the different factor from the outermost (e.g. region) to the innermost (e.g. individual). This function must be applied before transformation of genotypic to allelic data</td></tr>
+</table>
+
+<h3>Value</h3>
+
+<p>
+a reoredered,renumbered and sorted data frame</p>
+
+<h3>References</h3>
+
+<p>
+Goudet J. (2005). Hierfstat, a package for R to compute and test variance components and F-statistics. Molecular Ecology Notes. 5:184-186
+</p>
+
+
+<h3>See Also</h3>
+
+<p>
+<code><a href="varcomp.html">varcomp</a></code>.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+f1&lt;-rep(c("B","C","A"),each=10)
+f2&lt;-rep(c("d","i","f","g","h","e"),each=5)
+prepdata(data.frame(loc=f1,patch=f2,ind=1:30))
+</pre>
+
+
+
+<hr><div align="center">[Package <em>hierfstat</em> version 0.03-2 <a href="00Index.html">Index]</a></div>
+
+</body></html>

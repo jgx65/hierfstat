@@ -1,0 +1,102 @@
+<html><head><title>Calculates likelihood-ratio G-statistic on contingency table</title>
+<link rel="stylesheet" type="text/css" href="Rchm.css">
+</head>
+<body>
+
+<table width="100%"><tr><td>g.stats(hierfstat)</td><td align="right">R Documentation</td></tr></table><object type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="keyword" value="R:   g.stats">
+<param name="keyword" value=" Calculates likelihood-ratio G-statistic on contingency table">
+</object>
+
+
+<h2>Calculates likelihood-ratio G-statistic on contingency table</h2>
+
+
+<h3>Description</h3>
+
+<p>
+Calculates the likelihood ratio G-statistic on a contingency table of alleles at one locus X sampling unit. The sampling unit could be any hierarchical level
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+g.stats(data,diploid=TRUE)</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>data</code></td>
+<td>
+a two-column data frame. The first column contains the sampling unit, the second the genotypes</td></tr>
+<tr valign="top"><td><code>diploid</code></td>
+<td>
+Whether the data are from diploid (default) organisms</td></tr>
+</table>
+
+<h3>Value</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>obs</code></td>
+<td>
+Observed contingency table</td></tr>
+<tr valign="top"><td><code>exp</code></td>
+<td>
+Expected number of allelic observations</td></tr>
+<tr valign="top"><td><code>X.squared</code></td>
+<td>
+The chi-squared statistics, <i>Sum (O-E)^2/E</i></td></tr>
+<tr valign="top"><td><code>g.stats</code></td>
+<td>
+The likelihood ratio statistics, <i>2 Sum(O Log(O/E))</i></td></tr>
+</table>
+
+<h3>Author(s)</h3>
+
+<p>
+Jerome Goudet,
+DEE, UNIL, 
+CH-1015
+Lausanne
+Switzerland 
+</p>
+<p>
+<a href="mailto:jerome.goudet@unil.ch">jerome.goudet@unil.ch</a>
+</p>
+
+
+<h3>References</h3>
+
+<p>
+Goudet J., Raymond, M., DeMeeus, T. and Rousset F. (1996) Testing differentiation in diploid populations. Genetics. 144: 1933-1940
+</p>
+<p>
+Goudet J. (2005). Hierfstat, a package for R to compute and test variance components and F-statistics. Molecular Ecology Notes. 5:184-186
+</p>
+<p>
+Petit E., Balloux F. and Goudet J.(2001) Sex-biased dispersal in a migratory bat: A characterization using sex-specific demographic parameters. Evolution 55: 635-640.
+</p>
+
+
+<h3>See Also</h3>
+
+<p>
+<code><a href="g.stats.glob.html">g.stats.glob</a></code>.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+data(gtrunchier)
+attach(gtrunchier)
+g.stats(data.frame(Patch,L21.V))
+</pre>
+
+
+
+<hr><div align="center">[Package <em>hierfstat</em> version 0.03-1 <a href="00Index.html">Index]</a></div>
+
+</body></html>

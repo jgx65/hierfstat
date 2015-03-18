@@ -1,0 +1,106 @@
+<html><head><title>Estimate variance components and hierarchical F-statistics over all loci</title>
+<link rel="stylesheet" type="text/css" href="Rchm.css">
+</head>
+<body>
+
+<table width="100%"><tr><td>varcomp.glob(hierfstat)</td><td align="right">R Documentation</td></tr></table><object type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="keyword" value="R:   varcomp.glob">
+<param name="keyword" value=" Estimate variance components and hierarchical F-statistics over all loci">
+</object>
+
+
+<h2>Estimate variance components and hierarchical F-statistics over all loci</h2>
+
+
+<h3>Description</h3>
+
+<p>
+Return multilocus estimators of variance components and F-statistics
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+varcomp.glob(levels=levels,loci=loci,diploid=TRUE)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>levels</code></td>
+<td>
+a data frame containing the different levels (factors) from the outermost (e.g. region) to the innermost before the individual</td></tr>
+<tr valign="top"><td><code>loci</code></td>
+<td>
+a data frame containing the different loci</td></tr>
+<tr valign="top"><td><code>diploid</code></td>
+<td>
+Specify whether the data are coming from diploid or haploid organisms (diploid is the default)</td></tr>
+</table>
+
+<h3>Value</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>loc</code></td>
+<td>
+The variance components for each locus</td></tr>
+<tr valign="top"><td><code>overall</code></td>
+<td>
+The variance components summed over all loci</td></tr>
+<tr valign="top"><td><code>F</code></td>
+<td>
+a matrix of hierarchical F-statistics type-coefficients
+with the first line corresponding to <i>F_{(n-1)/n}</i>,<i>F_{(n-2)/n}</i>...<i>F_{i/n}</i> and
+the diagonal corresponding to <i>F_{(n-1)/n}</i>, <i>F_{(n-2)/(n-1)}</i>,<i>F_{i/2}</i></td></tr>
+</table>
+
+<h3>Author(s)</h3>
+
+<p>
+Jerome Goudet
+DEE, UNIL, 
+CH-1015
+Lausanne
+Switzerland 
+</p>
+<p>
+<a href="mailto:jerome.goudet@unil.ch">jerome.goudet@unil.ch</a>
+</p>
+
+
+<h3>References</h3>
+
+<p>
+Weir, B.S. (1996) Genetic Data Analysis II. Sinauer Associates.
+</p>
+<p>
+Yang, R.C. (1998). Estimating hierarchical F-statistics. Evolution 52(4):950-956
+</p>
+<p>
+Goudet J. (2005). Hierfstat, a package for R to compute and test variance components and F-statistics. Molecular Ecology Notes. 5:184-186
+</p>
+
+
+<h3>See Also</h3>
+
+<p>
+<code><a href="varcomp.html">varcomp</a></code>.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+#load data set
+data(gtrunchier)
+attach(gtrunchier)
+varcomp.glob(data.frame(Locality,Patch),gtrunchier[,-c(1,2)])
+</pre>
+
+
+
+<hr><div align="center">[Package <em>hierfstat</em> version 0.03-1 <a href="00Index.html">Index]</a></div>
+
+</body></html>
