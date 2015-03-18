@@ -20,3 +20,6 @@ vec2mat,wc,write.fstat,write.struct)
 # Import all packages listed as Imports or Depends
 importFrom(gtools,"rdirichlet")
 importFrom(ade4,"dudi.pca")
+
+S3method(print,indpca)
+S3method(plot,indpca)

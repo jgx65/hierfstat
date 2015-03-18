@@ -88,6 +88,55 @@ pl[[il]]<-xn
   return(list(call=cl,fpl=pl,gf=gf,gn=gn))
 }
 ###################################################
+#'
+#' @title Simulate data from a non-equilibrium island model
+#'
+#'  @description This function allows to simulate genetic data from a non-equilibrium continent-island
+#'  model, where each island can have a different size and a different inbreeding 
+#'  coefficient. 
+#'
+#' @usage sim.genot(size=50,nbal=4,nbloc=5,nbpop=3,N=1000,mig=0.001,mut=0.0001,f=0,t=100)
+#'  
+#' @param size the number of sampled individuals per island
+#' @param nbal the number of allele per locus
+#' @param nbloc the number of loci to simulate
+#' @param nbpop the number of islands
+#' @param N the effective population sizes of each island. If only one number, all
+#' islands are assumed to be of the same size
+#' @param mig the migration rate from the continent to the islands
+#' @param mut the mutation rate of the loci
+#' @param f the inbreeding coefficient of each ilsands
+#' @param t the number of generation since the islands were created
+#' 
+#' @return A data frame with size*nbpop rows and nbloc+1 columns. Each row is an
+#' individual, the first column contains the island to which the individual belong, 
+#' the following nbloc columns contain the genotype for each locus. 
+#'
+#' @details  
+#' 
+#' lets substitute $\alpha$ for  $(1-m)^2 (1-\mu)^2$ and $x$ for $\frac{1}{2N}$.  
+#' 
+#' The expectation of $F_{ST}$, $\theta$ can be written as:
+#'
+#' $$
+#'  \theta_t=(\alpha (1-x))^t \theta_0 + \frac{x}{1-x}\sum_{i=1}^t (\alpha (1-x))^i 
+#' $$
+#'  
+#'  which reduces to $\theta_t=\frac{x}{1-x}\sum_{i=1}^t (\alpha (1-x))^i$ if $\theta_0=0$.
+#'  
+#'   
+#'     
+#' @author Jerome Goudet \email{jerome.goudet@@unil.ch}
+#' 
+#' @examples
+#' 
+#'
+#' dat<-sim.genot.t(nbal=4,nbloc=20,nbpop=5,N=c(100,1000,10000,100000,1000000),mig=0.001,mut=0.0001,f=c(0,0.2,0.5,0.8,1),t=100)
+#' wc(dat) #Weir and cockerham overall estimators of FST & FIS
+#' betai(dat) # Population specific estimator of FST
+#' 
+
+
 #########################################################################
 sim.genot.t<-function(size=50,nbal=4,nbloc=5,nbpop=3,N=1000,mig=0.001,mut=0.0001,f=0,t=100){
   a<-sim.freq.t(nbal,nbloc,nbpop,N,mig,mut,f)

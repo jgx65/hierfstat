@@ -57,7 +57,7 @@ my.betai <- function(dat){
           nums[ip1,ip2,il] <- snic[il]*sum(dum1+dum2)
           betas[ip1,ip2,il]  <- 1.0-nums[ip1,ip2,il]/2.0/sden
         }
-      }nam
+      }
     }
   }
   betai  <- t(apply(betas,3,diag)) # betai per pop and locus
