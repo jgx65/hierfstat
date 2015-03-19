@@ -134,11 +134,13 @@ FST=tFST,FIS=NA)
 class(res)<-"wc"
 res
 }
+
 print.wc<-function(x,...){
-print(list(perloc=x$per.loc,FST=x$FST,FIS=x$FIS))
+print(list(FST=x$FST,FIS=x$FIS))
 invisible(x)
 }
+
 summary.wc<-function(x,...){
-print(c(x$FST,x$FIS))
+print(list(FST=x$FST,FIS=x$FIS))
 invisible(x)
 }

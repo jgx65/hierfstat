@@ -95,7 +95,7 @@ pl[[il]]<-xn
 #'  model, where each island can have a different size and a different inbreeding 
 #'  coefficient. 
 #'
-#' @usage sim.genot(size=50,nbal=4,nbloc=5,nbpop=3,N=1000,mig=0.001,mut=0.0001,f=0,t=100)
+#' @usage sim.genot.t(size=50,nbal=4,nbloc=5,nbpop=3,N=1000,mig=0.001,mut=0.0001,f=0,t=100)
 #'  
 #' @param size the number of sampled individuals per island
 #' @param nbal the number of allele per locus
@@ -114,6 +114,41 @@ pl[[il]]<-xn
 #'
 #' @details  
 #' 
+#' We simulated data under the continent-islands model. Briefly, a continent of 
+#' infinite size sends migrants to islands of finite sizes \eqn{N_i$} at a rate \eqn{m}.
+#'  Alleles can also mutate to a new state at a rate \eqn{\mu}. Under this model, 
+#'  the expected \eqn{F_{STi}, \theta_i}, can be calculated and compared to empirical
+#'  estimates.
+#'
+#' In this model, \eqn{\theta_t} can be written as a function of population size 
+#' \eqn{N_i}, migration rate \eqn{m}, mutation rate \eqn{\mu} and \eqn{\theta_{(t-1)}}.  
+#' 
+#' The rational is as follows:
+#'  
+#'  With probability \eqn{\frac{1}{N}}, 2 alleles from 2 different individuals in 
+#'  the current generation are sampled from the same individual of the previous 
+#'  generation:     
+#'  -Half the time, the same allele is drawn from the parent;
+#'   
+#'  -The other half, two different alleles are drawn, but they are identical in 
+#'  proportion \eqn{\theta_{(t-1)}}.
+#'   
+#'  -With  probability \eqn{1-\frac{1}{N}}, the 2 alleles are drawn from different 
+#'  individuals in the previous generation, in which case they are identical in 
+#'  proportion \eqn{\theta_{(t-1)}}.
+#'  
+#'  This holds providing that neither alleles have mutated or migrated.  This is 
+#'  the case with probability \eqn{(1-m)^2 \times (1-\mu)^2}.
+#'  If an allele is a mutant or a migrant, then its coancestry with another allele 
+#'  is 0 in this infinite continent-islands model.
+#'
+#' Note also that the mutation scheme assumed is the infinite allele (or site) 
+#' model.  If the number of alleles is finite (as will be the case in what follows),
+#' the corresponding mutation model is the K-allele model and the mutation rate 
+#' has to be adjusted to \eqn{\mu'=\frac{K-1}{K}\mu}.
+#'
+#' 
+#' 
 #' lets substitute \eqn{\alpha} for  \eqn{(1-m)^2 (1-\mu)^2} and \eqn{x} for \eqn{\frac{1}{2N}}.  
 #' 
 #' The expectation of \eqn{F_{ST}}, \eqn{\theta} can be written as:
@@ -129,14 +164,12 @@ pl[[il]]<-xn
 #' @examples
 #' 
 #'
-#' dat<-sim.genot.t(nbal=4,nbloc=20,nbpop=5,N=c(100,1000,10000,100000,1000000),mig=0.001,mut=0.0001,f=c(0,0.2,0.5,0.8,1),t=100)
+#' dat<-sim.genot.t(nbal=4,nbloc=20,nbpop=5,N=c(100,1000,10000,100000,1000000),mig=0.001,mut=0.0001,t=100)
 #' summary(wc(dat)) #Weir and cockerham overall estimators of FST & FIS
 #' betas(dat) # Population specific estimator of FST
 #' 
 #' @export
 #' 
-
-
 #########################################################################
 sim.genot.t<-function(size=50,nbal=4,nbloc=5,nbpop=3,N=1000,mig=0.001,mut=0.0001,f=0,t=100){
   a<-sim.freq.t(nbal,nbloc,nbpop,N,mig,mut,f)

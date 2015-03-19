@@ -17,5 +17,5 @@
 
 %\seealso{\code{\link{}}.}
 \examples{data(gtrunchier)
-nei.dist(gtrunchier[,-1])}
+eucl.dist(gtrunchier[,-1])}
 \keyword{univar}

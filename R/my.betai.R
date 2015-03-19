@@ -1,4 +1,4 @@
-betai <- function(dat){
+betai <- function(gendata){
   # estimates betas from Weir & Hill 2002 Ann Rev Genet
   # gendata is a data frame with first column containing pop id and remaining cols containing genotypes
   # betai are from (7) of WH2002
