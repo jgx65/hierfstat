@@ -140,7 +140,3 @@ print(list(FST=x$FST,FIS=x$FIS))
 invisible(x)
 }
 
-summary.wc<-function(x,...){
-print(list(FST=x$FST,FIS=x$FIS))
-invisible(x)
-}

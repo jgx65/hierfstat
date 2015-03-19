@@ -16,14 +16,15 @@ sim.freq,sim.genot,sim.genot.t,
 subsampind,
 test.between,test.between.within,test.g,test.within,
 varcomp,varcomp.glob,
-vec2mat,wc,write.fstat,write.struct)
+vec2mat,wc,write.fstat,write.struct,
+fstat,gstat.randtest,pairwise.fst,as.randtest)
 
 # Import all packages listed as Imports or Depends
 importFrom(gtools,"rdirichlet")
 importFrom(ade4,"dudi.pca")
+import(adegenet)
 
 S3method(print,indpca)
 S3method(plot,indpca)
 S3method(print,pp.fst)
 S3method(print,wc)
-S3method(summary,wc)

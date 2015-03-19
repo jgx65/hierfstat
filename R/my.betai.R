@@ -14,7 +14,8 @@ betai <- function(gendata){
     apply(data[,-1],2,dum)
     
   }
-  
+  dat<-gendata
+  rm(gendata)
   npop<-length(table(dat[,1]))
   nloc<-dim(dat)[2]-1
   al.c.t<-apply(dat[,-1],2,function(x) table(factor(x)))
