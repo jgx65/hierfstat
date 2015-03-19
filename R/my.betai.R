@@ -73,6 +73,8 @@ betai <- function(gendata){
 #' @description Estimates \eqn{\beta} per population, using unweighted 
 #' allele frequencies
 #' 
+#' @usage betai.unw(dat)
+#' 
 #' @param dat a dataframe
 #' 
 #'
@@ -149,9 +151,9 @@ betai.unw<-function(dat){
   }
 #####################################################
 #'
-#' @title Estimate \eqn{\betas} per population and a bootstrap confidence interval
+#' @title Estimate \eqn{\beta}s per population and a bootstrap confidence interval
 #' 
-#' @description Estimate \eqn{\betas} per population and a bootstrap confidence interval 
+#' @description Estimate \eqn{\beta}s per population and a bootstrap confidence interval 
 #' 
 #' @usage betas(dat,nboot=0,lim=c(0.025,0.975),diploid=TRUE)
 #' 

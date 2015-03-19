@@ -40,8 +40,8 @@ This function allows to simulate genetic data from a non-equilibrium continent-i
 
 
 We simulated data under the continent-islands model. Briefly, a continent of
-infinite size sends migrants to islands of finite sizes \eqn{N_i$} at a rate \eqn{m}.
- Alleles can also mutate to a new state at a rate \eqn{\mu}. Under this model,
+infinite size sends migrants to islands of finite sizes \eqn{N_i} at a rate
+\eqn{m}. Alleles can also mutate to a new state at a rate \eqn{\mu}. Under this model,
  the expected \eqn{F_{STi}, \theta_i}, can be calculated and compared to empirical
  estimates.
 
@@ -74,7 +74,8 @@ has to be adjusted to \eqn{\mu'=\frac{K-1}{K}\mu}.
 
 
 
-lets substitute \eqn{\alpha} for  \eqn{(1-m)^2 (1-\mu)^2} and \eqn{x} for \eqn{\frac{1}{2N}}.
+lets substitute \eqn{\alpha} for  \eqn{(1-m)^2 (1-\mu)^2} and \eqn{x} for
+ \eqn{\frac{1}{2N}}.
 
 The expectation of \eqn{F_{ST}}, \eqn{\theta} can be written as:
 

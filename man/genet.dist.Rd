@@ -5,7 +5,7 @@
 Estimates one of several genetic distances among all pairs of populations.
 }
 \usage{
-genet.dist(dat,diploid=TRUE,method=\dQuote{Dch})
+genet.dist(dat,diploid=TRUE,method="Dch")
 }
 \arguments{
   \item{dat}{A data frame containing population of origin as the first column and multi-locus genotypes in following columns}
@@ -23,10 +23,13 @@ This distance is used as default as Takezaki & Nei (1996) found that it was the 
 \dQuote{Ds} Nei's standard genetic distance (eqn 1). Increases linearly with diverence time but has larger variance 
 
 \dQuote{Fst} Latter's and also approximately Reynolds et al Genetic distance (eqn 3)
+
 \dQuote{Dm} Nei's minimum distance (eqn 2)
 
 \dQuote{Dr} Rogers's distance (eqn 4)
+
 \dQuote{Cp} Prevosti et al's distance (eqn 5)
+
 \dQuote{X2} Sanghvi's distance (eqn 8) 
 }
 \value{
@@ -36,7 +39,7 @@ A matrix of pairwise genetic distance
 }
 \author{Jerome Goudet \email{jerome.goudet@unil.ch}}
 
-\seealso{\code{\link{fst.pp}}}
+\seealso{\code{\link{pp.fst}}}
 
 \examples{
 data(gtrunchier)

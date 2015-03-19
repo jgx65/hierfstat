@@ -2,7 +2,7 @@
 % Please edit documentation in R/my.betai.R
 \name{betas}
 \alias{betas}
-\title{Estimate \eqn{\betas} per population and a bootstrap confidence interval}
+\title{Estimate \eqn{\beta}s per population and a bootstrap confidence interval}
 \usage{
 betas(dat,nboot=0,lim=c(0.025,0.975),diploid=TRUE)
 }
@@ -25,7 +25,7 @@ Hi Within population gene diversities
 Hb Between populations gene diversities
 }
 \description{
-Estimate \eqn{\betas} per population and a bootstrap confidence interval
+Estimate \eqn{\beta}s per population and a bootstrap confidence interval
 }
 \details{
 
