@@ -1,5 +1,5 @@
 export(allele.count,allelic.richness,
-basic.stats,betai,betai.unw,betas,
+basic.stats,betas,
 boot.ppfis,boot.ppfst,boot.vc,
 genet.dist,eucl.dist,eucl.dist.trait,
 g.stats,g.stats.glob,
@@ -9,14 +9,14 @@ indpca,
 mat2vec,
 nb.alleles,
 pcoa,pop.freq,pp.fst,
-pp.sigma.loc,prepdata,
+pp.sigma.loc,
 read.fstat,read.fstat.data,
 samp.between,samp.between.within,samp.within,
 sim.freq,sim.genot,sim.genot.t,
 subsampind,
 test.between,test.between.within,test.g,test.within,
 varcomp,varcomp.glob,
-vec2mat,wc,write.fstat,write.struct,
+vec2mat,wc,write.fstat,write.struct,write.bayescan,
 fstat,gstat.randtest,pairwise.fst)
 
 # Import all packages listed as Imports or Depends

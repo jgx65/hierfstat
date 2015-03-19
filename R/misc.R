@@ -232,8 +232,10 @@ print(list(perloc=x$perloc,overall=x$overall))
 invisible(x)
 }
 #########################################################################
-wc<-function(ndat,diploid=TRUE,pol=0.0){
+wc<-function(ndat,diploid=TRUE,pol=0.0,trim=FALSE){
 
+#trim is to output only sigloc
+  
 #added argument pol to specify level of polymorhism wanted
 #if loci less polymorphic than pol, then they are left out of the calculations
 #setting pol=0.0 will use all loci
@@ -324,12 +326,15 @@ Fxy<-function(x) x[1]/sum(x,na.rm=TRUE)
 FST.pal<-apply(cbind(siga,sigb,sigw),1,Fxy)
 FIS.pal<-apply(cbind(sigb,sigw),1,Fxy)
 
+#need to optimize sigloc
+
 loc<-rep(1:nl,alploc)
 lsiga<-tapply(siga,loc,sum,na.rm=TRUE)
 lsigb<-tapply(sigb,loc,sum,na.rm=TRUE)
 lsigw<-tapply(sigw,loc,sum,na.rm=TRUE)
 
 sigloc<-cbind(lsiga,lsigb,lsigw)
+
 
 if (length(untyped.loc)>0){
 x<-order(c(typed.loc,untyped.loc))

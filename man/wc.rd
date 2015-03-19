@@ -2,9 +2,9 @@
 \alias{wc}
 \alias{print.wc}
 \title{Computes Weir and Cockrham estimates of Fstatistics}
-\description{Computes Weir and Cockrham estimates of Fstatistics}
+\description{Computes Weir and Cockerham estimates of Fstatistics}
 \usage{
-wc(ndat,diploid=TRUE,pol=0.0)
+wc(ndat,diploid=TRUE,pol=0.0,trim=FALSE)
 
 \method{print}{wc}(x,...)
 }
@@ -12,6 +12,7 @@ wc(ndat,diploid=TRUE,pol=0.0)
 \item{ndat}{data frame with first column indicating population of origin and following representing loci}
 \item{diploid}{Whether data are diploid}
 \item{pol}{level of polymorphism reqesuted for inclusion. Note used for now}
+\item{trim}{to extract variance components only}
 \item{x}{an object of class wc}
 \item{...}{further arguments to pass to print.wc}
 }
