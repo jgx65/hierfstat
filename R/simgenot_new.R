@@ -112,10 +112,11 @@ pl[[il]]<-xn
 #' individual, the first column contains the island to which the individual belong, 
 #' the following nbloc columns contain the genotype for each locus. 
 #'
-#' @details  
-#' 
-#' We simulated data under the continent-islands model. Briefly, a continent of 
-#' infinite size sends migrants to islands of finite sizes \eqn{N_i} at a rate 
+#'
+#'
+#' @details   This function simulates genetic data under the continent-islands model.
+#'  Briefly, a continent of 
+#'  infinite size sends migrants to islands of finite sizes \eqn{N_i} at a rate 
 #' \eqn{m}. Alleles can also mutate to a new state at a rate \eqn{\mu}. Under this model, 
 #'  the expected \eqn{F_{STi}, \theta_i}, can be calculated and compared to empirical
 #'  estimates.
