@@ -83,7 +83,8 @@ The expectation of \eqn{F_{ST}}, \eqn{\theta} can be written as:
  which reduces to \eqn{\theta_t=\frac{x}{1-x}\sum_{i=1}^t (\alpha (1-x))^i} if \eqn{\theta_0=0}.
 }
 \examples{
-dat<-sim.genot.t(nbal=4,nbloc=20,nbpop=5,N=c(100,1000,10000,100000,1000000),mig=0.001,mut=0.0001,t=100)
+psize<-c(100,1000,10000,100000,1000000)
+dat<-sim.genot.t(nbal=4,nbloc=20,nbpop=5,N=psize,mig=0.001,mut=0.0001,t=100)
 summary(wc(dat)) #Weir and cockerham overall estimators of FST & FIS
 betas(dat) # Population specific estimator of FST
 }

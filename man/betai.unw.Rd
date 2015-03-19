@@ -25,6 +25,9 @@ Hb a vector (nloc) of between populations diversities
 Estimates \eqn{\beta} per population, using unweighted
 allele frequencies
 }
+\details{
+Beware, only valid for non inbred diploids.
+}
 \examples{
 dat<-sim.genot(size=100,N=c(100,1000,10000),nbloc=50,nbal=10)
  betai.unw(dat)$Betai
