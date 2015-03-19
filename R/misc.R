@@ -450,7 +450,7 @@ npop<-dim(Hs)[2]
 my.boot<-matrix(numeric(nboot*npop),ncol=npop)
 for (i in 1:nboot){
 x<-sample(nloc,replace=TRUE)
-my.boot[i,]<-1-apply(Ho[x,],2,sum,na.rm=TRUE)/apply(Hs[x,],2,sum,na.rm=TRUE)
+my.boot[i,]<-1-colSums(Ho[x,],na.rm=TRUE)/colSums(Hs[x,],na.rm=TRUE)
 }
 ll<-apply(my.boot,2,quantile,quant[1],na.rm=TRUE)
 hl<-apply(my.boot,2,quantile,quant[2],na.rm=TRUE)
