@@ -251,7 +251,7 @@ ndat<-data.frame(ndat[,1],dum)
 }
 
 #bs<-basic.stats(ndat,diploid)
-pop<-ndat[,1]
+pop<-as.integer(ndat[,1])
 ni<-length(pop)
 #polym<-which(bs$perloc$Ht>=pol,arr.ind=TRUE)
 dat<-ndat#[,c(1,polym+1)]
