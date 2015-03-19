@@ -53,6 +53,7 @@ The rational is as follows:
  With probability \eqn{\frac{1}{N}}, 2 alleles from 2 different individuals in
  the current generation are sampled from the same individual of the previous
  generation:
+
  -Half the time, the same allele is drawn from the parent;
 
  -The other half, two different alleles are drawn, but they are identical in
@@ -72,9 +73,7 @@ model.  If the number of alleles is finite (as will be the case in what follows)
 the corresponding mutation model is the K-allele model and the mutation rate
 has to be adjusted to \eqn{\mu'=\frac{K-1}{K}\mu}.
 
-
-
-lets substitute \eqn{\alpha} for  \eqn{(1-m)^2 (1-\mu)^2} and \eqn{x} for
+Lets substitute \eqn{\alpha} for  \eqn{(1-m)^2 (1-\mu)^2} and \eqn{x} for
  \eqn{\frac{1}{2N}}.
 
 The expectation of \eqn{F_{ST}}, \eqn{\theta} can be written as:

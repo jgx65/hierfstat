@@ -29,6 +29,8 @@ Estimate \eqn{\beta}s per population and a bootstrap confidence interval
 }
 \details{
 
+
+Beware, only valid for non inbred diploids!
 }
 \examples{
 dat<-sim.genot(size=100,N=c(100,1000,10000),nbloc=50,nbal=10)
