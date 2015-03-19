@@ -84,6 +84,9 @@ betai <- function(gendata){
 #' locus over populations
 #' @return Hi a table (nloc*npop) of within population diversities
 #' @return Hb a vector (nloc) of between populations diversities
+#' 
+#' @details  Beware, only valid for non inbred diploids.
+#' 
 #' @author Jerome Goudet \email{jerome.goudet@@unil.ch}
 #'
 #' @examples 
@@ -166,6 +169,8 @@ betai.unw<-function(dat){
 #' @return ci The bootstrap confidence interval
 #' @return Hi Within population gene diversities
 #' @return Hb Between populations gene diversities
+#' 
+#' @details  Beware, only valid for non inbred diploids!
 #' 
 #' @author Jerome Goudet \email{jerome.goudet@@unil.ch}
 #'
