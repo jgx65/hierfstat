@@ -49,8 +49,8 @@ The expectation of \eqn{F_{ST}}, \eqn{\theta} can be written as:
 }
 \examples{
 dat<-sim.genot.t(nbal=4,nbloc=20,nbpop=5,N=c(100,1000,10000,100000,1000000),mig=0.001,mut=0.0001,f=c(0,0.2,0.5,0.8,1),t=100)
-wc(dat) #Weir and cockerham overall estimators of FST & FIS
-betai(dat) # Population specific estimator of FST
+summary(wc(dat)) #Weir and cockerham overall estimators of FST & FIS
+betas(dat) # Population specific estimator of FST
 }
 \author{
 Jerome Goudet \email{jerome.goudet@unil.ch}

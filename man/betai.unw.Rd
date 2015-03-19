@@ -27,7 +27,7 @@ allele frequencies
 }
 \examples{
 dat<-sim.genot(size=100,N=c(100,1000,10000),nbloc=50,nbal=10)
- betai.unw(dat)$betai
+ betai.unw(dat)$Betai
 }
 \author{
 Jerome Goudet \email{jerome.goudet@unil.ch}

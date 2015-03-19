@@ -65,6 +65,8 @@ betai <- function(dat){
   
   return(list(betaiip=betas,nic=snic,nums=nums,lden=lden,ninds=ninds,nic=nic,betai=betai,betaiov=betaio,betaw=betaw))
 }
+
+
 ##############################################################
 #' @title Estimation of \eqn{\beta} per population
 #' 
@@ -85,19 +87,12 @@ betai <- function(dat){
 #' @examples 
 #'
 #'  dat<-sim.genot(size=100,N=c(100,1000,10000),nbloc=50,nbal=10)
-#'  betai.unw(dat)$betai 
+#'  betai.unw(dat)$Betai 
 #'
 #' @export
 #' 
 ##############################################################
 betai.unw<-function(dat){
-  # june 21st 2012
-  # estimates betas from Weir & Hill 2002 Ann Rev Genet
-  # gendata is a data frame with first column containing pop id and remaining cols containing genotypes
-  # betai are from (7) of WH2002
-  # betaio are population estimates over loci 1-(sum of nums)/(sum of dens)
-  # betaw are average over populations using (9) of WH2002
-  # betaii' can be extracted with betas[1,,] etc...
   ind.count.n<-function(data){
     dum<-function(x){
       a<-!is.na(x)
@@ -174,7 +169,7 @@ betai.unw<-function(dat){
 #'
 #'@examples
 #' dat<-sim.genot(size=100,N=c(100,1000,10000),nbloc=50,nbal=10)
-#' betas(dat,nboot=100) 
+#' betas(dat,nboot=100)$ci 
 #'
 #'@export
 #'

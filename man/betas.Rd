@@ -32,7 +32,7 @@ Estimate \eqn{\betas} per population and a bootstrap confidence interval
 }
 \examples{
 dat<-sim.genot(size=100,N=c(100,1000,10000),nbloc=50,nbal=10)
-betas(dat,nboot=100)
+betas(dat,nboot=100)$ci
 }
 \author{
 Jerome Goudet \email{jerome.goudet@unil.ch}
