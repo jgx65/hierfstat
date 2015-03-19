@@ -48,9 +48,10 @@
 #'
 #' @examples
 #'
+#' \dontrun{
+#' if(require(adegenet)){
 #' data(nancycats)
 #'
-#' \dontrun{
 #' ## pairwise Fst
 #' mat.fst <- pairwise.fst(nancycats, res.type="matrix")
 #' mat.fst
@@ -74,6 +75,7 @@
 #'
 #' ## average over loci
 #' apply(fsttab, 2, mean)
+#' }
 #' }
 #'
 fstat <- function(x, pop=NULL, fstonly=FALSE){

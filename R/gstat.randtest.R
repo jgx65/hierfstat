@@ -43,7 +43,7 @@
 #' @examples
 #'
 #' \dontrun{
-#' if(require(hierfstat)){
+#' if(require(adegenet)){
 #' # here the example of g.stats.glob is taken using gstat.randtest
 #' data(gtrunchier)
 #' x <- df2genind(X=gtrunchier[,-c(1,2)],pop=gtrunchier$Patch)

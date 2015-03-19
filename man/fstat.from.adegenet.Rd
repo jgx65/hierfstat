@@ -49,9 +49,10 @@ between \eqn{A} and \eqn{B} is computed as:\cr
 \eqn{ Fst(A,B) = \frac{(Ht - (n_A Hs(A) + n_B Hs(B))/(n_A + n_B) )}{Ht}} \cr
 }
 \examples{
+\dontrun{
+if(require(adegenet)){
 data(nancycats)
 
-\dontrun{
 ## pairwise Fst
 mat.fst <- pairwise.fst(nancycats, res.type="matrix")
 mat.fst
@@ -75,6 +76,7 @@ fsttab <- Fst(as.loci(nancycats))
 
 ## average over loci
 apply(fsttab, 2, mean)
+}
 }
 }
 \author{
