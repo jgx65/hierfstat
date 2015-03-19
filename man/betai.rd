@@ -2,9 +2,9 @@
 \alias{betai}
 \title{Estimation of \eqn{\beta} per population}
 \description{Estimates \eqn{\beta} (Fst) per population}
-\usage{betai(gendata)}
+\usage{betai(dat)}
 \arguments{
-\item{gendata}{A data frame containing the population of origin in the first column and the genotypes in the following ones}
+\item{dat}{A data frame containing the population of origin in the first column and the genotypes in the following ones}
 }
 
 \value{

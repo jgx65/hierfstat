@@ -1,4 +1,4 @@
-betai <- function(gendata){
+betai <- function(dat){
   # estimates betas from Weir & Hill 2002 Ann Rev Genet
   # gendata is a data frame with first column containing pop id and remaining cols containing genotypes
   # betai are from (7) of WH2002
@@ -14,8 +14,7 @@ betai <- function(gendata){
     apply(data[,-1],2,dum)
     
   }
-  dat<-gendata
-  rm(gendata)
+
   npop<-length(table(dat[,1]))
   nloc<-dim(dat)[2]-1
   al.c.t<-apply(dat[,-1],2,function(x) table(factor(x)))
@@ -118,6 +117,7 @@ betai.unw<-function(dat){
   
   
   ninds <- ind.count.n(dat) 
+  
   H <- array(numeric(npop^2*nloc),dim=c(npop,npop,nloc))
   lden <- numeric(nloc);Hw<-numeric(nloc);Hb<-numeric(nloc)
   acc.p<-numeric(nloc);acc.pp<-numeric(nloc)
