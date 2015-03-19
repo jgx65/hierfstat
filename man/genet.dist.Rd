@@ -15,15 +15,19 @@ genet.dist(dat,diploid=TRUE,method=\dQuote{Dch})
 
 \details{the method argument specify which genetic distance to use, among eight, all briefly described in Takezaki and Nei (1996)
 
-\item{\dQuote{Dch}}{By default, Cavalli-Sforza and Edwards Chord distance (eqn 6 in the reference) is returned. 
-This distance is used as default as Takezaki & Nei (1996) found that it was the best to retrieve the relation among samples}
-\item {\dQuote{Da}}{This is Nei's et al genetic distance (eqn 7), performing nearly as well as \dQuote{Dch}}
-\item{\dQuote{Ds}}{Nei's standard genetic distance (eqn 1). Increases linearly with diverence time but has larger variance }
-\item{\dQuote{Fst}}{Latter's and also approximately Reynolds et al Genetic distance (eqn 3)}
-\item{\dQuote{Dm}}{Nei's minimum distance (eqn 2)}
-\item{\dQuote{Dr}}{Rogers's distance (eqn 4)}
-\item{\dQuote{Cp}}{Prevosti et al's distance (eqn 5)}
-\item{\dQuote{X2}}{Sanghvi's distance (eqn 8)}
+\dQuote{Dch} By default, Cavalli-Sforza and Edwards Chord distance (eqn 6 in the reference) is returned. 
+This distance is used as default as Takezaki & Nei (1996) found that it was the best to retrieve the relation among samples
+
+\dQuote{Da} This is Nei's et al genetic distance (eqn 7), performing nearly as well as \dQuote{Dch}
+
+\dQuote{Ds} Nei's standard genetic distance (eqn 1). Increases linearly with diverence time but has larger variance 
+
+\dQuote{Fst} Latter's and also approximately Reynolds et al Genetic distance (eqn 3)
+\dQuote{Dm} Nei's minimum distance (eqn 2)
+
+\dQuote{Dr} Rogers's distance (eqn 4)
+\dQuote{Cp} Prevosti et al's distance (eqn 5)
+\dQuote{X2} Sanghvi's distance (eqn 8) 
 }
 \value{
 A matrix of pairwise genetic distance
