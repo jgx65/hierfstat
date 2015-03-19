@@ -1,17 +1,18 @@
 export(allele.count,allelic.richness,
-basic.stats,betai,boot.ppfis,boot.ppfst,boot.vc,
+basic.stats,betai,betai.unw,betas,
+boot.ppfis,boot.ppfst,boot.vc,
 cfe.dist,da.dist,eucl.dist,eucl.dist.trait,
 g.stats,g.stats.glob,
 genot2al,getal,getal.b,
 ind.count,
-indpca,print.indpca,plot.indpca,
+indpca,
 mat2vec,
 nb.alleles,
 nei.dist,pcoa,pop.freq,pp.fst,
-pp.sigma.loc,prepdata,print.pp.fst,
+pp.sigma.loc,prepdata,
 read.fstat,read.fstat.data,
 samp.between,samp.between.within,samp.within,
-sim.freq,sim.genot,
+sim.freq,sim.genot,sim.genot.t,
 subsampind,
 test.between,test.between.within,test.g,test.within,
 varcomp,varcomp.glob,
@@ -23,3 +24,6 @@ importFrom(ade4,"dudi.pca")
 
 S3method(print,indpca)
 S3method(plot,indpca)
+S3method(print,pp.fst)
+S3method(print,wc)
+S3method(summary,wc)

@@ -114,15 +114,13 @@ pl[[il]]<-xn
 #'
 #' @details  
 #' 
-#' lets substitute $\alpha$ for  $(1-m)^2 (1-\mu)^2$ and $x$ for $\frac{1}{2N}$.  
+#' lets substitute \eqn{\alpha} for  \eqn{(1-m)^2 (1-\mu)^2} and \eqn{x} for \eqn{\frac{1}{2N}}.  
 #' 
-#' The expectation of $F_{ST}$, $\theta$ can be written as:
+#' The expectation of \eqn{F_{ST}}, \eqn{\theta} can be written as:
 #'
-#' $$
-#'  \theta_t=(\alpha (1-x))^t \theta_0 + \frac{x}{1-x}\sum_{i=1}^t (\alpha (1-x))^i 
-#' $$
-#'  
-#'  which reduces to $\theta_t=\frac{x}{1-x}\sum_{i=1}^t (\alpha (1-x))^i$ if $\theta_0=0$.
+#' \deqn{\theta_t=(\alpha (1-x))^t \theta_0 + \frac{x}{1-x}\sum_{i=1}^t (\alpha (1-x))^i} 
+#' 
+#'  which reduces to \eqn{\theta_t=\frac{x}{1-x}\sum_{i=1}^t (\alpha (1-x))^i} if \eqn{\theta_0=0}.
 #'  
 #'   
 #'     
@@ -134,6 +132,8 @@ pl[[il]]<-xn
 #' dat<-sim.genot.t(nbal=4,nbloc=20,nbpop=5,N=c(100,1000,10000,100000,1000000),mig=0.001,mut=0.0001,f=c(0,0.2,0.5,0.8,1),t=100)
 #' wc(dat) #Weir and cockerham overall estimators of FST & FIS
 #' betai(dat) # Population specific estimator of FST
+#' 
+#' @export
 #' 
 
 

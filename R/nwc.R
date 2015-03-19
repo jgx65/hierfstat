@@ -138,3 +138,7 @@ print.wc<-function(x,...){
 print(list(perloc=x$per.loc,FST=x$FST,FIS=x$FIS))
 invisible(x)
 }
+summary.wc<-function(x,...){
+print(c(x$FST,x$FIS))
+invisible(x)
+}
