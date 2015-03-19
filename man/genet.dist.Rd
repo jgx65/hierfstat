@@ -10,7 +10,7 @@ genet.dist(dat,diploid=TRUE,method=\dQuote{Dch})
 \arguments{
   \item{dat}{A data frame containing population of origin as the first column and multi-locus genotypes in following columns}
   \item{diploid}{whether the data is from a diploid (default) or haploid organism.}
-  \item{method}{One of \dQuote{{Dch},\dQuote{{Da},\dQuote{{Ds},\dQuote{Fst},\dQuote{{Dm},\dQuote{{Dr},\dQuote{{Cp} or \dQuote{{X2}, all described in Takezaki and Nei (1996)}
+  \item{method}{One of \dQuote{Dch},\dQuote{Da},\dQuote{Ds},\dQuote{Fst},\dQuote{Dm},\dQuote{Dr},\dQuote{Cp} or \dQuote{X2}, all described in Takezaki and Nei (1996)}
 }
 
 \details{the method argument specify which genetic distance to use, among eight, all briefly described in Takezaki and Nei (1996)
