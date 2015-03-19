@@ -1,6 +1,6 @@
 Package: hierfstat
-Version: 0.04-14
-Date: 2014-09-25
+Version: 0.04-15
+Date: 2015-03-19
 Title: Estimation and tests of hierarchical F-statistics
 Author: Jerome Goudet <jerome.goudet@unil.ch>
 Maintainer: Jerome Goudet <jerome.goudet@unil.ch>

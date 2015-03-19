@@ -10,13 +10,14 @@ genet.dist(dat,diploid=TRUE,method=\dQuote{Dch})
 \arguments{
   \item{dat}{A data frame containing population of origin as the first column and multi-locus genotypes in following columns}
   \item{diploid}{whether the data is from a diploid (default) or haploid organism.}
-  \item{method}{One of \dQuote{{Dch},\dQuote{{Da},\dQuote{{Ds},\dQoute{Fst},\dQuote{{Dm},\dQuote{{Dr},\dQuote{{Cp} or \dQuote{{X2}, all described in Takezaki and Nei (1996)}
+  \item{method}{One of \dQuote{{Dch},\dQuote{{Da},\dQuote{{Ds},\dQuote{Fst},\dQuote{{Dm},\dQuote{{Dr},\dQuote{{Cp} or \dQuote{{X2}, all described in Takezaki and Nei (1996)}
 }
 
 \details{the method argument specify which genetic distance to use, among eight, all briefly described in Takezaki and Nei (1996)
 
-\item{\dQuote{Dch}}{By default, Cavalli-Sforza and Edwards Chord distance (eqn 6 in the reference) is returned. This distance is used as default as Takezaki & Nei (1996) found that it was the best to retrieve the relation among samples}
-\item {\dQuote{Da}}{This is Nei's et al genetic distance (eqn 7), performing nearly as well as "Dch}}
+\item{\dQuote{Dch}}{By default, Cavalli-Sforza and Edwards Chord distance (eqn 6 in the reference) is returned. 
+This distance is used as default as Takezaki & Nei (1996) found that it was the best to retrieve the relation among samples}
+\item {\dQuote{Da}}{This is Nei's et al genetic distance (eqn 7), performing nearly as well as \dQuote{Dch}}
 \item{\dQuote{Ds}}{Nei's standard genetic distance (eqn 1). Increases linearly with diverence time but has larger variance }
 \item{\dQuote{Fst}}{Latter's and also approximately Reynolds et al Genetic distance (eqn 3)}
 \item{\dQuote{Dm}}{Nei's minimum distance (eqn 2)}
