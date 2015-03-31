@@ -9,12 +9,13 @@ The *hierfstat* package is intended for the analysis of population structure usi
 You will need the package *devtools*  to be able to install the devel version of *hierfstat*. To install *devtools*:
 
 ```
-install_github("devtools")
+install.packages("devtools")
 ```
 
 To install *hierfstat* devel:
 
 ```
+library(devtools)
 install_github("jgx65/hierfstat")
 library("hierfstat")
 ```
