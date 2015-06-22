@@ -28,8 +28,6 @@
 #' to any grouping of individuals'.
 #' @param res.type the type of result to be returned: a \code{dist} object, or
 #' a symmetric matrix
-#' @param truenames a logical indicating whether true labels (as opposed to
-#' generic labels) should be used to name the output.
 #' @param fstonly a logical stating whether only the Fst should be returned.
 #' @return A vector, a matrix, or a dist object containing F statistics.
 #' @author Thibaut Jombart \email{t.jombart@@imperial.ac.uk}
@@ -84,15 +82,14 @@ fstat <- function(x, pop=NULL, fstonly=FALSE){
     ## misc checks
     if(!is.genind(x)) stop("x is not a valid genind object")
     ## if(!require(hierfstat)) stop("hierfstat package is required. Please install it.")
-    if(x@ploidy != as.integer(2)) stop("not implemented for non-diploid genotypes")
-    checkType(x)
+    if(any(x@ploidy != 2L)) stop("not implemented for non-diploid genotypes")
 
-    if(is.null(pop)) pop <- x@pop
+    if(is.null(pop)) pop <- pop(x)
     if(is.null(pop)) stop("no pop factor provided")
-    if(length(pop)!=nrow(x@tab)) stop("pop has a wrong length.")
+    if(length(pop)!=nInd(x)) stop("pop has a wrong length.")
 
     ## computations
-    dat <- genind2hierfstat(x)[,-1]
+    dat <- .genind2hierfstat(x)[,-1]
     res <- varcomp.glob(levels=data.frame(pop), loci=dat)$F
 
     if(fstonly) {res <- res[1,1]}
@@ -108,7 +105,7 @@ fstat <- function(x, pop=NULL, fstonly=FALSE){
 #' @export
 #' @aliases pairwise.fst
 #'
-pairwise.fst <- function(x, pop=NULL, res.type=c("dist","matrix"), truenames=TRUE){
+pairwise.fst <- function(x, pop=NULL, res.type=c("dist","matrix")){
     ## MISC CHECKS ##
     if(!is.genind(x)) stop("x is not a valid genind object")
     if(!is.null(pop)){
@@ -159,11 +156,7 @@ pairwise.fst <- function(x, pop=NULL, res.type=c("dist","matrix"), truenames=TRU
 
     if(res.type=="matrix"){
         res <- as.matrix(res)
-        if(truenames){
-            lab <- x@pop.names
-        } else {
-            lab <- names(x@pop.names)
-        }
+        lab <- popNames(x)
 
         colnames(res) <- rownames(res) <- lab
     }
