@@ -16,7 +16,7 @@ genet.dist(dat,diploid=TRUE,method="Dch")
 \details{the method argument specify which genetic distance to use, among eight, all briefly described in Takezaki and Nei (1996)
 
 \dQuote{Dch} By default, Cavalli-Sforza and Edwards Chord distance (eqn 6 in the reference) is returned. 
-This distance is used as default as Takezaki & Nei (1996) found that it was the best to retrieve the relation among samples
+This distance is used as default since Takezaki & Nei (1996) found that it was the best to retrieve the relation among samples.
 
 \dQuote{Da} This is Nei's et al genetic distance (eqn 7), performing nearly as well as \dQuote{Dch}
 
@@ -35,7 +35,7 @@ This distance is used as default as Takezaki & Nei (1996) found that it was the 
 \value{
 A matrix of pairwise genetic distance
 }
-\references{takezaki & Nei (1996) Genetic distances and reconstruction of Phylogenetic trees from microsatellite DNA. Genetics 144:389-399. \url{http://www.genetics.org/content/144/1/389}
+\references{Takezaki & Nei (1996) Genetic distances and reconstruction of Phylogenetic trees from microsatellite DNA. Genetics 144:389-399. \url{http://www.genetics.org/content/144/1/389}
 }
 \author{Jerome Goudet \email{jerome.goudet@unil.ch}}
 

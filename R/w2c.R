@@ -35,7 +35,7 @@ p<-pop.freq(dat,diploid)
 pb<-pop.freq(cbind(rep(1,ni),dat[,-1]),diploid)
 n<-matrix(unlist(n),ncol=np) #why?
 nal<-n[rep(1:nl,alploc),]
-nc<-(nt-apply(n^2,1,sum,na.rm=TRUE)/nt)/(npl-1)
+nc<-(nt-apply(n^2,1,sum,na.rm=TRUE)/nt)/(npl-1) #what happens if npl=1?
 ntal<-rep(nt,alploc)
 ncal<-rep(nc,alploc)
 p<-matrix(unlist(lapply(p,t)),ncol=np,byrow=TRUE)
