@@ -132,6 +132,7 @@ pl[[il]]<-xn
   gn<-as.numeric(outer(1:nbal,1:nbal,nfun))
   return(list(call=cl,fpl=pl,gf=gf,gn=gn))
 }
+
 ###################################################
 #'
 #' @title Simulate data from a non-equilibrium island model
@@ -207,7 +208,7 @@ pl[[il]]<-xn
 #'  
 #'   
 #'     
-#' @author Jerome Goudet \email{jerome.goudet@unil.ch}
+#' @author Jerome Goudet \email{jerome.goudet@@unil.ch}
 #' 
 #' @examples
 #' 
