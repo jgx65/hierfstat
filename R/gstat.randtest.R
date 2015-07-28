@@ -1,3 +1,70 @@
+
+
+###################
+# Function .genlab
+###################
+# recursive function to have labels of constant length
+# base = a character string
+# n = number of labels
+.genlab <- function(base, n) {
+  f1 <- function(cha,n){
+    if(nchar(cha)<n){
+      cha <- paste("0",cha,sep="")
+      return(f1(cha,n))
+    } else {return(cha)}
+  }
+  w <- as.character(1:n)
+  max0 <- max(nchar(w))
+  w <- sapply(w, function(cha) f1(cha,max0))
+  return(paste(base,w,sep=""))
+}
+
+
+
+############################
+# Function genind2hierfstat - not exported
+############################
+.genind2hierfstat <- function(x, pop=NULL){
+    ##  if(!inherits(x,"genind")) stop("x must be a genind object (see ?genind)")
+    ##   invisible(validObject(x))
+    if(!is.genind(x)) stop("x is not a valid genind object")
+    if(any(ploidy(x) != 2L)) stop("not implemented for non-diploid genotypes")
+    ## checkType(x)
+
+    if(is.null(pop)) pop <- pop(x)
+    if(is.null(pop)) pop <- as.factor(rep("P1",nrow(x@tab)))
+
+    ## ## NOTES ON THE CODING IN HIERFSTAT ##
+    ## - interpreting function is genot2al
+    ## - same coding has to be used for all loci
+    ## (i.e., all based on the maximum number of digits to be used)
+    ## - alleles have to be coded as integers
+    ## - alleles have to be sorted by increasing order when coding a genotype
+    ## - for instance, 121 is 1/21, 101 is 1/1, 11 is 1/1
+
+    ## find max number of alleles ##
+    max.nall <- max(nAll(x))
+    x@all.names <- lapply(alleles(x), function(e) .genlab("",max.nall)[1:length(e)])
+
+
+    ## VERSION USING GENIND2DF ##
+    gen <- genind2df(x, sep="", usepop=FALSE)
+    gen <- as.matrix(data.frame(lapply(gen, as.numeric)))
+    res <- cbind(as.numeric(pop),as.data.frame(gen))
+    colnames(res) <- c("pop", locNames(x))
+    if(!any(table(indNames(x))>1)){
+        rownames(res) <- indNames(x)
+    } else {
+        warning("non-unique labels for individuals; using generic labels")
+        rownames(res) <- 1:nrow(res)
+    }
+
+    return(res)
+} # end .genind2hierfstat
+
+
+
+
 ##########################
 ## Function gstat.randtest
 ##########################
@@ -78,8 +145,8 @@ gstat.randtest <- function(x,pop=NULL, method=c("global","within","between"),
     ## return(invisible())
 
     if(!is.genind(x)) stop("x is not a valid genind object")
-    if(x@ploidy != as.integer(2)) stop("not implemented for non-diploid genotypes")
-    checkType(x)
+    if(any(ploidy(x) != 2L)) stop("not implemented for non-diploid genotypes")
+    ## checkType(x)
     ## if(!require(hierfstat)) stop("hierfstat package is required. Please install it.")
 
     if(is.null(pop)) pop <- x@pop
@@ -91,7 +158,7 @@ gstat.randtest <- function(x,pop=NULL, method=c("global","within","between"),
     if(met=="between" && is.null(sub.pop)) stop("Method 'between' chosen but 'sub.pop' is not provided.")
 
     ## make data for hierfstat
-    X <- genind2hierfstat(x=x,pop=pop)
+    X <- .genind2hierfstat(x=x,pop=pop)
 
     ## compute obs gstat
     obs <- g.stats.glob(X)$g.stats
