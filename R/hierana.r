@@ -117,8 +117,7 @@ function (data, diploid = TRUE)
         vec.c.ss <- temp1[2:length(temp1)] - temp1[1:(length(temp1) - 
             1)]
         meansq <- vec.c.ss/dfreed
-        vc <- solve(k, meansq)
-        return(vc)
+        solve(k, meansq)
     }
     nbf <- dim(data)[2] - 1
     x <- NULL
@@ -149,14 +148,14 @@ function (data, diploid = TRUE)
     id.al <- as.numeric(names(table(y)))
     nal <- length(id.al)
     resp <- as.numeric(y == id.al[1])
-    for (i in 2:nal) resp <- cbind(resp, as.numeric(y == id.al[i]))
+    for (i in 2:nal) resp <- cbind(resp, as.numeric(y == id.al[i])) #OPT
     n <- vector(length = (nblevels))
     for (i in 1:nblevels) n[i] <- max(ndata[, i])
     n <- c(1, n)
     dfreed <- n[2:(nblevels + 1)] - n[1:nblevels]
     k <- matrix(rep(0, (nblevels)^2), ncol = (nblevels))
     x <- rep(1, length(ndata[, 1]))
-    for (i in 1:nblevels) x <- cbind(x, ndata[, i])
+    for (i in 1:nblevels) x <- cbind(x, ndata[, i]) #OPT
     dum <- list()
     temp <- rep(1, length(y))
     for (i in 1:nblevels) dum[[i]] <- tapply(temp, x[, i], sum)
@@ -204,10 +203,10 @@ function (levels = levels, loci = loci, diploid = TRUE)
     if (diploid) {
         fnames <- c(fnames, "Ind")
     }
-    res <- varcomp(cbind(levels, loci[, 1]),diploid)$overall
+    res <- varcomp(cbind(levels, loci[, 1]),diploid)$overall #OPT: remove cbind and rbind
     nloc <- dim(loci)[2]
     for (i in 2:nloc) res <- rbind(res, varcomp(cbind(levels, 
-        loci[, i]),diploid)$overall)
+        loci[, i]),diploid)$overall) #OPT
     tot <- apply(res, 2, sum, na.rm = TRUE)
     nblevels <- length(tot)
     f <- matrix(rep(0, (nblevels - 1)^2), ncol = (nblevels - 
