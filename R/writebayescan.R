@@ -6,7 +6,7 @@
 #' @usage write.bayescan(dat=dat,diploid=TRUE,fn="dat.bsc")
 #' 
 #' @param dat a genotype data frame
-#' @param diploid whether the dataset is diploid or haplois
+#' @param diploid whether the dataset is diploid or haploid
 #' @param fn  file name for output
 #' 
 #' @return a text file fn is written in the current directory
@@ -15,8 +15,8 @@
 #' 
 #' @references \href{Foll M and OE Gaggiotti (2008) A genome scan method to identify 
 #' selected loci appropriate for both dominant and codominant markers: 
-#' A Bayesian perspective. Genetics 180: 977-993}
-#' {http://www.genetics.org/content/180/2/977.abstract}
+#' A Bayesian perspective. Genetics 180: 977-993}{http://www.genetics.org/content/180/2/977.abstract}
+#'
 #' 
 #' \url{http://cmpg.unibe.ch/software/BayeScan/}
 #'
