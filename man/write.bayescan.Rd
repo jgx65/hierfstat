@@ -2,7 +2,7 @@
 % Please edit documentation in R/writebayescan.R
 \name{write.bayescan}
 \alias{write.bayescan}
-\title{write.bayescan Writes a bayescan file}
+\title{Writes a bayescan file}
 \usage{
 write.bayescan(dat=dat,diploid=TRUE,fn="dat.bsc")
 }
@@ -24,9 +24,8 @@ analysis with bayescan
 Jerome Goudet \email{jerome.goudet@unil.ch}
 }
 \references{
-\href{Foll M and OE Gaggiotti (2008) A genome scan method to identify
-selected loci appropriate for both dominant and codominant markers:
-A Bayesian perspective. Genetics 180: 977-993}{http://www.genetics.org/content/180/2/977.abstract}
+\href{http://www.genetics.org/content/180/2/977.abstract}{Foll M and OE Gaggiotti (2008)
+ Genetics 180: 977-993}
 
 
 \url{http://cmpg.unibe.ch/software/BayeScan/}

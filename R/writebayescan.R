@@ -1,4 +1,4 @@
-#' @title write.bayescan Writes a bayescan file
+#' @title Writes a bayescan file
 #' 
 #' @description write the genotypes in a format suitable for
 #' analysis with bayescan
@@ -13,9 +13,8 @@
 #' 
 #' @author Jerome Goudet \email{jerome.goudet@@unil.ch}
 #' 
-#' @references \href{Foll M and OE Gaggiotti (2008) A genome scan method to identify 
-#' selected loci appropriate for both dominant and codominant markers: 
-#' A Bayesian perspective. Genetics 180: 977-993}{http://www.genetics.org/content/180/2/977.abstract}
+#' @references \href{http://www.genetics.org/content/180/2/977.abstract}{Foll M and OE Gaggiotti (2008) 
+#'  Genetics 180: 977-993}
 #'
 #' 
 #' \url{http://cmpg.unibe.ch/software/BayeScan/}
