@@ -16,6 +16,7 @@ getal<-function(data){
 		#following anders Goncalves suggestion, replaced nbpop<-max(dat[,1]) with length(unique(dat[,1]))
 		#caught exception when encoding alleles with more than 3 digits
 		#caught exception when encoding alleles with more than 3 digits but only using allele 1-9
+    #added sort to loop following simon forsberg email 
 x<-dim(data)
 if (max(data[,2],na.rm=TRUE)>1000000) stop("allele encoding with 3 digits maximum")
 if (max(data[,2],na.rm=TRUE)<1000000) modulo<-1000
@@ -27,7 +28,7 @@ firstal<-data[,-1] %/% modulo
 secal<-data[,-1] %% modulo
 ind<-vector(length=0)
 nbpop <- length(unique(data[,1]))
-for (i in unique(data[,1])) {
+for (i in sort(unique(data[,1]))) {
 dum<-1:sum(data[,1]==i)
 if (i==1) ind<-dum else ind<-c(ind,dum)
 }
