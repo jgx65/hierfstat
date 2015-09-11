@@ -10,7 +10,7 @@ genet.dist(dat,diploid=TRUE,method="Dch")
 \arguments{
   \item{dat}{A data frame containing population of origin as the first column and multi-locus genotypes in following columns}
   \item{diploid}{whether the data is from a diploid (default) or haploid organism.}
-  \item{method}{One of \dQuote{Dch},\dQuote{Da},\dQuote{Ds},\dQuote{Fst},\dQuote{Dm},\dQuote{Dr},\dQuote{Cp} or \dQuote{X2}, all described in Takezaki and Nei (1996)}
+  \item{method}{One of \dQuote{Dch},\dQuote{Da},\dQuote{Ds},\dQuote{Fst},\dQuote{Dm},\dQuote{Dr},\dQuote{Cp} or \dQuote{X2}, all described in Takezaki and Nei (1996). Additionally \dQuote{Nei87} and \dQuote{WC84} return pairwise FSTs estimated following Nei (1987) \link{pairwise.neifst} and Weir & Cockerham (1984) \link{pp.fst} respectively}
 }
 
 \details{the method argument specify which genetic distance to use, among eight, all briefly described in Takezaki and Nei (1996)
@@ -31,15 +31,24 @@ This distance is used as default since Takezaki & Nei (1996) found that it was t
 \dQuote{Cp} Prevosti et al's distance (eqn 5)
 
 \dQuote{X2} Sanghvi's distance (eqn 8) 
+
+\dQuote{Nei87} see \link{pairwise.neifst}
+
+\dQuote{WC84}  see \link{pp.fst}
 }
 \value{
 A matrix of pairwise genetic distance
 }
 \references{Takezaki & Nei (1996) Genetic distances and reconstruction of Phylogenetic trees from microsatellite DNA. Genetics 144:389-399. \url{http://www.genetics.org/content/144/1/389}
+
+Nei, M. (1987) Molecular Evolutionary Genetics. Columbia University Press
+
+Weir, B.S. and Cockerham C.C. (1984) Estimating F-Statistics for the Analysis of Population Structure 38:1358-1370 \url{http://www.jstor.org/stable/2408641}
 }
+
 \author{Jerome Goudet \email{jerome.goudet@unil.ch}}
 
-\seealso{\code{\link{pp.fst}}}
+\seealso{\code{\link{pp.fst}} \code{\link{pairwise.neifst}}}
 
 \examples{
 data(gtrunchier)

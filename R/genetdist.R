@@ -2,11 +2,15 @@ genet.dist<-function(dat,diploid=TRUE,method="Dch"){
   cl<-match.call()
   if(!is.na(pmatch(method,"Dch")))
     method<-"Dch"
-  METHODS<-c("Dch","Da","Ds","Fst","Dm","Dr","Cp","X2")
+  METHODS<-c("Dch","Da","Ds","Fst","Dm","Dr","Cp","X2","Nei87","WC84")
   method<-pmatch(method,METHODS)
   if (is.na(method)) stop("Invalid distance method")
   if (method==-1) stop("Ambiguous distance method")
+
+  if (method==9) {gdist<-pairwise.neifst(dat,diploid); return(gdist)}
+  if (method==10) {gdist<-pp.fst(dat,diploid); return(gdist)}
   
+    
   pft<-pop.freq(dat,diploid)
   nl<-length(pft)
   npop<-dim(pft[[1]])[2]
