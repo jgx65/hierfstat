@@ -1,8 +1,8 @@
-#version 0.04-16 18.03.2025
--
--
--
--
+#version 0.04-16 14.09.2015
+-fixed several bugs
+-finite and non equilibrium island model can be generated with sim.genot.t
+-added pairwise FST (Nei87 and WC84) as geentic distances in genet.dist
+
 
 #version 0.04-15 30.09.2014
 -fixed a bug in basic.stats, when only one population with index 2, caused a non conformable array error message. 
