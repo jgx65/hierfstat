@@ -36,10 +36,12 @@ genet.dist<-function(dat,diploid=TRUE,method="Dch"){
                   function(b) outer(b,b,
                                     FUN=function(y,z) (y-z)^2/(y+z)))
             ,1,sum,na.rm=TRUE),nrow=npop))
+
   for (il in 1:nl){dist.loc[,,il]<-temp[[il]]}
   rm(temp)
   nlpp<-apply(dist.loc,c(1,2),function(x) sum(!is.na(x)))
-  if (method==1) gdist<-2/pi/nlpp*apply(dist.loc,c(1,2),sum,na.rm=TRUE)
+
+    if (method==1) gdist<-2/pi/nlpp*apply(dist.loc,c(1,2),sum,na.rm=TRUE)
   if (method==2) gdist<-1-1/nlpp*apply(dist.loc,c(1,2),sum,na.rm=TRUE)
   if (method %in% c(3,4,5)) {
     Jxy<-1/nlpp*apply(dist.loc,c(1,2),sum,na.rm=TRUE)
@@ -49,8 +51,7 @@ genet.dist<-function(dat,diploid=TRUE,method="Dch"){
     dum<-matrix(1/nlpp*apply(dum,1,sum,na.rm=TRUE),nrow=npop) 
   }
   if (method==3) {
-    dum<-apply(dist.loc,3,function(x) outer(diag(x),diag(x),FUN="*"))
-    dum<-matrix(1/nlpp*apply(dum,1,sum,na.rm=TRUE),nrow=npop) 
+    dum<-outer(diag(Jxy),diag(Jxy),FUN="*")
     gdist<- -log(Jxy/dum^.5);
     #    diag(gdist)<-0
   }
