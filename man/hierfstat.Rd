@@ -6,13 +6,13 @@
 }
 
 \references{
-Goudet J. (2005). Hierfstat, a package for R to compute and test variance components and F-statistics. Molecular Ecology Notes. 5:184-186
+\href{http://www2.unil.ch/popgen/research/reprints/goudet_men_2005.pdf}{Goudet J. (2005)} Hierfstat, a package for R to compute and test variance components and F-statistics. Molecular Ecology Notes. 5:184-186
 
-Goudet J., Raymond, M., DeMeeus, T. and Rousset F. (1996) Testing differentiation in diploid populations. Genetics. 144: 1933-1940
+\href{http://www.ncbi.nlm.nih.gov/pmc/articles/PMC1207740/pdf/ge14441933.pdf}{Goudet J., Raymond, M., DeMeeus, T. and Rousset F. (1996)} Testing differentiation in diploid populations. Genetics. 144: 1933-1940 
 
 Weir, B.S. (1996) Genetic Data Analysis II. Sinauer Associates.
 
-Yang, R.C. (1998). Estimating hierarchical F-statistics. Evolution 52(4):950-956
+\href{http://www.jstor.org/stable/2411227?seq=1#page_scan_tab_contents}{Yang, R.C. (1998)} Estimating hierarchical F-statistics. Evolution 52(4):950-956
 }
 \author{Jerome Goudet \email{jerome.goudet@unil.ch}}
 \keyword{misc}

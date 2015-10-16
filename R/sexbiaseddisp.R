@@ -13,7 +13,7 @@ subsamp.within<-function (lev,ni=10) {
 ##################################################################################
 #'
 #' @title Calculates corrected Assignment Index
-#' @description Calculates corrected Assignment Index as described in Goudet etal. (2002)
+#' @description Calculates corrected Assignment Index as described in \href{http://onlinelibrary.wiley.com/doi/10.1046/j.1365-294X.2002.01496.x/abstract}{Goudet etal. (2002)}
 #' 
 #' @usage AIc(dat)
 #' 
@@ -24,10 +24,12 @@ subsamp.within<-function (lev,ni=10) {
 #'  @author Jerome Goudet \email{jerome.goudet@@unil.ch}
 #'  
 #' 
-#'  @references Goudet J, Perrin N, Waser P (2002) Tests for sex-biased dispersal 
+#'  @references \href{http://onlinelibrary.wiley.com/doi/10.1046/j.1365-294X.2002.01496.x/abstract}
+#'  {Goudet J, Perrin N, Waser P (2002)} Tests for sex-biased dispersal 
 #'  using bi-parentally inherited genetic markers 11, 1103:1114
-#'   \url{http://onlinelibrary.wiley.com/doi/10.1046/j.1365-294X.2002.01496.x/full}
-#' 
+#'   
+#'   
+#' @export
 ##################################################################################
 AIc<-function(dat){
 dat[,1]<-as.integer(as.factor(dat[,1]))
@@ -64,10 +66,11 @@ return(aic)
 #' 
 #' @title Test fo sex biased dispersal
 #' @description Test whether one
-#' sex disperses more than the other using the method described in Goudet etal. (2002) 
-#' \url{http://onlinelibrary.wiley.com/doi/10.1046/j.1365-294X.2002.01496.x/full}
+#' sex disperses more than the other using the method described in 
+#' \href{http://onlinelibrary.wiley.com/doi/10.1046/j.1365-294X.2002.01496.x/abstract}{Goudet etal. (2002)} 
 #' 
-#' @usage sexbias.test(dat,sex,nperm=NULL,test="mAIc",alternative=c("two.sided","less","greater"))
+#' 
+#' @usage sexbias.test(dat,sex,nperm=NULL,test="mAIc",alternative="two.sided")
 #' 
 #' @param dat a data frame with n.locs+1 columns and n.inds rows
 #' @param sex a vector containing the individual's sex
@@ -83,21 +86,22 @@ return(aic)
 #'  @author Jerome Goudet \email{jerome.goudet@@unil.ch}
 #'  
 #' 
-#'  @references Goudet J, Perrin N, Waser P (2002) Tests for sex-biased dispersal 
+#'  @references \href{http://onlinelibrary.wiley.com/doi/10.1046/j.1365-294X.2002.01496.x/abstract}
+#'  {Goudet J, Perrin N, Waser P (2002)} Tests for sex-biased dispersal 
 #'  using bi-parentally inherited genetic markers 11, 1103:1114
-#'   \url{http://onlinelibrary.wiley.com/doi/10.1046/j.1365-294X.2002.01496.x/full}
+#'   
 #'   
 #'  @examples 
 #'  
 #'   dat<-qn2.read.fstat(system.file("extdata","qn2_sex.dat",package="hierfstat"))
-#'   test.sex.bias(dat[[1]],sex=dat[[2]])
+#'   sexbias.test(dat[[1]],sex=dat[[2]])
 #'   \dontrun{
-#'   test.sex.bias(dat[[1]],sex=dat[[2]],nperm=100,test="FST",alternative="greater")
+#'   sexbias.test(dat[[1]],sex=dat[[2]],nperm=100,test="FST",alternative="greater")
 #'   }
 #'
 #'  @export
 ###################################################################################
-test.sex.bias<-function(dat,sex,nperm=NULL,test="mAIc",
+sexbias.test<-function(dat,sex,nperm=NULL,test="mAIc",
                         alternative="two.sided"){
 #calculate the corrected assignment index for all individuals
 #dat is a genotype data frame

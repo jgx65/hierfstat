@@ -18,7 +18,7 @@ test.between,test.between.within,test.g,test.within,
 varcomp,varcomp.glob,
 vec2mat,wc,write.fstat,write.struct,write.bayescan,
 fstat,gstat.randtest,pairwise.fst,
-AIc,test.sex.bias)
+AIc,sexbias.test)
 
 # Import all packages listed as Imports or Depends
 importFrom(gtools,"rdirichlet")

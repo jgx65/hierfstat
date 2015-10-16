@@ -26,7 +26,7 @@ Read QuantiNemo (\url{http://www2.unil.ch/popgen/softwares/quantinemo/}) genotyp
 }
 \examples{
 dat<-qn2.read.fstat(system.file("extdata","qn2_sex.dat",package="hierfstat"))
-  test.sex.bias(dat[[1]],sex=dat[[2]])
+  sexbias.test(dat[[1]],sex=dat[[2]])
 }
 \author{
 Jerome Goudet \email{jerome.goudet@unil.ch}

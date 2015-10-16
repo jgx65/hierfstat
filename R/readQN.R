@@ -18,15 +18,15 @@
 #'  
 #'  @seealso \code{\link{read.fstat}}
 #' 
-#'  @references Neuenschwander S, Hospital F, Guillaume F, Goudet J (2008) 
+#'  @references \href{http://www2.unil.ch/popgen/softwares/quantinemo/2008_Neuenschwander_et_al_BioInf_quantiNEMO.pdf}{Neuenschwander S, Hospital F, Guillaume F, Goudet J (2008)} 
 #'  quantiNEMO: an individual-based program to simulate quantitative traits with explicit 
 #'  genetic architecture in a dynamic metapopulation Bioinformatics 24, 1552-1553.
-#'   \url{http://www2.unil.ch/popgen/softwares/quantinemo/2008_Neuenschwander_et_al_BioInf_quantiNEMO.pdf}
+#'  
 #'   
 #'  @examples 
 #'  
 #'   dat<-qn2.read.fstat(system.file("extdata","qn2_sex.dat",package="hierfstat"))
-#'   test.sex.bias(dat[[1]],sex=dat[[2]])
+#'   sexbias.test(dat[[1]],sex=dat[[2]])
 #'
 #'  @export
 ########################################################################################  
