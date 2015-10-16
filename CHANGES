@@ -1,3 +1,10 @@
+#version 0.04-18 16.10.2015
+-fixed bugs in plot.indpca, genet.dist
+-added a function to compte corrected Assignment indexs (AIc)
+-added a function to test for sex biased dispersal
+-added a function to read output from quantinemo
+-added an example output quantinemo file
+
 #version 0.04-16 14.09.2015
 -fixed several bugs
 -finite and non equilibrium island model can be generated with sim.genot.t

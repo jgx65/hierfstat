@@ -53,7 +53,6 @@ genet.dist<-function(dat,diploid=TRUE,method="Dch"){
   if (method==3) {
     dum<-outer(diag(Jxy),diag(Jxy),FUN="*")
     gdist<- -log(Jxy/dum^.5);
-    #    diag(gdist)<-0
   }
   if (method==4) gdist<-(dum-Jxy)/(1-Jxy)
   if (method==5) gdist<-(dum-Jxy)

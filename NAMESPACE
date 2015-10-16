@@ -10,14 +10,15 @@ mat2vec,
 nb.alleles,
 pcoa,pop.freq,pp.fst,pairwise.neifst,
 pp.sigma.loc,
-read.fstat,read.fstat.data,
+read.fstat,read.fstat.data,qn2.read.fstat,
 samp.between,samp.between.within,samp.within,
 sim.freq,sim.genot,sim.genot.t,
 subsampind,
 test.between,test.between.within,test.g,test.within,
 varcomp,varcomp.glob,
 vec2mat,wc,write.fstat,write.struct,write.bayescan,
-fstat,gstat.randtest,pairwise.fst)
+fstat,gstat.randtest,pairwise.fst,
+AIc,test.sex.bias)
 
 # Import all packages listed as Imports or Depends
 importFrom(gtools,"rdirichlet")
