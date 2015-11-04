@@ -42,11 +42,11 @@ return(data.al)
 getal.b<-function(data){
 x<-dim(data)
 if (max(data[,2],na.rm=TRUE)>1000000) stop("allele encoding with 3 digits maximum")
-if (max(data[,1],na.rm=TRUE)<1000000) modulo<-1000
+if (max(data[,2],na.rm=TRUE)<1000000) modulo<-1000
 if (max(data[,2],na.rm=TRUE)<10000) {
 if (min(data[,2]%/%100,na.rm=TRUE)>=10 & max(data[,2]%%100,na.rm=TRUE)<10) modulo<-1000 else modulo<-100
 }
-if (max(data[,1],na.rm=TRUE)<100) modulo<-10
+if (max(data[,2],na.rm=TRUE)<100) modulo<-10
 firstal<-data %/% modulo
 secal<-data %% modulo
 y<-array(dim=c(x,2))
@@ -60,16 +60,16 @@ pop.freq<-function(data,diploid=TRUE)
 nbpop<-length(unique(data[,1]))
 nbloc<-dim(data)[2]-1
 if (diploid) {
-data<-data.frame(data,dummy.loc=sample(101:999,replace=TRUE,size=dim(data)[1])*1001) #to ensure proper output
+data<-data.frame(data,dummy.loc=rep(101,dim(data)[1])*1001) #to ensure proper output
 data<-getal(data)[,-2]
 }
 else{
-data<-data.frame(data,dummy.loc=sample(101:999,replace=TRUE,size=dim(data)[1]))
+data<-data.frame(data,dummy.loc=rep(101,dim(data)[1]))
 }
 freq<-function(x){
-#factor(x) necessary for funny allele encoding, but could slow down things
-  dum<-table(factor(x),data[,1])
-  eff<-apply(dum,2,sum,na.rm=TRUE)
+#factor(x) necessary for funny allele encoding, but DOES slow down things
+  if (is.character(x)) dum<-table(factor(x),data[,1]) else dum<-(table(x,data[,1]))
+  eff<-colSums(dum,na.rm=TRUE)
   freq<-sweep(dum,2,eff,FUN="/")
 }
 ndat<-data[,-1]
@@ -215,7 +215,7 @@ if (diploid){
 rownames(sHo)<-loc.names
 rownames(Fis)<-loc.names
 }
-
+is.na(res)<-do.call(cbind,lapply(res,is.infinite))
 overall<-apply(res,2,mean,na.rm=TRUE)
 overall[7]<-overall[4]/overall[3]
 overall[8]<-overall[6]/overall[5]
