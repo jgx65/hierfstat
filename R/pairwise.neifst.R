@@ -31,6 +31,7 @@
 #########################################################################
 
 pairwise.neifst <- function(dat,diploid=TRUE){
+  dat<-dat[order(dat[,1]),]
   pops<-unique(dat[,1])
   npop<-length(pops)
   fstmat <- matrix(nrow=npop,ncol=npop,dimnames=list(pops,pops))

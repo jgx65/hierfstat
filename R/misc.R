@@ -160,7 +160,6 @@ allelic.richness<-function (data, min.n = NULL, diploid = TRUE)
 basic.stats<-function(data,diploid=TRUE,digits=4){
 # TODO : define plot functions for basic.stats
 loc.names<-names(data)[-1]
-
 if (length(table(data[,1]))<2) data[dim(data)[1]+1,1]<-data[dim(data)[1],1]+1
 if(dim(data)[2]==2) data<-data.frame(data,dummy.loc=data[,2])
 p<-pop.freq(data,diploid)
@@ -391,6 +390,7 @@ return(wc(ndat,diploid,...)$sigma.loc)
 
 pp.fst<-function(dat=dat,diploid=TRUE,...){
 cl<-match.call()
+dat<-dat[order(dat[,1]),]
 Pop<-dat[,1]
 npop<-length(unique(Pop))
 nloc<-dim(dat)[2]-1
