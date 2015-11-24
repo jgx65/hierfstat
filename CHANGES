@@ -1,3 +1,8 @@
+#version 0.04-20 24.11.2015
+-hierfstat functions now read genind objects from adegenet
+-new function to write ped files (plink) and bayescan files
+
+
 #version 0.04-18 16.10.2015
 -fixed bugs in plot.indpca, genet.dist
 -added a function to compte corrected Assignment indexs (AIc)
