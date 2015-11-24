@@ -4,7 +4,8 @@ indpca<-function(dat,ind.labels=NULL){
 #given a genotype data set dat
 #and individual labels lab
 #performs a PCA on individuals
-
+  if (is.genind(dat)) dat<-genind2hierfstat(dat)
+  
 indp<-pop.freq(cbind(1:dim(dat)[1],dat[,-1]))
 mati<-NULL
 for (i in 1:length(indp)) mati<-rbind(mati,indp[[i]])

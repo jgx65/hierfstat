@@ -1,5 +1,6 @@
 genet.dist<-function(dat,diploid=TRUE,method="Dch"){
   cl<-match.call()
+  if (is.genind(dat)) dat<-genind2hierfstat(dat)
   if(!is.na(pmatch(method,"Dch")))
     method<-"Dch"
   METHODS<-c("Dch","Da","Ds","Fst","Dm","Dr","Cp","X2","Nei87","WC84")

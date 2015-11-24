@@ -17,6 +17,7 @@ getal<-function(data){
 		#caught exception when encoding alleles with more than 3 digits
 		#caught exception when encoding alleles with more than 3 digits but only using allele 1-9
     #added sort to loop following simon forsberg email 
+if (is.genind(data)) data<-genind2hierfstat(data)
 x<-dim(data)
 if (max(data[,2],na.rm=TRUE)>1000000) stop("allele encoding with 3 digits maximum")
 if (max(data[,2],na.rm=TRUE)<1000000) modulo<-1000
@@ -40,6 +41,8 @@ return(data.al)
 }
 #########################################################################
 getal.b<-function(data){
+  if (is.genind(data)) data<-genind2hierfstat(data)
+  
 x<-dim(data)
 if (max(data[,2],na.rm=TRUE)>1000000) stop("allele encoding with 3 digits maximum")
 if (max(data[,2],na.rm=TRUE)<1000000) modulo<-1000
@@ -57,6 +60,8 @@ return(y)
 #########################################################################
 pop.freq<-function(data,diploid=TRUE)
 {
+  if (is.genind(data)) data<-genind2hierfstat(data)
+  
 nbpop<-length(unique(data[,1]))
 nbloc<-dim(data)[2]-1
 if (diploid) {
@@ -83,6 +88,8 @@ ind.count<-function(data){
   a<-which(!is.na(x))
   tapply(x[a],data[a,1],length)
  }
+ if (is.genind(data)) data<-genind2hierfstat(data)
+ 
  data[,1]<-factor(data[,1])
  apply(data[,-1],2,dum)
 }
@@ -93,6 +100,8 @@ ind.count<-function(data){
       a<-!is.na(x)
       tapply(a,data[,1],sum)
     }
+    if (is.genind(data)) data<-genind2hierfstat(data)
+    
     data[,1]<-factor(data[,1])
     apply(data[,-1],2,dum)
     
@@ -101,6 +110,8 @@ ind.count<-function(data){
 #########################################################################
 allele.count<-function(data,diploid=TRUE)
 {
+  if (is.genind(data)) data<-genind2hierfstat(data)
+  
 nbpop<-length(unique(data[,1]))
 if (diploid) data<-getal(data)[,-2]
 nbloc<-dim(data)[2]-1
@@ -124,6 +135,8 @@ return(all.count)
 }
 #########################################################################
 nb.alleles<-function(data,diploid=TRUE){
+if (is.genind(data)) data<-genind2hierfstat(data)
+  
 dum<-allele.count(data,diploid)
 if(is.list(dum))
 res<-lapply(dum,fun<-function(x) apply(x,2,fun2<-function(x) sum(x>0)))
@@ -141,6 +154,7 @@ allelic.richness<-function (data, min.n = NULL, diploid = TRUE)
         dum[is.na(dum)] <- 0
         return(sum(1 - dum))
     }
+    if (is.genind(data)) data<-genind2hierfstat(data)
     nloc <- dim(data[, -1])[2]
     all.count <- allele.count(data, diploid)
     if (is.null(min.n)) {
@@ -159,7 +173,8 @@ allelic.richness<-function (data, min.n = NULL, diploid = TRUE)
 #########################################################################
 basic.stats<-function(data,diploid=TRUE,digits=4){
 # TODO : define plot functions for basic.stats
-loc.names<-names(data)[-1]
+  if (is.genind(data)) data<-genind2hierfstat(data)
+  loc.names<-names(data)[-1]
 if (length(table(data[,1]))<2) data[dim(data)[1]+1,1]<-data[dim(data)[1],1]+1
 if(dim(data)[2]==2) data<-data.frame(data,dummy.loc=data[,2])
 p<-pop.freq(data,diploid)
@@ -232,154 +247,10 @@ print.bas.stats<-function(x,...){
 print(list(perloc=x$perloc,overall=x$overall))
 invisible(x)
 }
-#########################################################################
-wc<-function(ndat,diploid=TRUE,pol=0.0,trim=FALSE){
-
-#trim is to output only sigloc
-  
-#added argument pol to specify level of polymorhism wanted
-#if loci less polymorphic than pol, then they are left out of the calculations
-#setting pol=0.0 will use all loci
-# the pol argument is not yet used
-#need to modify function to properly handle haploid data
-cl<-match.call()
-if (!diploid) {
-dum<-ndat[,-1]
-nd<-max(dum,na.rm=T)
-modu<-1000
-if (nd<10) modu<-10
-if(nd<100) modu<-100
-dum<-dum*modu+dum
-ndat<-data.frame(ndat[,1],dum)
-}
-
-#bs<-basic.stats(ndat,diploid)
-pop<-as.integer(ndat[,1])
-ni<-length(pop)
-#polym<-which(bs$perloc$Ht>=pol,arr.ind=TRUE)
-dat<-ndat#[,c(1,polym+1)]
-loc.names<-names(dat)[-1]
-n<-t(ind.count(dat))
-nt<-apply(n,1,sum,na.rm=TRUE)
-untyped.loc<-which(nt==0)
-typed.loc<-which(nt!=0)
-
-if (length(untyped.loc)>0){
-  dat<-dat[,-(untyped.loc+1)]
-  n<-t(ind.count(dat))
-  nt<-apply(n,1,sum,na.rm=TRUE)
-}
-
-alploc<-nb.alleles(cbind(rep(1,ni),dat[,-1]))
-np<-dim(n)[2]
-npl<-apply(n,1,tempfun<-function(x) sum(!is.na(x))) #accounts for pops not typed for one locus
-nl<-dim(n)[1]
-p<-pop.freq(dat,diploid)
-pb<-pop.freq(cbind(rep(1,length(pop)),dat[,-1]),diploid)
-n<-matrix(unlist(n),ncol=np)
-nal<-n[rep(1:nl,alploc),]
-nc<-(nt-apply(n^2,1,sum,na.rm=TRUE)/nt)/(npl-1)
-ntal<-rep(nt,alploc)
-ncal<-rep(nc,alploc)
-p<-matrix(unlist(lapply(p,t)),ncol=np,byrow=TRUE)
-pb<-matrix(unlist(pb),ncol=1)
-
-
-if (diploid){
-dum<-getal.b(dat[,-1])
-all.loc<-apply(dum,2,tempfun1<-function(y) as.numeric(dimnames(table(y))[[1]]))
-
-hetpl<-apply(dum,2,fun<-function(z){
-lapply(as.numeric(dimnames(table(z))[[1]]),
-who.is.het<-function(y) apply(z==y,1,
-ind.is.het<-function(x) xor(x[1],x[2])))}
-)
-
-mho<-lapply(hetpl,
-tempfun2<-function(x) matrix(unlist(lapply(x,
-tempfun3<-function(y) tapply(y,pop,sum,na.rm=TRUE))),ncol=np)
-)
-mho<-matrix(unlist(mho),ncol=np,byrow=TRUE)
-mhom<-(2*nal*p-mho)/2
-}
-else mhom<-nal*p
-
-SSG<-apply(nal*p-mhom,1,sum,na.rm=TRUE)
-
-dum<-nal*(p-2*p^2)+mhom
-SSi<-apply(dum,1,sum,na.rm=TRUE)
-
-dum1<-nal*(sweep(p,1,pb))^2
-SSP<-2*apply(dum1,1,sum,na.rm=TRUE)
-
-ntalb<-rep(npl,alploc)   #corrects for untyped samples at a locus
-
-MSG<-SSG/ntal
-MSP<-SSP/(ntalb-1)
-MSI<-SSi/(ntal-ntalb)
-
-sigw<-MSG
-sigb<-0.5*(MSI-MSG)
-siga<-1/2/ncal*(MSP-MSI)
-
-Fxy<-function(x) x[1]/sum(x,na.rm=TRUE)
-
-FST.pal<-apply(cbind(siga,sigb,sigw),1,Fxy)
-FIS.pal<-apply(cbind(sigb,sigw),1,Fxy)
-
-#need to optimize sigloc
-
-loc<-rep(1:nl,alploc)
-lsiga<-tapply(siga,loc,sum,na.rm=TRUE)
-lsigb<-tapply(sigb,loc,sum,na.rm=TRUE)
-lsigw<-tapply(sigw,loc,sum,na.rm=TRUE)
-
-sigloc<-cbind(lsiga,lsigb,lsigw)
-
-
-if (length(untyped.loc)>0){
-x<-order(c(typed.loc,untyped.loc))
-dum1<-matrix(numeric(3*length(untyped.loc)),ncol=3)
-dum<-rbind(sigloc,dum1,deparse.level=0)[x,]
-
-sigloc<-dum
-}
-sigloc<-data.frame(sigloc)
-names(sigloc)=c("lsiga","lsigb","lsigw")
-rownames(sigloc)<-loc.names
-
-lFST<-apply(cbind(lsiga,lsigb,lsigw),1,Fxy)
-lFIS<-apply(cbind(lsigb,lsigw),1,Fxy)
-
-tsiga<-sum(siga,na.rm=TRUE)
-tsigb<-sum(sigb,na.rm=TRUE)
-tsigw<-sum(sigw,na.rm=TRUE)
-tFST<-Fxy(c(tsiga,tsigb,tsigw))
-tFIS<-Fxy(c(tsigb,tsigw))
-
-res<-list(call=cl,sigma=cbind(loc,siga,sigb,sigw),
-sigma.loc=sigloc,
-per.al=list(FST=FST.pal,FIS=FIS.pal),
-per.loc=list(FST=lFST,FIS=lFIS),
-FST=tFST,FIS=tFIS)
-
-if (!diploid){
-res<-list(call=cl,sigma=cbind(loc,siga,sigb,sigw),
-sigma.loc=sigloc,
-per.al=list(FST=FST.pal),
-per.loc=list(FST=lFST),
-FST=tFST,FIS=NA)
-}
-class(res)<-"wc"
-res
-}
-print.wc<-function(x,...){
-print(list(perloc=x$per.loc,FST=x$FST,FIS=x$FIS))
-invisible(x)
-}
 ################################################################################
 pp.sigma.loc<-function(x,y,dat=dat,diploid=TRUE,...){
-dum<-names(dat)[1]
+  if (is.genind(dat)) dat<-genind2hierfstat(dat)
+  dum<-names(dat)[1]
 wpop<-dat[,1]==x | dat[,1]==y
 ndat<-dat[wpop,]
 ndat[ndat[,1]==x,1]<-1
@@ -390,6 +261,7 @@ return(wc(ndat,diploid,...)$sigma.loc)
 
 pp.fst<-function(dat=dat,diploid=TRUE,...){
 cl<-match.call()
+if (is.genind(dat)) dat<-genind2hierfstat(dat)
 dat<-dat[order(dat[,1]),]
 Pop<-dat[,1]
 npop<-length(unique(Pop))
@@ -417,6 +289,7 @@ invisible(x)
 
 boot.ppfst<-function(dat=dat,nboot=100,quant=c(0.025,0.975),diploid=TRUE,dig=4,...){
 cl<-match.call()
+if (is.genind(dat)) dat<-genind2hierfstat(dat)
 typ<-dim(dat)
 if(length(dim(dat))==2){
 #Pop<-dat[,1]
@@ -449,6 +322,7 @@ return(list(call=cl,ll=round(ll,digits=dig),ul=round(hl,digits=dig),vc.per.loc=p
 ################################################################################
 boot.ppfis<-function(dat=dat,nboot=100,quant=c(0.025,0.975),diploid=TRUE,dig=4,...){
 cl<-match.call()
+if (is.genind(dat)) dat<-genind2hierfstat(dat)
 bs<-basic.stats(dat)
 Ho<-bs$Ho
 Hs<-bs$Hs
@@ -464,3 +338,39 @@ hl<-apply(my.boot,2,quantile,quant[2],na.rm=TRUE)
 res<-data.frame(ll=ll,hl=hl)
 return(list(call=cl,fis.ci=round(res,digits=dig)))
 }
+########################################################
+#' @title Converts genind objects from adegenet into a hierfstat data frame
+#' @description  Converts genind objects from adegenet into a hierfstat data frame
+#' @usage genind2hierfstat(dat,pop=NULL)
+#' @param dat a genind object
+#' @param pop a vector containing the population to which each individual belongs
+#'  
+#' @return a dataframe with nloci+1 columns and ninds rows.  The first column
+#' contains the population identifier, the following the genotypes at each locus
+#' 
+#' @export
+##########################################################
+genind2hierfstat<-function(dat,pop=NULL,diploid=NULL){
+  if (!is.genind(dat)) stop("dat must be a genind object. Exiting")
+
+  if(is.null(pop)) {
+    pop <- dat@pop
+  }
+  
+  ploid<-unique(dat@ploidy)
+  
+  if (length(ploid)!=1) stop("data must contain only diploids or only haploids. Exiting")
+  if (ploid>2L) stop("Data must come from diploids or haploids. Exiting")
+  if (ploid==2L) diploid<-TRUE #diploid
+  if (ploid==1L) diploid<-FALSE #haploid
+  
+  if (diploid){
+  x<-genind2df(dat,sep="",usepop=FALSE)
+  x<- as.matrix(data.frame(lapply(x, as.numeric)))
+  x<- data.frame(pop=as.numeric(pop),x)
+  }  
+  else {x<-genind2df(dat)
+        }
+return(x)
+}
+  

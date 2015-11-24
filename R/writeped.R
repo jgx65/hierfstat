@@ -1,4 +1,31 @@
- write.ped<-function (dat, ilab = NULL, pop = NULL, fname = "dat",na.str="0",f.id=NULL,m.id=NULL,loc.pos=NULL) 
+#' @title Write ped file plink analysis
+#' @description write a ped and a map file suitable for analysis with 
+#' \href{plink}{http://pngu.mgh.harvard.edu/~purcell/plink/} 
+#' @usage write.ped(dat, ilab = NULL, pop = NULL, 
+#'         fname = "dat",na.str="0",f.id=NULL,m.id=NULL,loc.pos=NULL) 
+#'                  
+#' @param dat 
+#' @param ilab
+#' @param pop
+#' @param fname
+#' @param na.str 
+#' @param f.id
+#' @param m.id
+#' @param loc.pos
+#'                 
+#' @return a map file containing the loci positions 
+#' @return a ped file containing genotypes etc... 
+#'  
+#' @references \href{http://www.ncbi.nlm.nih.gov/pmc/articles/PMC1950838/}{Purcell etal (2007) PLINK:} A Tool Set for Whole-Genome Association 
+#'  and Population-Based Linkage Analyses 81:559-575
+#'   
+#'    
+#'    
+#'      
+#' @export  
+#' 
+####################################################################################
+write.ped<-function (dat, ilab = NULL, pop = NULL, fname = "dat",na.str="0",f.id=NULL,m.id=NULL,loc.pos=NULL) 
 {
     dum <- getal.b(dat[, -1])
     dum[is.na(dum)] <- na.str

@@ -7,6 +7,7 @@ wc<-function(ndat,diploid=TRUE,pol=0.0){
 # the pol argument is not yet used
 #need to modify function to properly handle haploid data
 cl<-match.call()
+if (is.genind(ndat)) ndat<-genind2hierfstat(ndat)
 if (!diploid) {
 dum<-ndat[,-1]
 nd<-max(dum,na.rm=T)
@@ -51,17 +52,17 @@ pb<-matrix(unlist(pb),ncol=1)
 
 if (diploid){
 dum<-getal.b(dat[,-1])
-all.loc<-apply(dum,2,tempfun1<-function(y) as.numeric(dimnames(table(y))[[1]]))
+all.loc<-apply(dum,2,function(y) as.numeric(dimnames(table(y))[[1]]))
 
-hetpl<-apply(dum,2,fun<-function(z){
+hetpl<-apply(dum,2,function(z){
 lapply(as.numeric(dimnames(table(z))[[1]]),
-who.is.het<-function(y) apply(z==y,1,
-ind.is.het<-function(x) xor(x[1],x[2])))}
+function(y) apply(z==y,1,
+function(x) xor(x[1],x[2])))}
 )
 
 mho<-lapply(hetpl,
-tempfun2<-function(x) matrix(unlist(lapply(x,
-tempfun3<-function(y) tapply(y,pop,sum,na.rm=TRUE))),ncol=np)
+function(x) matrix(unlist(lapply(x,
+function(y) tapply(y,pop,sum,na.rm=TRUE))),ncol=np)
 )
 mho<-matrix(unlist(mho),ncol=np,byrow=TRUE)
 mhom<-(2*nal*p-mho)/2
@@ -71,10 +72,10 @@ else mhom<-nal*p
 SSG<-apply(nal*p-mhom,1,sum,na.rm=TRUE)
 
 dum<-nal*(p-2*p^2)+mhom
-SSi<-apply(dum,1,sum,na.rm=TRUE)
+SSi<-rowSums(dum,na.rm=TRUE) #apply(dum,1,sum,na.rm=TRUE)
 
 dum1<-nal*(sweep(p,1,pb))^2
-SSP<-2*apply(dum1,1,sum,na.rm=TRUE)
+SSP<-2*rowSums(dum1,na.rm=TRUE) #apply(dum1,1,sum,na.rm=TRUE)
 
 ntalb<-rep(npl,alploc)   #corrects for untyped samples at a locus
 

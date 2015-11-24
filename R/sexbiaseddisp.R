@@ -21,11 +21,10 @@ subsamp.within<-function (lev,ni=10) {
 #' 
 #' @return aic  The corrected assignment index of each individual
 #' 
-#'  @author Jerome Goudet \email{jerome.goudet@@unil.ch}
+#' @author Jerome Goudet \email{jerome.goudet@@unil.ch}
 #'  
 #' 
-#'  @references \href{http://onlinelibrary.wiley.com/doi/10.1046/j.1365-294X.2002.01496.x/abstract}
-#'  {Goudet J, Perrin N, Waser P (2002)} Tests for sex-biased dispersal 
+#' @references \href{http://onlinelibrary.wiley.com/doi/10.1046/j.1365-294X.2002.01496.x/abstract}{Goudet J, Perrin N, Waser P (2002)} Tests for sex-biased dispersal 
 #'  using bi-parentally inherited genetic markers 11, 1103:1114
 #'   
 #'   
@@ -83,15 +82,14 @@ return(aic)
 #' @return statistic the observed statistic for the chosen test
 #' @return p.value the p-value of the hypothesis
 #' 
-#'  @author Jerome Goudet \email{jerome.goudet@@unil.ch}
+#' @author Jerome Goudet \email{jerome.goudet@@unil.ch}
 #'  
 #' 
-#'  @references \href{http://onlinelibrary.wiley.com/doi/10.1046/j.1365-294X.2002.01496.x/abstract}
-#'  {Goudet J, Perrin N, Waser P (2002)} Tests for sex-biased dispersal 
+#' @references \href{http://onlinelibrary.wiley.com/doi/10.1046/j.1365-294X.2002.01496.x/abstract}{Goudet J, Perrin N, Waser P (2002)} Tests for sex-biased dispersal 
 #'  using bi-parentally inherited genetic markers 11, 1103:1114
 #'   
 #'   
-#'  @examples 
+#' @examples 
 #'  
 #'   dat<-qn2.read.fstat(system.file("extdata","qn2_sex.dat",package="hierfstat"))
 #'   sexbias.test(dat[[1]],sex=dat[[2]])
@@ -99,7 +97,7 @@ return(aic)
 #'   sexbias.test(dat[[1]],sex=dat[[2]],nperm=100,test="FST",alternative="greater")
 #'   }
 #'
-#'  @export
+#' @export
 ###################################################################################
 sexbias.test<-function(dat,sex,nperm=NULL,test="mAIc",
                         alternative="two.sided"){
