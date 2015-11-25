@@ -12,10 +12,21 @@ genind2hierfstat(dat,pop=NULL)
 \item{pop}{a vector containing the population to which each individual belongs}
 }
 \value{
-a dataframe with nloci+1 columns and ninds rows.  The first column
+a data frame with nloci+1 columns and ninds rows.  The first column
 contains the population identifier, the following the genotypes at each locus
 }
 \description{
 Converts genind objects from adegenet into a hierfstat data frame
+}
+\examples{
+\dontrun{
+library(adegenet)
+data(nancycats)
+genind2hierfstat(nancycats)
+basic.stats(nancycats)
+genet.dist(nancycats)
+data(H3N2)
+basic.stats(genind2hierfstat(H3N2,pop=rep(1,dim(H3N2@tab)[1])),diploid=FALSE)
+}
 }
 

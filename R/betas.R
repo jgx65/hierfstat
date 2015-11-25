@@ -32,6 +32,8 @@ betas<-function(dat,nboot=0,lim=c(0.025,0.975),diploid=TRUE){
     dum<-which(!is.na(x))
     sum(x[dum])/sum(Hb[dum]) 
   }
+  if (is.genind(dat)) dat<-genind2hierfstat(dat)
+  
   pfr<-pop.freq(dat,diploid)
   pfr2<-lapply(pfr,function(x) t(x) %*% x)
   nl<-dim(dat)[2]-1

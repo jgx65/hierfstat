@@ -236,14 +236,18 @@ overall[8]<-overall[6]/overall[5]
 overall[9]<-1-overall[1]/overall[2]
 overall[10]<-overall[6]/(1-overall[2])
 names(overall)<-names(res)
+if(!diploid){
+#  res[,-2]<-NA
+  overall[-2]<-NA
+}
 all.res<-list(n.ind.samp=n,pop.freq=lapply(p,round,digits),
 Ho=round(sHo,digits),Hs=round(Hs,digits),Fis=round(Fis,digits),
 perloc=round(res,digits),overall=round(overall,digits))
-class(all.res)<-"bas.stats"
+class(all.res)<-"basic.stats"
 all.res
-
 }
-print.bas.stats<-function(x,...){
+
+print.basic.stats<-function(x,...){
 print(list(perloc=x$perloc,overall=x$overall))
 invisible(x)
 }
@@ -345,8 +349,20 @@ return(list(call=cl,fis.ci=round(res,digits=dig)))
 #' @param dat a genind object
 #' @param pop a vector containing the population to which each individual belongs
 #'  
-#' @return a dataframe with nloci+1 columns and ninds rows.  The first column
+#' @return a data frame with nloci+1 columns and ninds rows.  The first column
 #' contains the population identifier, the following the genotypes at each locus
+#' 
+#' @examples
+#' 
+#' \dontrun{
+#' library(adegenet)
+#' data(nancycats)
+#' genind2hierfstat(nancycats)
+#' basic.stats(nancycats)
+#' genet.dist(nancycats)
+#' data(H3N2)
+#' basic.stats(genind2hierfstat(H3N2,pop=rep(1,dim(H3N2@@tab)[1])),diploid=FALSE)
+#' }
 #' 
 #' @export
 ##########################################################
@@ -357,20 +373,23 @@ genind2hierfstat<-function(dat,pop=NULL,diploid=NULL){
     pop <- dat@pop
   }
   
+  if (dat@type!="codom") stop("data type must be codominant. Exiting")  
   ploid<-unique(dat@ploidy)
-  
   if (length(ploid)!=1) stop("data must contain only diploids or only haploids. Exiting")
   if (ploid>2L) stop("Data must come from diploids or haploids. Exiting")
   if (ploid==2L) diploid<-TRUE #diploid
   if (ploid==1L) diploid<-FALSE #haploid
-  
-  if (diploid){
+  al.id<-unlist(lapply(dat@all.names,as.numeric))
+
+#  if (diploid){
   x<-genind2df(dat,sep="",usepop=FALSE)
-  x<- as.matrix(data.frame(lapply(x, as.numeric)))
-  x<- data.frame(pop=as.numeric(pop),x)
-  }  
-  else {x<-genind2df(dat)
-        }
+  #to catch alleles encoded with letters, e.g. H3N2
+  if (sum(is.na(al.id))==0) x<-as.matrix(data.frame(lapply(x,as.numeric)))
+  else x<-as.matrix(data.frame(lapply(x,function(y) as.numeric(as.factor(y)))))
+  x<-data.frame(pop=pop,x)
+  #  }  
+#  else {x<-genind2df(dat)
+#        }
 return(x)
 }
   
