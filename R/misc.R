@@ -65,11 +65,11 @@ pop.freq<-function(data,diploid=TRUE)
 nbpop<-length(unique(data[,1]))
 nbloc<-dim(data)[2]-1
 if (diploid) {
-data<-data.frame(data,dummy.loc=rep(101,dim(data)[1])*1001) #to ensure proper output
+data<-data.frame(data,dummy.loc=(sample(9,replace=TRUE,size=dim(data)[1])+100)*1001) #to ensure proper output
 data<-getal(data)[,-2]
 }
 else{
-data<-data.frame(data,dummy.loc=rep(101,dim(data)[1]))
+data<-data.frame(data,dummy.loc=sample(9,replace=TRUE,size=dim(data)[1])+100)
 }
 freq<-function(x){
 #factor(x) necessary for funny allele encoding, but DOES slow down things
@@ -379,17 +379,32 @@ genind2hierfstat<-function(dat,pop=NULL,diploid=NULL){
   if (ploid>2L) stop("Data must come from diploids or haploids. Exiting")
   if (ploid==2L) diploid<-TRUE #diploid
   if (ploid==1L) diploid<-FALSE #haploid
-  al.id<-unlist(lapply(dat@all.names,as.numeric))
+  nucleotides<-c("A","C","G","T")
+  alleles.name<-toupper(names(table(unlist(dat@all.names))))
+  if(identical(alleles.name,nucleotides)) nuc<-TRUE
+  
 
 #  if (diploid){
   x<-genind2df(dat,sep="",usepop=FALSE)
   #to catch alleles encoded with letters, e.g. H3N2
-  if (sum(is.na(al.id))==0) x<-as.matrix(data.frame(lapply(x,as.numeric)))
-  else x<-as.matrix(data.frame(lapply(x,function(y) as.numeric(as.factor(y)))))
-  x<-data.frame(pop=pop,x)
-  #  }  
-#  else {x<-genind2df(dat)
-#        }
+  if (length(grep("A-Z",alleles.name)==0)) x<-as.matrix(data.frame(lapply(x,as.numeric)))
+  else {
+    if (nuc){
+      
+      tmp<-lapply(x,function(a) gsub("A","1",a))
+      tmp<-lapply(tmp,function(a) gsub("C","2",a))
+      tmp<-lapply(tmp,function(a) gsub("G","3",a))
+      tmp<-lapply(tmp,function(a) gsub("T","4",a))
+      tmp<-lapply(tmp,function(a) gsub("a","1",a))
+      tmp<-lapply(tmp,function(a) gsub("c","2",a))
+      tmp<-lapply(tmp,function(a) gsub("g","3",a))
+      tmp<-lapply(tmp,function(a) gsub("t","4",a))
+      tmp<-lapply(tmp,as.numeric)
+      x<-as.matrix(data.frame(tmp))
+      x<-data.frame(pop=pop,x)
+    }
+    else (stop("alleles must be encoded as numbers or nucleotides. Exiting"))
+  }
 return(x)
 }
   

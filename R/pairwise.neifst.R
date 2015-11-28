@@ -36,7 +36,7 @@ pairwise.neifst <- function(dat,diploid=TRUE){
   npop<-length(pops)
   fstmat <- matrix(nrow=npop,ncol=npop,dimnames=list(pops,pops))
   for(a in pops[-1]){
-    for(b in pops[1]:(a-1)){
+    for(b in pops[1]:(a-1)){ #pb if levels of a are factors
       subdat <- dat[dat[,1] %in% c(a,b),]
       fstmat[a,b]<-fstmat[b,a]<- basic.stats(subdat,diploid=diploid)$overall[8]
     }
