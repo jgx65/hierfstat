@@ -369,8 +369,12 @@ return(list(call=cl,fis.ci=round(res,digits=dig)))
 genind2hierfstat<-function(dat,pop=NULL,diploid=NULL){
   if (!is.genind(dat)) stop("dat must be a genind object. Exiting")
 
-  if(is.null(pop)) {
-    pop <- dat@pop
+  if(is.null(pop)){
+    if (is.null(adegenet::pop(dat))){
+      stop("population factor must be defined")
+    } else {
+      pop <- adegenet::pop(dat)
+    }
   }
   
   if (dat@type!="codom") stop("data type must be codominant. Exiting")  
@@ -387,7 +391,7 @@ genind2hierfstat<-function(dat,pop=NULL,diploid=NULL){
 #  if (diploid){
   x<-genind2df(dat,sep="",usepop=FALSE)
   #to catch alleles encoded with letters, e.g. H3N2
-  if (length(grep("A-Z",alleles.name)==0)) x<-as.matrix(data.frame(lapply(x,as.numeric)))
+  if (length(grep("[A-Z]",alleles.name))==0) x<-as.matrix(data.frame(lapply(x,as.numeric)))
   else {
     if (nuc){
       
@@ -401,10 +405,10 @@ genind2hierfstat<-function(dat,pop=NULL,diploid=NULL){
       tmp<-lapply(tmp,function(a) gsub("t","4",a))
       tmp<-lapply(tmp,as.numeric)
       x<-as.matrix(data.frame(tmp))
-      x<-data.frame(pop=pop,x)
     }
     else (stop("alleles must be encoded as numbers or nucleotides. Exiting"))
   }
-return(x)
+  x<-data.frame(pop=pop,x)
+  return(x)
 }
   
