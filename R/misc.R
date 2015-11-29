@@ -369,8 +369,12 @@ return(list(call=cl,fis.ci=round(res,digits=dig)))
 genind2hierfstat<-function(dat,pop=NULL,diploid=NULL){
   if (!is.genind(dat)) stop("dat must be a genind object. Exiting")
 
-  if(is.null(pop)) {
-    pop <- dat@pop
+  if(is.null(pop)){
+    if (is.null(adegenet::pop(dat))){
+      stop("population factor must be defined")
+    } else {
+      pop <- adegenet::pop(dat)
+    }
   }
   
   if (dat@type!="codom") stop("data type must be codominant. Exiting")  
