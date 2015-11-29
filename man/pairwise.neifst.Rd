@@ -33,6 +33,6 @@ Jerome Goudet \email{jerome.goudet@unil.ch}
 Nei, M. (1987) Molecular Evolutionary Genetics. Columbia University Press
 }
 \seealso{
-\link{pp.fst} \link{genet.dist}
+\link{pairwise.WCfst} \link{genet.dist}
 }
 

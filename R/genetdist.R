@@ -9,13 +9,7 @@ genet.dist<-function(dat,diploid=TRUE,method="Dch"){
   if (method==-1) stop("Ambiguous distance method")
 
   if (method==9) {gdist<-pairwise.neifst(dat,diploid); return(as.dist(gdist))}
-  if (method==10) {
-    gdist<-pp.fst(dat,diploid)$fst.pp
-    diag(gdist)<-0.0
-    n<-dim(gdist)[2]
-    for (ir in 2:n) for (ic in 1:ir) gdist[ir,ic]<-gdist[ic,ir]
-    return(as.dist(gdist))
-    }
+  if (method==10) {gdist<-pairwise.WCfst(dat,diploid);return(as.dist(gdist))}
   
     
   pft<-pop.freq(dat,diploid)

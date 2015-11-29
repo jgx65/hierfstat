@@ -1,6 +1,9 @@
 #version 0.04-20 24.11.2015
--hierfstat functions now read genind objects from adegenet
+-fixed bug in pairwise.neifst when population is a factor
+-New function genind2hierfstat to read genind objects
+-several hierfstat functions (basic.stats, wc,...) now read genind objects from adegenet
 -new function to write ped files (plink) and bayescan files
+-new function for pairwise fst:  pairwise.WCfst 
 
 
 #version 0.04-18 16.10.2015
