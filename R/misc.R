@@ -391,7 +391,7 @@ genind2hierfstat<-function(dat,pop=NULL,diploid=NULL){
 #  if (diploid){
   x<-genind2df(dat,sep="",usepop=FALSE)
   #to catch alleles encoded with letters, e.g. H3N2
-  if (length(grep("A-Z",alleles.name)==0)) x<-as.matrix(data.frame(lapply(x,as.numeric)))
+  if (length(grep("[A-Z]",alleles.name))==0) x<-as.matrix(data.frame(lapply(x,as.numeric)))
   else {
     if (nuc){
       
