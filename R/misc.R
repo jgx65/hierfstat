@@ -405,10 +405,10 @@ genind2hierfstat<-function(dat,pop=NULL,diploid=NULL){
       tmp<-lapply(tmp,function(a) gsub("t","4",a))
       tmp<-lapply(tmp,as.numeric)
       x<-as.matrix(data.frame(tmp))
-      x<-data.frame(pop=pop,x)
     }
     else (stop("alleles must be encoded as numbers or nucleotides. Exiting"))
   }
-return(x)
+  x<-data.frame(pop=pop,x)
+  return(x)
 }
   
