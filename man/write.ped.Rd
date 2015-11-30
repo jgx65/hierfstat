@@ -5,24 +5,26 @@
 \title{Write ped file plink analysis}
 \usage{
 write.ped(dat, ilab = NULL, pop = NULL,
-        fname = "dat",na.str="0",f.id=NULL,m.id=NULL,loc.pos=NULL)
+        fname = "dat",na.str="0",f.id=NULL,m.id=NULL,loc.pos=NULL,sex=NULL)
 }
 \arguments{
-\item{dat}{}
+\item{dat}{a hierfstat data frame}
 
-\item{ilab}{}
+\item{ilab}{individal labels}
 
-\item{pop}{}
+\item{pop}{population id}
 
-\item{fname}{}
+\item{fname}{filename for ped file}
 
-\item{na.str}{}
+\item{na.str}{character string to use for missing values}
 
-\item{f.id}{}
+\item{f.id}{father id. default to unknown}
 
-\item{m.id}{}
+\item{m.id}{mother id. default to unknown}
 
-\item{loc.pos}{}
+\item{loc.pos}{the loci position default to unknown}
+
+\item{sex}{the individual sex. default to unknown}
 }
 \value{
 a map file containing the loci positions

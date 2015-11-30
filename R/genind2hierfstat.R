@@ -3,7 +3,8 @@
 #' @description  Converts genind objects from adegenet into a hierfstat data frame
 #' @usage genind2hierfstat(dat,pop=NULL)
 #' @param dat a genind object
-#' @param pop a vector containing the population to which each individual belongs
+#' @param pop a vector containing the population to which each individual belongs. 
+#' If pop=NULL, pop taken from slot pop of the genind object
 #'  
 #' @return a data frame with nloci+1 columns and ninds rows.  The first column
 #' contains the population identifier, the following the genotypes at each locus
@@ -22,7 +23,7 @@
 #' 
 #' @export
 ##########################################################
-genind2hierfstat<-function(dat,pop=NULL,diploid=NULL){
+genind2hierfstat<-function(dat,pop=NULL){
   if (!is.genind(dat)) stop("dat must be a genind object. Exiting")
 
   if(is.null(pop)){
@@ -44,7 +45,6 @@ genind2hierfstat<-function(dat,pop=NULL,diploid=NULL){
   if(identical(alleles.name,nucleotides)) nuc<-TRUE
   
 
-#  if (diploid){
   x<-genind2df(dat,sep="",usepop=FALSE)
   #to catch alleles encoded with letters, e.g. H3N2
   if (length(grep("[A-Z]",alleles.name))==0) x<-as.matrix(data.frame(lapply(x,as.numeric)))

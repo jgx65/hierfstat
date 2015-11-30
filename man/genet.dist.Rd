@@ -34,7 +34,7 @@ This distance is used as default since Takezaki & Nei (1996) found that it was t
 
 \dQuote{Nei87} see \link{pairwise.neifst}
 
-\dQuote{WC84}  see \link{pp.fst}
+\dQuote{WC84}  see \link{pairwise.WCfst}
 }
 \value{
 A matrix of pairwise genetic distance

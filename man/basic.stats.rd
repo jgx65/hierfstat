@@ -1,18 +1,18 @@
 \name{basic.stats}
 \alias{basic.stats}
-\alias{print.bas.stats}
+\alias{print.basic.stats}
 \title{Basic statistics}
 \description{Estimates individual counts, allelic frequencies, observed heterozygosities and genetic diversities per locus and population.
 Also Estimates mean observed heterozygosities, mean gene diversities within population Hs, Gene diversities overall Ht and corrected Htp, and Dst, Dstp.
 Finally, estimates Fst and Fstp as well as Fis following Nei (1987) per locus and overall loci}
 \usage{basic.stats(data,diploid=TRUE,digits=4)
-\method{print}{bas.stats}(x,...)
+\method{print}{basic.stats}(x,...)
 }
 \arguments{
 \item{data}{a data frame where the first column contains the population to which the different individuals belong, and the following columns contain the genotype of the individuals -one locus per column- }
 \item{diploid}{Whether individuals are diploids (default) or haploids}
 \item{digits}{how many digits to print out in the output (default is 4)}
-\item{x}{an object of class bas.stats}
+\item{x}{an object of class basic.stats}
 \item{...}{further arguments to pass to print.bas.stats}
 }
 
