@@ -42,6 +42,7 @@ genind2hierfstat<-function(dat,pop=NULL){
   if (ploid==1L) diploid<-FALSE #haploid
   nucleotides<-c("A","C","G","T")
   alleles.name<-toupper(names(table(unlist(dat@all.names))))
+  nuc<-FALSE
   if(identical(alleles.name,nucleotides)) nuc<-TRUE
   
 
