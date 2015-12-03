@@ -74,10 +74,16 @@ plot(x,col=gtrunchier[,1],cex=0.7)
 
 #Sex-biased dispersal
 
-A new function to detect sex -biased dispersal following Goudet et al. (2002) has been imlemented. Use *Crocidura russula* dataset as example
+A new function to detect sex-biased dispersal following Goudet et al. (2002) has been implemented. To illustrate its usage, load the *Crocidura russula* data set. It consists of the genotypes and sex from 140 shrews studied by Favre et al. (1997). In this species, mark -recapture has shown an excess of dispersal from females, and unusual pattern in mammals. This can also be tested using genetic data: 
 
-sexbias.test
+```{r}
+data("crocrussula")
+c.aic<-AIc(crocrussula$genot)
 
+
+sexbias.test(crocrussula$genot,crocrussula$sex)
+
+```
 #Simulating genetic data
 
 

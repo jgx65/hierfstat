@@ -90,10 +90,13 @@ return(aic)
 #'   
 #'   
 #' @examples 
+#'   data(crocrussula)
+#'   sexbias.test(crocrussula$genot,crocrussula$sex)
 #'  
 #'   dat<-qn2.read.fstat(system.file("extdata","qn2_sex.dat",package="hierfstat"))
 #'   sexbias.test(dat[[1]],sex=dat[[2]])
 #'   \dontrun{
+#'   sexbias.test(crocrussula$genot,crocrussula$sex,nperm=1000)
 #'   sexbias.test(dat[[1]],sex=dat[[2]],nperm=100,test="FST",alternative="greater")
 #'   }
 #'
@@ -176,7 +179,7 @@ t.test(aic[dum][sex1],aic[dum][sex2])$statistic
 }
 tstats[-1]<-replicate(nperm-1,foo())
 res$statistic<-tstats[1]
-if (alt==1){res$p.value<-sum(abs(tstats)>=abs(tstats[1])/nperm}
+if (alt==1){res$p.value<-sum(abs(tstats)>=abs(tstats[1]))/nperm}
 if (alt==2){res$p.value<-sum(tstats<=tstats[1])/nperm}
 if (alt==3){res$p.value<-sum(tstats>=tstats[1])/nperm}
 }

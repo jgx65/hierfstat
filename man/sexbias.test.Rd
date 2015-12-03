@@ -35,9 +35,13 @@ sex disperses more than the other using the method described in
 
 }
 \examples{
-dat<-qn2.read.fstat(system.file("extdata","qn2_sex.dat",package="hierfstat"))
+data(crocrussula)
+  sexbias.test(crocrussula$genot,crocrussula$sex)
+
+  dat<-qn2.read.fstat(system.file("extdata","qn2_sex.dat",package="hierfstat"))
   sexbias.test(dat[[1]],sex=dat[[2]])
   \dontrun{
+  sexbias.test(crocrussula$genot,crocrussula$sex,nperm=1000)
   sexbias.test(dat[[1]],sex=dat[[2]],nperm=100,test="FST",alternative="greater")
   }
 }
