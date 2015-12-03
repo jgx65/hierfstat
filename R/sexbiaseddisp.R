@@ -176,7 +176,7 @@ t.test(aic[dum][sex1],aic[dum][sex2])$statistic
 }
 tstats[-1]<-replicate(nperm-1,foo())
 res$statistic<-tstats[1]
-if (alt==1){res$p.value<-sum(abs(tstats)>=tstats[1])/nperm}
+if (alt==1){res$p.value<-sum(abs(tstats)>=abs(tstats[1])/nperm}
 if (alt==2){res$p.value<-sum(tstats<=tstats[1])/nperm}
 if (alt==3){res$p.value<-sum(tstats>=tstats[1])/nperm}
 }
@@ -191,7 +191,7 @@ if (test==2){
   }
   fstats[-1]<-replicate(nperm-1,foo())
   res$statistic<-fstats[1]
-  if (alt==1){res$p.value<-sum(abs(fstats)>=fstats[1])/nperm}
+  if (alt==1){res$p.value<-sum(abs(fstats)>=abs(fstats[1]))/nperm}
   if (alt==2){res$p.value<-sum(fstats<=fstats[1])/nperm}
   if (alt==3){res$p.value<-sum(fstats>=fstats[1])/nperm}
   
@@ -209,7 +209,7 @@ if (test==3){
   }
   fstats[-1]<-replicate(nperm-1,foo())
   res$statistic<-fstats[1]
-  if (alt==1){res$p.value<-sum(abs(fstats)>=fstats[1])/nperm}
+  if (alt==1){res$p.value<-sum(abs(fstats)>=abs(fstats[1]))/nperm}
   if (alt==2){res$p.value<-sum(fstats<=fstats[1])/nperm}
   if (alt==3){res$p.value<-sum(fstats>=fstats[1])/nperm}
   
@@ -227,7 +227,7 @@ if (test==4){
   }
   fstats[-1]<-replicate(nperm-1,foo())
   res$statistic<-fstats[1]
-  if (alt==1){res$p.value<-sum(abs(fstats)>=fstats[1])/nperm}
+  if (alt==1){res$p.value<-sum(abs(fstats)>=abs(fstats[1]))/nperm}
   if (alt==2){res$p.value<-sum(fstats<=fstats[1])/nperm}
   if (alt==3){res$p.value<-sum(fstats>=fstats[1])/nperm}
   
