@@ -1,0 +1,142 @@
+---
+title: "Hierfstat latest features"
+author: "Jerome Goudet"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{The Hierfstat Package}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+#Introduction
+
+This vignette documents the latest developments in `hierfstat`. Refer to the other vignettes for an introduction to the package
+
+#Loading data
+
+`hierfstat` can now read `genind`objects (from package `adegenet`). Note however that only some genetic data types will be properly converted and used.  The alleles need to be encoded either as integer (up to three digits per allele), or as nucleotides (`c("a","c","g","t","A","C","G","T")`).
+
+```{r,echo=FALSE}
+library(adegenet)
+library(hierfstat)
+```
+
+```{r}
+data(nancycats) 
+is.genind(nancycats)
+boxplot(basic.stats(nancycats)$perloc[,1:3]) # boxplot of Ho, Hs, Ht
+```
+
+#Descriptive statistics
+
+The function you are the most likely to want using is `basic.stats` (it calculates $H_O$, $H_S$, $F_{IS}$, $F_{ST}$ etc...).  You can also get e.g. `allele.count` and `allelic.richness`, a rarefied measure of the number of alleles at each locus and in each population. For instance, below is a boxplot of the allelic richness for the 5 first loci in the nancycats dataset
+
+```{r}
+boxplot(t(allelic.richness(nancycats)$Ar[1:5,])) #5 first loci
+```
+
+#Populations 
+
+Population statistics are obtained through `basic.stats` or `wc` (`varcomp.glob` can also be used and will give the same result as `wc` for a one level hierarchy). For instance, $F_{IS}$ and $F_{ST}$ in the *Galba truncatula* dataset provided with `hierfstat` are obtained as:
+
+```{r}
+data(gtrunchier) 
+wc(gtrunchier[,-2])
+varcomp.glob(data.frame(gtrunchier[,1]),gtrunchier[,-c(1:2)])$F #same
+```
+
+#Genetic distances
+
+genet.dist estimates one of 10 different genetic distances between populations as described mostly in Takezaki & Nei (1996)
+
+```{r}
+(Ds<-genet.dist(gtrunchier[,-2],method="Ds")) # Nei's standard genetic distances
+```
+
+
+#Population Principal coordinate analysis
+
+Principal coordinate analysis can be carried out on this genetic distances:
+
+```{r,eval=FALSE}
+pcoa(as.matrix(Ds))
+```
+
+#Individual PCA
+
+`hierfstat` has a function `indpca` carrying out Principal component analysis on individual genotypes
+
+```{r}
+x<-indpca(gtrunchier[,-2],ind.labels=gtrunchier[,2])
+plot(x,col=gtrunchier[,1],cex=0.7)
+```
+
+#Sex-biased dispersal
+
+A new function to detect sex -biased dispersal following Goudet et al. (2002) has been imlemented. Use *Crocidura russula* dataset as example
+
+sexbias.test
+
+#Simulating genetic data
+
+
+sim.genot
+
+sim.genot.t
+
+#Exporting to other programs
+
+write.bayescan write.ped, write.struct
+
+
+
+
+
+Vignettes are long form documentation commonly included in packages. Because they are part of the distribution of the package, they need to be as compact as possible. The `html_vignette` output type provides a custom style sheet (and tweaks some options) to ensure that the resulting html is as small as possible. The `html_vignette` format:
+
+- Never uses retina figures
+- Has a smaller default figure size
+- Uses a custom CSS stylesheet instead of the default Twitter Bootstrap style
+
+## Vignette Info
+
+Note the various macros within the `vignette` section of the metadata block above. These are required in order to instruct R how to build the vignette. Note that you should change the `title` field and the `\VignetteIndexEntry` to match the title of your vignette.
+
+## Styles
+
+The `html_vignette` template includes a basic CSS theme. To override this theme you can specify your own CSS in the document metadata as follows:
+
+    output: 
+      rmarkdown::html_vignette:
+        css: mystyles.css
+
+## Figures
+
+The figure sizes have been customised so that you can easily put two images side-by-side. 
+
+```{r, fig.show='hold'}
+plot(1:10)
+plot(10:1)
+```
+
+You can enable figure captions by `fig_caption: yes` in YAML:
+
+    output:
+      rmarkdown::html_vignette:
+        fig_caption: yes
+
+Then you can use the chunk option `fig.cap = "Your figure caption."` in **knitr**.
+
+## More Examples
+
+You can write math expressions, e.g. $Y = X\beta + \epsilon$, footnotes^[A footnote here.], and tables, e.g. using `knitr::kable()`.
+
+```{r, echo=FALSE, results='asis'}
+knitr::kable(head(mtcars, 10))
+```
+
+Also a quote using `>`:
+
+> "He who gives up [code] safety for [code] speed deserves neither."
+([via](https://twitter.com/hadleywickham/status/504368538874703872))
