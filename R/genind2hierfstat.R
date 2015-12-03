@@ -48,7 +48,7 @@ genind2hierfstat<-function(dat,pop=NULL){
 
   x<-genind2df(dat,sep="",usepop=FALSE)
   #to catch alleles encoded with letters, e.g. H3N2
-  if (length(grep("[A-Z]",alleles.name))==0) x<-as.matrix(data.frame(lapply(x,as.numeric)))
+  if (length(grep("[A-Z]",alleles.name))==0) x<-as.matrix(data.frame(lapply(x,as.integer)))
   else {
     if (nuc){
       
@@ -63,7 +63,7 @@ genind2hierfstat<-function(dat,pop=NULL){
       tmp<-lapply(tmp,as.numeric)
       x<-as.matrix(data.frame(tmp))
     }
-    else (stop("alleles must be encoded as numbers or nucleotides. Exiting"))
+    else (stop("alleles must be encoded as integers or nucleotides. Exiting"))
   }
   x<-data.frame(pop=pop,x)
   return(x)
