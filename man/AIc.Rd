@@ -15,9 +15,6 @@ aic  The corrected assignment index of each individual
 \description{
 Calculates corrected Assignment Index as described in \href{http://onlinelibrary.wiley.com/doi/10.1046/j.1365-294X.2002.01496.x/abstract}{Goudet etal. (2002)}
 }
-\details{
-
-}
 \author{
 Jerome Goudet \email{jerome.goudet@unil.ch}
 }

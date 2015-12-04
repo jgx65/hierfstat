@@ -23,10 +23,13 @@ genind2hierfstat,
 write.bayescan,write.ped)
 
 # Import all packages listed as Imports or Depends
+import(adegenet)
 importFrom(gtools,"rdirichlet")
 importFrom(ade4,"dudi.pca")
 importFrom(ade4,"as.randtest")
-import(adegenet)
+importFrom(graphics, "abline", "par", "text")
+importFrom(stats, "as.dist", "complete.cases", "dist", "quantile","rmultinom", "t.test", "var", "var.test", "weighted.mean")
+importFrom(utils, "combn", "write.table")
 
 S3method(print,indpca)
 S3method(plot,indpca)

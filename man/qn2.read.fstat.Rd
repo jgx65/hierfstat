@@ -2,7 +2,7 @@
 % Please edit documentation in R/readQN.R
 \name{qn2.read.fstat}
 \alias{qn2.read.fstat}
-\title{Read QuantiNemo genotype files}
+\title{Read QuantiNemo extended format for genotype files}
 \usage{
 qn2.read.fstat(fname, na.s = c("NA","NaN"))
 }
@@ -20,9 +20,6 @@ sex  the sex of the individuals
 }
 \description{
 Read QuantiNemo (\url{http://www2.unil.ch/popgen/softwares/quantinemo/}) genotype files extended format (option 2)
-}
-\details{
-
 }
 \examples{
 dat<-qn2.read.fstat(system.file("extdata","qn2_sex.dat",package="hierfstat"))

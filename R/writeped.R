@@ -3,7 +3,6 @@
 #' \href{plink}{http://pngu.mgh.harvard.edu/~purcell/plink/} 
 #' @usage write.ped(dat, ilab = NULL, pop = NULL, 
 #'         fname = "dat",na.str="0",f.id=NULL,m.id=NULL,loc.pos=NULL,sex=NULL) 
-#'                  
 #' @param dat a hierfstat data frame
 #' @param ilab individal labels
 #' @param pop population id
@@ -13,18 +12,11 @@
 #' @param m.id mother id. default to unknown
 #' @param loc.pos the loci position default to unknown
 #' @param sex the individual sex. default to unknown
-#'                 
 #' @return a map file containing the loci positions 
 #' @return a ped file containing genotypes etc... 
-#'  
 #' @references \href{http://www.ncbi.nlm.nih.gov/pmc/articles/PMC1950838/}{Purcell etal (2007) PLINK:} A Tool Set for Whole-Genome Association 
 #'  and Population-Based Linkage Analyses 81:559-575
-#'   
-#'    
-#'    
-#'      
 #' @export  
-#' 
 ####################################################################################
 write.ped<-function (dat, ilab = NULL, pop = NULL, fname = "dat",na.str="0",f.id=NULL,m.id=NULL,loc.pos=NULL,sex=NULL) 
 {
@@ -39,7 +31,7 @@ write.ped<-function (dat, ilab = NULL, pop = NULL, fname = "dat",na.str="0",f.id
 	ddum[,al2]<-dum[,,2]
   if (is.null(pop)) popid <- dat[, 1] else popid<-pop
 	if (is.null(ilab)) ind.id<-1:nind else ind.id<-ilab
-	if(is.null(f.id))  f.id<-rp(0,nind) 
+	if(is.null(f.id))  f.id<-rep(0,nind) 
 	if(is.null(m.id)) m.id<-rep(0,nind)
 	if(is.null(sex)) sex<-rep(0,nind)
     locnames <- paste("L", names(dat)[-1], sep = "")

@@ -102,13 +102,12 @@
 #' @return Returns an object of the class \code{randtest} (package
 #' \code{ade4}).
 #' @author Thibaut Jombart \email{t.jombart@@imperial.ac.uk}
-#' @seealso %\code{\link[hierfstat]{g.stats.glob}}, \code{\link{fstat}},
-#' %\code{\link[hierfstat]{test.g}}%,\code{\link[hierfstat]{test.within}},
-#' %\code{\link[hierfstat]{test.between}},\code{\link[ade4]{as.randtest}},
-#' %\code{\link{genind2hierfstat}}
+#' @seealso \code{\link[hierfstat]{g.stats.glob}}, \code{\link{fstat}},
+#' \code{\link[hierfstat]{test.g}},\code{\link[hierfstat]{test.within}},
+#' \code{\link[hierfstat]{test.between}},\code{\link[ade4]{as.randtest}},
+#' \code{\link{genind2hierfstat}}
 #' @keywords manip multivariate
 #' @examples
-#'
 #' \dontrun{
 #' if(require(adegenet)){
 #' # here the example of g.stats.glob is taken using gstat.randtest
@@ -131,14 +130,10 @@
 #' gstat.randtest(x,nsim=99,pop=gtrunchier$Locality,method="between",sub.pop=gtrunchier$Patch)
 #' }
 #' }
-#'
 #' @export gstat.randtest
-#'
 #' @author Thibaut Jombart \email{t.jombart@@imperial.ac.uk}
-#'
 #' @import adegenet
 #' @importFrom ade4 as.randtest
-#'
 gstat.randtest <- function(x,pop=NULL, method=c("global","within","between"),
                            sup.pop=NULL, sub.pop=NULL, nsim=499){
     ##   cat("\nSorry, hierfstat package has been disabled - this function will be restored in a future release.\n")

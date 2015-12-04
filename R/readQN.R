@@ -1,33 +1,23 @@
 #################################
-#'  @title Read QuantiNemo genotype files
+#'  Read QuantiNemo extended format for genotype files
 #'  
-#'  @description Read QuantiNemo (\url{http://www2.unil.ch/popgen/softwares/quantinemo/}) genotype files extended format (option 2)
+#'  Read QuantiNemo (\url{http://www2.unil.ch/popgen/softwares/quantinemo/}) genotype files extended format (option 2)
 #'  
 #'  @usage qn2.read.fstat(fname, na.s = c("NA","NaN"))
-#'  
 #'  @param fname quantinemo file name
-#'  
 #'  @param na.s  na string used
-#'  
 #'  @return dat  a data frame with nloc+1 columns, the first being the population
 #'  to which the individual belongs and the next being the genotypes, one column per locus; 
 #'  and ninds rows
 #'  @return sex  the sex of the individuals
-#'
 #'  @author Jerome Goudet \email{jerome.goudet@@unil.ch}
-#'  
 #'  @seealso \code{\link{read.fstat}}
-#' 
 #'  @references \href{http://www2.unil.ch/popgen/softwares/quantinemo/2008_Neuenschwander_et_al_BioInf_quantiNEMO.pdf}{Neuenschwander S, Hospital F, Guillaume F, Goudet J (2008)} 
 #'  quantiNEMO: an individual-based program to simulate quantitative traits with explicit 
 #'  genetic architecture in a dynamic metapopulation Bioinformatics 24, 1552-1553.
-#'  
-#'   
 #'  @examples 
-#'  
 #'   dat<-qn2.read.fstat(system.file("extdata","qn2_sex.dat",package="hierfstat"))
 #'   sexbias.test(dat[[1]],sex=dat[[2]])
-#'
 #'  @export
 ########################################################################################  
 qn2.read.fstat<-function (fname, na.s = c("NA","NaN")) {

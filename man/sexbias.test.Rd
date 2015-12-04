@@ -2,7 +2,7 @@
 % Please edit documentation in R/sexbiaseddisp.R
 \name{sexbias.test}
 \alias{sexbias.test}
-\title{Test fo sex biased dispersal}
+\title{Test for sex biased dispersal}
 \usage{
 sexbias.test(dat,sex,nperm=NULL,test="mAIc",alternative="two.sided")
 }
@@ -31,13 +31,9 @@ Test whether one
 sex disperses more than the other using the method described in
 \href{http://onlinelibrary.wiley.com/doi/10.1046/j.1365-294X.2002.01496.x/abstract}{Goudet etal. (2002)}
 }
-\details{
-
-}
 \examples{
 data(crocrussula)
   sexbias.test(crocrussula$genot,crocrussula$sex)
-
   dat<-qn2.read.fstat(system.file("extdata","qn2_sex.dat",package="hierfstat"))
   sexbias.test(dat[[1]],sex=dat[[2]])
   \dontrun{

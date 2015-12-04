@@ -78,10 +78,10 @@ Thibaut Jombart \email{t.jombart@imperial.ac.uk}
 Thibaut Jombart \email{t.jombart@imperial.ac.uk}
 }
 \seealso{
-%\code{\link[hierfstat]{g.stats.glob}}, \code{\link{fstat}},
-%\code{\link[hierfstat]{test.g}}%,\code{\link[hierfstat]{test.within}},
-%\code{\link[hierfstat]{test.between}},\code{\link[ade4]{as.randtest}},
-%\code{\link{genind2hierfstat}}
+\code{\link[hierfstat]{g.stats.glob}}, \code{\link{fstat}},
+\code{\link[hierfstat]{test.g}},\code{\link[hierfstat]{test.within}},
+\code{\link[hierfstat]{test.between}},\code{\link[ade4]{as.randtest}},
+\code{\link{genind2hierfstat}}
 }
 \keyword{manip}
 \keyword{multivariate}

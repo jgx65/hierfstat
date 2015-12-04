@@ -11,30 +11,21 @@ subsamp.within<-function (lev,ni=10) {
     return(unlist(x))
 }
 ##################################################################################
-#'
 #' @title Calculates corrected Assignment Index
 #' @description Calculates corrected Assignment Index as described in \href{http://onlinelibrary.wiley.com/doi/10.1046/j.1365-294X.2002.01496.x/abstract}{Goudet etal. (2002)}
-#' 
 #' @usage AIc(dat)
-#' 
 #' @param dat a data frane with nlocs+1 columns, 
-#' 
 #' @return aic  The corrected assignment index of each individual
-#' 
 #' @author Jerome Goudet \email{jerome.goudet@@unil.ch}
-#'  
-#' 
 #' @references \href{http://onlinelibrary.wiley.com/doi/10.1046/j.1365-294X.2002.01496.x/abstract}{Goudet J, Perrin N, Waser P (2002)} Tests for sex-biased dispersal 
 #'  using bi-parentally inherited genetic markers 11, 1103:1114
-#'   
-#'   
 #' @export
 ##################################################################################
 AIc<-function(dat){
 dat[,1]<-as.integer(as.factor(dat[,1]))
 popfreq<-pop.freq(dat) #freq per pop
 indfreq<-pop.freq(cbind(1:dim(dat)[1],dat[,-1])) # freq per ind
-id.al<-lapply(indfreq,fun<-function(y) apply(y,2,fun2<-function(z) which(z>0))) #which allele in which ind
+id.al<-lapply(indfreq,function(y) apply(y,2,fun2<-function(z) which(z>0))) #which allele in which ind
 nloc<-dim(dat)[2]-1 
 npop<-length(table(dat[,1]))
 nind<-dim(dat)[1]
@@ -52,7 +43,7 @@ for (il in 1:nloc){
   }
 }
 #mean assignment per locus per pop
-mean.ail<-apply(ail,2,fun<-function(x) {dum<-tapply(x,dat[,1],mean,na.rm=T);return(rep(dum,table(dat[,1])))})
+mean.ail<-apply(ail,2,function(x) {dum<-tapply(x,dat[,1],mean,na.rm=T);return(rep(dum,table(dat[,1])))})
 
 nas<-which(is.na(ail))
 ail[nas]<-mean.ail[nas] #set missing values to population mean
@@ -62,44 +53,32 @@ return(aic)
 ##################################################################################
 
 
-#' 
-#' @title Test fo sex biased dispersal
+#' @title Test for sex biased dispersal
 #' @description Test whether one
 #' sex disperses more than the other using the method described in 
 #' \href{http://onlinelibrary.wiley.com/doi/10.1046/j.1365-294X.2002.01496.x/abstract}{Goudet etal. (2002)} 
-#' 
-#' 
 #' @usage sexbias.test(dat,sex,nperm=NULL,test="mAIc",alternative="two.sided")
-#' 
 #' @param dat a data frame with n.locs+1 columns and n.inds rows
 #' @param sex a vector containing the individual's sex
 #' @param nperm the number of permutation to carry out
 #' @param test one of "mAIc" (default), "vAIc","FIS" or "FST"
 #' @param alternative one of "two.sided" (default),"less" or "greater"
-#' 
 #' @return call the function call
 #' @return res the observation for each sex
 #' @return statistic the observed statistic for the chosen test
 #' @return p.value the p-value of the hypothesis
-#' 
 #' @author Jerome Goudet \email{jerome.goudet@@unil.ch}
-#'  
-#' 
 #' @references \href{http://onlinelibrary.wiley.com/doi/10.1046/j.1365-294X.2002.01496.x/abstract}{Goudet J, Perrin N, Waser P (2002)} Tests for sex-biased dispersal 
 #'  using bi-parentally inherited genetic markers 11, 1103:1114
-#'   
-#'   
 #' @examples 
 #'   data(crocrussula)
 #'   sexbias.test(crocrussula$genot,crocrussula$sex)
-#'  
 #'   dat<-qn2.read.fstat(system.file("extdata","qn2_sex.dat",package="hierfstat"))
 #'   sexbias.test(dat[[1]],sex=dat[[2]])
 #'   \dontrun{
 #'   sexbias.test(crocrussula$genot,crocrussula$sex,nperm=1000)
 #'   sexbias.test(dat[[1]],sex=dat[[2]],nperm=100,test="FST",alternative="greater")
 #'   }
-#'
 #' @export
 ###################################################################################
 sexbias.test<-function(dat,sex,nperm=NULL,test="mAIc",

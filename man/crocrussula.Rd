@@ -6,10 +6,6 @@
 \usage{
 data(crocrussula)
 }
-\value{
-
-}
-
 \references{
  \href{http://rspb.royalsocietypublishing.org/content/264/1378/127}{Favre et al. (1997)} Female-biased dispersal in the monogamous mammal Crocidura russula: evidence from field data and microsatellite  patterns. Proceedings of the Royal Society, B (264):  127-132
  
