@@ -1,3 +1,6 @@
+#version 0.04-22 04.12.2015
+-put DOI in between <>
+
 #version 0.04-21 04.12.2015
 -added DOI of yang paper in DESCRIPTION file
 
