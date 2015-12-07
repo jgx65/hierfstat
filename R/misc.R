@@ -238,7 +238,7 @@ overall[10]<-overall[6]/(1-overall[2])
 names(overall)<-names(res)
 if(!diploid){
 #  res[,-2]<-NA
-  overall[-2]<-NA
+  overall[c(1,9)]<-NA
 }
 all.res<-list(n.ind.samp=n,pop.freq=lapply(p,round,digits),
 Ho=round(sHo,digits),Hs=round(Hs,digits),Fis=round(Fis,digits),
