@@ -1,3 +1,7 @@
+#version 0.04-23 07.12.2015
+-fixed bug in basic.stats when dealing with haploid data
+-included URL to references in description file
+
 #version 0.04-22 04.12.2015
 -put DOI in between <>
 
