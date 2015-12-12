@@ -128,8 +128,8 @@ FST=tFST,FIS=tFIS)
 if (!diploid){
 res<-list(call=cl,sigma=data.frame(loc,siga,sigb),
 sigma.loc=sigloc[,-3],
-per.al=list(FST=FST.pal),
-per.loc=list(FST=lFST),
+per.al=data.frame(FST=FST.pal),
+per.loc=data.frame(FST=lFST,row.names=loc.names),
 FST=tFST,FIS=NA)
 }
 class(res)<-"wc"
