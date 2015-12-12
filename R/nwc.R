@@ -110,8 +110,8 @@ sigloc<-data.frame(sigloc)
 names(sigloc)=c("lsiga","lsigb","lsigw")
 rownames(sigloc)<-loc.names
 
-lFST<-apply(cbind(lsiga,lsigb,lsigw),1,Fxy)
-lFIS<-apply(cbind(lsigb,lsigw),1,Fxy)
+lFST<-apply(sigloc,1,Fxy)
+lFIS<-apply(sigloc[,-1],1,Fxy)
 
 tsiga<-sum(siga,na.rm=TRUE)
 tsigb<-sum(sigb,na.rm=TRUE)
@@ -119,17 +119,17 @@ tsigw<-sum(sigw,na.rm=TRUE)
 tFST<-Fxy(c(tsiga,tsigb,tsigw))
 tFIS<-Fxy(c(tsigb,tsigw))
 
-res<-list(call=cl,sigma=cbind(loc,siga,sigb,sigw),
+res<-list(call=cl,sigma=data.frame(loc,siga,sigb,sigw),
 sigma.loc=sigloc,
-per.al=list(FST=FST.pal,FIS=FIS.pal),
-per.loc=list(FST=lFST,FIS=lFIS),
+per.al=data.frame(FST=FST.pal,FIS=FIS.pal),
+per.loc=data.frame(FST=lFST,FIS=lFIS,row.names=loc.names),
 FST=tFST,FIS=tFIS)
 
 if (!diploid){
-res<-list(call=cl,sigma=cbind(loc,siga,sigb,sigw),
+res<-list(call=cl,sigma=data.frame(loc,siga,sigb,sigw),
 sigma.loc=sigloc,
-per.al=list(FST=FST.pal),
-per.loc=list(FST=lFST),
+per.al=data.frame(FST=FST.pal),
+per.loc=list(FST=lFST,names=loc.names),
 FST=tFST,FIS=NA)
 }
 class(res)<-"wc"
