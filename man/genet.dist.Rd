@@ -48,7 +48,7 @@ Weir, B.S. and Cockerham C.C. (1984) Estimating F-Statistics for the Analysis of
 
 \author{Jerome Goudet \email{jerome.goudet@unil.ch}}
 
-\seealso{\code{\link{pp.fst}} \code{\link{pairwise.neifst}}}
+\seealso{\code{\link{pairwise.WCfst}} \code{\link{pairwise.neifst}}}
 
 \examples{
 data(gtrunchier)
