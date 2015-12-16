@@ -43,7 +43,7 @@ genind2hierfstat<-function(dat,pop=NULL){
   nucleotides<-c("A","C","G","T")
   alleles.name<-toupper(names(table(unlist(dat@all.names))))
   nuc<-FALSE
-  if(identical(alleles.name,nucleotides)) nuc<-TRUE
+  if(all(alleles.name %in% nucleotides)) nuc<-TRUE
   
 
   x<-genind2df(dat,sep="",usepop=FALSE)
