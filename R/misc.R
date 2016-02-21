@@ -75,11 +75,12 @@ freq<-function(x){
 #factor(x) necessary for funny allele encoding, but DOES slow down things
   if (is.character(x)) dum<-table(factor(x),data[,1]) else dum<-(table(x,data[,1]))
   eff<-colSums(dum,na.rm=TRUE)
-  freq<-sweep(dum,2,eff,FUN="/")
+  sweep(dum,2,eff,FUN="/")
 }
 ndat<-data[,-1]
 all.freq<-apply(ndat,2,freq)
-all.freq<-all.freq[-(nbloc+1)]
+if (is.list(all.freq)) all.freq<-all.freq[-(nbloc+1)]
+else if(dim(ndat)[2]==2) all.freq<-freq(ndat[,1]) #quick and dirty fix 
 return(all.freq)
 }
 #########################################################################
