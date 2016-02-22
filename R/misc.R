@@ -60,16 +60,18 @@ return(y)
 #########################################################################
 pop.freq<-function(data,diploid=TRUE)
 {
-  if (is.genind(data)) data<-genind2hierfstat(data)
-  
-nbpop<-length(unique(data[,1]))
+if (is.genind(data)) data<-genind2hierfstat(data)
 nbloc<-dim(data)[2]-1
+nbind<-dim(data)[1]
+dumal<-9
+nbal<-as.vector(unique(nb.alleles(data.frame(rep(1,nbind),data[,-1]))))
+if (length(nbal)==1 & nbal[1]==dumal) dumal<-8
 if (diploid) {
-data<-data.frame(data,dummy.loc=(sample(9,replace=TRUE,size=dim(data)[1])+100)*1001) #to ensure proper output
+data<-data.frame(data,dummy.loc=(sample(dumal,replace=TRUE,size=dim(data)[1])+100)*1001) #to ensure proper output
 data<-getal(data)[,-2]
 }
 else{
-data<-data.frame(data,dummy.loc=sample(9,replace=TRUE,size=dim(data)[1])+100)
+data<-data.frame(data,dummy.loc=sample(dumal,replace=TRUE,size=dim(data)[1])+100)
 }
 freq<-function(x){
 #factor(x) necessary for funny allele encoding, but DOES slow down things
@@ -80,7 +82,7 @@ freq<-function(x){
 ndat<-data[,-1]
 all.freq<-apply(ndat,2,freq)
 if (is.list(all.freq)) all.freq<-all.freq[-(nbloc+1)]
-else if(dim(ndat)[2]==2) all.freq<-freq(ndat[,1]) #quick and dirty fix 
+else stop("error in frequency estimation. Exiting")
 return(all.freq)
 }
 #########################################################################
