@@ -35,23 +35,37 @@ genind2hierfstat<-function(dat,pop=NULL){
   }
   
   if (dat@type!="codom") stop("data type must be codominant. Exiting")  
-  ploid <- unique(dat@ploidy)
-  if (length(ploid) != 1)
-    stop("data must contain only diploids or only haploids. Exiting")
-  if (ploid > 2L)
-    stop("Data must come from diploids or haploids. Exiting")
+  ploid<-unique(dat@ploidy)
+  if (length(ploid)!=1) stop("data must contain only diploids or only haploids. Exiting")
+  if (ploid>2L) stop("Data must come from diploids or haploids. Exiting")
+  if (ploid==2L) diploid<-TRUE #diploid
+  if (ploid==1L) diploid<-FALSE #haploid
+  nucleotides<-c("A","C","G","T")
+  alleles.name<-toupper(names(table(unlist(dat@all.names))))
+  nuc<-FALSE
+  if(all(alleles.name %in% nucleotides)) nuc<-TRUE
   
-  nucleotides <- c("A", "C", "G", "T")
-  alleles.name <- toupper(unique(unlist(dat@all.names)))
-  x <- genind2df(dat, sep = "", usepop = FALSE)
-  x <- if(!all(alleles.name %in% nucleotides)) {
-    do.call(cbind, lapply(x, function(x.col) as.numeric(factor(x.col))))
-  } else {
-    do.call(cbind, lapply(x, function(x.col) {
-      x.col <- toupper(x.col)
-      as.numeric(factor(x.col, levels = nucleotides))
-    }))
+
+  x<-genind2df(dat,sep="",usepop=FALSE)
+  #to catch alleles encoded with letters, e.g. H3N2
+  if (length(grep("[A-Z]",alleles.name))==0) x<-as.matrix(data.frame(lapply(x,as.integer)))
+  else {
+    if (nuc){
+      
+      tmp<-lapply(x,function(a) gsub("A","1",a))
+      tmp<-lapply(tmp,function(a) gsub("C","2",a))
+      tmp<-lapply(tmp,function(a) gsub("G","3",a))
+      tmp<-lapply(tmp,function(a) gsub("T","4",a))
+      tmp<-lapply(tmp,function(a) gsub("a","1",a))
+      tmp<-lapply(tmp,function(a) gsub("c","2",a))
+      tmp<-lapply(tmp,function(a) gsub("g","3",a))
+      tmp<-lapply(tmp,function(a) gsub("t","4",a))
+      tmp<-lapply(tmp,as.numeric)
+      x<-as.matrix(data.frame(tmp))
+    }
+    else (stop("alleles must be encoded as integers or nucleotides. Exiting"))
   }
-  return(data.frame(pop = pop, x))
+  x<-data.frame(pop=pop,x)
+  return(x)
 }
   
