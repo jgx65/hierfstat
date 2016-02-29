@@ -25,7 +25,7 @@
 ##########################################################
 genind2hierfstat<-function(dat,pop=NULL){
   if (!is.genind(dat)) stop("dat must be a genind object. Exiting")
-
+  
   if(is.null(pop)){
     if (is.null(adegenet::pop(dat))){
       stop("population factor must be defined")
@@ -35,23 +35,48 @@ genind2hierfstat<-function(dat,pop=NULL){
   }
   
   if (dat@type!="codom") stop("data type must be codominant. Exiting")  
-  ploid <- unique(dat@ploidy)
-  if (length(ploid) != 1)
-    stop("data must contain only diploids or only haploids. Exiting")
-  if (ploid > 2L)
-    stop("Data must come from diploids or haploids. Exiting")
+  ploid<-unique(dat@ploidy)
+  if (length(ploid)!=1) stop("data must contain only diploids or only haploids. Exiting")
+  if (ploid>2L) stop("Data must come from diploids or haploids. Exiting")
+  alleles.name<-toupper(unique(unlist(adegenet::alleles(dat))))
+  ids <- adegenet::indNames(dat)
   
-  nucleotides <- c("A", "C", "G", "T")
-  alleles.name <- toupper(unique(unlist(dat@all.names)))
-  x <- genind2df(dat, sep = "", usepop = FALSE)
-  x <- if(!all(alleles.name %in% nucleotides)) {
-    do.call(cbind, lapply(x, function(x.col) as.numeric(factor(x.col))))
-  } else {
-    do.call(cbind, lapply(x, function(x.col) {
-      x.col <- toupper(x.col)
-      as.numeric(factor(x.col, levels = nucleotides))
+  # convert alleles
+  x <- if(!all(alleles.name %in% c("A", "C", "G", "T"))) {
+    if(length(grep("[[:alpha:]|[:punct:]]", alleles.name)) > 0) {
+      # for loci where alleles are not all numeric nor all nucleotides
+      dat <- as.matrix(genind2df(dat, sep = "", usepop = FALSE, oneColPerAll = TRUE))
+      dat <- apply(dat, 2, function(a) ifelse(a == "NA", NA, a))
+      # cycle through each locus
+      do.call(cbind, lapply(seq(ploid, ncol(dat), by = ploid), function(end) {
+        start <- end - ploid + 1
+        alleles <- sort(unique(as.vector(dat[, start:end])))
+        digits <- floor(log10(length(alleles)))
+        # match alleles of each genotype with sorted order: index is new allele
+        apply(dat[, start:end, drop = FALSE], 1, function(gntp) {
+          if(any(is.na(gntp))) return(NA)
+          gntp <- match(gntp, alleles)
+          # zero pad numeric alleles and return collapsed genotype
+          gntp <- formatC(gntp, digits = digits, flag = "0", mode = "integer")
+          as.integer(paste(gntp, collapse = ""))
+        })
+      })) 
+    } else { # all alleles are numeric
+      dat <- genind2df(dat, sep = "", usepop = FALSE)
+      do.call(cbind, lapply(dat, as.integer))
+    }
+  } else { # all alleles are nucleotides
+    dat <- genind2df(dat, sep = "", usepop = FALSE)
+    do.call(cbind, lapply(dat, function(a) {
+      a <- gsub("[aA]", "1", a)
+      a <- gsub("[cC]", "2", a)
+      a <- gsub("[gG]", "3", a)
+      a <- gsub("[tT]", "4", a)
+      as.integer(a)
     }))
   }
-  return(data.frame(pop = pop, x))
+  x<-data.frame(pop=pop,x)
+  rownames(x) <- ids
+  return(x)
 }
   
