@@ -1,3 +1,7 @@
+#version 0.04-24 22.02.2016
+-fixed bug in pop.freq when the number of alleles per locus was 9
+-Simplified genind2hierfstat (Eric Archer contrib)
+
 #version 0.04-23 07.12.2015
 -fixed bug in basic.stats when dealing with haploid data
 -included URL to references in description file
