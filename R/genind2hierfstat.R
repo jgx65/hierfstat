@@ -66,6 +66,13 @@ genind2hierfstat<-function(dat,pop=NULL){
             }))
     }
     else { # all alleles are numeric
+      # check if all alleles code have same number of digits
+      tmp1<-unique(nchar(unlist(dat@all.names)))
+      if (length(tmp1)>1){
+        dig<-max(tmp1)
+        allnames<-lapply(dat@all.names,formatC,width=dig,flag="0",mode="integer")
+        dat@all.names<-allnames
+      }  
       dat <- genind2df(dat, sep = "", usepop = FALSE)
       do.call(cbind, lapply(dat, as.integer))
     }
