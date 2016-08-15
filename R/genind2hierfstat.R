@@ -28,7 +28,7 @@ genind2hierfstat<-function(dat,pop=NULL){
   
   if(is.null(pop)){
     if (is.null(adegenet::pop(dat))){
-      stop("population factor must be defined")
+      stop("population factor must be defined") #warning instead of stop?
     } else {
       pop <- adegenet::pop(dat)
     }
