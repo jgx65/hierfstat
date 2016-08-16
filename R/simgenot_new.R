@@ -139,7 +139,7 @@ pl[[il]]<-xn
 #'
 #' @title Simulate data from a non-equilibrium island model
 #'
-#'  @description This function allows to simulate genetic data from a non-equilibrium continent-island
+#' @description This function allows to simulate genetic data from a non-equilibrium continent-island
 #'  model, where each island can have a different size and a different inbreeding 
 #'  coefficient. 
 #'
@@ -294,7 +294,7 @@ sim.freq.metapop.t<-function(nbal=4,nbloc=5,nbpop=3,N=1000,mig=mig.mat,mut=0.000
 #'
 #' @title Simulate genetic data from a metapopulation model
 #'
-#'  @description This function allows to simulate genetic data from a metapopulation
+#' @description This function allows to simulate genetic data from a metapopulation
 #'  model, where each population can have a different size and a different inbreeding 
 #'  coefficient, and migration between each population is given in a migration matrix. 
 #'
@@ -307,7 +307,7 @@ sim.freq.metapop.t<-function(nbal=4,nbloc=5,nbpop=3,N=1000,mig=mig.mat,mut=0.000
 #' @param N the effective population sizes of each population. If only one number, all
 #' populations are assumed to be of the same size
 #' @param mig a matrix with nbpop rows and columns giving the migration rate 
-#' from poulation i (in row) to population j (in column). Each row must sum to 1.
+#' from population i (in row) to population j (in column). Each row must sum to 1.
 #' @param mut the mutation rate of the loci
 #' @param f the inbreeding coefficient for each population
 #' @param t the number of generation since the islands were created
@@ -364,12 +364,15 @@ sim.freq.metapop.t<-function(nbal=4,nbloc=5,nbpop=3,N=1000,mig=mig.mat,mut=0.000
 #' betas(dat)$betaiovl # Population specific estimator of FST
 #' 
 #' #1D stepping stone
-#' \dontrun{mig.mat<-diag(10)*.8
-#' diag(mig.mat[-1,-10])<-0.1
-#' diag(mig.mat[-10,-1])<-0.1
-#' mig.mat[1,1:2]<-c(0.9,0.1)
-#' mig.mat[10,9:10]<-c(0.1,0.9)
-#' dat<-sim.genot.metapop.t(nbal=10,nbloc=50,nbpop=10,mig=mig.mat,t=400)
+#' \dontrun{
+#' np<-10
+#' m<-0.2
+#' mig.mat<-diag(np)*(1-m)
+#' diag(mig.mat[-1,-np])<-m/2
+#' diag(mig.mat[-np,-1])<-m/2
+#' mig.mat[1,1:2]<-c(1-m/2,m/2)
+#' mig.mat[np,(np-1):np]<-c(m/2,1-m/2)
+#' dat<-sim.genot.metapop.t(nbal=10,nbloc=50,nbpop=np,mig=mig.mat,t=400)
 #' pcoa(as.matrix(genet.dist(dat))) # principal coordinates plot
 #' }
 #' 
