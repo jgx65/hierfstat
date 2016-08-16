@@ -4,7 +4,8 @@
 \alias{sim.genot.t}
 \title{Simulate data from a non-equilibrium island model}
 \usage{
-sim.genot.t(size=50,nbal=4,nbloc=5,nbpop=3,N=1000,mig=0.001,mut=0.0001,f=0,t=100,IIM=TRUE)
+sim.genot.t(size=50,nbal=4,nbloc=5,nbpop=3,N=1000,
+mig=0.001,mut=0.0001,f=0,t=100,IIM=TRUE)
 }
 \arguments{
 \item{size}{the number of sampled individuals per island}

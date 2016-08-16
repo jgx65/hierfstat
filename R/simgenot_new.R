@@ -143,7 +143,8 @@ pl[[il]]<-xn
 #'  model, where each island can have a different size and a different inbreeding 
 #'  coefficient. 
 #'
-#' @usage sim.genot.t(size=50,nbal=4,nbloc=5,nbpop=3,N=1000,mig=0.001,mut=0.0001,f=0,t=100,IIM=TRUE)
+#' @usage sim.genot.t(size=50,nbal=4,nbloc=5,nbpop=3,N=1000,
+#' mig=0.001,mut=0.0001,f=0,t=100,IIM=TRUE)
 #'  
 #' @param size the number of sampled individuals per island
 #' @param nbal the number of alleles per locus (maximum of 99)
@@ -239,7 +240,7 @@ sim.genot.t<-function(size=50,nbal=4,nbloc=5,nbpop=3,N=1000,mig=0.001,mut=0.0001
 ###############################################################################
 ###############################################################################
 ################################################################################
-sim.freq.metapop.t<-function(nbal=4,nbloc=5,nbpop=3,N=1000,mig=mig.mat,mut=0.0001,f=0,t=100){
+sim.freq.metapop.t<-function(nbal,nbloc,nbpop,N,mig,mut,f,t){
   #allows for different N and f for each population
   #allows for different migration rates among populations, mig must be a matrix of dim nbpop*nbpop
   #modified param so that it reflects correctly population effective size
@@ -260,8 +261,8 @@ sim.freq.metapop.t<-function(nbal=4,nbloc=5,nbpop=3,N=1000,mig=mig.mat,mut=0.000
     else stop("f must be a vector of length nbpop. Exiting.")}
   #  sanity check for migration matrix
     mig.dim<-dim(mig)
-    if (is.null(mig.dim) || (mig.dim[1]!=mig.dim[2]) || (mig.dim[1]!=nbpop) || (sum(rowSums(mig)-1)!=0)){
-     stop("mig must be a square matrix with each row summing to 1. Exiting")
+    if (is.null(mig.dim) || (mig.dim[1]!=mig.dim[2]) || (mig.dim[1]!=nbpop) || (sum(rowSums(mig)-1)!=0.0)){
+     stop(paste("mig must be a ",nbpop,"X",nbpop," matrix with each row summing to 1. Exiting",sep=""))
       }	
   
   xmut<-matrix(rep(1/nbal,nbal*nbpop,nrow=nbpop),nrow=nbpop)
@@ -298,7 +299,8 @@ sim.freq.metapop.t<-function(nbal=4,nbloc=5,nbpop=3,N=1000,mig=mig.mat,mut=0.000
 #'  model, where each population can have a different size and a different inbreeding 
 #'  coefficient, and migration between each population is given in a migration matrix. 
 #'
-#' @usage sim.genot.metapop.t(size=50,nbal=4,nbloc=5,nbpop=3,N=1000,mig=mig.mat,mut=0.0001,f=0,t=100)
+#' @usage sim.genot.metapop.t(size=50,nbal=4,nbloc=5,nbpop=3,N=1000,
+#' mig=diag(3),mut=0.0001,f=0,t=100)
 #'  
 #' @param size the number of sampled individuals per population
 #' @param nbal the number of alleles per locus (maximum of 99)
@@ -379,7 +381,7 @@ sim.freq.metapop.t<-function(nbal=4,nbloc=5,nbpop=3,N=1000,mig=mig.mat,mut=0.000
 #' @export
 #' 
 ##################################################################################################
-sim.genot.metapop.t<-function(size=50,nbal=4,nbloc=5,nbpop=3,N=1000,mig=mig.mat,mut=0.0001,f=0,t=100){
+sim.genot.metapop.t<-function(size=50,nbal=4,nbloc=5,nbpop=3,N=1000,mig=diag(3),mut=0.0001,f=0,t=100){
   a<-sim.freq.metapop.t(nbal,nbloc,nbpop,N,mig,mut,f,t)
   dat<-data.frame(rep(1:nbpop,each=size),matrix(numeric(nbloc*nbpop*size),ncol=nbloc))
   names(dat)<-c("Pop",paste("loc",1:nbloc,sep="."))

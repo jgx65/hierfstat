@@ -4,7 +4,8 @@
 \alias{sim.genot.metapop.t}
 \title{Simulate genetic data from a metapopulation model}
 \usage{
-sim.genot.metapop.t(size=50,nbal=4,nbloc=5,nbpop=3,N=1000,mig=mig.mat,mut=0.0001,f=0,t=100)
+sim.genot.metapop.t(size=50,nbal=4,nbloc=5,nbpop=3,N=1000,
+mig=diag(3),mut=0.0001,f=0,t=100)
 }
 \arguments{
 \item{size}{the number of sampled individuals per population}
