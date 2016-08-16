@@ -11,11 +11,11 @@ vignette: >
 
 #Introduction
 
-This vignette documents the latest developments in `hierfstat`. Refer to the other vignettes for an introduction to the package
+This vignette documents the latest developments in `hierfstat`. Refer to the other documents for an introduction to the package
 
 #Loading data
 
-`hierfstat` can now read `genind`objects (from package `adegenet`). Note however that only some genetic data types will be properly converted and used.  The alleles need to be encoded either as integer (up to three digits per allele), or as nucleotides (`c("a","c","g","t","A","C","G","T")`).
+`hierfstat` can now read `genind` objects (from package `adegenet`). Note however that only some genetic data types will be properly converted and used.  The alleles need to be encoded either as integer (up to three digits per allele), or as nucleotides (`c("a","c","g","t","A","C","G","T")`).
 
 ```{r,message=FALSE}
 library(adegenet)
@@ -94,7 +94,8 @@ sexbias.test(crocrussula$genot,crocrussula$sex)
 ```
 #Simulating genetic data
 
-It is now possible to simulate genetic data from an island model, either at equilibrium via `sim.genot` or for a given number of generations via `sim.genot.t`.  These two functions have several arguments, allowing to look at the effect of population sizes, inbreeding, migration and mutation. the number of independant loci and number of alleles per loci can also be specified.
+It is now possible to simulate genetic data from a continent islands model, either at equilibrium via `sim.genot` or for a given number of generations via `sim.genot.t`.  These two functions have several arguments, allowing to look at the effect of population sizes, inbreeding, migration and mutation. the number of independant loci and number of alleles per loci can also be specified. It is also possible to simulate data from a finite island model using `sim.genot.t`, by specifying that argument `IIM` is `FALSE`.  
+
 
 #Exporting to other programs
 

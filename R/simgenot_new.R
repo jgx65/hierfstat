@@ -259,10 +259,10 @@ sim.freq.metapop.t<-function(nbal=4,nbloc=5,nbpop=3,N=1000,mig=mig.mat,mut=0.000
     if (length(f)==1) f<-rep(f,nbpop) 
     else stop("f must be a vector of length nbpop. Exiting.")}
   #  sanity check for migration matrix
-  #  mig.dim<-dim(mig)
-  #  if (is.null(mig.dim) || (mig.dim[1]!=mig.dim[2]) || (mig.dim[1]!=nbpop) || (sum(rowSums(mig)-1)!=0)){
-  #   stop("mig must be a square matrix with each row summing to 1. Exiting")
-  #    }	
+    mig.dim<-dim(mig)
+    if (is.null(mig.dim) || (mig.dim[1]!=mig.dim[2]) || (mig.dim[1]!=nbpop) || (sum(rowSums(mig)-1)!=0)){
+     stop("mig must be a square matrix with each row summing to 1. Exiting")
+      }	
   
   xmut<-matrix(rep(1/nbal,nbal*nbpop,nrow=nbpop),nrow=nbpop)
   
@@ -271,7 +271,7 @@ sim.freq.metapop.t<-function(nbal=4,nbloc=5,nbpop=3,N=1000,mig=mig.mat,mut=0.000
     xn<-xini
     tot<-sum(N)
     for (it in 1:t) {
-      xn<-(mig%*%xn)*(1-mut)+mut*xmut #line that needs changing for metapop
+      xn<-(mig%*%xn)*(1-mut)+mut*xmut 
       for (ip in 1:nbpop) xn[ip,]<-rmultinom(1,N[ip]*2,xn[ip,])/2/N[ip]
     }
     pl[[il]]<-xn
