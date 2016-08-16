@@ -19,7 +19,7 @@ sim.genot.metapop.t(size=50,nbal=4,nbloc=5,nbpop=3,N=1000,mig=mig.mat,mut=0.0001
 populations are assumed to be of the same size}
 
 \item{mig}{a matrix with nbpop rows and columns giving the migration rate 
-from poulation i (in row) to population j (in column). Each row must sum to 1.}
+from population i (in row) to population j (in column). Each row must sum to 1.}
 
 \item{mut}{the mutation rate of the loci}
 
@@ -81,12 +81,15 @@ dat<-sim.genot.metapop.t(nbal=10,nbloc=100,nbpop=2,N=psize,mig=mig.mat,mut=0.000
 betas(dat)$betaiovl # Population specific estimator of FST
 
 #1D stepping stone
-\dontrun{mig.mat<-diag(10)*.8
-diag(mig.mat[-1,-10])<-0.1
-diag(mig.mat[-10,-1])<-0.1
-mig.mat[1,1:2]<-c(0.9,0.1)
-mig.mat[10,9:10]<-c(0.1,0.9)
-dat<-sim.genot.metapop.t(nbal=10,nbloc=50,nbpop=10,mig=mig.mat,t=400)
+\dontrun{
+np<-10
+m<-0.2
+mig.mat<-diag(np)*(1-m)
+diag(mig.mat[-1,-np])<-m/2
+diag(mig.mat[-np,-1])<-m/2
+mig.mat[1,1:2]<-c(1-m/2,m/2)
+mig.mat[np,(np-1):np]<-c(m/2,1-m/2)
+dat<-sim.genot.metapop.t(nbal=10,nbloc=50,nbpop=np,mig=mig.mat,t=400)
 pcoa(as.matrix(genet.dist(dat))) # principal coordinates plot
 }
 
