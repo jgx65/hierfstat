@@ -117,7 +117,6 @@ sim.freq.FIM.t<-function(nbal=4,nbloc=5,nbpop=3,N=1000,mig=0.001,mut=0.0001,f=0,
 	for (ip in 1:nbpop) xn[ip,]<-rmultinom(1,N[ip]*2,xn[ip,])/2/N[ip]
 	#xpool<-matrix(rep((N/tot)%*%xn,nbpop),nrow=nbpop,byrow=TRUE) #weighted
 	xpool<-matrix(rep((rep(1,nbpop)/nbpop)%*%xn,nbpop),nrow=nbpop,byrow=TRUE) #unweighted
-	# need checking the weighting scheme
 }
 pl[[il]]<-xn
 }
@@ -137,7 +136,7 @@ pl[[il]]<-xn
 
 ###################################################
 #'
-#' @title Simulate data from a non-equilibrium island model
+#' @title Simulate data from a non equilibrium continent-island model
 #'
 #' @description This function allows to simulate genetic data from a non-equilibrium continent-island
 #'  model, where each island can have a different size and a different inbreeding 
@@ -156,7 +155,7 @@ pl[[il]]<-xn
 #' @param mut the mutation rate of the loci
 #' @param f the inbreeding coefficient for each island
 #' @param t the number of generation since the islands were created
-#' @param IIM whether to simulate an Infinite Island Model (default) or a Finite Island Model
+#' @param IIM whether to simulate a continent island Model (default) or a migrant pool island Model
 #' 
 #' @return A data frame with size*nbpop rows and nbloc+1 columns. Each row is an
 #' individual, the first column contains the island to which the individual belongs, 
@@ -209,7 +208,8 @@ pl[[il]]<-xn
 #' 
 #'  which reduces to \eqn{\theta_t=\frac{x}{1-x}\sum_{i=1}^t (\alpha (1-x))^i} if \eqn{\theta_0=0}.
 #'  
-#'  Transition equations for \eqn{theta} in the finite island model are given in Rouseet (1996) 
+#'  Transition equations for \eqn{theta} in the migrant-pool island model (IIM=FALSE) are given in Rouseet (1996). 
+#'  Currently, the migrant pool is made of equal contribution from each island, irrespective of their size.  
 #'     
 #' @author Jerome Goudet \email{jerome.goudet@@unil.ch}
 #' 

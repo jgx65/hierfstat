@@ -38,9 +38,9 @@ print.pp.fst<-function(x,...){
 
 ################################################################################
 
-boot.ppfst<-function(dat=dat,nboot=100,quant=c(0.025,0.975),diploid=TRUE,dig=4,...){
+boot.ppfst<-function(dat=dat,nboot=100,quant=c(0.025,0.975),diploid=TRUE,...){
   cl<-match.call()
-  if (is.genind(dat)) dat<-genind2hierfstat(dat)
+  if (adegenet::is.genind(dat)) dat<-genind2hierfstat(dat)
   typ<-dim(dat)
   if(length(dim(dat))==2){
     #Pop<-dat[,1]
@@ -71,8 +71,26 @@ boot.ppfst<-function(dat=dat,nboot=100,quant=c(0.025,0.975),diploid=TRUE,dig=4,.
   hl<-apply(bppfst,c(1,2),quantile,quant[2],na.rm=TRUE)
   dimnames(ll)[[1]]<-dimnames(ll)[[2]]<-x
   dimnames(hl)<-dimnames(ll)
-  return(list(call=cl,ll=round(ll,digits=dig),ul=round(hl,digits=dig),vc.per.loc=ppsl))
+  res<-(list(call=cl,ll=ll,ul=hl,vc.per.loc=ppsl))
+  class(res)<-"boot.ppfst"
+  res
 }
+
+print.boot.ppfst<-function(x,...){
+  a<-dim(x$ll)[1]
+  ci<-matrix(nrow=a,ncol=a)
+  dimnames(ci)<-dimnames(x$ll)
+  for (i in 2:a)
+    for (j in 1:(a-1)){
+      ci[j,i]<-x$ul[j,i]
+      ci[i,j]<-x$ll[j,i]
+    }
+ cat("\n       Upper limit above diagonal \n")
+ cat("       Lower limit below diagonal \n \n")
+      print(ci)
+    invisible(x)
+}
+
 ################################################################################
 boot.ppfis<-function(dat=dat,nboot=100,quant=c(0.025,0.975),diploid=TRUE,dig=4,...){
   cl<-match.call()

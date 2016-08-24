@@ -2,7 +2,7 @@
 % Please edit documentation in R/simgenot_new.R
 \name{sim.genot.t}
 \alias{sim.genot.t}
-\title{Simulate data from a non-equilibrium island model}
+\title{Simulate data from a non equilibrium continent-island model}
 \usage{
 sim.genot.t(size=50,nbal=4,nbloc=5,nbpop=3,N=1000,
 mig=0.001,mut=0.0001,f=0,t=100,IIM=TRUE)
@@ -27,7 +27,7 @@ islands are assumed to be of the same size}
 
 \item{t}{the number of generation since the islands were created}
 
-\item{IIM}{whether to simulate an Infinite Island Model (default) or a Finite Island Model}
+\item{IIM}{whether to simulate a continent island Model (default) or a migrant pool island Model}
 }
 \value{
 A data frame with size*nbpop rows and nbloc+1 columns. Each row is an
@@ -85,7 +85,8 @@ The expectation of \eqn{F_{ST}}, \eqn{\theta} can be written as:
 
  which reduces to \eqn{\theta_t=\frac{x}{1-x}\sum_{i=1}^t (\alpha (1-x))^i} if \eqn{\theta_0=0}.
  
- Transition equations for \eqn{theta} in the finite island model are given in Rouseet (1996)
+ Transition equations for \eqn{theta} in the migrant-pool island model (IIM=FALSE) are given in Rouseet (1996). 
+ Currently, the migrant pool is made of equal contribution from each island, irrespective of their size.
 }
 \examples{
 
