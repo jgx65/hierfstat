@@ -1,3 +1,7 @@
+#version 0.04-27 21.01.2017
+-new features in betas, now can produce individual coancestries
+-new function to import genotypes from Hudson' ms
+
 #version 0.04-25 31.03.2016
 -fixed bug in genind2hierfstat when the number of digits for allele encoding varies
 

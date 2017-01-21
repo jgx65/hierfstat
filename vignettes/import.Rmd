@@ -121,10 +121,10 @@ The first line is the `ms` command line, and it instructed the program to simula
 
 The genetic data itself comes as a series of 0 and 1, collated one to the other.  These are the SNPs site, with 0 being the ancestral state and 1 the alternate state. 
 
-the function `read.ms.snps` allows reading this into R:
+the function `read.ms` allows reading this into R:
 
 ```{r}
-msdat<-read.ms.snps(system.file("extdata","2pops_asspop.txt",package="hierfstat"))
+msdat<-read.ms(system.file("extdata","2pops_asspop.txt",package="hierfstat"),what="SNP")
 dim(msdat) # 2nd number is the number of SNPs+1
 head(msdat[,1:11]) # first 10 loci  
 table(msdat[,1]) # how many inds per pop
