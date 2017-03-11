@@ -49,9 +49,11 @@ boot.ppfst<-function(dat=dat,nboot=100,quant=c(0.025,0.975),diploid=TRUE,...){
     ppsl<-array(numeric(npop*npop*nloc*3),dim=c(npop,npop,nloc,3))
     x<-unique(dat[,1])
     if(is.factor(dat[,1])) dat[,1]<-as.integer(dat[,1])
-    for (i in 1:(npop-1)) for (j in (i+1):npop) {
-      #cat(i," ",j,"\n") #for debugging
-      ppsl[i,j,,]<-as.matrix(pp.sigma.loc(i,j,dat,diploid,...))
+    for (i in 1:(npop-1)) { 
+      for (j in (i+1):npop) {
+        #cat(i," ",j,"\n") #for debugging
+        ppsl[i,j,,]<-as.matrix(pp.sigma.loc(i,j,dat,diploid,...))
+      }
     }
   }
   else
