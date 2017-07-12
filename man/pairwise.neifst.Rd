@@ -26,13 +26,12 @@ data(gtrunchier)
 pairwise.neifst(gtrunchier[,-2],diploid=TRUE)
 
 }
-\author{
-Jerome Goudet \email{jerome.goudet@unil.ch}
-}
 \references{
 Nei, M. (1987) Molecular Evolutionary Genetics. Columbia University Press
 }
 \seealso{
 \link{pairwise.WCfst} \link{genet.dist}
 }
-
+\author{
+Jerome Goudet \email{jerome.goudet@unil.ch}
+}

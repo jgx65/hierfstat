@@ -28,4 +28,3 @@ Up to 99 alleles per locus
 }
 }
 \keyword{datasets}
-

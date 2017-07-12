@@ -27,4 +27,3 @@ A simpe diploid dataset, with allele encoded as one digit number
 }
 }
 \keyword{datasets}
-

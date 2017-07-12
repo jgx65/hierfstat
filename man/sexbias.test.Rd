@@ -41,11 +41,10 @@ sex disperses more than the other using the method described in
   sexbias.test(dat[[1]],sex=dat[[2]],nperm=100,test="FST",alternative="greater")
   }
 }
-\author{
-Jerome Goudet \email{jerome.goudet@unil.ch}
-}
 \references{
 \href{http://onlinelibrary.wiley.com/doi/10.1046/j.1365-294X.2002.01496.x/abstract}{Goudet J, Perrin N, Waser P (2002)} Tests for sex-biased dispersal 
  using bi-parentally inherited genetic markers 11, 1103:1114
 }
-
+\author{
+Jerome Goudet \email{jerome.goudet@unil.ch}
+}

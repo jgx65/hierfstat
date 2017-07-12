@@ -32,4 +32,3 @@ basic.stats(genind2hierfstat(H3N2,pop=rep(1,dim(H3N2@tab)[1])),diploid=FALSE)
 }
 
 }
-

@@ -26,7 +26,7 @@ With argument what="Haplotype", each different sequence from a replicate
 is read as a haplotype, 
 by converting it first to a factor, and then to an integer. There will be as many loci 
 as there are replicates, and the number of alleles per locus will be the number of different
-haplotypes in the corresponding replicate.
+haplotypes in the corresponding replicate. 
 
 With argument what="SNP", each site is read as a SNP, with the ancestral allele encoded as 0 and the alternate 
 allele encoded as 1.  If the ms output file contains several replicates, 
@@ -35,18 +35,17 @@ sites from all replicates.
 }
 \examples{
 \dontrun{
-  datH<-read.ms(system.file("extdata",what="Haplotype",2pops_asspop.txt",package="hierfstat"))
+  datH<-read.ms(system.file("extdata","2pops_asspop.txt",package="hierfstat"),what="Haplotype")
   dim(datH)
   head(datH[,1:10]
-  datS<-read.ms(system.file("extdata",what="SNP",2pops_asspop.txt",package="hierfstat"))
+  datS<-read.ms(system.file("extdata","2pops_asspop.txt",package="hierfstat"),what="SNP")
   dim(datS)
   head(datS[,1:10])
   }
 }
-\author{
-Jerome Goudet \email{jerome.goudet@unil.ch}
-}
 \references{
 \href{http://bioinformatics.oxfordjournals.org/content/18/2/337.short}{Hudson, R. R. (2002) Generating samples under a Wright-Fisher neutral model of genetic variation}. Bioinformatics 18 : 337-338.
 }
-
+\author{
+Jerome Goudet \email{jerome.goudet@unil.ch}
+}

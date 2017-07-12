@@ -20,9 +20,6 @@ a text file fn is written in the current directory
 write the genotypes in a format suitable for
 analysis with bayescan
 }
-\author{
-Jerome Goudet \email{jerome.goudet@unil.ch}
-}
 \references{
 \href{http://www.genetics.org/content/180/2/977.abstract}{Foll M and OE Gaggiotti (2008) 
  Genetics 180: 977-993}
@@ -30,4 +27,6 @@ Jerome Goudet \email{jerome.goudet@unil.ch}
 
 \url{http://cmpg.unibe.ch/software/BayeScan/}
 }
-
+\author{
+Jerome Goudet \email{jerome.goudet@unil.ch}
+}

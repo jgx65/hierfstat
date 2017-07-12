@@ -37,6 +37,6 @@ if(eigen){
 par(mfrow=c(2,1))
 plot(x$ipca$eig/sum(x$ipca$eig),type="h",xlab="axes",ylab="Prop. variance")
 }
-plot(x$ipca$li[,ax1],x$ipca$li[,ax2],xlab=paste("Axis: ",ax1,sep=""),ylab=paste("Axis: ",ax2,sep=""),type="n")
+plot(x$ipca$li[,ax1],x$ipca$li[,ax2],xlab=paste("Axis: ",ax1,sep=""),ylab=paste("Axis: ",ax2,sep=""),type="n",...)
 text(x$ipca$li[,ax1],x$ipca$li[,ax2],labels=x$ipca$rownames,...)
 }

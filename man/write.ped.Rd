@@ -39,4 +39,3 @@ write a ped and a map file suitable for analysis with
 \href{http://www.ncbi.nlm.nih.gov/pmc/articles/PMC1950838/}{Purcell etal (2007) PLINK:} A Tool Set for Whole-Genome Association 
  and Population-Based Linkage Analyses 81:559-575
 }
-

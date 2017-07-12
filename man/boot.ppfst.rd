@@ -22,5 +22,10 @@
 \author{Jerome Goudet \email{jerome.goudet@unil.ch}}
 
 %\seealso{\code{\link{}}.}
-%\examples{}
+\examples{
+data(gtrunchier)
+x<-boot.ppfst(gtrunchier[,-2])
+x$ll
+x$ul
+}
 

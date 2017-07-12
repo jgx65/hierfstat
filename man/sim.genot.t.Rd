@@ -96,11 +96,10 @@ summary(wc(dat)) #Weir and cockerham overall estimators of FST & FIS
 betas(dat) # Population specific estimator of FST
 
 }
-\author{
-Jerome Goudet \email{jerome.goudet@unil.ch}
-}
 \references{
 \href{http://www.ncbi.nlm.nih.gov/pubmed/8846911}{Rousset, F. (1996)} Equilibrium values of measures of population subdivision for 
  stepwise mutation processes. Genetics 142:1357
 }
-
+\author{
+Jerome Goudet \email{jerome.goudet@unil.ch}
+}

@@ -25,9 +25,6 @@ Read QuantiNemo (\url{http://www2.unil.ch/popgen/softwares/quantinemo/}) genotyp
   dat<-qn2.read.fstat(system.file("extdata","qn2_sex.dat",package="hierfstat"))
   sexbias.test(dat[[1]],sex=dat[[2]])
 }
-\author{
-Jerome Goudet \email{jerome.goudet@unil.ch}
-}
 \references{
 \href{http://www2.unil.ch/popgen/softwares/quantinemo/2008_Neuenschwander_et_al_BioInf_quantiNEMO.pdf}{Neuenschwander S, Hospital F, Guillaume F, Goudet J (2008)} 
  quantiNEMO: an individual-based program to simulate quantitative traits with explicit 
@@ -36,4 +33,6 @@ Jerome Goudet \email{jerome.goudet@unil.ch}
 \seealso{
 \code{\link{read.fstat}}
 }
-
+\author{
+Jerome Goudet \email{jerome.goudet@unil.ch}
+}

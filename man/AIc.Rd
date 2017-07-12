@@ -15,11 +15,10 @@ aic  The corrected assignment index of each individual
 \description{
 Calculates corrected Assignment Index as described in \href{http://onlinelibrary.wiley.com/doi/10.1046/j.1365-294X.2002.01496.x/abstract}{Goudet etal. (2002)}
 }
-\author{
-Jerome Goudet \email{jerome.goudet@unil.ch}
-}
 \references{
 \href{http://onlinelibrary.wiley.com/doi/10.1046/j.1365-294X.2002.01496.x/abstract}{Goudet J, Perrin N, Waser P (2002)} Tests for sex-biased dispersal 
  using bi-parentally inherited genetic markers 11, 1103:1114
 }
-
+\author{
+Jerome Goudet \email{jerome.goudet@unil.ch}
+}

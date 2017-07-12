@@ -15,30 +15,36 @@ betas(dat,nboot=0,lim=c(0.025,0.975),diploid=TRUE,betaijT=FALSE)
 
 \item{diploid}{whether the data comes from a diploid organism}
 
-\item{betaij}{whether to estimate individual coancestries}
+\item{betaijT}{whether to estimate individual coancestries}
 }
 \value{
-Hi Within population gene diversities
+Hi Within population gene diversities (complement to 1 of matching probabilities)
 
 Hb Between populations gene diversities
 
-betaiovl Average \eqn{\beta_i} over loci
+betaiovl Average \eqn{\beta_i} over loci (Population specific FSTs)
 
-betaW Average of the betaiovl
+betaW Average of the betaiovl (overall population FST)
 
-ci The bootstrap confidence interval 
+ci The bootstrap confidence interval of population specific FSTs
 (only if more than 100 bootsraps requested and if more than 10 loci are present)
 
-if betaijT=TRUE, return only the matrix of individual coancestries. 
-individual inbreeding coeeficient can be obtained by multiplying by 2 the diagonal 
-and substracting 1
+if betaijT=TRUE, return the matrix of pairwise coancestries only. 
+Population FSTs are the diagonal element of this matrix.
 }
 \description{
-Estimate \eqn{\beta}s per population and a bootstrap confidence interval
+Estimate populations (Population specific FST) or individual coancestries 
+and a bootstrap confidence interval
+}
+\details{
+If betaij=TRUE, and the first column contains unique identifier for 
+each individuals, the function returns the matrix of individual coancestries.  
+Individual inbreeding coefficients can be obtained by multiplying by 2 the diagonal 
+and substracting 1.
 }
 \examples{
 \dontrun{
-#3 different populatoon sizes leads to 3 different betais
+#3 different population sizes lead to 3 different betais
 dat<-sim.genot(size=40,N=c(50,200,1000),nbloc=50,nbal=10)
 betas(dat,nboot=100)
  
@@ -50,15 +56,14 @@ image(1:120,1:120,ind.coan,xlab="Inds",ylab="Inds")
 dat<-sim.genot(size=20,nbloc=100,nbal=20,mig=0.01,f=c(0,0.3,0.7))
 ind.coan<-betas(cbind(1:60,dat[,-1]),betaijT=TRUE)
 ind.inb<-(diag(ind.coan)*2-1)
-hist(ind.inb,breaks=seq(-1,1,0.05),xlab="Inidivual inbreeding coeeficients");abline(v=c(0,0.3,0.7),col="red",lwd=2)
+hist(ind.inb,breaks=seq(-1,1,0.05),xlab="Individual inbreeding coeeficients");abline(v=c(0,0.3,0.7),col="red",lwd=2)
 
 }
 
-}
-\author{
-Jerome Goudet \email{jerome.goudet@unil.ch}
 }
 \references{
 \href{http://biorxiv.org/content/early/2016/11/17/088260}{Weir and Goudet } A unified characterization of population structure and relatedness.
 }
-
+\author{
+Jerome Goudet \email{jerome.goudet@unil.ch}
+}

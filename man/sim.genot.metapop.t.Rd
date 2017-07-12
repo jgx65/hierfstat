@@ -98,4 +98,3 @@ pcoa(as.matrix(genet.dist(dat))) # principal coordinates plot
 \author{
 Jerome Goudet \email{jerome.goudet@unil.ch}
 }
-

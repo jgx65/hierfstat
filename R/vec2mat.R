@@ -1,0 +1,50 @@
+#################################################################
+vec2mat<-function(x,diag=FALSE,upper=FALSE){
+	#fill a lower triangular matrix from a vector and copy it to upper triangle
+nn<-length(x)
+if (diag) n<-(-1+(1+8*nn)^0.5)/2 #dim of the matrix
+else n<-(1+(1+8*nn)^0.5)/2 #dim of the matrix
+mat<-matrix(rep(0,n*n),ncol=n,nrow=n)
+cum<-0
+if (!upper){
+if(diag){
+for (i in 2:n) {
+	for (j in 1:i){
+		cum<-cum+1
+		mat[i,j]<-x[cum]
+		mat[j,i]<-mat[i,j]
+	}
+}
+} else
+{
+for (i in 2:n) {
+	for (j in 1:(i-1)){
+		cum<-cum+1
+		mat[i,j]<-x[cum]
+		mat[j,i]<-mat[i,j]
+	}
+}
+}
+}
+else{
+if(diag){
+for (i in 1:n) {
+	for (j in i:n){
+		cum<-cum+1
+		mat[i,j]<-x[cum]
+		mat[j,i]<-mat[i,j]
+	}
+}
+} else
+{
+for (i in 1:n) {
+	for (j in (i+1):n){
+		cum<-cum+1
+		mat[i,j]<-x[cum]
+		mat[j,i]<-mat[i,j]
+	}
+}
+}
+}
+return(mat)
+}

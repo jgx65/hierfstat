@@ -26,9 +26,6 @@ data(gtrunchier)
 pairwise.WCfst(gtrunchier[,-2],diploid=TRUE)
 
 }
-\author{
-Jerome Goudet \email{jerome.goudet@unil.ch}
-}
 \references{
 Weir, B.S. (1996) Genetic Data Analysis II. Sinauer Associates.
 
@@ -37,4 +34,6 @@ Weir, B.S. (1996) Genetic Data Analysis II. Sinauer Associates.
 \seealso{
 \link{pairwise.neifst} \link{genet.dist}
 }
-
+\author{
+Jerome Goudet \email{jerome.goudet@unil.ch}
+}

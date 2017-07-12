@@ -12,16 +12,18 @@
 #' @return alldat  a data frame with nloc+1 columns, the first being the population
 #'  to which the individual belongs and the next being the genotypes, one column per locus; 
 #'  and one row per (haploid) individual.
+#'  
 #' @details With argument what="Haplotype", each different sequence from a replicate 
 #' is read as a haplotype, 
 #' by converting it first to a factor, and then to an integer. There will be as many loci 
 #' as there are replicates, and the number of alleles per locus will be the number of different
-#' haplotypes in the corresponding replicate.
+#' haplotypes in the corresponding replicate. 
 #' 
 #' With argument what="SNP", each site is read as a SNP, with the ancestral allele encoded as 0 and the alternate 
 #' allele encoded as 1.  If the ms output file contains several replicates, 
 #' the different replicates will be collated together.  Hence, the number of loci is the sum of all
 #' sites from all replicates.  
+#' 
 #' @author Jerome Goudet \email{jerome.goudet@@unil.ch}
 #' @references \href{http://bioinformatics.oxfordjournals.org/content/18/2/337.short}{Hudson, R. R. (2002) Generating samples under a Wright-Fisher neutral model of genetic variation}. Bioinformatics 18 : 337-338.
 #'
