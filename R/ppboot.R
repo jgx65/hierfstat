@@ -69,7 +69,7 @@ boot.ppfst<-function(dat=dat,nboot=100,quant=c(0.025,0.975),diploid=TRUE,...){
   #browser()
   ll<-apply(bppfst,c(1,2),quantile,quant[1],na.rm=TRUE)
   hl<-apply(bppfst,c(1,2),quantile,quant[2],na.rm=TRUE)
-  dimnames(ll)[[1]]<-dimnames(ll)[[2]]<-x
+  dimnames(ll)[[1]]<-dimnames(ll)[[2]]<-sort(x)
   dimnames(hl)<-dimnames(ll)
   res<-(list(call=cl,ll=ll,ul=hl,vc.per.loc=ppsl))
   class(res)<-"boot.ppfst"
