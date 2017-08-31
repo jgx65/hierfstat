@@ -1,6 +1,6 @@
 export(allele.count,allelic.richness,
 basic.stats,betas,
-boot.ppfis,boot.ppfst,print.boot.pp.fst,boot.vc,
+boot.ppfis,boot.ppfst,print.boot.ppfst,boot.vc,
 genet.dist,eucl.dist,eucl.dist.trait,
 g.stats,g.stats.glob,
 genot2al,getal,getal.b,
