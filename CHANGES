@@ -1,3 +1,7 @@
+#version 0.04-29 25.05.2018
+-new function beta.dosage, to estimate kinship from allelic dosage matrix
+-improved mat2vec and vec2mat
+
 #version 0.04-27 21.01.2017
 -new features in betas, now can produce individual coancestries
 -new function to import genotypes from Hudson' ms
