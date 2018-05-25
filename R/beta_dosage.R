@@ -1,8 +1,8 @@
 ###########################################################################
 #' @title estimates pairwise kinships and individual inbreeding coefficients from dosage data
 #'
-#' @description Estimates pairwise kinships (coancestries) and individual inbreeding coefficient using Weir and Goudet 82017) 
-#' beta estimator. 
+#' @description Estimates pairwise kinships (coancestries) and individual inbreeding coefficient 
+#' using Weir and Goudet (2017) beta estimator. 
 #'  
 #' @usage beta.dosage(dat,inb=TRUE,correction=FALSE)
 #'
@@ -12,11 +12,12 @@
 #'
 #' @return a matrix of pairwise kinships and inbreeding coefficients if requested
 #'
-#' @details This function is written for dosage data, that is, how many doses of an allele (0, 1 or 2) an individual carries.
-#' It should be use for bi-allelic markers only (e.g. SNps), although you might "force" a k multiallelic locus to k biallelic
+#' @details This function is written for dosage data, i.e., how many doses of an allele (0, 1 or 2) an individual carries.
+#' It should be use for bi-allelic markers only (e.g. SNPs), although you might "force" a k multiallelic locus to k biallelic
 #' loci. 
+#' 
 #' When there are missing data, the missing values are replaced by the frequency of the alternate allele 
-#' The correction option unbiases the estimates, and is described in the supplementary materials of Goudet etal (2018). 
+#' The correction option unbiases the estimates, and is described in the supplementary materials of Goudet etal. (2018). 
 #'
 #' @author Jerome Goudet \email{jerome.goudet@@unil.ch}
 #' @references \href{http://www.genetics.org/content/206/4/2085}{Weir, BS and Goudet J. 2017} A Unified Characterization 
@@ -40,7 +41,7 @@ beta.dosage<-function(dat,inb=FALSE,correction=FALSE){
   
   prop.miss<-sum(is.na(dat))/prod(dim(dat))  
   if (prop.miss>0.0){
-    i.miss<-rowMeans(is.na(dat)) #missing loci per individuals
+    i.miss<-rowMeans(is.na(dat)) 
     cm<-colMeans(dat,na.rm=TRUE)
     dum<-sweep(dat,2,cm,FUN="-")
     dum[is.na(dum)]<-0.0
@@ -49,7 +50,7 @@ beta.dosage<-function(dat,inb=FALSE,correction=FALSE){
 
   
   nl<-dim(dat)[2]
-  Mij<-1/2+tcrossprod(dat-1)/2/nl #should be faster
+  Mij<-1/2+tcrossprod(dat-1)/2/nl 
   Mii<-(diag(Mij))*2-1
   diag(Mij)<-NA
   Mb<-mean(Mij,na.rm=T)
