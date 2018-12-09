@@ -20,9 +20,13 @@
 #' The correction option unbiases the estimates, and is described in the supplementary materials of Goudet etal. (2018). 
 #'
 #' @author Jerome Goudet \email{jerome.goudet@@unil.ch}
-#' @references \href{http://www.genetics.org/content/206/4/2085}{Weir, BS and Goudet J. 2017} A Unified Characterization 
-#' of Population Structure and Relatedness 
-#' href{http://}{Goudet, J., Kay, T. and Weir BS. 2018} How to estimate kinship?  Manuscript
+#' @references 
+#' 
+#' \href{http://www.genetics.org/content/206/4/2085}{Weir, BS and Goudet J. 2017} A Unified Characterization 
+#' of Population Structure and Relatedness. Genetics (2017) 206:2085 
+#' 
+#' \href{https://onlinelibrary.wiley.com/doi/full/10.1111/mec.14833}{Goudet, J., Kay, T. and Weir BS. 2018} How to estimate kinship. 
+#' Molecular Ecology 27:4121.
 #'
 #' @examples 
 #' \dontrun{
@@ -31,7 +35,7 @@
 #' }
 #' @export
 ########################################
-beta.dosage<-function(dat,inb=FALSE,correction=FALSE){
+beta.dosage<-function(dat,inb=TRUE,correction=FALSE){
   #dat is a data frame with individuals in rows and allelic dosage for each locus in colums  
   #uses matching proba -same equation as for population i.e. Mij=[xiXj+(2-xi)(2-xj)]/4
   #missing values are replaced by mean allelic dosage of the locus
