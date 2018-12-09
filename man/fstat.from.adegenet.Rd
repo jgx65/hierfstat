@@ -5,7 +5,6 @@
 \alias{FST}
 \alias{fst}
 \alias{pairwise.fst}
-\alias{pairwise.fst}
 \title{Wrapper for fst estimator from hierfstat package (from adegenet)}
 \usage{
 fstat(x, pop = NULL, fstonly = FALSE)
