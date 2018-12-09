@@ -11,6 +11,9 @@ vec2mat(x,upper=FALSE)
 
 \item{x}{a diagonal matrix}
 }
+\value{
+a vector
+}
 \description{
 creates a vector from a matrix
 }

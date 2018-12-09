@@ -13,6 +13,9 @@ vec2mat(x,diag=FALSE,upper=FALSE)
 
 \item{upper}{whether the vector contains the upper trinagular matrix elements}
 }
+\value{
+a matrix
+}
 \description{
 Fills a triangular matrix from the inputed vector
 }
