@@ -1,9 +1,11 @@
 
-indpca<-function(dat,ind.labels=NULL){
+indpca<-function(dat,ind.labels=NULL,scale=FALSE){
 #requires ade4
 #given a genotype data set dat
 #and individual labels lab
-#performs a PCA on individuals
+#performs a centered, unscaled PCA on individuals
+#if scale=TRUE, PCA carried out on correlation matrix  
+  
   if (is.genind(dat)) dat<-genind2hierfstat(dat)
   
 indp<-pop.freq(cbind(1:dim(dat)[1],dat[,-1]))
@@ -13,7 +15,7 @@ mati<-t(mati) #ind rows, nbal col
 mp<-apply(mati,2,mean,na.rm=T) 
 matic<-sweep(mati,2,FUN="-",mp)
 matic[is.na(matic)]<-0.0 #replace NA with 0
-pca.matic<-dudi.pca(matic,scannf=FALSE,nf=min(min(dim(matic)),50))
+pca.matic<-ade4::dudi.pca(matic,scannf=FALSE,scale=scale,nf=min(min(dim(matic)),50))
 if (is.null(ind.labels)) pca.matic$rownames<-as.character(dat[,1]) 
 else pca.matic$rownames<-ind.labels
 res<-list(call=match.call(),ipca=pca.matic,ifreq=mati)
