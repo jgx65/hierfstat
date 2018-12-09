@@ -17,26 +17,29 @@ beta.dosage(dat,inb=TRUE,correction=FALSE)
 a matrix of pairwise kinships and inbreeding coefficients if requested
 }
 \description{
-Estimates pairwise kinships (coancestries) and individual inbreeding coefficient using Weir and Goudet 82017) 
-beta estimator.
+Estimates pairwise kinships (coancestries) and individual inbreeding coefficient 
+using Weir and Goudet (2017) beta estimator.
 }
 \details{
-This function is written for dosage data, that is, how many doses of an allele (0, 1 or 2) an individual carries.
-It should be use for bi-allelic markers only (e.g. SNps), although you might "force" a k multiallelic locus to k biallelic
+This function is written for dosage data, i.e., how many doses of an allele (0, 1 or 2) an individual carries.
+It should be use for bi-allelic markers only (e.g. SNPs), although you might "force" a k multiallelic locus to k biallelic
 loci. 
+
 When there are missing data, the missing values are replaced by the frequency of the alternate allele 
-The correction option unbiases the estimates, and is described in the supplementary materials of Goudet etal (2018).
+The correction option unbiases the estimates, and is described in the supplementary materials of Goudet etal. (2018).
 }
 \examples{
 \dontrun{
- dos<-matrix(sample(0:2,size=10000),ncol=100)
+ dos<-matrix(sample(0:2,size=10000,replace=TRUE),ncol=100)
  beta.dosage(dos,inb=TRUE)
 }
 }
 \references{
 \href{http://www.genetics.org/content/206/4/2085}{Weir, BS and Goudet J. 2017} A Unified Characterization 
-of Population Structure and Relatedness 
-href{http://}{Goudet, J., Kay, T. and Weir BS. 2018} How to estimate kinship?  Manuscript
+of Population Structure and Relatedness. Genetics (2017) 206:2085 
+
+\href{https://onlinelibrary.wiley.com/doi/full/10.1111/mec.14833}{Goudet, J., Kay, T. and Weir BS. 2018} How to estimate kinship. 
+Molecular Ecology 27:4121.
 }
 \author{
 Jerome Goudet \email{jerome.goudet@unil.ch}
