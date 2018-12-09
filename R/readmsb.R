@@ -72,7 +72,8 @@ read.ms<-function(fname,what="Haplotype"){
     alldat<-matrix(numeric(nt*sum(nsnps)),nrow=nt)
     cnsnps<-cumsum(nsnps)
     alldat[,1:cnsnps[1]]<-dats2[[1]]
-    for (i in 2:nrep)
+    if (nrep>1) 
+      for (i in 2:nrep)
       alldat[,(cnsnps[i-1]+1):cnsnps[i]]<-dats2[[i]]
     popid<-rep(1:length(ni),ni)
     alldat.names<-c("Pop",paste("loc",1:dim(alldat)[2],sep=""))
