@@ -242,7 +242,7 @@ sim.genot.t<-function(size=50,nbal=4,nbloc=5,nbpop=3,N=1000,mig=0.001,mut=0.0001
 ###############################################################################
 ###############################################################################
 ################################################################################
-sim.freq.metapop.t<-function(nbal,nbloc,nbpop,N,mig,mut,f,t){
+sim.freq.metapop.t<-function(nbal,nbloc,nbpop,N,mig,mut,f,t,epsilon=1e-8){
   #allows for different N and f for each population
   #allows for different migration rates among populations, mig must be a matrix of dim nbpop*nbpop
   #modified param so that it reflects correctly population effective size
@@ -263,7 +263,7 @@ sim.freq.metapop.t<-function(nbal,nbloc,nbpop,N,mig,mut,f,t){
     else stop("f must be a vector of length nbpop. Exiting.")}
   #  sanity check for migration matrix
     mig.dim<-dim(mig)
-    if (is.null(mig.dim) || (mig.dim[1]!=mig.dim[2]) || (mig.dim[1]!=nbpop) || (sum(rowSums(mig)-1)!=0.0)){
+    if (is.null(mig.dim) || (mig.dim[1]!=mig.dim[2]) || (mig.dim[1]!=nbpop) || (abs(sum(rowSums(mig)-1))>epsilon)){
      stop(paste("mig must be a ",nbpop,"X",nbpop," matrix with each row summing to 1. Exiting",sep=""))
       }	
   
