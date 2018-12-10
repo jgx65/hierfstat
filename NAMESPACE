@@ -1,7 +1,8 @@
+#
 export(allele.count,allelic.richness,
 basic.stats,betas,beta.dosage,
 boot.ppfis,boot.ppfst,print.boot.ppfst,boot.vc,
-genet.dist,eucl.dist,eucl.dist.trait,
+genet.dist,
 g.stats,g.stats.glob,
 genot2al,getal,getal.b,
 ind.count,
@@ -17,7 +18,7 @@ subsampind,
 test.between,test.between.within,test.g,test.within,
 varcomp,varcomp.glob,
 wc,write.fstat,write.struct,write.bayescan,
-fstat,gstat.randtest,pairwise.fst,
+fstat,gstat.randtest,
 AIc,sexbias.test,
 genind2hierfstat,
 write.bayescan,write.ped)
