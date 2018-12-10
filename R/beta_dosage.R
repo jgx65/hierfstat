@@ -4,17 +4,20 @@
 #' @description Estimates pairwise kinships (coancestries) and individual inbreeding coefficient 
 #' using Weir and Goudet (2017) beta estimator. 
 #'  
-#' @usage beta.dosage(dat,inb=TRUE,correction=FALSE)
+#' @usage beta.dosage(dat,inb=TRUE,correction=FALSE,Mb=FALSE)
 #'
 #' @param dat A matrix of 0, 1 and 2s with loci (SNPs) in columns and individuals in rows. missing values are allowed
 #' @param inb whether individual inbreeding coefficient should be estimated
 #' @param correction whether kinships and inbreeding coefficients should be corrected following Goudet et al. (2018)
-#'
+#' @param Mb whether to output the mean matching 
+#' 
 #' @return a matrix of pairwise kinships and inbreeding coefficients if requested
 #'
 #' @details This function is written for dosage data, i.e., how many doses of an allele (0, 1 or 2) an individual carries.
 #' It should be use for bi-allelic markers only (e.g. SNPs), although you might "force" a k multiallelic locus to k biallelic
 #' loci. 
+#' 
+#' Matching probabilities can be obtained by the following equation: \eqn{M=\beta*(1-Mb)+Mb} 
 #' 
 #' When there are missing data, the missing values are replaced by the frequency of the alternate allele 
 #' The correction option unbiases the estimates, and is described in the supplementary materials of Goudet etal. (2018). 
@@ -35,7 +38,7 @@
 #' }
 #' @export
 ########################################
-beta.dosage<-function(dat,inb=TRUE,correction=FALSE){
+beta.dosage<-function(dat,inb=TRUE,correction=FALSE,Mb=FALSE){
   #dat is a data frame with individuals in rows and allelic dosage for each locus in colums  
   #uses matching proba -same equation as for population i.e. Mij=[xiXj+(2-xi)(2-xj)]/4
   #missing values are replaced by mean allelic dosage of the locus
@@ -70,6 +73,6 @@ beta.dosage<-function(dat,inb=TRUE,correction=FALSE){
     coa<-coa/correc 
     if (inb) {diag(coa)<-diag(coa)*(1.0-i.miss)} 
   }  
-  return(coa)
+  if (!Mb) return(coa) else return(list(Mb=Mb,betas=coa))
 }
 #########################################
