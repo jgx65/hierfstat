@@ -4,13 +4,8 @@
 \alias{fstat}
 \alias{FST}
 \alias{fst}
-\alias{pairwise.fst}
 \title{Wrapper for fst estimator from hierfstat package (from adegenet)}
-\usage{
-fstat(x, pop = NULL, fstonly = FALSE)
-
-pairwise.fst(x, pop = NULL, res.type = c("dist", "matrix"))
-}
+\usage{fstat(x, pop = NULL, fstonly = FALSE)}
 \arguments{
 \item{x}{an object of class \linkS4class{genind}.}
 
@@ -20,17 +15,11 @@ to any grouping of individuals'.}
 
 \item{fstonly}{a logical stating whether only the Fst should be returned.}
 
-\item{res.type}{the type of result to be returned: a \code{dist} object, or
-a symmetric matrix}
 }
 \value{
 A vector, a matrix, or a dist object containing F statistics.
 }
 \description{
-\code{pairwise.fst} computes Nei's pairwise Fst between all pairs of
-populations using a \linkS4class{genind} object. Heretozygosities are
-weighted by group sizes (see details).
-}
 \details{
 The function \code{fstat} is a wrapper for \code{varcomp.glob} of the
 package \code{hierfstat}. For Fst, Fis and Fit, an alternative is offered by
@@ -47,13 +36,6 @@ between \eqn{A} and \eqn{B} is computed as:\cr
 \examples{
 
 \dontrun{
-if(require(adegenet)){
-data(nancycats)
-
-## pairwise Fst
-mat.fst <- pairwise.fst(nancycats, res.type="matrix")
-mat.fst
-}
 
 ## Fst, Fis, Fit
 ## using hierfstat
