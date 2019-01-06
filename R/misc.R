@@ -19,12 +19,12 @@ getal<-function(data){
     #added sort to loop following simon forsberg email 
 if (is.genind(data)) data<-genind2hierfstat(data)
 x<-dim(data)
-if (max(data[,2],na.rm=TRUE)>1000000) stop("allele encoding with 3 digits maximum")
-if (max(data[,2],na.rm=TRUE)<1000000) modulo<-1000
-if (max(data[,2],na.rm=TRUE)<10000) {
-if (min(data[,2]%/%100,na.rm=TRUE)>=10 & max(data[,2]%%100,na.rm=TRUE)<10) modulo<-1000 else modulo<-100
+if (max(data[,-1],na.rm=TRUE)>1000000) stop("allele encoding with 3 digits maximum")
+if (max(data[,-1],na.rm=TRUE)<1000000) modulo<-1000
+if (max(data[,-1],na.rm=TRUE)<10000) {
+if (min(data[,-1]%/%100,na.rm=TRUE)>=10 & max(data[,2]%%100,na.rm=TRUE)<10) modulo<-1000 else modulo<-100
 }
-if (max(data[,2],na.rm=TRUE)<100) modulo<-10
+if (max(data[,-1],na.rm=TRUE)<100) modulo<-10
 firstal<-data[,-1] %/% modulo
 secal<-data[,-1] %% modulo
 ind<-vector(length=0)
@@ -44,12 +44,12 @@ getal.b<-function(data){
   if (is.genind(data)) data<-genind2hierfstat(data)
   
 x<-dim(data)
-if (max(data[,2],na.rm=TRUE)>1000000) stop("allele encoding with 3 digits maximum")
-if (max(data[,2],na.rm=TRUE)<1000000) modulo<-1000
-if (max(data[,2],na.rm=TRUE)<10000) {
-if (min(data[,2]%/%100,na.rm=TRUE)>=10 & max(data[,2]%%100,na.rm=TRUE)<10) modulo<-1000 else modulo<-100
+if (max(data[,-1],na.rm=TRUE)>1000000) stop("allele encoding with 3 digits maximum")
+if (max(data[,-1],na.rm=TRUE)<1000000) modulo<-1000
+if (max(data[,-1],na.rm=TRUE)<10000) {
+if (min(data[,-1]%/%100,na.rm=TRUE)>=10 & max(data[,2]%%100,na.rm=TRUE)<10) modulo<-1000 else modulo<-100
 }
-if (max(data[,2],na.rm=TRUE)<100) modulo<-10
+if (max(data[,-1],na.rm=TRUE)<100) modulo<-10
 firstal<-data %/% modulo
 secal<-data %% modulo
 y<-array(dim=c(x,2))
