@@ -168,7 +168,9 @@ allelic.richness<-function (data, min.n = NULL, diploid = TRUE)
     }
     a <- lapply(all.count, fun1 <- function(x) apply(x, 2, raref))
     Ar <- matrix(unlist(a), nrow = nloc, byrow = TRUE)
+    Ar<-data.frame(Ar)
     rownames(Ar) <- names(data)[-1]
+    colnames(Ar)<-names(table(data[,1]))
 	mynas<-which(is.na(t(ind.count(data))))
 	Ar[mynas]<-NA
     return(list(min.all = min.n, Ar = Ar))
