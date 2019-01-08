@@ -157,7 +157,9 @@ allelic.richness<-function (data, min.n = NULL, diploid = TRUE)
         dum[is.na(dum)] <- 0
         return(sum(1 - dum))
     }
-    if (is.genind(data)) data<-genind2hierfstat(data)
+    if (adegenet::is.genind(data)) data<-genind2hierfstat(data)
+    if (dim(data)[2] == 2) 
+      data <- data.frame(data, dummy.loc = data[, 2])
     nloc <- dim(data[, -1])[2]
     all.count <- allele.count(data, diploid)
     if (is.null(min.n)) {
