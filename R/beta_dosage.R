@@ -60,10 +60,10 @@ beta.dosage<-function(dat,inb=TRUE,correction=FALSE,Mb=FALSE){
   Mij<-1/2+tcrossprod(dat-1)/2/nl 
   Mii<-(diag(Mij))*2-1
   diag(Mij)<-NA
-  Mb<-mean(Mij,na.rm=T)
-  coa<-(Mij-Mb)/(1-Mb)
+  MB<-mean(Mij,na.rm=T)
+  coa<-(Mij-MB)/(1-MB)
   if (inb) {
-    ind.inb<-(Mii-Mb)/(1-Mb)
+    ind.inb<-(Mii-MB)/(1-MB)
     diag(coa)<-ind.inb
     if (correction) {diag(coa)<-ind.inb + i.miss}
     else diag(coa)<-ind.inb 
@@ -73,6 +73,7 @@ beta.dosage<-function(dat,inb=TRUE,correction=FALSE,Mb=FALSE){
     coa<-coa/correc 
     if (inb) {diag(coa)<-diag(coa)*(1.0-i.miss)} 
   }  
-  if (!Mb) return(coa) else return(list(Mb=Mb,betas=coa))
+  if (!Mb) return(coa) else return(list(MB=MB,betas=coa))
+
 }
 #########################################
