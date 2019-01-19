@@ -18,13 +18,16 @@ getal<-function(data){
 		#caught exception when encoding alleles with more than 3 digits but only using allele 1-9
     #added sort to loop following simon forsberg email 
 if (is.genind(data)) data<-genind2hierfstat(data)
+nc<-dim(data)[2]
+true.loci<-2:nc
+if (names(data)[nc]=="dummy.loc") true.loci<-2:(nc-1) 
 x<-dim(data)
-if (max(data[,-1],na.rm=TRUE)>1000000) stop("allele encoding with 3 digits maximum")
-if (max(data[,-1],na.rm=TRUE)<1000000) modulo<-1000
-if (max(data[,-1],na.rm=TRUE)<10000) {
-if (min(data[,-1]%/%100,na.rm=TRUE)>=10 & max(data[,2]%%100,na.rm=TRUE)<10) modulo<-1000 else modulo<-100
+if (max(data[,true.loci],na.rm=TRUE)>1000000) stop("allele encoding with 3 digits maximum")
+if (max(data[,true.loci],na.rm=TRUE)<1000000) modulo<-1000
+if (max(data[,true.loci],na.rm=TRUE)<10000) {
+if (min(data[,true.loci]%/%100,na.rm=TRUE)>=10 & max(data[,true.loci]%%100,na.rm=TRUE)<10) modulo<-1000 else modulo<-100
 }
-if (max(data[,-1],na.rm=TRUE)<100) modulo<-10
+if (max(data[,true.loci],na.rm=TRUE)<100) modulo<-10
 firstal<-data[,-1] %/% modulo
 secal<-data[,-1] %% modulo
 ind<-vector(length=0)
@@ -94,7 +97,7 @@ ind.count<-function(data){
  if (is.genind(data)) data<-genind2hierfstat(data)
  
  data[,1]<-factor(data[,1])
- apply(data[,-1],2,dum)
+apply(data[,-1],2,dum)
 }
 #########################################################################
   ind.count.n<-function(data){
