@@ -23,6 +23,7 @@ pop<-ndat[,1]
 ni<-length(pop)
 #polym<-which(bs$perloc$Ht>=pol,arr.ind=TRUE)
 dat<-ndat#[,c(1,polym+1)]
+if (dim(dat)[2]==2) dat<-dat[,c(1,2,2)]
 loc.names<-names(dat)[-1]
 n<-t(ind.count(dat))
 nt<-apply(n,1,sum,na.rm=TRUE)
