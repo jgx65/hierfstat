@@ -4,8 +4,8 @@
 \alias{gstat.randtest}
 \title{Goudet's G-statistic Monte Carlo test for genind object}
 \usage{
-gstat.randtest(x, pop = NULL, method = c("global", "within", "between"),
-  sup.pop = NULL, sub.pop = NULL, nsim = 499)
+gstat.randtest(x, pop = NULL, method = c("global", "within",
+  "between"), sup.pop = NULL, sub.pop = NULL, nsim = 499)
 }
 \arguments{
 \item{x}{an object of class \code{genind}.}

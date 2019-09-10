@@ -25,12 +25,18 @@ library(hierfstat)
 ```{r}
 data(nancycats) 
 is.genind(nancycats)
-boxplot(basic.stats(nancycats)$perloc[,1:3]) # boxplot of Ho, Hs, Ht
 ```
-
 #Descriptive statistics
 
-The function you are the most likely to want using is `basic.stats` (it calculates $H_O$, $H_S$, $F_{IS}$, $F_{ST}$ etc...).  You can also get e.g. `allele.count` and `allelic.richness`, a rarefied measure of the number of alleles at each locus and in each population. For instance, below is a boxplot of the allelic richness for the 5 first loci in the nancycats dataset
+The function you are the most likely to want using is `basic.stats` (it calculates $H_O$, $H_S$, $F_{IS}$, $F_{ST}$ etc...). 
+
+```{r}
+bs.nc<-basic.stats(nancycats)
+bs.nc
+boxplot(bs.nc$perloc[,1:3]) # boxplot of Ho, Hs, Ht
+```
+
+You can also get e.g. `allele.count` and `allelic.richness`, a rarefied measure of the number of alleles at each locus and in each population. For instance, below is a boxplot of the allelic richness for the 5 first loci in the nancycats dataset
 
 ```{r}
 boxplot(t(allelic.richness(nancycats)$Ar[1:5,])) #5 first loci

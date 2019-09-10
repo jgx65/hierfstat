@@ -7,7 +7,7 @@
 #'
 #' The function \code{fstat} is a wrapper for \code{varcomp.glob} of the
 #' package \code{hierfstat}. For Fst, Fis and Fit, an alternative is offered by
-#' \code{Fst} from the \code{pagas} package (see example).
+#' \code{Fst} from the \code{pegas} package (see example).
 #'
 #' Let \eqn{A} and \eqn{B} be two populations of population sizes \eqn{n_A} and
 #' \eqn{n_B}, with expected heterozygosity (averaged over loci) \eqn{Hs(A)} and
@@ -22,8 +22,6 @@
 #' @param pop a factor giving the 'population' of each individual. If NULL, pop
 #' is seeked from \code{pop(x)}. Note that the term population refers in fact
 #' to any grouping of individuals'.
-#' @param res.type the type of result to be returned: a \code{dist} object, or
-#' a symmetric matrix
 #' @param fstonly a logical stating whether only the Fst should be returned.
 #' @return A vector, a matrix, or a dist object containing F statistics.
 #' @author Thibaut Jombart \email{t.jombart@@imperial.ac.uk}
@@ -67,7 +65,7 @@
 #' apply(fsttab, 2, mean)
 #' }
 #' }
-#'
+#' }
 fstat <- function(x, pop=NULL, fstonly=FALSE){
     ## cat("\nSorry, hierfstat package has been disabled - this function will be restored in a future release.\n")
     ## return(invisible())

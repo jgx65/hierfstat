@@ -3,9 +3,9 @@
 #'
 #' @description creates a vector from a matrix 
 #'  
-#' @usage vec2mat(x,upper=FALSE)
+#' @usage mat2vec(mat,upper=FALSE)
 #'
-#' @param x a diagonal matrix
+#' @param mat a symmetric matrix
 #' @param upper whether the upper triangular matrix is to be copied to the vector
 #'
 #' @return a vector 

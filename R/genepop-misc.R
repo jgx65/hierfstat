@@ -1,41 +1,41 @@
 
 ########################################################################
-eucl.dist<-function(data,allloc=FALSE,distance="eucl"){
+#eucl.dist<-function(data,allloc=FALSE,distance="eucl"){
         #Calculates Euclidian distances from genetic data
-nbloc<-dim(data)[2]-2
-nbpop<-max(data[,1])
-euclmat<-matrix(nrow=(nbpop*(nbpop-1)/2),ncol=nbloc)
-for (i in 1:nbloc){
-     eff<-apply(table(data[,(i+2)],data[,1]),2,sum,na.rm=TRUE)
-     freq<-sweep(table(data[,(i+2)],data[,1]),2,eff,FUN="/")
-     eucl<-t(freq)%*%freq
-     dum<-0
-     for (j in 2:nbpop){
-     for (k in 1:(j-1)){
-         dum<-dum+1
-         euclmat[dum,i]<-eucl[j,j]+eucl[k,k]-2*eucl[j,k]
-     }
-     }
-}
-x<-apply(euclmat,1,sum,na.rm=TRUE)
-euclmat<-cbind(euclmat,x)
-if (allloc) {return(euclmat^0.5)} else {return(x^0.5)}
-}
+#nbloc<-dim(data)[2]-2
+#nbpop<-max(data[,1])
+#euclmat<-matrix(nrow=(nbpop*(nbpop-1)/2),ncol=nbloc)
+#for (i in 1:nbloc){
+#     eff<-apply(table(data[,(i+2)],data[,1]),2,sum,na.rm=TRUE)
+#     freq<-sweep(table(data[,(i+2)],data[,1]),2,eff,FUN="/")
+#     eucl<-t(freq)%*%freq
+#     dum<-0
+#     for (j in 2:nbpop){
+#     for (k in 1:(j-1)){
+#         dum<-dum+1
+#         euclmat[dum,i]<-eucl[j,j]+eucl[k,k]-2*eucl[j,k]
+#     }
+#     }
+#}
+#x<-apply(euclmat,1,sum,na.rm=TRUE)
+#euclmat<-cbind(euclmat,x)
+#if (allloc) {return(euclmat^0.5)} else {return(x^0.5)}
+#}
 ########################################################################
-eucl.dist.trait<-function(data){
+#eucl.dist.trait<-function(data){
 #calculate euclidian distance between populations for one trait
-nbpop<-max(data[,1])
-euclmat<-vector(length=(nbpop*(nbpop-1)/2))
-eff<-tapply(data[,2],data[,1],mean)
-     dum<-0
-     for (j in 2:nbpop){
-     for (k in 1:(j-1)){
-         dum<-dum+1
-         euclmat[dum]<-sqrt((eff[j]-eff[k])^2)
-     }
-     }
-return(euclmat)
-}
+#nbpop<-max(data[,1])
+#euclmat<-vector(length=(nbpop*(nbpop-1)/2))
+#eff<-tapply(data[,2],data[,1],mean)
+#     dum<-0
+#     for (j in 2:nbpop){
+#     for (k in 1:(j-1)){
+#         dum<-dum+1
+#         euclmat[dum]<-sqrt((eff[j]-eff[k])^2)
+#     }
+#     }
+#return(euclmat)
+#}
 ########################################################################
 #eucl.dist.mtrait<-function(data,corr=FALSE){
 #calculate euclidian distance between populations for multiple traits

@@ -4,12 +4,12 @@
 \alias{mat2vec}
 \title{Creates a vector from a matrix}
 \usage{
-vec2mat(x,upper=FALSE)
+mat2vec(mat,upper=FALSE)
 }
 \arguments{
-\item{upper}{whether the upper triangular matrix is to be copied to the vector}
+\item{mat}{a symmetric matrix}
 
-\item{x}{a diagonal matrix}
+\item{upper}{whether the upper triangular matrix is to be copied to the vector}
 }
 \value{
 a vector

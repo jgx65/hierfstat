@@ -176,7 +176,7 @@ allelic.richness<-function (data, min.n = NULL, diploid = TRUE)
     Ar<-data.frame(Ar)
     rownames(Ar) <- names(data)[-1]
     colnames(Ar)<-names(table(data[,1]))
-	mynas<-which(is.na(t(ind.count(data))))
+	mynas<-which(is.na(t(ind.count(data))),arr.ind=TRUE)
 	Ar[mynas]<-NA
     return(list(min.all = min.n, Ar = Ar))
 }

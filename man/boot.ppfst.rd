@@ -1,14 +1,14 @@
 \name{boot.ppfst}
 \alias{boot.ppfst}
+\alias{print.boot.ppfst}
 \title{Performs bootstrapping over loci of pairwise Fst}
 \description{Performs bootstrapping over loci of pairwise Fst}
-\usage{boot.ppfst(dat=dat,nboot=100,quant=c(0.025,0.975),diploid=TRUE,dig=4,...)}
+\usage{boot.ppfst(dat=dat,nboot=100,quant=c(0.025,0.975),diploid=TRUE,...)}
 \arguments{
 \item{dat}{a genetic data frame}
 \item{nboot}{number of bootstraps}
 \item{quant}{the quantiles for bootstrapped ci}
 \item{diploid}{whether data are from diploid organisms}
-\item{dig}{numbers of digits to print}
 \item{...}{further arguments to pass to the function}
 }
 

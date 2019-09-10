@@ -6,24 +6,23 @@
 #' program, either as Haplotypes or as SNPs.  
 #' 
 #'  
-#' @usage ms.read(fname,what=c("Haplotype","SNP"))
+#' @usage read.ms(fname,what=c("SNP","Haplotype"))
 #' @param fname file name containing ms output
-#' @param what whether to read ms output as haplotypes or SNPs
+#' @param what whether to read ms output as SNPs or haplotypes
 #' @return alldat  a data frame with nloc+1 columns, the first being the population
 #'  to which the individual belongs and the next being the genotypes, one column per locus; 
 #'  and one row per (haploid) individual.
 #'  
-#' @details With argument what="Haplotype", each different sequence from a replicate 
-#' is read as a haplotype, 
-#' by converting it first to a factor, and then to an integer. There will be as many loci 
-#' as there are replicates, and the number of alleles per locus will be the number of different
-#' haplotypes in the corresponding replicate. 
-#' 
-#' With argument what="SNP", each site is read as a SNP, with the ancestral allele encoded as 0 and the alternate 
+#' @details With argument what="SNP", each site is read as a SNP, with the ancestral allele encoded as 0 and the alternate 
 #' allele encoded as 1.  If the ms output file contains several replicates, 
 #' the different replicates will be collated together.  Hence, the number of loci is the sum of all
 #' sites from all replicates.  
 #' 
+#' With argument what="Haplotype", each different sequence from a replicate 
+#' is read as a haplotype, 
+#' by converting it first to a factor, and then to an integer. There will be as many loci 
+#' as there are replicates, and the number of alleles per locus will be the number of different
+#' haplotypes in the corresponding replicate. #' 
 #' @author Jerome Goudet \email{jerome.goudet@@unil.ch}
 #' @references \href{http://bioinformatics.oxfordjournals.org/content/18/2/337.short}{Hudson, R. R. (2002) Generating samples under a Wright-Fisher neutral model of genetic variation}. Bioinformatics 18 : 337-338.
 #'
@@ -38,11 +37,11 @@
 #'   }
 #' @export
 #####################################################################################
-read.ms<-function(fname,what="Haplotype"){
+read.ms<-function(fname,what=c("SNP","Haplotype")){
   cl<-match.call()
-  if(!is.na(pmatch(what,"Haplotype")))
-    what<-"Haplotype"
-  WHATS<-c("Haplotype","SNP")
+  if(!is.na(pmatch(what,"SNP")))
+    what<-"SNP"
+  WHATS<-c("SNP","Haplotype")
   what<-pmatch(what,WHATS)
   if (is.na(what)) stop("Invalid data type")
   if (what==-1) stop("Ambiguous data type")

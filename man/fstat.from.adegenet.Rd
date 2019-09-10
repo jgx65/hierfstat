@@ -5,7 +5,9 @@
 \alias{FST}
 \alias{fst}
 \title{Wrapper for fst estimator from hierfstat package (from adegenet)}
-\usage{fstat(x, pop = NULL, fstonly = FALSE)}
+\usage{
+fstat(x, pop = NULL, fstonly = FALSE)
+}
 \arguments{
 \item{x}{an object of class \linkS4class{genind}.}
 
@@ -14,17 +16,16 @@ is seeked from \code{pop(x)}. Note that the term population refers in fact
 to any grouping of individuals'.}
 
 \item{fstonly}{a logical stating whether only the Fst should be returned.}
-
 }
 \value{
 A vector, a matrix, or a dist object containing F statistics.
 }
 \description{
-\details{
 The function \code{fstat} is a wrapper for \code{varcomp.glob} of the
 package \code{hierfstat}. For Fst, Fis and Fit, an alternative is offered by
-\code{Fst} from the \code{pagas} package (see example).
-
+\code{Fst} from the \code{pegas} package (see example).
+}
+\details{
 Let \eqn{A} and \eqn{B} be two populations of population sizes \eqn{n_A} and
 \eqn{n_B}, with expected heterozygosity (averaged over loci) \eqn{Hs(A)} and
 \eqn{Hs(B)}, respectively. We denote \eqn{Ht} the expected heterozygosity of
@@ -36,6 +37,9 @@ between \eqn{A} and \eqn{B} is computed as:\cr
 \examples{
 
 \dontrun{
+if(require(adegenet)){
+data(nancycats)
+
 
 ## Fst, Fis, Fit
 ## using hierfstat
@@ -57,7 +61,7 @@ fsttab <- Fst(as.loci(nancycats))
 apply(fsttab, 2, mean)
 }
 }
-
+}
 }
 \references{
 Nei, M. (1973) Analysis of gene diversity in subdivided
