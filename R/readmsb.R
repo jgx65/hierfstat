@@ -57,14 +57,14 @@ read.ms<-function(fname,what=c("SNP","Haplotype")){
   dat1<-grep("^[0,1]",dat[-c(1:4)],value=TRUE)
   nt<-sum(ni)
   dats<-split(dat1,rep(1:nrep,each=nt))
-  if (what==1){
+  if (what==2){
     datia<-lapply(dats,function(x)as.integer(as.factor(x)))
     datm<-matrix(unlist(datia),nrow=nt,byrow=FALSE)
     alldat<-data.frame(Pop=rep(1:np,ni),datm)
     names(alldat)<-c("Pop",paste("loc",1:dim(datm)[2],sep=""))
     return(alldat)
   }
-  if (what==2){
+  if (what==1){
     nsnps<-as.integer(unlist(lapply(strsplit(grep("segsites:",dat,value=TRUE),split=":"),function(x) x[[2]])))
     dats1<-lapply(dats,strsplit,"")
     dats2<-lapply(dats1,function(x) matrix(as.integer(unlist(x)),nrow=nt,byrow=TRUE))
