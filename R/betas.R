@@ -3,7 +3,7 @@
 #' @title Estimate \eqn{\beta}s per population and a bootstrap confidence interval
 #' 
 #' @description Estimate populations (Population specific FST) or individual coancestries 
-#' and a bootstrap confidence interval 
+#' and a bootstrap confidence interval, assuming random mating 
 #' 
 #' @usage betas(dat,nboot=0,lim=c(0.025,0.975),diploid=TRUE,betaijT=FALSE)
 #' 
@@ -20,10 +20,9 @@
 #' @return ci The bootstrap confidence interval of population specific FSTs
 #' (only if more than 100 bootsraps requested and if more than 10 loci are present)
 #' @return if betaijT=TRUE, return the matrix of pairwise coancestries only. 
-#' Population FSTs are the diagonal element of this matrix.
 #' 
-#' @details If betaij=TRUE, and the first column contains unique identifier for 
-#' each individuals, the function returns the matrix of individual coancestries.  
+#' @details If betaij=TRUE, and the first column contains a unique identifier for 
+#' each individual, the function returns the matrix of individual coancestries/kinships.  
 #' Individual inbreeding coefficients can be obtained by multiplying by 2 the diagonal 
 #' and substracting 1.
 #'  
@@ -47,7 +46,8 @@
 #' dat<-sim.genot(size=20,nbloc=100,nbal=20,mig=0.01,f=c(0,0.3,0.7))
 #' ind.coan<-betas(cbind(1:60,dat[,-1]),betaijT=TRUE)
 #' ind.inb<-(diag(ind.coan)*2-1)
-#' hist(ind.inb,breaks=seq(-1,1,0.05),xlab="Individual inbreeding coeeficients");abline(v=c(0,0.3,0.7),col="red",lwd=2)
+#' boxplot(ind.inb~dat[,1], main="Individual inbreeding coefficients")
+#' points(1:3,c(0,0.3,0.7),pch=16,col="red",cex=2)
 #' 
 #' }
 #'

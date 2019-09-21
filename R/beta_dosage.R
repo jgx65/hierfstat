@@ -1,5 +1,4 @@
-###########################################################################
-#' @title estimates pairwise kinships and individual inbreeding coefficients from dosage data
+#' @title Estimates pairwise kinships and individual inbreeding coefficients from dosage data
 #'
 #' @description Estimates pairwise kinships (coancestries) and individual inbreeding coefficient 
 #' using Weir and Goudet (2017) beta estimator. 
@@ -11,7 +10,10 @@
 #' @param correction whether kinships and inbreeding coefficients should be corrected following Goudet et al. (2018)
 #' @param Mb whether to output the mean matching 
 #' 
-#' @return a matrix of pairwise kinships and inbreeding coefficients if requested
+#' @return either a matrix of pairwise kinships and inbreeding coefficients if requested (if \code{Mb}=FALSE) or
+#' a list with elements \code{inb} (whether inbeeding coefficients rather than kinships should be returned on the main diagonal),
+#' \code{correction} (whether to return kinship or inbreeding corrected for missing values),
+#' \code{MB} (the average matching) and \code{betas} the kinships or inbreeding coefficients.
 #'
 #' @details This function is written for dosage data, i.e., how many doses of an allele (0, 1 or 2) an individual carries.
 #' It should be use for bi-allelic markers only (e.g. SNPs), although you might "force" a k multiallelic locus to k biallelic
@@ -37,7 +39,7 @@
 #'  beta.dosage(dos,inb=TRUE)
 #' }
 #' @export
-########################################
+
 beta.dosage<-function(dat,inb=TRUE,correction=FALSE,Mb=FALSE){
   #dat is a data frame with individuals in rows and allelic dosage for each locus in colums  
   #uses matching proba -same equation as for population i.e. Mij=[xiXj+(2-xi)(2-xj)]/4
@@ -58,22 +60,24 @@ beta.dosage<-function(dat,inb=TRUE,correction=FALSE,Mb=FALSE){
   
   nl<-dim(dat)[2]
   Mij<-1/2+tcrossprod(dat-1)/2/nl 
-  Mii<-(diag(Mij))*2-1
+  Mii<-diag(Mij)
   diag(Mij)<-NA
   MB<-mean(Mij,na.rm=T)
+  diag(Mij)<-Mii
   coa<-(Mij-MB)/(1-MB)
   if (inb) {
-    ind.inb<-(Mii-MB)/(1-MB)
+    ind.inb<-((Mii*2-1)-MB)/(1-MB)
     diag(coa)<-ind.inb
-    if (correction) {diag(coa)<-ind.inb + i.miss}
-    else diag(coa)<-ind.inb 
   }
   if (correction) {
     correc<-outer((1-i.miss),(1-i.miss))
+    ic<-diag(coa)
     coa<-coa/correc 
-    if (inb) {diag(coa)<-diag(coa)*(1.0-i.miss)} 
-  }  
-  if (!Mb) return(coa) else return(list(MB=MB,betas=coa))
+    if (inb) {
+    ic<-ic + i.miss
+    diag(coa)<-ic*(1.0-i.miss)
+    }
+    }  
+  if (!Mb) return(coa) else return(list(inb=inb,correction=correction,MB=MB,betas=coa))
 
 }
-#########################################

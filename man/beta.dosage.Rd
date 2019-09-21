@@ -2,7 +2,7 @@
 % Please edit documentation in R/beta_dosage.R
 \name{beta.dosage}
 \alias{beta.dosage}
-\title{estimates pairwise kinships and individual inbreeding coefficients from dosage data}
+\title{Estimates pairwise kinships and individual inbreeding coefficients from dosage data}
 \usage{
 beta.dosage(dat,inb=TRUE,correction=FALSE,Mb=FALSE)
 }
@@ -16,7 +16,10 @@ beta.dosage(dat,inb=TRUE,correction=FALSE,Mb=FALSE)
 \item{Mb}{whether to output the mean matching}
 }
 \value{
-a matrix of pairwise kinships and inbreeding coefficients if requested
+either a matrix of pairwise kinships and inbreeding coefficients if requested (if \code{Mb}=FALSE) or
+a list with elements \code{inb} (whether inbeeding coefficients rather than kinships should be returned on the main diagonal),
+\code{correction} (whether to return kinship or inbreeding corrected for missing values),
+\code{MB} (the average matching) and \code{betas} the kinships or inbreeding coefficients.
 }
 \description{
 Estimates pairwise kinships (coancestries) and individual inbreeding coefficient 
