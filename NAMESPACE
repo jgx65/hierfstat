@@ -1,6 +1,7 @@
 #
 export(allele.count,allelic.richness,
-basic.stats,betas,beta.dosage,
+basic.stats,betas,beta.dosage,fst.dosage,
+kinship2grm,kinship2dist,grm2kinship,kinshipShift,
 boot.ppfis,boot.ppfst,print.boot.ppfst,boot.vc,
 genet.dist,
 g.stats,g.stats.glob,

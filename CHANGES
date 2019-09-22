@@ -1,3 +1,7 @@
+#version 0.04-30 21.09.2019
+-new function fst.dosage
+-new functions kinship2grm,kinship2dist,grm2kinship,kinshipShift
+
 #version 0.04-29 25.05.2018
 -new function beta.dosage, to estimate kinship from allelic dosage matrix
 -improved mat2vec and vec2mat
