@@ -88,5 +88,11 @@ genind2hierfstat<-function(dat,pop=NULL){
   }
   x<-data.frame(pop=pop,x)
   rownames(x) <- ids
+  if(is.factor(pop) & nlevels(pop)==1){
+    dum1<-dim(dat)[1]
+    x[dum1+1,]<-NA
+    x[,1]<-factor(c(pop,"dumpop"))
+  rownames(x) <- c(ids,"dumind")
+  }
   return(x)
 }
