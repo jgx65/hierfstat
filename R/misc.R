@@ -47,17 +47,19 @@ getal.b<-function(data){
   if (is.genind(data)) data<-genind2hierfstat(data)
   
 x<-dim(data)
-if (max(data[,-1],na.rm=TRUE)>1000000) stop("allele encoding with 3 digits maximum")
-if (max(data[,-1],na.rm=TRUE)<1000000) modulo<-1000
-if (max(data[,-1],na.rm=TRUE)<10000) {
-if (min(data[,-1]%/%100,na.rm=TRUE)>=10 & max(data[,2]%%100,na.rm=TRUE)<10) modulo<-1000 else modulo<-100
-}
-if (max(data[,-1],na.rm=TRUE)<100) modulo<-10
-firstal<-data %/% modulo
-secal<-data %% modulo
 y<-array(dim=c(x,2))
-y[,,1]<-as.matrix(firstal)
-y[,,2]<-as.matrix(secal)
+for(j in 1:ncol(data)){
+if (max(data[,j],na.rm=TRUE)>1000000) stop("allele encoding with 3 digits maximum")
+if (max(data[,j],na.rm=TRUE)<1000000) modulo<-1000
+if (max(data[,j],na.rm=TRUE)<10000) {
+if (min(data[,j]%/%100,na.rm=TRUE)>=10 & max(data[,j]%%100,na.rm=TRUE)<10) modulo<-1000 else modulo<-100
+}
+if (max(data[,j],na.rm=TRUE)<100) modulo<-10
+firstal<-data[,j,drop=FALSE] %/% modulo
+secal<-data[,j,drop=FALSE] %% modulo
+y[,j,1]<-as.matrix(firstal)
+y[,j,2]<-as.matrix(secal)
+}
 return(y)
 }
 #########################################################################
