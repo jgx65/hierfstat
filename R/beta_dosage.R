@@ -3,10 +3,10 @@
 #' @description Estimates pairwise kinships (coancestries) and individual inbreeding coefficient 
 #' using Weir and Goudet (2017) beta estimator. 
 #'  
-#' @usage beta.dosage(dat,inb=TRUE,correction=FALSE,Mb=FALSE)
+#' @usage beta.dosage(dos,inb=TRUE,correction=TRUE,Mb=FALSE)
 #'
-#' @param dat A matrix of 0, 1 and 2s with loci (SNPs) in columns and individuals in rows. missing values are allowed
-#' @param inb whether individual inbreeding coefficient should be estimated
+#' @param dos A matrix of 0, 1 and 2s with loci (SNPs) in columns and individuals in rows. missing values are allowed
+#' @param inb whether individual inbreeding coefficient should be estimated (rather than self-coancestries)
 #' @param correction whether kinships and inbreeding coefficients should be corrected following Goudet et al. (2018)
 #' @param Mb whether to output the mean matching 
 #' 
@@ -40,8 +40,8 @@
 #' }
 #' @export
 
-beta.dosage<-function(dat,inb=TRUE,correction=FALSE,Mb=FALSE){
-  #dat is a data frame with individuals in rows and allelic dosage for each locus in colums  
+beta.dosage<-function(dos,inb=TRUE,correction=TRUE,Mb=FALSE){
+  #dos is a data frame with individuals in rows and allelic dosage for each locus in colums  
   #uses matching proba -same equation as for population i.e. Mij=[xiXj+(2-xi)(2-xj)]/4
   #missing values are replaced by mean allelic dosage of the locus
   dat<-as.matrix(dat)
@@ -75,7 +75,7 @@ beta.dosage<-function(dat,inb=TRUE,correction=FALSE,Mb=FALSE){
     coa<-coa/correc 
     if (inb) {
     ic<-ic + i.miss
-    diag(coa)<-ic*(1.0-i.miss)
+    diag(coa)<-ic/(1.0-i.miss)
     }
     }  
   if (!Mb) return(coa) else return(list(inb=inb,correction=correction,MB=MB,betas=coa))

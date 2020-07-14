@@ -61,6 +61,7 @@ betas<-function(dat,nboot=0,lim=c(0.025,0.975),diploid=TRUE,betaijT=FALSE){
   }
   if (is.genind(dat)) dat<-genind2hierfstat(dat)
   
+  if (betaijT) {iname<-dat[,1];dat[,1]<-1:dim(dat)[1]}
   pfr<-pop.freq(dat,diploid)
   pfr2<-lapply(pfr,function(x) t(x) %*% x)
   nl<-dim(dat)[2]-1
@@ -89,7 +90,8 @@ betas<-function(dat,nboot=0,lim=c(0.025,0.975),diploid=TRUE,betaijT=FALSE){
     H<-array(dim=c(np,np,nl))
     for (il in 1:nl) H[,,il]<-pfr2[[il]]
     betaij<-1+apply(H,c(1,2),ratio.Mij.Hb)
-    return(betaij)
+ 	rownames(betaij)<-colnames(betaij)<-inames
+   return(betaij)
   }
   if (nboot==0){return(list(Hi=Hi,Hb=Hb,betaiovl=betai,betaW=betaW))}
   if (nboot<100){
