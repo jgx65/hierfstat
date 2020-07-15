@@ -1,9 +1,14 @@
 #####################################################
 #'
-#' @title Estimate \eqn{\beta}s per population and a bootstrap confidence interval
+#' Estimates \eqn{\beta}s per population and a bootstrap confidence interval
 #' 
-#' @description Estimate populations (Population specific FST) or individual coancestries 
+#' Estimate populations (Population specific FST) or individual coancestries 
 #' and a bootstrap confidence interval, assuming random mating 
+#' 
+#' If betaijT=TRUE, and the first column contains a unique identifier for 
+#' each individual, the function returns the matrix of individual coancestries/kinships.  
+#' Individual inbreeding coefficients can be obtained by multiplying by 2 the diagonal 
+#' and substracting 1.
 #' 
 #' @usage betas(dat,nboot=0,lim=c(0.025,0.975),diploid=TRUE,betaijT=FALSE)
 #' 
@@ -21,10 +26,7 @@
 #' (only if more than 100 bootsraps requested and if more than 10 loci are present)
 #' @return if betaijT=TRUE, return the matrix of pairwise coancestries only. 
 #' 
-#' @details If betaij=TRUE, and the first column contains a unique identifier for 
-#' each individual, the function returns the matrix of individual coancestries/kinships.  
-#' Individual inbreeding coefficients can be obtained by multiplying by 2 the diagonal 
-#' and substracting 1.
+#' 
 #'  
 #' 
 #' @author Jerome Goudet \email{jerome.goudet@@unil.ch}
@@ -61,7 +63,7 @@ betas<-function(dat,nboot=0,lim=c(0.025,0.975),diploid=TRUE,betaijT=FALSE){
   }
   if (is.genind(dat)) dat<-genind2hierfstat(dat)
   
-  if (betaijT) {iname<-dat[,1];dat[,1]<-1:dim(dat)[1]}
+  if (betaijT) {inames<-dat[,1];dat[,1]<-1:dim(dat)[1]}
   pfr<-pop.freq(dat,diploid)
   pfr2<-lapply(pfr,function(x) t(x) %*% x)
   nl<-dim(dat)[2]-1

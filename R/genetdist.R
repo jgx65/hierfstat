@@ -1,3 +1,9 @@
+###########################################  
+#'
+#'
+#'
+#'@export
+############################################
 genet.dist<-function(dat,diploid=TRUE,method="Dch"){
   cl<-match.call()
   if (is.genind(dat)) dat<-genind2hierfstat(dat)

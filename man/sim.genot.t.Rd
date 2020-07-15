@@ -37,19 +37,19 @@ the following nbloc columns contain the genotype for each locus.
 \description{
 This function allows to simulate genetic data from a non-equilibrium continent-island
  model, where each island can have a different size and a different inbreeding 
- coefficient.
-}
-\details{
-This function simulates genetic data under the continent-islands model (IIM=TRUE) 
+ coefficient. 
+ 
+ This function simulates genetic data under the continent-islands model (IIM=TRUE) 
 or the finite island model (IIM=FALSE).
  In the IIM, a continent of 
  infinite size sends migrants to islands of finite sizes \eqn{N_i} at a rate 
 \eqn{m}. Alleles can also mutate to a new state at a rate \eqn{\mu}. Under this model, 
  the expected \eqn{F_{STi}, \theta_i}, can be calculated and compared to empirical
  estimates.
-
+}
+\details{
 In this model, \eqn{\theta_t} can be written as a function of population size 
-\eqn{N_i}, migration rate \eqn{m}, mutation rate \eqn{\mu} and \eqn{\theta_{(t-1)}}.  
+\eqn{N_i}, migration rate \eqn{m}, mutation rate \eqn{\mu} and \eqn{\theta_{(t-1)}}.
 
 The rational is as follows:
  
@@ -77,13 +77,13 @@ the corresponding mutation model is the K-allele model and the mutation rate
 has to be adjusted to \eqn{\mu'=\frac{K-1}{K}\mu}.
 
 Lets substitute \eqn{\alpha} for  \eqn{(1-m)^2 (1-\mu)^2} and \eqn{x} for
- \eqn{\frac{1}{2N}}.  
+ \eqn{\frac{1}{2N}}.
 
 The expectation of \eqn{F_{ST}}, \eqn{\theta} can be written as:
 
-\deqn{\theta_t=(\alpha (1-x))^t \theta_0 + \frac{x}{1-x}\sum_{i=1}^t (\alpha (1-x))^i} 
+\deqn{\theta_t=(\alpha (1-x))^t \theta_0 + \frac{x}{1-x}\sum_{i=1}^t (\alpha (1-x))^i}
 
- which reduces to \eqn{\theta_t=\frac{x}{1-x}\sum_{i=1}^t (\alpha (1-x))^i} if \eqn{\theta_0=0}.
+which reduces to \eqn{\theta_t=\frac{x}{1-x}\sum_{i=1}^t (\alpha (1-x))^i} if \eqn{\theta_0=0}.
  
  Transition equations for \eqn{theta} in the migrant-pool island model (IIM=FALSE) are given in Rouseet (1996). 
  Currently, the migrant pool is made of equal contribution from each island, irrespective of their size.

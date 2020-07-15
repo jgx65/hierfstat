@@ -1,3 +1,8 @@
+##################
+#'
+#'
+#'@export
+###################
 write.fstat<-function(dat,fname="genotypes.dat"){
 # write a genotype data frame to a text file in fstat format
 # dat is a dataframe with pop of origin in first column, and genotypes after
@@ -15,6 +20,11 @@ dat[is.na(dat)]<-0
 write.table(dat,fname,append=TRUE,row.names=FALSE,col.names=FALSE,quote=FALSE,sep="\t")
 }
 #################################################################################
+##################
+#'
+#'
+#'@export
+###################
 subsampind <- function(dat,sampsize=10){
   # subsample sampsize individuals from each population
   # dat is a data frame with pop of origin in first column and genotypes in the following ones
@@ -46,6 +56,11 @@ subsampind <- function(dat,sampsize=10){
   return(data.frame(ddat[retain,]))
 }
 ################################
+##################
+#'
+#'
+#'@export
+###################
 write.struct<-function(dat,ilab=NULL,pop=NULL,MARKERNAMES=FALSE,MISSING=-9,fname="dat.str"){
 #write a file suitable to be read as input for the structure program 
 #using 2 rows for each diploid individuals

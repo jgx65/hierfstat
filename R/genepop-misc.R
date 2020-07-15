@@ -57,6 +57,7 @@
 #return(x)
 #}
 ########################################################################
+
 cfe.dist<-function(data,allloc=FALSE,distance="cfe"){
         #Calculates Cavalli-Sforza & Edwards Chord distance, according to Nei, 1987 (p 216, eq 9.15)
         #Note  I used d=(1-cos(theta))^0.5, for a distance between 0 & 1, see Nei
@@ -80,6 +81,7 @@ cfemat<-cbind(cfemat,x)
 if (allloc) {return(cfemat)} else {return(x)}
 }
 ########################################################################
+
 da.dist<-function(data,allloc=FALSE,distance="da"){
         #Calculates Nei DA distance (Nei, 1986, p 216 eq 9.16)
 nbloc<-dim(data)[2]-2
@@ -104,6 +106,7 @@ if (allloc) {return(damat)} else {return(x)}
 }
 
 ########################################################################
+
 nei.dist<-function(data){
         #estimates Nei unbiased genetic distance (Nei, 1978)
 nbloc<-dim(data)[2]-2
@@ -148,6 +151,11 @@ return(-log(neivecn/(neivecd1*neivecd2)^0.5))
 #}
 
 #################################################################
+################
+#'
+#'
+#' @export
+################
 vec2mat<-function(x){
 	#fill a lower triangular matrix from a vector and copy it to upper triangle
 nn<-length(x)
@@ -164,6 +172,11 @@ for (i in 2:n) {
 return(mat)
 }
 #################################################################
+################
+#'
+#'
+#' @export
+################
 mat2vec<-function(mat){
 #transform lower triangular matrix in vector 1.2,1.3,2.3,1.4,2.4,3.4 etc...
 n<-dim(mat)[2]
@@ -179,6 +192,11 @@ return(x)
 }
 
 #################################################################
+################
+#'
+#'
+#' @export
+################
 pcoa<-function(mat,plotit=TRUE,...){
 #principal coordinates analysis
 #as described in Legendre & lengendre Numerical Ecology, p 426

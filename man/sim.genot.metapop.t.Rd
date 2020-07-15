@@ -36,15 +36,15 @@ the following nbloc columns contain the genotype for each locus.
 \description{
 This function allows to simulate genetic data from a metapopulation
  model, where each population can have a different size and a different inbreeding 
- coefficient, and migration between each population is given in a migration matrix.
-}
-\details{
-This function simulates genetic data under a migration matrix model.
+ coefficient, and migration between each population is given in a migration matrix. 
+ 
+ This function simulates genetic data under a migration matrix model.
 Each population \eqn{i} sends a proportion of migrant alleles \eqn{m_{ij}} to population \eqn{j} 
 and receives a proportion of migrant alleles \eqn{m_{ji}} from population \eqn{j}.
-
+}
+\details{
 In this model, \eqn{\theta_t} can be written as a function of population size 
-\eqn{N_i}, migration rate \eqn{m_{ij}}, mutation rate \eqn{\mu} and \eqn{\theta_{(t-1)}}.  
+\eqn{N_i}, migration rate \eqn{m_{ij}}, mutation rate \eqn{\mu} and \eqn{\theta_{(t-1)}}.
 
 The rational is as follows:
  

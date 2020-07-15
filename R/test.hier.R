@@ -1,3 +1,9 @@
+###########################################  
+#'
+#'
+#'
+#'@export
+############################################
 "test.between" <-
 function (data = data, test.lev, rand.unit, nperm = 100, ...) 
 {
@@ -21,6 +27,12 @@ function (data = data, test.lev, rand.unit, nperm = 100, ...)
     }
     list(g.star = perm.stat, p.val = sum(perm.stat >= perm.stat[nperm])/nperm)
 }
+###########################################  
+#'
+#'
+#'
+#'@export
+############################################
 "test.between.within" <-
 function (data = data, within, test.lev, rand.unit, nperm = 100, 
     ...) 
@@ -49,6 +61,12 @@ function (data = data, within, test.lev, rand.unit, nperm = 100,
     }
     list(g.star = perm.stat, p.val = sum(perm.stat >= perm.stat[nperm])/nperm)
 }
+###########################################  
+#'
+#'
+#'
+#'@export
+############################################
 "test.g" <-
 function (data = data, level, nperm = 100, ...) 
 {
@@ -63,6 +81,12 @@ function (data = data, level, nperm = 100, ...)
     }
     list(g.star = perm.stat, p.val = sum(perm.stat >= perm.stat[nperm])/nperm)
 }
+###########################################  
+#'
+#'
+#'
+#'@export
+############################################
 "test.within" <-
 function (data = data, within, test.lev, nperm = 100, ...) 
 {

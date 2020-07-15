@@ -12,6 +12,9 @@ kinshipShift(x,shift=NULL)
 \item{shift}{the amount by which the elements of x should be shifted. if \code{shift==NULL}, 
 the average of the off-diagonal elements is substracted}
 }
+\value{
+the shifted kinship matrix \eqn{\frac{x-shift}{1-shift}}
+}
 \description{
 Shifts a kinship matrix
 }

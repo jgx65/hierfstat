@@ -1,3 +1,6 @@
+####
+#' 
+#'
 #########################################################################
 wc2<-function(ndat,diploid=TRUE,pol=0.0){
 #specific for 2 populations only

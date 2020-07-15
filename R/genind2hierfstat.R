@@ -45,9 +45,9 @@ genind2hierfstat<-function(dat,pop=NULL){
   x <- if(!all(alleles.name %in% c("A", "C", "G", "T"))) {
     if(length(grep("[[:alpha:]|[:punct:]]", alleles.name)) > 0) {
       # for loci where alleles are not all numeric nor all nucleotides
-      max.length <- max(sapply(alleles(dat), length))
+      max.length <- max(sapply(adegenet::alleles(dat), length))
       digits <- floor(log10(max.length))
-      dat <- as.matrix(genind2df(dat, sep = "", usepop = FALSE,
+      dat <- as.matrix(adegenet::genind2df(dat, sep = "", usepop = FALSE,
                                  oneColPerAll = TRUE))
       dat <- apply(dat, 2, function(a) ifelse(a == "NA", NA, a))
       # cycle through each locus
@@ -73,11 +73,11 @@ genind2hierfstat<-function(dat,pop=NULL){
         allnames<-lapply(dat@all.names,formatC,width=dig,flag="0",mode="integer")
         dat@all.names<-allnames
       }  
-      dat <- genind2df(dat, sep = "", usepop = FALSE)
+      dat <- adegenet::genind2df(dat, sep = "", usepop = FALSE)
       do.call(cbind, lapply(dat, as.integer))
     }
   } else { # all alleles are nucleotides
-    dat <- genind2df(dat, sep = "", usepop = FALSE)
+    dat <- adegenet::genind2df(dat, sep = "", usepop = FALSE)
     do.call(cbind, lapply(dat, function(a) {
       a <- gsub("[aA]", "1", a)
       a <- gsub("[cC]", "2", a)

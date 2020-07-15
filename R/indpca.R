@@ -1,4 +1,7 @@
-
+###
+#'
+#'
+#'@export
 indpca<-function(dat,ind.labels=NULL,scale=FALSE){
 #requires ade4
 #given a genotype data set dat
@@ -22,6 +25,10 @@ res<-list(call=match.call(),ipca=pca.matic,ifreq=mati)
 class(res)<-"indpca"
 res
 }
+###
+#'
+#'
+#'@export
 
 print.indpca<-function(x,...){
 print(names(x))
@@ -33,6 +40,10 @@ print("$ipca:")
 print(x$ipca)
 invisible(x)
 }
+###
+#'
+#'
+#'@export
 
 plot.indpca<-function(x,eigen=FALSE,ax1=1,ax2=2,...){
 if(eigen){

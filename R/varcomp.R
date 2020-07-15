@@ -1,3 +1,8 @@
+####
+#'
+#'
+#'@export
+#'
 "varcomp" <-
   function (data, diploid = TRUE) 
   {
@@ -84,6 +89,11 @@
     return(list(df = dfreed, k = k, res = res, overall = tot, 
                 F = f))
   }
+###
+#'
+#'
+#'@export
+
 "varcomp.glob" <-
   function (levels = levels, loci = loci, diploid = TRUE) 
   {

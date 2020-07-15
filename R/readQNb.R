@@ -1,3 +1,8 @@
+##################
+#'
+#'
+#'@export
+###################
 qn2.read.fstat<-function (fname, na.s = c("NA", "NaN")) {
   #reads quantinemo extended format
   #fname is the file name of quantinemo output

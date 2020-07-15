@@ -1,3 +1,9 @@
+###########################################  
+#'
+#'
+#'
+#'@export
+############################################
 "samp.between" <-
 function (lev) 
 {
@@ -9,6 +15,12 @@ function (lev)
     dum <- sample(nl)
     return(unlist(x[dum]))
 }
+###########################################  
+#'
+#'
+#'
+#'@export
+############################################
 "samp.between.within" <-
 function (inner.lev, outer.lev) 
 {
@@ -31,6 +43,12 @@ function (inner.lev, outer.lev)
     }
     return(unlist(z))
 }
+###########################################  
+#'
+#'
+#'
+#'@export
+############################################
 "samp.within" <-
 function (lev) 
 {

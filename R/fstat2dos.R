@@ -1,0 +1,86 @@
+#####################################################
+#'
+#' @title converts a hierfstat genetic data frame to dosage data
+#' 
+#' @description Estimate populations (Population specific FST) or individual coancestries 
+#' and a bootstrap confidence interval, assuming random mating 
+#' 
+#' @usage fstat2dos(dat,diploid=TRUE)
+#' 
+#' @param dat data frame with genetic data without the first column (population identifier)
+#' @param diploid whether the data set is from a diploid organism
+#' 
+#' @return a matrix with \eqn{\sum_l n_l^a} columns (where \eqn{n_l^a} is the number of alleles 
+#' at locus l), as many rows as individuals, and containing the number of copies (dosage) of the corresponding allele
+#' 
+#' @examples
+#' \dontrun{
+#' dat<-sim.genot(nbal=5,nbloc=10)
+#' dos<-fstat2dos(dat[,1])
+#' dim(dos) 
+#' } 
+#' @export
+#' 
+#####################################################
+
+fstat2dos<-function(dat,diploid=TRUE){
+#dat is a matrix or data frame containing genotypes encoded in the fstat format
+#with nrow  individuals and ncol multiallelic loci
+#fstat2dos will convert this into a dosage matrix with nrow individuals and 
+#the number of columns corresponding to the sum of the number of alleles.  
+
+lnames<-colnames(dat)
+
+if(diploid)
+dat<-getal.b(dat)
+
+n.loc<-dim(dat)[2]
+
+al.list<-lapply(apply(dat,2,table),function(x) as.integer(names(x)))
+nb.al<-cumsum(unlist(lapply(al.list,length)))
+
+#res<-matrix(NA,nrow=dim(dat)[1],ncol=nb.al[length(nb.al)])
+
+tally<-function(x) sapply(al.list[[x]],function(y) rowSums(dat[,x,]==y))
+
+res<-lapply(1:n.loc,tally)
+
+
+if(!is.null(lnames)){lnames<-unlist(lapply(1:n.loc,function(x) paste(lnames[[x]],al.list[[x]],sep=".")))} 
+else {lnames<-unlist(1:n.loc,function(x) paste("l",x,al.list[[x]],sep="."))}
+
+allres<-NULL
+for (i in 1:n.loc) allres<-cbind(allres,res[[i]])
+colnames(allres)<-lnames
+as.matrix(allres)
+}
+
+#################################################
+#'
+#' @title Converts bi-allelic SNPs from hierfstat format to dosage format
+#' 
+#' @description Converts bi-allelic SNPs hierfstat format to dosage format, the number of alternate allele copies at a locus
+#' for an individual, i.e. 11 -> 0; 12 or 21 >1 and 22 ->2
+#' 
+#' @usage biall2dos(dat)
+#' 
+#' @param dat a hierfstat data frame without the first column (zthe population identifier), 
+#' with individuals in rows, columns with individual genotypes encoded as 11, 12, 21 and 22
+#' 
+#' @return a matrix containing allelic dosages
+#' 
+#' @examples
+#' \dontrun{
+#' biall2dos(sim.genot(nbal=2,nbloc=10)[,-1])  # a 10 column matrix
+#' }
+#' 
+#' @export
+#' 
+#########################################################
+
+biall2dos<-function(dat){
+  if (max(dat[,-1])>22) stop("genotypes must be encoded as 11, 12, 21 or 22")
+  
+  matrix(dat[,1]%/%10+dat[,-1]%%10-2)
+  
+}

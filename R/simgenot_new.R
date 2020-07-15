@@ -10,7 +10,7 @@ sim.freq<-function(nbal=4,nbloc=5,nbpop=3,N=1000,mig=0.001,mut=0.0001,f=0){
   if (nbal>99) stop ("Too many alleles, must be <100. Exiting")
   cl<-match.call()
   pl<-vector("list",nbloc)
-  freq<-rdirichlet(nbloc,rep(1,nbal)) #1=uniform freq has dim nbloc,nbal
+  freq<-gtools::rdirichlet(nbloc,rep(1,nbal)) #1=uniform freq has dim nbloc,nbal
   if (length(N)!=nbpop) {
     if (length(N)==1) N<-rep(N,nbpop) 
     else stop("N must be a vector of length nbpop. Exiting.")} 
@@ -20,7 +20,7 @@ sim.freq<-function(nbal=4,nbloc=5,nbpop=3,N=1000,mig=0.001,mut=0.0001,f=0){
   param<-outer(4*N/(1+f)*(mig+mut),freq,"*") #verify this [nbpop,nbloc,nbal]
   for (il in 1:nbloc){
     x<-matrix(numeric(nbal*nbpop),nrow=nbpop)
-    for (ip in 1:nbpop) x[ip,]<-rdirichlet(1,param[ip,il,])
+    for (ip in 1:nbpop) x[ip,]<-gtools::rdirichlet(1,param[ip,il,])
     pl[[il]]<-x
   }
   gf<-vector("list",nbloc)
@@ -34,6 +34,11 @@ sim.freq<-function(nbal=4,nbloc=5,nbpop=3,N=1000,mig=0.001,mut=0.0001,f=0){
   gn<-as.numeric(outer(1:nbal,1:nbal,nfun))
   return(list(call=cl,fpl=pl,gf=gf,gn=gn))
 }
+##################
+#'
+#'
+#'@export
+###################
 #########################################################################
 sim.genot<-function(size=50,nbal=4,nbloc=5,nbpop=3,N=1000,mig=0.001,mut=0.0001,f=0){
   a<-sim.freq(nbal,nbloc,nbpop,N,mig,mut,f)
@@ -55,7 +60,7 @@ sim.freq.t<-function(nbal=4,nbloc=5,nbpop=3,N=1000,mig=0.001,mut=0.0001,f=0,t=10
   if (nbal>99) stop ("Too many alleles, must be <100. Exiting")
   cl<-match.call()
   pl<-vector("list",nbloc)
-  freq<-rdirichlet(nbloc,rep(1,nbal)) 
+  freq<-gtools::rdirichlet(nbloc,rep(1,nbal)) 
   if (length(N)!=nbpop) {
     if (length(N)==1) N<-rep(N,nbpop) 
     else stop("N must be a vector of length nbpop. Exiting.")} 
@@ -100,7 +105,7 @@ sim.freq.FIM.t<-function(nbal=4,nbloc=5,nbpop=3,N=1000,mig=0.001,mut=0.0001,f=0,
   if (nbal>99) stop ("Too many alleles, must be <100. Exiting")
   cl<-match.call()
   pl<-vector("list",nbloc)
-  freq<-rdirichlet(nbloc,rep(1,nbal)) 
+  freq<-gtools::rdirichlet(nbloc,rep(1,nbal)) 
   if (length(N)!=nbpop) {
     if (length(N)==1) N<-rep(N,nbpop) 
     else stop("N must be a vector of length nbpop. Exiting.")} 
@@ -138,34 +143,13 @@ pl[[il]]<-xn
 
 ###################################################
 #'
-#' @title Simulate data from a non equilibrium continent-island model
+#'  Simulate data from a non equilibrium continent-island model
 #'
-#' @description This function allows to simulate genetic data from a non-equilibrium continent-island
+#'  This function allows to simulate genetic data from a non-equilibrium continent-island
 #'  model, where each island can have a different size and a different inbreeding 
 #'  coefficient. 
-#'
-#' @usage sim.genot.t(size=50,nbal=4,nbloc=5,nbpop=3,N=1000,
-#' mig=0.001,mut=0.0001,f=0,t=100,IIM=TRUE)
 #'  
-#' @param size the number of sampled individuals per island
-#' @param nbal the number of alleles per locus (maximum of 99)
-#' @param nbloc the number of loci to simulate
-#' @param nbpop the number of islands to simulate
-#' @param N the effective population sizes of each island. If only one number, all
-#' islands are assumed to be of the same size
-#' @param mig the migration rate from the continent to the islands
-#' @param mut the mutation rate of the loci
-#' @param f the inbreeding coefficient for each island
-#' @param t the number of generation since the islands were created
-#' @param IIM whether to simulate a continent island Model (default) or a migrant pool island Model
-#' 
-#' @return A data frame with size*nbpop rows and nbloc+1 columns. Each row is an
-#' individual, the first column contains the island to which the individual belongs, 
-#' the following nbloc columns contain the genotype for each locus. 
-#'
-#'
-#'
-#' @details   This function simulates genetic data under the continent-islands model (IIM=TRUE) 
+#'  This function simulates genetic data under the continent-islands model (IIM=TRUE) 
 #' or the finite island model (IIM=FALSE).
 #'  In the IIM, a continent of 
 #'  infinite size sends migrants to islands of finite sizes \eqn{N_i} at a rate 
@@ -213,6 +197,27 @@ pl[[il]]<-xn
 #'  Transition equations for \eqn{theta} in the migrant-pool island model (IIM=FALSE) are given in Rouseet (1996). 
 #'  Currently, the migrant pool is made of equal contribution from each island, irrespective of their size.  
 #'     
+#'
+#' @usage sim.genot.t(size=50,nbal=4,nbloc=5,nbpop=3,N=1000,
+#' mig=0.001,mut=0.0001,f=0,t=100,IIM=TRUE)
+#'  
+#' @param size the number of sampled individuals per island
+#' @param nbal the number of alleles per locus (maximum of 99)
+#' @param nbloc the number of loci to simulate
+#' @param nbpop the number of islands to simulate
+#' @param N the effective population sizes of each island. If only one number, all
+#' islands are assumed to be of the same size
+#' @param mig the migration rate from the continent to the islands
+#' @param mut the mutation rate of the loci
+#' @param f the inbreeding coefficient for each island
+#' @param t the number of generation since the islands were created
+#' @param IIM whether to simulate a continent island Model (default) or a migrant pool island Model
+#' 
+#' @return A data frame with size*nbpop rows and nbloc+1 columns. Each row is an
+#' individual, the first column contains the island to which the individual belongs, 
+#' the following nbloc columns contain the genotype for each locus. 
+#'
+
 #' @author Jerome Goudet \email{jerome.goudet@@unil.ch}
 #' 
 #' @references 
@@ -295,34 +300,13 @@ sim.freq.metapop.t<-function(nbal,nbloc,nbpop,N,mig,mut,f,t,epsilon=1e-8){
 #########################################################################
 ###################################################
 #'
-#' @title Simulate genetic data from a metapopulation model
+#'  Simulate genetic data from a metapopulation model
 #'
-#' @description This function allows to simulate genetic data from a metapopulation
+#'  This function allows to simulate genetic data from a metapopulation
 #'  model, where each population can have a different size and a different inbreeding 
 #'  coefficient, and migration between each population is given in a migration matrix. 
-#'
-#' @usage sim.genot.metapop.t(size=50,nbal=4,nbloc=5,nbpop=3,N=1000,
-#' mig=diag(3),mut=0.0001,f=0,t=100)
 #'  
-#' @param size the number of sampled individuals per population
-#' @param nbal the number of alleles per locus (maximum of 99)
-#' @param nbloc the number of loci to simulate
-#' @param nbpop the number of populations to simulate
-#' @param N the effective population sizes of each population. If only one number, all
-#' populations are assumed to be of the same size
-#' @param mig a matrix with nbpop rows and columns giving the migration rate 
-#' from population i (in row) to population j (in column). Each row must sum to 1.
-#' @param mut the mutation rate of the loci
-#' @param f the inbreeding coefficient for each population
-#' @param t the number of generation since the islands were created
-#' 
-#' @return A data frame with size*nbpop rows and nbloc+1 columns. Each row is an
-#' individual, the first column contains the identifier of the population to which the individual belongs, 
-#' the following nbloc columns contain the genotype for each locus. 
-#'
-#'
-#'
-#' @details   This function simulates genetic data under a migration matrix model.
+#'  This function simulates genetic data under a migration matrix model.
 #' Each population \eqn{i} sends a proportion of migrant alleles \eqn{m_{ij}} to population \eqn{j} 
 #' and receives a proportion of migrant alleles \eqn{m_{ji}} from population \eqn{j}.
 #'
@@ -355,6 +339,29 @@ sim.freq.metapop.t<-function(nbal,nbloc,nbpop,N,mig,mut,f,t,epsilon=1e-8){
 #' has to be adjusted to \eqn{\mu'=\frac{K-1}{K}\mu}.
 #' 
 #' Continue derivation   
+#'
+#' @usage sim.genot.metapop.t(size=50,nbal=4,nbloc=5,nbpop=3,N=1000,
+#' mig=diag(3),mut=0.0001,f=0,t=100)
+#'  
+#' @param size the number of sampled individuals per population
+#' @param nbal the number of alleles per locus (maximum of 99)
+#' @param nbloc the number of loci to simulate
+#' @param nbpop the number of populations to simulate
+#' @param N the effective population sizes of each population. If only one number, all
+#' populations are assumed to be of the same size
+#' @param mig a matrix with nbpop rows and columns giving the migration rate 
+#' from population i (in row) to population j (in column). Each row must sum to 1.
+#' @param mut the mutation rate of the loci
+#' @param f the inbreeding coefficient for each population
+#' @param t the number of generation since the islands were created
+#' 
+#' @return A data frame with size*nbpop rows and nbloc+1 columns. Each row is an
+#' individual, the first column contains the identifier of the population to which the individual belongs, 
+#' the following nbloc columns contain the genotype for each locus. 
+#'
+#'
+#'
+#' @details   
 #'   
 #'     
 #' @author Jerome Goudet \email{jerome.goudet@@unil.ch}

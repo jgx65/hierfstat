@@ -9,6 +9,9 @@ kinship2dist(x)
 \arguments{
 \item{x}{A square matrix containg kinship coefficients}
 }
+\value{
+A distance matrix
+}
 \description{
 Converts a kinship matrix to a distance matrix
 }

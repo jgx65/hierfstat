@@ -1,3 +1,7 @@
+###
+#'
+#'
+#'@export
 ################################################################################
 pp.sigma.loc<-function(x,y,dat=dat,diploid=TRUE,...){
   if (is.genind(dat)) dat<-genind2hierfstat(dat)
@@ -8,6 +12,10 @@ pp.sigma.loc<-function(x,y,dat=dat,diploid=TRUE,...){
   ndat[ndat[,1]==y,1]<-2
   return(wc(ndat,diploid,...)$sigma.loc)
 }
+###
+#'
+#'
+#'@export
 ################################################################################
 
 pp.fst<-function(dat=dat,diploid=TRUE,...){
@@ -31,16 +39,24 @@ pp.fst<-function(dat=dat,diploid=TRUE,...){
   res
 }
 
+###
+#'
+#'
+#'@export
 print.pp.fst<-function(x,...){
   print(x$fst.pp)
   invisible(x)
 }
 
+###
+#'
+#'
+#'@export
 ################################################################################
 
 boot.ppfst<-function(dat=dat,nboot=100,quant=c(0.025,0.975),diploid=TRUE,...){
   cl<-match.call()
-  if (adegenet::is.genind(dat)) dat<-genind2hierfstat(dat)
+  if (is.genind(dat)) dat<-genind2hierfstat(dat)
   typ<-dim(dat)
   if(length(dim(dat))==2){
     #Pop<-dat[,1]
@@ -93,6 +109,10 @@ print.boot.ppfst<-function(x,...){
     invisible(x)
 }
 
+###
+#'
+#'
+#'@export
 ################################################################################
 boot.ppfis<-function(dat=dat,nboot=100,quant=c(0.025,0.975),diploid=TRUE,dig=4,...){
   cl<-match.call()

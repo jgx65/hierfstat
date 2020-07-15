@@ -261,3 +261,45 @@ print.basic.stats<-function(x,...){
 print(list(perloc=x$perloc,overall=x$overall))
 invisible(x)
 }
+
+#####################################################
+#'
+#' @title verifies it is a genind object
+#' 
+#' @description verifies it isa genind object (from adegenet)
+#' @usage is.genind(x)
+#' 
+#' @param a genind object
+#' 
+#' @return whether it is a genind object or not
+#' 
+#' @export 
+
+is.genind<-function (x) 
+{
+  res <- (is(x, "genind") & validObject(x))
+  return(res)
+}
+
+#################################################
+#'
+#' @title Converts bi-allelic SNPs from hierfstat format to dosage format
+#' 
+#' @description Converts bi-allelic SNPs hierfstat format to dosage format, the number of alternate allele copies at a locus for an individual, i.e. 11 -> 0; 12 or 21 >1 and 22 ->2
+#' 
+#' @usage biall2dos(dat)
+#' 
+#' @param dat a hierfstat data frame, with individuals in rows, the fisrst column with population label, and folowong columnes with individual genotypes encoded as 11, 12, 21 and 22
+#' 
+#' @return a matrix containing allelic dosages
+#' 
+#' @export
+#' 
+#########################################################
+
+biall2dos<-function(dat){
+  if (max(dat[,-1])>22) stop("genotypes must be encoded as 11, 12, 21 or 22")
+  
+  matrix(dat[,1]%/%10+dat[,-1]%%10-2)
+  
+}

@@ -4,22 +4,21 @@
 \alias{beta.dosage}
 \title{Estimates pairwise kinships and individual inbreeding coefficients from dosage data}
 \usage{
-beta.dosage(dat,inb=TRUE,correction=FALSE,Mb=FALSE)
+beta.dosage(dos,inb=TRUE,Mb=FALSE)
 }
 \arguments{
-\item{dat}{A matrix of 0, 1 and 2s with loci (SNPs) in columns and individuals in rows. missing values are allowed}
+\item{dos}{A matrix of 0, 1 and 2s with loci (SNPs) in columns and individuals in rows. missing values are allowed}
 
-\item{inb}{whether individual inbreeding coefficient should be estimated}
-
-\item{correction}{whether kinships and inbreeding coefficients should be corrected following Goudet et al. (2018)}
+\item{inb}{whether individual inbreeding coefficient should be estimated (rather than self-coancestries)}
 
 \item{Mb}{whether to output the mean matching}
 }
 \value{
-either a matrix of pairwise kinships and inbreeding coefficients if requested (if \code{Mb}=FALSE) or
-a list with elements \code{inb} (whether inbeeding coefficients rather than kinships should be returned on the main diagonal),
-\code{correction} (whether to return kinship or inbreeding corrected for missing values),
-\code{MB} (the average matching) and \code{betas} the kinships or inbreeding coefficients.
+if \code{Mb}=FALSE, a matrix of pairwise kinships and inbreeding coefficients (if \code{inb}=TRUE) or self-coancestries 
+(\code{inb}=FALSE);  
+if \code{Mb}=FALSE, a list with elements \code{inb} (whether inbreeding coefficients rather than kinships should 
+be returned on the main diagonal),
+\code{MB} (the average off-diagonal matching) and \code{betas} the kinships or inbreeding coefficients.
 }
 \description{
 Estimates pairwise kinships (coancestries) and individual inbreeding coefficient 
@@ -28,12 +27,16 @@ using Weir and Goudet (2017) beta estimator.
 \details{
 This function is written for dosage data, i.e., how many doses of an allele (0, 1 or 2) an individual carries.
 It should be use for bi-allelic markers only (e.g. SNPs), although you might "force" a k multiallelic locus to k biallelic
-loci. 
+loci.
 
-Matching probabilities can be obtained by the following equation: \eqn{M=\beta*(1-Mb)+Mb} 
+Matching proportion can be obtained by the following equation: \eqn{M=\beta*(1-Mb)+Mb}
 
-When there are missing data, the missing values are replaced by the frequency of the alternate allele 
-The correction option unbiases the estimates, and is described in the supplementary materials of Goudet etal. (2018).
+By default (inb=TRUE) the inbreeding coefficient is returned on the main diagonal.  With inb=FALSE, self coancestries are reported.
+
+
+Twice the betas with self-coancestries on the diagonal gives the Genomic Relationship Matrix (GRM)     
+
+Following a suggestion from Olivier Hardy, missing data are removed from the estimation procedure, rather than imputed (this is taken care off automatically)
 }
 \examples{
 \dontrun{

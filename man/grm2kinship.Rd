@@ -9,6 +9,9 @@ grm2kinship(x)
 \arguments{
 \item{x}{a square (GRM) matrix}
 }
+\value{
+a kinship matrix
+}
 \description{
 Converts a Genetic Relationship Matrix (GRM) to a kinship matrix
 }

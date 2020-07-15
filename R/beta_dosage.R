@@ -3,11 +3,10 @@
 #' @description Estimates pairwise kinships (coancestries) and individual inbreeding coefficient 
 #' using Weir and Goudet (2017) beta estimator. 
 #'  
-#' @usage beta.dosage(dos,inb=TRUE,correction=TRUE,Mb=FALSE)
+#' @usage beta.dosage(dos,inb=TRUE,Mb=FALSE)
 #'
 #' @param dos A matrix of 0, 1 and 2s with loci (SNPs) in columns and individuals in rows. missing values are allowed
 #' @param inb whether individual inbreeding coefficient should be estimated (rather than self-coancestries)
-#' @param correction whether kinships and inbreeding coefficients should be corrected following Goudet et al. (2018)
 #' @param Mb whether to output the mean matching 
 #' 
 #' @return either a matrix of pairwise kinships and inbreeding coefficients if requested (if \code{Mb}=FALSE) or
@@ -19,10 +18,13 @@
 #' It should be use for bi-allelic markers only (e.g. SNPs), although you might "force" a k multiallelic locus to k biallelic
 #' loci. 
 #' 
-#' Matching probabilities can be obtained by the following equation: \eqn{M=\beta*(1-Mb)+Mb} 
+#' Matching proportion can be obtained by the following equation: \eqn{M=\beta*(1-Mb)+Mb} 
 #' 
-#' When there are missing data, the missing values are replaced by the frequency of the alternate allele 
-#' The correction option unbiases the estimates, and is described in the supplementary materials of Goudet etal. (2018). 
+#' By default (inb=TRUE) the inbreeding coefficient is returned on the main diagonal.  With inb=FALSE, self coancestries are reported. 
+#' 
+#' Twice the betas with self-coancestries on the diagonal gives the Genomic Relationship Matrix (GRM)     
+#' 
+#' Missing data are removed from the estimation procedure, rather than imputed (this is taken care off automatically) 
 #'
 #' @author Jerome Goudet \email{jerome.goudet@@unil.ch}
 #' @references 
@@ -40,44 +42,35 @@
 #' }
 #' @export
 
-beta.dosage<-function(dos,inb=TRUE,correction=TRUE,Mb=FALSE){
+
+beta.dosage <- function (dos, inb = TRUE, Mb = FALSE) {
   #dos is a data frame with individuals in rows and allelic dosage for each locus in colums  
   #uses matching proba -same equation as for population i.e. Mij=[xiXj+(2-xi)(2-xj)]/4
-  #missing values are replaced by mean allelic dosage of the locus
-  dat<-as.matrix(dat)
-  lims<-range(dat,na.rm=TRUE)
-  if ((lims[2]>2) | (lims[1]<0)) stop("input dosage matrix should contains only 0, 1 and 2s")
+  dos <- as.matrix(dos)
+  lims <- range(dos, na.rm = TRUE)
+  if ((lims[2] > 2) | (lims[1] < 0)) 
+    stop("input dosage matrix should contains only 0, 1 and 2s")
   
-  prop.miss<-sum(is.na(dat))/prod(dim(dat))  
-  if (prop.miss>0.0){
-    i.miss<-rowMeans(is.na(dat)) 
-    cm<-colMeans(dat,na.rm=TRUE)
-    dum<-sweep(dat,2,cm,FUN="-")
-    dum[is.na(dum)]<-0.0
-    dat<-sweep(dum,2,cm,FUN="+")
-  }  else i.miss<-numeric(nrow(dat))
-
+  na <- matrix(rep(1,prod(dim(dos))),ncol=ncol(dos))
+  ina<-which(is.na(dos))
+  na[ina]<-0
+  dos[ina]<-1
   
-  nl<-dim(dat)[2]
-  Mij<-1/2+tcrossprod(dat-1)/2/nl 
-  Mii<-diag(Mij)
-  diag(Mij)<-NA
-  MB<-mean(Mij,na.rm=T)
-  diag(Mij)<-Mii
-  coa<-(Mij-MB)/(1-MB)
+  Mij <- 1/2 * (1+1/tcrossprod(na) * tcrossprod(dos-1)) 
+  
+  Mii <- diag(Mij)
+  diag(Mij) <- NA
+  MB <- mean(Mij, na.rm = T)
+  diag(Mij) <- Mii
+  coa <- (Mij - MB)/(1 - MB)
   if (inb) {
-    ind.inb<-((Mii*2-1)-MB)/(1-MB)
-    diag(coa)<-ind.inb
+    ind.inb <- ((Mii * 2 - 1) - MB)/(1 - MB)
+    diag(coa) <- ind.inb
   }
-  if (correction) {
-    correc<-outer((1-i.miss),(1-i.miss))
-    ic<-diag(coa)
-    coa<-coa/correc 
-    if (inb) {
-    ic<-ic + i.miss
-    diag(coa)<-ic/(1.0-i.miss)
-    }
-    }  
-  if (!Mb) return(coa) else return(list(inb=inb,correction=correction,MB=MB,betas=coa))
-
+  if (!Mb) 
+    return(coa)
+  else return(list(inb = inb, MB = MB, 
+                   betas = coa))
 }
+
+

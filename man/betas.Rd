@@ -2,7 +2,7 @@
 % Please edit documentation in R/betas.R
 \name{betas}
 \alias{betas}
-\title{Estimate \eqn{\beta}s per population and a bootstrap confidence interval}
+\title{Estimates \eqn{\beta}s per population and a bootstrap confidence interval}
 \usage{
 betas(dat,nboot=0,lim=c(0.025,0.975),diploid=TRUE,betaijT=FALSE)
 }
@@ -36,7 +36,7 @@ Estimate populations (Population specific FST) or individual coancestries
 and a bootstrap confidence interval, assuming random mating
 }
 \details{
-If betaij=TRUE, and the first column contains a unique identifier for 
+If betaijT=TRUE, and the first column contains a unique identifier for 
 each individual, the function returns the matrix of individual coancestries/kinships.  
 Individual inbreeding coefficients can be obtained by multiplying by 2 the diagonal 
 and substracting 1.
