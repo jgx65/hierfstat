@@ -2,8 +2,10 @@
 #'
 #' Converts a hierfstat genetic data frame to dosage data
 #' 
-#' Estimates populations (Population specific FST) or individual coancestries 
-#' and a bootstrap confidence interval, assuming random mating 
+#' Converts a hierfstat genetic data frame to dosage. For each allele at each locus, 
+#' allelic dosage (number of copies of the allele) is reported. The column name is the allele 
+#' identifier 
+#' 
 #' 
 #' @usage fstat2dos(dat,diploid=TRUE)
 #' 
@@ -11,13 +13,17 @@
 #' @param diploid whether the data set is from a diploid organism
 #' 
 #' @return a matrix with \eqn{\sum_l n_l^a} columns (where \eqn{n_l^a} is the number of alleles 
-#' at locus l), as many rows as individuals, and containing the number of copies (dosage) of the corresponding allele
+#' at locus l), as many rows as individuals, and containing the number of copies (dosage) of the 
+#' corresponding allele
 #' 
 #' @examples
 #' \dontrun{
 #' dat<-sim.genot(nbal=5,nbloc=10)
-#' dos<-fstat2dos(dat[,1])
+#' dos<-fstat2dos(dat[,-1])
 #' dim(dos) 
+#' wc(dat)
+#' fst.dosage(dos,pop=dat[,1])
+#' 
 #' } 
 #' @export
 #' 
@@ -66,6 +72,7 @@ as.matrix(allres)
 #' 
 #' @param dat a hierfstat data frame without the first column (the population identifier), 
 #' individuals in rows, columns with individual genotypes encoded as 11, 12, 21 and 22
+#' @param diploid whether the data set is from a diploid organism
 #' 
 #' @return a matrix containing allelic dosages
 #' 
@@ -78,9 +85,11 @@ as.matrix(allres)
 #' 
 #########################################################
 
-biall2dos<-function(dat){
+biall2dos<-function(dat,diploid=TRUE){
+  if (!diploid) return(dat-1)
+  else{
   if (max(dat)>22) stop("genotypes must be encoded as 11, 12, 21 or 22")
   
-  as.matrix(dat%/%10+dat%%10-2)
-  
+  return(as.matrix(dat%/%10+dat%%10-2))
+  }
 }
