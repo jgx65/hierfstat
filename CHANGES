@@ -1,3 +1,9 @@
+#version 0.1-02 16.07.2020
+-new function fs.dosage, with a plot method
+-handling of missing data for dosage format 
+-conversion to bed format from ms using ms2bed
+
+
 #version 0.04-30 21.09.2019
 -new function fst.dosage
 -new functions kinship2grm,kinship2dist,grm2kinship,kinshipShift
