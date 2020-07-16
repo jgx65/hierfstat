@@ -7,8 +7,8 @@
 biall2dos(dat)
 }
 \arguments{
-\item{dat}{a hierfstat data frame without the first column (zthe population identifier), 
-with individuals in rows, columns with individual genotypes encoded as 11, 12, 21 and 22}
+\item{dat}{a hierfstat data frame without the first column (the population identifier), 
+individuals in rows, columns with individual genotypes encoded as 11, 12, 21 and 22}
 }
 \value{
 a matrix containing allelic dosages

@@ -1,6 +1,4 @@
 ###
-#'
-#'
 #'@export
 indpca<-function(dat,ind.labels=NULL,scale=FALSE){
 #requires ade4
@@ -25,10 +23,10 @@ res<-list(call=match.call(),ipca=pca.matic,ifreq=mati)
 class(res)<-"indpca"
 res
 }
-###
-#'
-#'
-#'@export
+
+
+#' @method print indpca
+#' @export 
 
 print.indpca<-function(x,...){
 print(names(x))
@@ -40,10 +38,10 @@ print("$ipca:")
 print(x$ipca)
 invisible(x)
 }
-###
-#'
-#'
-#'@export
+
+
+#' @method plot indpca
+#' @export 
 
 plot.indpca<-function(x,eigen=FALSE,ax1=1,ax2=2,...){
 if(eigen){

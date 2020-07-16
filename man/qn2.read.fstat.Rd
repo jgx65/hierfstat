@@ -2,7 +2,9 @@
 % Please edit documentation in R/readQN.R
 \name{qn2.read.fstat}
 \alias{qn2.read.fstat}
-\title{Read QuantiNemo extended format for genotype files}
+\title{Read QuantiNemo extended format for genotype files
+ 
+Read QuantiNemo (\url{http://www2.unil.ch/popgen/softwares/quantinemo/}) genotype files extended format (option 2)}
 \usage{
 qn2.read.fstat(fname, na.s = c("NA","NaN"))
 }
@@ -19,6 +21,8 @@ dat  a data frame with nloc+1 columns, the first being the population
 sex  the sex of the individuals
 }
 \description{
+Read QuantiNemo extended format for genotype files
+ 
 Read QuantiNemo (\url{http://www2.unil.ch/popgen/softwares/quantinemo/}) genotype files extended format (option 2)
 }
 \examples{

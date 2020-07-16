@@ -1,6 +1,4 @@
 ###
-#'
-#'
 #'@export
 ################################################################################
 pp.sigma.loc<-function(x,y,dat=dat,diploid=TRUE,...){
@@ -13,8 +11,6 @@ pp.sigma.loc<-function(x,y,dat=dat,diploid=TRUE,...){
   return(wc(ndat,diploid,...)$sigma.loc)
 }
 ###
-#'
-#'
 #'@export
 ################################################################################
 
@@ -39,18 +35,15 @@ pp.fst<-function(dat=dat,diploid=TRUE,...){
   res
 }
 
-###
-#'
-#'
-#'@export
+#' @method  print pp.fst
+#' @export
+
 print.pp.fst<-function(x,...){
   print(x$fst.pp)
   invisible(x)
 }
 
 ###
-#'
-#'
 #'@export
 ################################################################################
 
@@ -94,6 +87,10 @@ boot.ppfst<-function(dat=dat,nboot=100,quant=c(0.025,0.975),diploid=TRUE,...){
   res
 }
 
+#' @method print boot.ppfst
+#' @export 
+
+
 print.boot.ppfst<-function(x,...){
   a<-dim(x$ll)[1]
   ci<-matrix(nrow=a,ncol=a)
@@ -110,8 +107,6 @@ print.boot.ppfst<-function(x,...){
 }
 
 ###
-#'
-#'
 #'@export
 ################################################################################
 boot.ppfis<-function(dat=dat,nboot=100,quant=c(0.025,0.975),diploid=TRUE,dig=4,...){

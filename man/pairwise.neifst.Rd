@@ -2,7 +2,7 @@
 % Please edit documentation in R/pairwise.fst.R
 \name{pairwise.neifst}
 \alias{pairwise.neifst}
-\title{Estimate pairwise FSTs according to Nei (1987)}
+\title{Estimates pairwise FSTs according to Nei (1987)}
 \usage{
 pairwise.neifst(dat,diploid=TRUE)
 }
@@ -18,7 +18,8 @@ A matrix of pairwise FSTs
 Estimate pairwise FSTs according to Nei (1987)
 }
 \details{
-FST are calculated using Nei (87) equations for FST', as described in the note section of  \link{basic.stats}
+FST are calculated using Nei (87) equations for FST', as described in the note 
+section of  \link{basic.stats}
 }
 \examples{
 

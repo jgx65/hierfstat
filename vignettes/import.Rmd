@@ -87,6 +87,9 @@ head(genind2hierfstat(eHGDP))[,1:11]
  
 
 ##importing VCF files 
+
+Variant Call Format (VCF) files have become a standard for genomic data. This is the storage format used for the [1000 genomes](https://www.internationalgenome.org/) for instance. Importing VCF files 
+
  
 ##Importing from Quantinemo
 
@@ -122,7 +125,7 @@ I briefly discussed the `ms` software.  its output looks like this:
   
   00001001000000000001000
 
-The first line is the `ms` command line, and it instructed the program to simulate 2 populations, with $\theta=2N_0\mu=20$.  The 2 populations differ in size and the smallest (the second) isa 100th of the first. The two populations exchange $4Nm=40$ migrants per generation.  100 chromosomes are sampled from each population, and this is repeated a 100 times. 
+The first line is the `ms` command line, and it instructed the program to simulate 2 populations, with $\theta=2N_0\mu=20$.  The 2 populations differ in size and the smallest (the second) is a 100th of the first. The two populations exchange $4Nm=40$ migrants per generation.  100 chromosomes are sampled from each population, and this is repeated a 100 times. 
 
 The genetic data itself comes as a serie of 0 and 1, collated one to the other.  These are the SNP sites, with 0 being the ancestral state and 1 the derived state. 
 

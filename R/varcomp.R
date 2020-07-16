@@ -1,8 +1,5 @@
 ####
-#'
-#'
 #'@export
-#'
 "varcomp" <-
   function (data, diploid = TRUE) 
   {
@@ -90,8 +87,6 @@
                 F = f))
   }
 ###
-#'
-#'
 #'@export
 
 "varcomp.glob" <-

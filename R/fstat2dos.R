@@ -1,8 +1,8 @@
 #####################################################
 #'
-#' @title converts a hierfstat genetic data frame to dosage data
+#' Converts a hierfstat genetic data frame to dosage data
 #' 
-#' @description Estimate populations (Population specific FST) or individual coancestries 
+#' Estimates populations (Population specific FST) or individual coancestries 
 #' and a bootstrap confidence interval, assuming random mating 
 #' 
 #' @usage fstat2dos(dat,diploid=TRUE)
@@ -57,15 +57,15 @@ as.matrix(allres)
 
 #################################################
 #'
-#' @title Converts bi-allelic SNPs from hierfstat format to dosage format
+#'Converts bi-allelic SNPs from hierfstat format to dosage format
 #' 
-#' @description Converts bi-allelic SNPs hierfstat format to dosage format, the number of alternate allele copies at a locus
+#' Converts bi-allelic SNPs hierfstat format to dosage format, the number of alternate allele copies at a locus
 #' for an individual, i.e. 11 -> 0; 12 or 21 >1 and 22 ->2
 #' 
 #' @usage biall2dos(dat)
 #' 
-#' @param dat a hierfstat data frame without the first column (zthe population identifier), 
-#' with individuals in rows, columns with individual genotypes encoded as 11, 12, 21 and 22
+#' @param dat a hierfstat data frame without the first column (the population identifier), 
+#' individuals in rows, columns with individual genotypes encoded as 11, 12, 21 and 22
 #' 
 #' @return a matrix containing allelic dosages
 #' 
@@ -79,8 +79,8 @@ as.matrix(allres)
 #########################################################
 
 biall2dos<-function(dat){
-  if (max(dat[,-1])>22) stop("genotypes must be encoded as 11, 12, 21 or 22")
+  if (max(dat)>22) stop("genotypes must be encoded as 11, 12, 21 or 22")
   
-  matrix(dat[,1]%/%10+dat[,-1]%%10-2)
+  as.matrix(dat%/%10+dat%%10-2)
   
 }

@@ -1,20 +1,9 @@
-#' @title Estimates pairwise kinships and individual inbreeding coefficients from dosage data
+#' Estimates pairwise kinships and individual inbreeding coefficients from dosage data
 #'
-#' @description Estimates pairwise kinships (coancestries) and individual inbreeding coefficient 
+#' Estimates pairwise kinships (coancestries) and individual inbreeding coefficient 
 #' using Weir and Goudet (2017) beta estimator. 
-#'  
-#' @usage beta.dosage(dos,inb=TRUE,Mb=FALSE)
-#'
-#' @param dos A matrix of 0, 1 and 2s with loci (SNPs) in columns and individuals in rows. missing values are allowed
-#' @param inb whether individual inbreeding coefficient should be estimated (rather than self-coancestries)
-#' @param Mb whether to output the mean matching 
 #' 
-#' @return either a matrix of pairwise kinships and inbreeding coefficients if requested (if \code{Mb}=FALSE) or
-#' a list with elements \code{inb} (whether inbeeding coefficients rather than kinships should be returned on the main diagonal),
-#' \code{correction} (whether to return kinship or inbreeding corrected for missing values),
-#' \code{MB} (the average matching) and \code{betas} the kinships or inbreeding coefficients.
-#'
-#' @details This function is written for dosage data, i.e., how many doses of an allele (0, 1 or 2) an individual carries.
+#' This function is written for dosage data, i.e., how many doses of an allele (0, 1 or 2) an individual carries.
 #' It should be use for bi-allelic markers only (e.g. SNPs), although you might "force" a k multiallelic locus to k biallelic
 #' loci. 
 #' 
@@ -22,9 +11,22 @@
 #' 
 #' By default (inb=TRUE) the inbreeding coefficient is returned on the main diagonal.  With inb=FALSE, self coancestries are reported. 
 #' 
+#' @usage beta.dosage(dos,inb=TRUE,Mb=FALSE)
+#'
+#' @param dos A matrix of 0, 1 and 2s with loci (SNPs) in columns and individuals in rows. missing values are allowed
+#' @param inb whether individual inbreeding coefficient should be estimated (rather than self-coancestries)
+#' @param Mb whether to output the mean matching 
+#' 
+#' @return if \code{Mb}=FALSE, a matrix of pairwise kinships and inbreeding coefficients (if \code{inb}=TRUE) or self-coancestries 
+#' (\code{inb}=FALSE);  
+#' if \code{Mb}=FALSE, a list with elements \code{inb} (whether inbreeding coefficients rather than kinships should 
+#' be returned on the main diagonal),
+#' \code{MB} (the average off-diagonal matching) and \code{betas} the kinships or inbreeding coefficients.
+#'
+#' @details 
 #' Twice the betas with self-coancestries on the diagonal gives the Genomic Relationship Matrix (GRM)     
 #' 
-#' Missing data are removed from the estimation procedure, rather than imputed (this is taken care off automatically) 
+#' Following a suggestion from Olivier Hardy, missing data are removed from the estimation procedure, rather than imputed (this is taken care off automatically) 
 #'
 #' @author Jerome Goudet \email{jerome.goudet@@unil.ch}
 #' @references 

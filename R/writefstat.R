@@ -1,6 +1,4 @@
 ##################
-#'
-#'
 #'@export
 ###################
 write.fstat<-function(dat,fname="genotypes.dat"){
@@ -21,8 +19,6 @@ write.table(dat,fname,append=TRUE,row.names=FALSE,col.names=FALSE,quote=FALSE,se
 }
 #################################################################################
 ##################
-#'
-#'
 #'@export
 ###################
 subsampind <- function(dat,sampsize=10){
@@ -57,8 +53,6 @@ subsampind <- function(dat,sampsize=10){
 }
 ################################
 ##################
-#'
-#'
 #'@export
 ###################
 write.struct<-function(dat,ilab=NULL,pop=NULL,MARKERNAMES=FALSE,MISSING=-9,fname="dat.str"){

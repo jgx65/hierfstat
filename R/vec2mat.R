@@ -1,6 +1,6 @@
-#' @title Fills a triangular matrix from the inputed vector
+#' Fills a triangular matrix from the inputed vector
 #'
-#' @description Fills a triangular matrix from the inputed vector 
+#' Fills a triangular matrix from the inputed vector 
 #'  
 #' @usage vec2mat(x,diag=FALSE,upper=FALSE)
 #'

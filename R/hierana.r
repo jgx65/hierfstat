@@ -1,6 +1,4 @@
 ##################
-#'
-#'
 #'@export
 ###################
 "g.stats" <-
@@ -27,8 +25,6 @@ function (data, diploid = TRUE)
     list(obs = obs, expe = expe, x.squared = x.squared, g.stats = g.stats)
 }
 ##################
-#'
-#'
 #'@export
 ###################
 "g.stats.glob" <-
@@ -58,8 +54,6 @@ function (data, diploid = TRUE)
     list(g.stats.l = g.stats.l, g.stats = g.stats)
 }
 ##################
-#'
-#'
 #'@export
 ###################
 "genot2al" <-
@@ -107,8 +101,6 @@ function (data)
 }
 
 ##################
-#'
-#'
 #'@export
 ###################
 "read.fstat.data" <-

@@ -1,9 +1,6 @@
-###########################################  
-#'
-#'
-#'
-#'@export
 ############################################
+
+#' @export
 boot.vc<-function (levels = levels, loci = loci, diploid = TRUE, nboot = 1000, 
     quant = c(0.025, 0.5, 0.975)) 
 {

@@ -43,7 +43,8 @@ prepdatan<-function(data){
   names(x)<-names(data)
   return(x)
 }
-###########################################  
+
+############################################
 "varcompn" <-
 function (data, diploid = TRUE,sorted=FALSE) 
 {
@@ -138,6 +139,8 @@ function (data, diploid = TRUE,sorted=FALSE)
     return(list(df = dfreed, k = k, res = res, overall = tot, 
         F = f))
 }
+
+############################################
 "varcompn.glob" <-
 function (levels = levels, loci = loci, diploid = TRUE) 
 {

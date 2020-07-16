@@ -2,7 +2,7 @@
 % Please edit documentation in R/fstat2dos.R
 \name{fstat2dos}
 \alias{fstat2dos}
-\title{converts a hierfstat genetic data frame to dosage data}
+\title{Converts a hierfstat genetic data frame to dosage data}
 \usage{
 fstat2dos(dat,diploid=TRUE)
 }
@@ -16,7 +16,7 @@ a matrix with \eqn{\sum_l n_l^a} columns (where \eqn{n_l^a} is the number of all
 at locus l), as many rows as individuals, and containing the number of copies (dosage) of the corresponding allele
 }
 \description{
-Estimate populations (Population specific FST) or individual coancestries 
+Estimates populations (Population specific FST) or individual coancestries 
 and a bootstrap confidence interval, assuming random mating
 }
 \examples{

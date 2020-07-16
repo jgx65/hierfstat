@@ -23,7 +23,7 @@ for pairs of individuals, one from each population, relative to the mean kinship
 Fs The first row contains population specific and overall Fis, the second row population specific and overall Fst.
 }
 \description{
-reports individual inbreeding coefficients, Population specific Fsts and Fiss from dosage data
+Reports individual inbreeding coefficients, Population specific Fsts and Fiss from dosage data
 }
 \examples{
 \dontrun{

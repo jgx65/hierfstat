@@ -2,7 +2,7 @@
 % Please edit documentation in R/pairwise.fst.R
 \name{pairwise.WCfst}
 \alias{pairwise.WCfst}
-\title{Estimate pairwise FSTs according to Weir and Cockerham (1984)}
+\title{Estimates pairwise FSTs according to Weir and Cockerham (1984)}
 \usage{
 pairwise.WCfst(dat,diploid=TRUE)
 }
@@ -15,7 +15,7 @@ pairwise.WCfst(dat,diploid=TRUE)
 A matrix of pairwise FSTs
 }
 \description{
-Estimate pairwise FSTs according to Weir and Cockerham (1984)
+Estimates pairwise FSTs according to Weir and Cockerham (1984)
 }
 \details{
 FST are calculated using Weir & Cockerham (1984) equations for FST', as described in the note section of  \link{wc}

@@ -151,50 +151,9 @@ return(-log(neivecn/(neivecd1*neivecd2)^0.5))
 #}
 
 #################################################################
-################
-#'
-#'
-#' @export
-################
-vec2mat<-function(x){
-	#fill a lower triangular matrix from a vector and copy it to upper triangle
-nn<-length(x)
-n<-(1+(1+8*nn)^0.5)/2 #dim of the matrix
-mat<-matrix(rep(0,n*n),ncol=n,nrow=n)
-cum<-0
-for (i in 2:n) {
-	for (j in 1:(i-1)){
-		cum<-cum+1
-		mat[i,j]<-x[cum]
-		mat[j,i]<-mat[i,j]
-	}
-}
-return(mat)
-}
-#################################################################
-################
-#'
-#'
-#' @export
-################
-mat2vec<-function(mat){
-#transform lower triangular matrix in vector 1.2,1.3,2.3,1.4,2.4,3.4 etc...
-n<-dim(mat)[2]
-nn<-n*(n-1)/2
-x<-vector(length=nn)
-cum<-0
-for (i in 2:n){
-for (j in 1:(i-1)){
-cum<-cum+1
-x[cum]<-mat[i,j]
-}}
-return(x)
-}
 
 #################################################################
 ################
-#'
-#'
 #' @export
 ################
 pcoa<-function(mat,plotit=TRUE,...){

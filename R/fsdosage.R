@@ -1,9 +1,12 @@
 #####################################################
 #'
-#' @title Estimates F-statistics from dosage data
+#' Estimates F-statistics from dosage data
 #' 
-#' @description reports individual inbreeding coefficients, Population specific Fsts and Fiss from dosage data 
+#' 
+#' Reports individual inbreeding coefficients, Population specific Fsts and Fiss from dosage data 
+#' 
 #' @usage fs.dosage(dos, pop, matching = FALSE)
+#' 
 #' 
 #' @param dos either a matrix with snps columns and individuals in rows containing allelic dosage (number [0,1 or 2] of alternate alleles); 
 #'     or a square matrix with as many rows and columns as the number of individuals and containing the proportion of matching alleles
@@ -31,7 +34,7 @@
 #' }
 #'
 #'@export
-#'
+#######################################
 fs.dosage<-function (dos, pop, matching = FALSE)
  #estimates Fis and Fst per population and overall
  
@@ -86,11 +89,31 @@ fs.dosage<-function (dos, pop, matching = FALSE)
     all.res
 }
 
+#' Print function for fs.dosage 
+#' 
+#' @usage print.fs.dosage(x,...)
+#'  
+#' @param x a fs.dosage object
+#' @param ... further arguments to pass 
+#'    
+#' @method print fs.dosage    
+#' @export 
+#' 
 print.fs.dosage<-function(x,...){
-  print(list(x$Fs))
+  print(x$Fs)
   invisible(x)
 }
-  
+
+#' Plot function for fs.dosage 
+#' 
+#' @usage plot.fs.dosage(x,...)
+#'  
+#' @param x a fs.dosage object
+#' @param ... further arguments to pass 
+#'    
+#' @method plot fs.dosage    
+#' @export 
+#' 
 plot.fs.dosage<-function(x,...){
   par(mfrow=c(2,2))
   boxplot(x$Fi,xlab="pop",ylab=expression(F[i]),main="Individual Inbreeding coeff.")

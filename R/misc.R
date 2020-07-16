@@ -1,3 +1,6 @@
+################
+#'@export
+################
 "read.fstat" <-
 function (fname, na.s = c("0","00","000","0000","00000","000000","NA"))
 {
@@ -11,6 +14,9 @@ names(dat)<-lnames
 return(dat)
 }
 ############################################################################################
+################
+#' @export
+################
 getal<-function(data){
         #transform a table of genotypes into a table of alleles
 		#following anders Goncalves suggestion, replaced nbpop<-max(dat[,1]) with length(unique(dat[,1]))
@@ -43,6 +49,9 @@ names(data.al)[-c(1:2)]<-names(data)[-1]
 return(data.al)
 }
 #########################################################################
+################
+#' @export
+################
 getal.b<-function(data){
   if (is.genind(data)) data<-genind2hierfstat(data)
   
@@ -61,6 +70,9 @@ y[,,2]<-as.matrix(secal)
 return(y)
 }
 #########################################################################
+################
+#' @export
+################
 pop.freq<-function(data,diploid=TRUE)
 {
 if (is.genind(data)) data<-genind2hierfstat(data)
@@ -89,6 +101,9 @@ else stop("error in frequency estimation. Exiting")
 return(all.freq)
 }
 #########################################################################
+################
+#' @export
+################
 ind.count<-function(data){
  dum<-function(x){
   a<-which(!is.na(x))
@@ -100,7 +115,7 @@ ind.count<-function(data){
 apply(data[,-1],2,dum)
 }
 #########################################################################
-  ind.count.n<-function(data){
+ind.count.n<-function(data){
   #should replace ind.count for ill behaved loci, e.g. many weird alleles
     dum<-function(x){
       a<-!is.na(x)
@@ -114,6 +129,9 @@ apply(data[,-1],2,dum)
   }
 
 #########################################################################
+################
+#' @export
+################
 allele.count<-function(data,diploid=TRUE)
 {
   if (is.genind(data)) data<-genind2hierfstat(data)
@@ -140,6 +158,9 @@ all.count<-dum
 return(all.count)
 }
 #########################################################################
+################
+#' @export
+################
 nb.alleles<-function(data,diploid=TRUE){
 if (is.genind(data)) data<-genind2hierfstat(data)
   
@@ -152,6 +173,9 @@ rownames(res)<-names(data)[-1]
 return(res)
 }
 ########################################################################
+################
+#' @export
+################
 allelic.richness<-function (data, min.n = NULL, diploid = TRUE) 
 {
     raref <- function(x) {
@@ -160,7 +184,7 @@ allelic.richness<-function (data, min.n = NULL, diploid = TRUE)
         dum[is.na(dum)] <- 0
         return(sum(1 - dum))
     }
-    if (adegenet::is.genind(data)) data<-genind2hierfstat(data)
+    if (is.genind(data)) data<-genind2hierfstat(data)
     if (dim(data)[2] == 2) 
       data <- data.frame(data, dummy.loc = data[, 2])
     nloc <- dim(data[, -1])[2]
@@ -181,6 +205,9 @@ allelic.richness<-function (data, min.n = NULL, diploid = TRUE)
     return(list(min.all = min.n, Ar = Ar))
 }
 #########################################################################
+################
+#' @export
+################
 basic.stats<-function(data,diploid=TRUE,digits=4){
 # TODO : define plot functions for basic.stats
 if (is.genind(data)) data<-genind2hierfstat(data)
@@ -257,49 +284,18 @@ class(all.res)<-"basic.stats"
 all.res
 }
 
+#' @method print basic.stats
+#' @export 
 print.basic.stats<-function(x,...){
 print(list(perloc=x$perloc,overall=x$overall))
 invisible(x)
 }
 
 #####################################################
-#'
-#' @title verifies it is a genind object
-#' 
-#' @description verifies it isa genind object (from adegenet)
-#' @usage is.genind(x)
-#' 
-#' @param a genind object
-#' 
-#' @return whether it is a genind object or not
-#' 
-#' @export 
+
 
 is.genind<-function (x) 
 {
   res <- (is(x, "genind") & validObject(x))
   return(res)
-}
-
-#################################################
-#'
-#' @title Converts bi-allelic SNPs from hierfstat format to dosage format
-#' 
-#' @description Converts bi-allelic SNPs hierfstat format to dosage format, the number of alternate allele copies at a locus for an individual, i.e. 11 -> 0; 12 or 21 >1 and 22 ->2
-#' 
-#' @usage biall2dos(dat)
-#' 
-#' @param dat a hierfstat data frame, with individuals in rows, the fisrst column with population label, and folowong columnes with individual genotypes encoded as 11, 12, 21 and 22
-#' 
-#' @return a matrix containing allelic dosages
-#' 
-#' @export
-#' 
-#########################################################
-
-biall2dos<-function(dat){
-  if (max(dat[,-1])>22) stop("genotypes must be encoded as 11, 12, 21 or 22")
-  
-  matrix(dat[,1]%/%10+dat[,-1]%%10-2)
-  
 }

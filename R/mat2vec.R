@@ -1,7 +1,7 @@
 #############################################################################################
-#' @title Creates a vector from a matrix
+#' Creates a vector from a matrix
 #'
-#' @description creates a vector from a matrix 
+#' creates a vector from a matrix 
 #'  
 #' @usage mat2vec(mat,upper=FALSE)
 #'
