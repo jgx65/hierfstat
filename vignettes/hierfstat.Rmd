@@ -9,13 +9,13 @@ vignette: >
   \usepackage{utf8}{inputenc}
 ---
 
-#Introduction
+# Introduction
 
 This vignette documents the latest developments in `hierfstat`. Refer to the other documents for an introduction to the package
 
-#Loading data
+# Loading data
 
-`hierfstat` can now read `genind` objects (from package `adegenet`). Note however that only some genetic data types will be properly converted and used.  The alleles need to be encoded either as integer (up to three digits per allele), or as nucleotides (`c("a","c","g","t","A","C","G","T")`).
+Data can be imported in `hierfstat`many different ways (fstat format, tabular format, dosage data, even VCF format), as described in the `import` vignette.  `hierfstat` can now also read `genind` objects (from package `adegenet`). Note however that only some genetic data types will be properly converted and used.  The alleles need to be encoded either as integer (up to three digits per allele), or as nucleotides (`c("a","c","g","t","A","C","G","T")`).
 
 ```{r,message=FALSE}
 library(adegenet)
@@ -26,7 +26,7 @@ library(hierfstat)
 data(nancycats) 
 is.genind(nancycats)
 ```
-#Descriptive statistics
+# Descriptive statistics
 
 The function you are the most likely to want using is `basic.stats` (it calculates $H_O$, $H_S$, $F_{IS}$, $F_{ST}$ etc...). 
 
@@ -42,7 +42,7 @@ You can also get e.g. `allele.count` and `allelic.richness`, a rarefied measure 
 boxplot(t(allelic.richness(nancycats)$Ar[1:5,])) #5 first loci
 ```
 
-#Populations 
+# Population statistics
 
 Population statistics are obtained through `basic.stats` or `wc` (`varcomp.glob` can also be used and will give the same result as `wc` for a one level hierarchy). For instance, $F_{IS}$ and $F_{ST}$ in the *Galba truncatula* dataset provided with `hierfstat` are obtained as:
 
@@ -52,15 +52,22 @@ wc(gtrunchier[,-2])
 varcomp.glob(data.frame(gtrunchier[,1]),gtrunchier[,-c(1:2)])$F #same
 ```
 
+
 Confidence intervals on these statistics can be obtained via `boot.vc`:
 
 ```{r}
 boot.vc(gtrunchier[,1],gtrunchier[,-c(1:2)])$ci
 ```
 
-`boot.ppfis`and `boot.ppfst` provide bootsrap confidence intervals (bootstrapping over loci) for population specific $F_{IS}$ and pairwise $F_{ST}$ respectively. 
+`boot.ppfis`and `boot.ppfst` provide bootstrap confidence intervals (bootstrapping over loci) for population specific $F_{IS}$ and pairwise $F_{ST}$ respectively. 
 
-#Genetic distances
+
+## Hierarchical analyses
+
+# Testing 
+
+
+## Genetic distances
 
 `genet.dist` estimates one of 10 different genetic distances between populations as described mostly in Takezaki & Nei (1996)
 
@@ -69,7 +76,7 @@ boot.vc(gtrunchier[,1],gtrunchier[,-c(1:2)])$ci
 ```
 
 
-#Population Principal coordinate analysis
+## Population Principal coordinate analysis
 
 Principal coordinate analysis can be carried out on this genetic distances:
 
@@ -77,7 +84,12 @@ Principal coordinate analysis can be carried out on this genetic distances:
 pcoa(as.matrix(Ds))
 ```
 
-#Individual PCA
+## Population specific $F_{ST}$s
+
+
+# Individual statistics
+
+## Individual PCA
 
 `hierfstat` has a function `indpca` carrying out Principal component analysis on individual genotypes
 
@@ -86,7 +98,13 @@ x<-indpca(gtrunchier[,-2],ind.labels=gtrunchier[,2])
 plot(x,col=gtrunchier[,1],cex=0.7)
 ```
 
-#Sex-biased dispersal
+
+## kinships, GRM  and individual inbreeding coefficients
+
+
+# Miscellaneous 
+
+## Sex-biased dispersal
 
 A new function to detect sex-biased dispersal, `sexbias.test` based on [Goudet et al. (2002)](http://onlinelibrary.wiley.com/doi/10.1046/j.1365-294X.2002.01496.x/abstract) has been implemented. 
 To illustrate its use, load the *Crocidura russula* data set. It consists of the genotypes and sexes of 140 shrews studied by [Favre et al. (1997)](http://rspb.royalsocietypublishing.org/content/264/1378/127). In this species, mark -recapture showed an excess of dispersal from females, an unusual pattern in mammals. This is confirmed using genetic data: 
@@ -98,14 +116,15 @@ boxplot(aic~crocrussula$sex)
 tapply(aic,crocrussula$sex,mean)
 sexbias.test(crocrussula$genot,crocrussula$sex)
 ```
-#Simulating genetic data
 
-It is now possible to simulate genetic data from a continent islands model, either at equilibrium via `sim.genot` or for a given number of generations via `sim.genot.t`.  These two functions have several arguments, allowing to look at the effect of population sizes, inbreeding, migration and mutation. the number of independant loci and number of alleles per loci can also be specified. It is also possible to simulate data from a finite island model using `sim.genot.t`, by specifying that argument `IIM` is `FALSE`.  
+# Simulating genetic data
+
+It is now possible to simulate genetic data from a continent islands model, either at equilibrium via `sim.genot` or for a given number of generations via `sim.genot.t`.  These two functions have several arguments, allowing to look at the effect of population sizes, inbreeding, migration and mutation. the number of independent loci and number of alleles per loci can also be specified. It is also possible to simulate data from a finite island model using `sim.genot.t`, by specifying that argument `IIM` is `FALSE`.  Last,`sim.genot.metpop.t` allows to simulate data with any migration matrix, population size and inbreeding level, while still assuming independence of the genetic markers. 
 
 
-#Exporting to other programs
+# Exporting to other programs
 
-`hierfstat`can now export to files suitable for [Bayescan](http://cmpg.unibe.ch/software/BayeScan/), [plink](http://pngu.mgh.harvard.edu/~purcell/plink/) and [structure](http://pritchardlab.stanford.edu/structure.html). Functions to import from these program can be found in `adegenet`. The functions to export to these programs are `write.bayescan`, `write.ped` and `write.struct`respectively.
+`hierfstat`can now export to files suitable for [Bayescan](http://cmpg.unibe.ch/software/BayeScan/), [plink](http://pngu.mgh.harvard.edu/~purcell/plink/) and [structure](http://pritchardlab.stanford.edu/structure.html). Functions to import from these program can be found in `adegenet`. The functions to export to these programs are `write.bayescan`, `write.ped` and `write.struct` respectively.
 
 
 

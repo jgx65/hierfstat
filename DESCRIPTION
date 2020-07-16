@@ -1,5 +1,5 @@
 Package: hierfstat
-Version: 0.1-02
+Version: 0.5-02
 Date: 2020-07-16
 Title: Estimation and Tests of Hierarchical F-Statistics
 Authors@R: c(person("Jerome","Goudet",role=c("aut","cre"),email="jerome.goudet@unil.ch"),
@@ -11,7 +11,7 @@ Author: Jerome Goudet [aut, cre],
     Thibaut Jombart [aut],
     Zhian N. Kamvar [ctb],
     Eric Archer [ctb],
-	Olivier Hardy [ctb],
+	Olivier Hardy [ctb]
 Maintainer: Jerome Goudet <jerome.goudet@unil.ch>
 Imports:
     ade4,adegenet,gaston,gtools,methods

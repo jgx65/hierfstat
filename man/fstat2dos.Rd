@@ -13,16 +13,21 @@ fstat2dos(dat,diploid=TRUE)
 }
 \value{
 a matrix with \eqn{\sum_l n_l^a} columns (where \eqn{n_l^a} is the number of alleles 
-at locus l), as many rows as individuals, and containing the number of copies (dosage) of the corresponding allele
+at locus l), as many rows as individuals, and containing the number of copies (dosage) of the 
+corresponding allele
 }
 \description{
-Estimates populations (Population specific FST) or individual coancestries 
-and a bootstrap confidence interval, assuming random mating
+Converts a hierfstat genetic data frame to dosage. For each allele at each locus, 
+allelic dosage (number of copies of the allele) is reported. The column name is the allele 
+identifier
 }
 \examples{
 \dontrun{
 dat<-sim.genot(nbal=5,nbloc=10)
-dos<-fstat2dos(dat[,1])
+dos<-fstat2dos(dat[,-1])
 dim(dos) 
+wc(dat)
+fst.dosage(dos,pop=dat[,1])
+
 } 
 }

@@ -4,11 +4,13 @@
 \alias{biall2dos}
 \title{Converts bi-allelic SNPs from hierfstat format to dosage format}
 \usage{
-biall2dos(dat)
+biall2dos(dat,diploid=TRUE)
 }
 \arguments{
 \item{dat}{a hierfstat data frame without the first column (the population identifier), 
 individuals in rows, columns with individual genotypes encoded as 11, 12, 21 and 22}
+
+\item{diploid}{whether the data set is from a diploid organism}
 }
 \value{
 a matrix containing allelic dosages

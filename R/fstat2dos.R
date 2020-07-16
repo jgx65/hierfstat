@@ -68,7 +68,7 @@ as.matrix(allres)
 #' Converts bi-allelic SNPs hierfstat format to dosage format, the number of alternate allele copies at a locus
 #' for an individual, i.e. 11 -> 0; 12 or 21 >1 and 22 ->2
 #' 
-#' @usage biall2dos(dat)
+#' @usage biall2dos(dat,diploid=TRUE)
 #' 
 #' @param dat a hierfstat data frame without the first column (the population identifier), 
 #' individuals in rows, columns with individual genotypes encoded as 11, 12, 21 and 22
