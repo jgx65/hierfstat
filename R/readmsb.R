@@ -126,14 +126,14 @@ ms2dos<-function(fname){
   nsnps<-as.integer(unlist(lapply(strsplit(grep("segsites:",dat,value=TRUE),split=":"),function(x) x[[2]])))
   if (!is.null(nbp)) 
     pos<-round(unlist(lapply(lapply(strsplit(grep("positions",dat,value=T),split=":"),function(x) strsplit(x[[2]],split=" ")),function(y) as.numeric(y[[1]][-1])))*nbp,0)
-  dats1<-lapply(dats,strsplit,"")
+  else pos<-unlist(lapply(nsnps,function(x) 1:x))
+    dats1<-lapply(dats,strsplit,"")
   dats2<-lapply(dats1,function(x) matrix(as.integer(unlist(x)),nrow=nt,byrow=TRUE))
   alldat<-NULL
   for (i in 1:nrep)
     alldat<-cbind(alldat,dats2[[i]])
-  if (!is.null(nbp))
-    return(list(alldat=alldat,bim=data.frame(chr=rep(1:nrep,nsnps),pos=pos)))
-  else return(alldat)
+
+      return(list(alldat=alldat,bim=data.frame(chr=rep(1:nrep,nsnps),pos=pos)))
 }
 
 ####
