@@ -1,7 +1,8 @@
 #version 0.1-02 16.07.2020
--new function fs.dosage, with a plot method
+-new function fs.dosage, which estimates individual inbreeding coefficients, population Fis, population Fst (beta^X) and beta^{XY} with a plot method. Can use matching proportion rather than dosages (faster)
 -handling of missing data for dosage format 
 -conversion to bed format from ms using ms2bed
+-updated vignettes
 
 
 #version 0.04-30 21.09.2019
