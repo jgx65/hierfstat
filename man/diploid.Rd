@@ -12,7 +12,7 @@ Given in Weir, B.S. Genetic Data Analysis. Sinauer
 diploid
 }
 \description{
-A simpe diploid dataset, with allele encoded as one digit number
+A simple diploid dataset, with allele encoded as one digit number
 }
 \details{
 \describe{
@@ -25,5 +25,10 @@ A simpe diploid dataset, with allele encoded as one digit number
  
   ...
 }
+}
+\examples{
+data(diploid)
+basic.stats(diploid)
+
 }
 \keyword{datasets}

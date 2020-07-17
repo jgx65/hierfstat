@@ -12,7 +12,7 @@ generated with function sim.genot(nbal=99)
 cont.isl99
 }
 \description{
-A simpe diploid dataset, with alleles encoded as two digits numbers.  
+A simple diploid dataset, with alleles encoded as two digits numbers.  
 Up to 99 alleles per locus
 }
 \details{
@@ -26,5 +26,10 @@ Up to 99 alleles per locus
  
   ...
 }
+}
+\examples{
+data(cont.isl99)
+allele.count(cont.isl99)
+
 }
 \keyword{datasets}
