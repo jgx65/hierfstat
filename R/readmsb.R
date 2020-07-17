@@ -140,7 +140,7 @@ ms2dos<-function(fname){
 #' Import the output of the \code{ms} program in a \code{BED} object
 #' 
 #' Import the output of the \code{ms} program into a \code{BED} object, as defined in the 
-#' \href{https://cran.r-project.org/web/packages/gaston/gaston.pdf}{gaston} package
+#' \href{https://cran.r-project.org/web/packages/gaston}{gaston} package
 #' 
 #' @param  fname the name of the text file containing \code{ms} output
 #' 

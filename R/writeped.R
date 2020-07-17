@@ -1,6 +1,6 @@
 #' @title Write ped file plink analysis
 #' @description write a ped and a map file suitable for analysis with 
-#' \href{plink}{http://pngu.mgh.harvard.edu/~purcell/plink/} 
+#' \href{plink}{https://www.cog-genomics.org/plink2} 
 #' @usage write.ped(dat, ilab = NULL, pop = NULL, 
 #'         fname = "dat",na.str="0",f.id=NULL,m.id=NULL,loc.pos=NULL,sex=NULL) 
 #' @param dat a hierfstat data frame
@@ -14,8 +14,8 @@
 #' @param sex the individual sex. default to unknown
 #' @return a map file containing the loci positions 
 #' @return a ped file containing genotypes etc... 
-#' @references \href{http://www.ncbi.nlm.nih.gov/pmc/articles/PMC1950838/}{Purcell etal (2007) PLINK:} A Tool Set for Whole-Genome Association 
-#'  and Population-Based Linkage Analyses 81:559-575
+#' @references \href{https://academic.oup.com/gigascience/article/4/1/s13742-015-0047-8/2707533}{Chang etal (2015)} 
+#' Second-generation PLINK: rising to the challenge of larger and richer datasets 
 #' @export  
 ####################################################################################
 write.ped<-function (dat, ilab = NULL, pop = NULL, fname = "dat",na.str="0",f.id=NULL,m.id=NULL,loc.pos=NULL,sex=NULL) 

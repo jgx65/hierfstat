@@ -35,7 +35,7 @@
 #'   ...
 #' }
 #' @source generated with function sim.genot()
-"cont.isl"
+"contisl"
 #########################################################################
 #' A genetic dataset from a diploid organism in a continent-island model
 #' 
@@ -55,5 +55,5 @@
 #'   ...
 #' }
 #' @source generated with function sim.genot(nbal=99)
-"cont.isl99"
+"contisl99"
 ##########################################################################
