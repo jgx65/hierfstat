@@ -55,7 +55,7 @@ fs.dosage<-function (dos, pop, matching = FALSE)
 	npop<-length(x)
     wil <- lapply(x, function(z) which(pop == z))
 	Fi<-lapply(wil,function(x) Mii[x])
-    Fsts <- unlist(lapply(wil, function(x) mean(Mij[x, x], na.rm = T)))
+    Fsts <- unlist(lapply(wil, function(x) mean(Mij[x, x], na.rm = TRUE)))
 	Mb<-0.0
 	mMij<-matrix(numeric(npop^2),ncol=npop)
 # 	Mb.min<- 10000
@@ -63,7 +63,7 @@ fs.dosage<-function (dos, pop, matching = FALSE)
      p1 <- wil[[i]]
 	   for (j in 1:(i-1)){
 		    p2 <- wil[[j]]
-		    mMij[i,j]<-mMij[j,i]<-mean(Mij[p1,p2])
+		    mMij[i,j]<-mMij[j,i]<-mean(Mij[p1,p2],na.rm=TRUE)
 		    Mb<-Mb+mMij[i,j]
 		    #		Mb.min<-min(Mb.min,mean(Mij[p1,p2]))
     }}
