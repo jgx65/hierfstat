@@ -1,6 +1,6 @@
 #' A genetic dataset from a diploid organism
 #' 
-#' A simpe diploid dataset, with allele encoded as one digit number
+#' A simple diploid dataset, with allele encoded as one digit number
 #' 
 #'
 #a' @format A data frame with 44 rows and 6 columns:
@@ -14,12 +14,17 @@
 #'  
 #'   ...
 #' }
+#' 
+#' @examples 
+#' data(diploid)
+#' basic.stats(diploid)
+#' 
 #' @source Given in Weir, B.S. Genetic Data Analysis. Sinauer
 "diploid"
 ############################################################################
 #' A genetic dataset from a diploid organism in a continent-island model
 #' 
-#' A simpe diploid dataset, with allele encoded as one digit number.  
+#' A simple diploid dataset, with allele encoded as one digit number.  
 #' Up to 4 alleles per locus 
 #' 
 #'
@@ -34,12 +39,16 @@
 #'  
 #'   ...
 #' }
+#' @examples 
+#' data(cont.isl)
+#' allele.count(cont.isl)
+#' 
 #' @source generated with function sim.genot()
 "cont.isl"
 #########################################################################
 #' A genetic dataset from a diploid organism in a continent-island model
 #' 
-#' A simpe diploid dataset, with alleles encoded as two digits numbers.  
+#' A simple diploid dataset, with alleles encoded as two digits numbers.  
 #' Up to 99 alleles per locus 
 #' 
 #'
@@ -54,6 +63,11 @@
 #'  
 #'   ...
 #' }
+#' 
+#' @examples
+#' data(cont.isl99)
+#' allele.count(cont.isl99)
+#' 
 #' @source generated with function sim.genot(nbal=99)
 "cont.isl99"
 ##########################################################################
