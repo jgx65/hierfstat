@@ -92,7 +92,7 @@ Variant Call Format (VCF) files have become a standard for genomic data. This is
 
 * The easiest is via the R package [gaston](https://cran.r-project.org/web/packages/gaston/index.html):
 
-```{r}
+```{r,message=FALSE}
 library(gaston)
 filepath <-system.file("extdata", "LCT.vcf.gz", package="gaston")
 x1 <- read.vcf( filepath )
