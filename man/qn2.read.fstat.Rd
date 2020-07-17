@@ -30,9 +30,13 @@ Read QuantiNemo (\url{http://www2.unil.ch/popgen/softwares/quantinemo/}) genotyp
   sexbias.test(dat[[1]],sex=dat[[2]])
 }
 \references{
-\href{http://www2.unil.ch/popgen/softwares/quantinemo/2008_Neuenschwander_et_al_BioInf_quantiNEMO.pdf}{Neuenschwander S, Hospital F, Guillaume F, Goudet J (2008)} 
- quantiNEMO: an individual-based program to simulate quantitative traits with explicit 
- genetic architecture in a dynamic metapopulation Bioinformatics 24, 1552-1553.
+\href{https://pubmed.ncbi.nlm.nih.gov/30816926/}{Neuenschwander S, Michaud F, Goudet J (2019)} 
+QuantiNemo 2: a Swiss knife to simulate complex demographic and genetic scenarios, 
+forward and backward in time. Bioinformatics 35:886
+
+\href{https://academic.oup.com/bioinformatics/article/24/13/1552/237901}{Neuenschwander S, Hospital F, Guillaume F, Goudet J (2008)} 
+quantiNEMO: an individual-based program to simulate quantitative traits with explicit 
+genetic architecture in a dynamic metapopulation. Bioinformatics 24:1552
 }
 \seealso{
 \code{\link{read.fstat}}

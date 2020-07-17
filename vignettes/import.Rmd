@@ -45,7 +45,7 @@ table(diploid[,1])
 As another example, we look at dataset `cont.isl99`, a data frame where alleles are encoded as 2 digits numbers:
 
 ```{r}
-data(contisl99)
+data(cont.isl99)
 head(cont.isl99)
 ```
 

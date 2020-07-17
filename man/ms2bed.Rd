@@ -14,5 +14,5 @@ a bed object
 }
 \description{
 Import the output of the \code{ms} program into a \code{BED} object, as defined in the 
-\href{https://cran.r-project.org/web/packages/gaston/gaston.pdf}{gaston} package
+\href{https://cran.r-project.org/web/packages/gaston}{gaston} package
 }

@@ -31,7 +31,6 @@ Description: Estimates hierarchical F-statistics from haploid or
 	for haploid and diploid genetic datasets in various formats, including inbreeding and 
 	coancestry coefficients, and population specific F-statistics following 
 	Weir and Goudet, 2017 <https://www.genetics.org/content/206/4/2085>. 
-	
 Depends:
     R (>= 2.10)
 License: GPL (>=2)

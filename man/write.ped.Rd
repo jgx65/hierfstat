@@ -33,9 +33,9 @@ a ped file containing genotypes etc...
 }
 \description{
 write a ped and a map file suitable for analysis with 
-\href{plink}{http://pngu.mgh.harvard.edu/~purcell/plink/}
+\href{plink}{https://www.cog-genomics.org/plink2}
 }
 \references{
-\href{http://www.ncbi.nlm.nih.gov/pmc/articles/PMC1950838/}{Purcell etal (2007) PLINK:} A Tool Set for Whole-Genome Association 
- and Population-Based Linkage Analyses 81:559-575
+\href{https://academic.oup.com/gigascience/article/4/1/s13742-015-0047-8/2707533}{Chang etal (2015)} 
+Second-generation PLINK: rising to the challenge of larger and richer datasets
 }
