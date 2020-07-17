@@ -1,17 +1,17 @@
 Package: hierfstat
-Version: 0.5-02
-Date: 2020-07-16
+Version: 0.5-03
+Date: 2020-07-17
 Title: Estimation and Tests of Hierarchical F-Statistics
 Authors@R: c(person("Jerome","Goudet",role=c("aut","cre"),email="jerome.goudet@unil.ch"),
              person("Thibaut","Jombart",role="aut",email="t.jombart@imperial.ac.uk"),
              person("Zhian N.","Kamvar",role="ctb"),
              person("Eric","Archer",role="ctb"),
-			 person("Olivier","Hardy",role="ctb"))
+             person("Olivier","Hardy",role="ctb"))
 Author: Jerome Goudet [aut, cre],
     Thibaut Jombart [aut],
     Zhian N. Kamvar [ctb],
     Eric Archer [ctb],
-	Olivier Hardy [ctb]
+    Olivier Hardy [ctb]
 Maintainer: Jerome Goudet <jerome.goudet@unil.ch>
 Imports:
     ade4,adegenet,gaston,gtools,methods
@@ -23,14 +23,14 @@ Suggests:
     testthat
 Description: Estimates hierarchical F-statistics from haploid or
     diploid genetic data with any numbers of levels in the hierarchy, following the
-    algorithm of Yang (Evolution, 1998, 52(4):950-956). 	
-	Tests via randomisations the significance
+    algorithm of Yang (Evolution(1998), 52:950).
+    Tests via randomisations the significance
     of each F and variance components, using the likelihood-ratio statistics G
-    (Goudet et al, 1996 <https://www.genetics.org/content/144/4/1933>).
-    Estimates genetic diversity statistics   
-	for haploid and diploid genetic datasets in various formats, including inbreeding and 
-	coancestry coefficients, and population specific F-statistics following 
-	Weir and Goudet, 2017 <https://www.genetics.org/content/206/4/2085>. 
+    (Goudet etal (1996) <https://www.genetics.org/content/144/4/1933>).
+    Estimates genetic diversity statistics
+    for haploid and diploid genetic datasets in various formats, including inbreeding and
+    coancestry coefficients, and population specific F-statistics following
+    Weir and Goudet (2017) <https://www.genetics.org/content/206/4/2085>.
 Depends:
     R (>= 2.10)
 License: GPL (>=2)

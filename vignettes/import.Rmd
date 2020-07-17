@@ -11,7 +11,7 @@ vignette: >
 
 # Introduction
 
-This vignette documents how to import or enter genotypic data for the `hierfstat` package.  Originally this package was written to estimate and test hierarchical F-statistics, but was then further developped and now include almost all features of the  [Fstat program](http://www2.unil.ch/popgen/softwares/fstat.htm) (no longer maintained), as well as several others. 
+This vignette documents how to import or enter genotypic data for the `hierfstat` package.  Originally this package was written to estimate and test hierarchical F-statistics, but was then further developped and now include almost all features of the  [Fstat program](https://www2.unil.ch/popgen/softwares/fstat.htm) (no longer maintained), as well as several others. 
 
 
 
@@ -144,7 +144,7 @@ head(dat$dat[,1:10])
 
 ## Importing from ms
 
-The program [ms](http://home.uchicago.edu/rhudson1/source/mksamples.html) of Hudson is commonly used to generate genomic data.   
+The program [ms](https://uchicago.app.box.com/s/l3e5uf13tikfjm7e1il1eujitlsjdx13) of Hudson is commonly used to generate genomic data.   
 
 I briefly discussed the `ms` software.  its output looks like this:
 
@@ -186,7 +186,7 @@ As a more interesting example, we can reuse the `eHGDP` dataset we've encountere
 ```{r}
 dat.HGDP<-genind2hierfstat(eHGDP)
 dos.HGDP<-fstat2dos(dat.HGDP[,-1])
-(fs.HGDP<-fs.dosage(dos.HGDP,pop=dat.HGDP[,1]))
+fs.HGDP<-fs.dosage(dos.HGDP,pop=dat.HGDP[,1])
 ```
 
 We may be interested in finding which populations have either a large $F_{ST}^P>0.15$ or a low one $F_{ST}^P <0$:
