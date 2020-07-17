@@ -88,23 +88,24 @@ head(genind2hierfstat(eHGDP))[,1:11]
 
 ## importing VCF files 
 
-Variant Call Format (VCF) files have become a standard for genomic data. This is the storage format used for the [1000 genomes](https://www.internationalgenome.org/) for instance. Importing VCF files can be done via several routes.
+[Variant Call Format (VCF)](https://samtools.github.io/hts-specs/) files have become a standard for genomic data. This is the storage format used for the [1000 genomes](https://www.internationalgenome.org/) for instance. VCF files can be imported in `hierfstat` using the function `read.VCF` , build from the `gaston` package function `read.vcf`:
 
-* The easiest is via the R package [gaston](https://cran.r-project.org/web/packages/gaston/index.html):
 
 ```{r,message=FALSE}
 library(gaston)
 filepath <-system.file("extdata", "LCT.vcf.gz", package="gaston")
-x1 <- read.vcf( filepath )
+x1 <- read.VCF( filepath )
 x1
 dim(x1)
 with(x1@snps,table(A1,A2))
 ```
 
-In this example, the VCF file contains only bi-allelic SNPs, but if it is not the case, some extra steps are needed to make sure only bi-allelic SNPs are kept, by pruning out the multi-allelic sites. `as.matrix(x1)` will then provide allelic dosages, suitable for analysis with several of the `hierfstat` functions. 
+by default, `read.VCF` keeps only the bi-allelic SNPs (whereas `gaston::read.vcf` all variants), but you can choose to keep all variant by setting the argument `BiAllelic` to FALSE.  
+
+`as.matrix(x1)` will then provide allelic dosages, suitable for analysis with several of the `hierfstat` functions. 
 
 
-* Another route is via the `SNPRelate` package, and its function `snpgdsVCF2GDS`. As the function writes to a fil, the two next code chunks will not be evaluated. 
+* Another route to import VCF files is via the `SNPRelate` package, and its function `snpgdsVCF2GDS` (As the function writes to a file, the two next code chunks will not be evaluated) 
 
 ```{r,eval=FALSE}
 library(SNPRelate)
@@ -123,7 +124,7 @@ x2<-2-snpgdsGetGeno(f)
 all.equal(colMeans(x2)/2,colMeans(as.matrix(x1)/2),check.names=FALSE) 
 ```
 
-* Last, we could import a `bed` file using `gaston`, and use an external program, `plink`, to convert the VCF file into a BED file. 
+* Last, we could import a `bed` file using `gaston`, and use an external program, [plink](https://www.cog-genomics.org/plink/2.0/), to convert the VCF file into a BED file. 
 
 These are only 3 possibilities that I find convenient and efficient, but many other exist, thus feel free to import dosage data into `hierfstat` by your preferred route. 
 
