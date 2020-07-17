@@ -11,7 +11,7 @@ vignette: >
 
 # Introduction
 
-This vignette documents the latest developments in `hierfstat`. Refer to the other documents for an introduction to the package
+This vignette documents the latest developments in `hierfstat`. Refer to the [hierfstat article](https://onlinelibrary.wiley.com/doi/full/10.1111/j.1471-8286.2004.00828.x) and a step by step  [tutorial](https://www.sciencedirect.com/science/article/pii/S1567134807001037) for an introduction to the package
 
 # Loading data
 
@@ -98,10 +98,10 @@ Functions `fs.dosage, fst.dosage`  and `fis.dosage` give estimates of population
 ```{r}
 gt.dos<-fstat2dos(gtrunchier[,-c(1:2)]) #converts fstat format to dosage 
 fs.gt<-fs.dosage(gt.dos,pop=gtrunchier[,2]) 
-image(1:29,1:29,fs.gt$FsM)
+image(1:29,1:29,fs.gt$FsM,main=expression(F[ST]^{XY}))
 ```
 
-
+We clearly see the block structure of patches within locality, with the second block along the diagonal showing higher similarity than the others. Blocks off the main diagonal are lighter, showing less genetic similarity between localities than within.     
 
 # Individual statistics
 
@@ -119,7 +119,11 @@ plot(x,col=gtrunchier[,1],cex=0.5)
 
 Functions `betas` and `beta.dosage` give estimates of individual inbreeding coefficients and kinships between individuals, the former for genotypes in the `fstat` format, the latter for dosage data:
 
+```{r}
+image(beta.dosage(gt.dos),main="kinship and inbreeding \n in Galba truncatula",xlab="",ylab="")
+```
 
+I do not advise using these individual statistics unless you have a large number of polymorphic markers ($\geq 1000$ at least, better if $\geq 10000$).
 
 # Simulating genetic data
 
@@ -128,7 +132,9 @@ It is now possible to simulate genetic data from a continent islands model, eith
 
 # Exporting to other programs
 
-`hierfstat`can now export to files suitable for [Bayescan](http://cmpg.unibe.ch/software/BayeScan/), [plink](https://www.cog-genomics.org/plink/2.0/) and [structure](https://web.stanford.edu/group/pritchardlab/structure.html). Functions to import from these program can be found in `adegenet`. The functions to export to these programs are `write.bayescan`, `write.ped` and `write.struct` respectively.
+(refer to [import vignette]("./import.html") to import data from other programs)
+
+Other than the `fstat` format, `hierfstat`can now export to files suitable for [Bayescan](http://cmpg.unibe.ch/software/BayeScan/), [plink](https://www.cog-genomics.org/plink/2.0/) and [structure](https://web.stanford.edu/group/pritchardlab/structure.html). The functions to export to these programs are `write.bayescan`, `write.ped` and `write.struct` respectively.
 
 
 # Miscellaneous 
