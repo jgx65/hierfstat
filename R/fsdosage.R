@@ -115,13 +115,13 @@ print.fs.dosage<-function(x,...){
 #' @export 
 #' 
 plot.fs.dosage<-function(x,...){
-  par(mfrow=c(2,2))
-  boxplot(x$Fi,xlab="pop",ylab=expression(F[i]),main="Individual Inbreeding coeff.")
+  graphics::par(mfrow=c(2,2))
+  graphics::boxplot(x$Fi,xlab="pop",ylab=expression(F[i]),main="Individual Inbreeding coeff.",...)
   np<-dim(x$FsM)[1]
-  image(1:np,1:np,x$FsM,main=expression(F[ST]^{XY}),xlab="Pop. X",ylab="Pop. Y")
-  barplot(x$Fs[1,],xlab="pop",ylab="Fis",main="")
-  barplot(x$Fs[2,],xlab="pop",ylab="Fst",main="")
-  par(mfrow=c(1,1))
+  graphics::image(1:np,1:np,x$FsM,main=expression(F[ST]^{XY}),xlab="Pop. X",ylab="Pop. Y")
+  graphics::barplot(x$Fs[1,],xlab="pop",ylab="Fis",main="",...)
+  graphics::barplot(x$Fs[2,],xlab="pop",ylab="Fst",main="",...)
+  graphics::par(mfrow=c(1,1))
 }
 
 

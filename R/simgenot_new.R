@@ -73,7 +73,7 @@ sim.freq.t<-function(nbal=4,nbloc=5,nbpop=3,N=1000,mig=0.001,mut=0.0001,f=0,t=10
 	Ne<-round(N/(1+f))
     for (it in 1:t) {
 	xn<-(xn*(1-mig)+mig*xini)*(1-mut)+mut*xmut
-	for (ip in 1:nbpop) xn[ip,]<-rmultinom(1,Ne[ip]*2,xn[ip,])/2/Ne[ip]
+	for (ip in 1:nbpop) xn[ip,]<-stats::rmultinom(1,Ne[ip]*2,xn[ip,])/2/Ne[ip]
 }
 pl[[il]]<-xn
 }
@@ -119,7 +119,7 @@ sim.freq.FIM.t<-function(nbal=4,nbloc=5,nbpop=3,N=1000,mig=0.001,mut=0.0001,f=0,
 	tot<-sum(Ne)
     for (it in 1:t) {
 	xn<-(xn*(1-mig)+mig*xpool)*(1-mut)+mut*xmut
-	for (ip in 1:nbpop) xn[ip,]<-rmultinom(1,Ne[ip]*2,xn[ip,])/2/Ne[ip]
+	for (ip in 1:nbpop) xn[ip,]<-stats::rmultinom(1,Ne[ip]*2,xn[ip,])/2/Ne[ip]
 	#xpool<-matrix(rep((N/tot)%*%xn,nbpop),nrow=nbpop,byrow=TRUE) #weighted
 	xpool<-matrix(rep((rep(1,nbpop)/nbpop)%*%xn,nbpop),nrow=nbpop,byrow=TRUE) #unweighted
 }
@@ -278,7 +278,7 @@ sim.freq.metapop.t<-function(nbal,nbloc,nbpop,N,mig,mut,f,t,epsilon=1e-8){
     tot<-sum(N)
     for (it in 1:t) {
       xn<-(mig%*%xn)*(1-mut)+mut*xmut 
-      for (ip in 1:nbpop) xn[ip,]<-rmultinom(1,N[ip]*2,xn[ip,])/2/N[ip]
+      for (ip in 1:nbpop) xn[ip,]<-stats::rmultinom(1,N[ip]*2,xn[ip,])/2/N[ip]
     }
     pl[[il]]<-xn
   }

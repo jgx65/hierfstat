@@ -45,9 +45,10 @@ invisible(x)
 
 plot.indpca<-function(x,eigen=FALSE,ax1=1,ax2=2,...){
 if(eigen){
-par(mfrow=c(2,1))
-plot(x$ipca$eig/sum(x$ipca$eig),type="h",xlab="axes",ylab="Prop. variance")
+graphics::par(mfrow=c(2,1))
+graphics::plot(x$ipca$eig/sum(x$ipca$eig),type="h",xlab="axes",ylab="Prop. variance")
 }
-plot(x$ipca$li[,ax1],x$ipca$li[,ax2],xlab=paste("Axis: ",ax1,sep=""),ylab=paste("Axis: ",ax2,sep=""),type="n",...)
-text(x$ipca$li[,ax1],x$ipca$li[,ax2],labels=x$ipca$rownames,...)
+graphics::plot(x$ipca$li[,ax1],x$ipca$li[,ax2],xlab=paste("Axis: ",ax1,sep=""),ylab=paste("Axis: ",ax2,sep=""),type="n",...)
+graphics::text(x$ipca$li[,ax1],x$ipca$li[,ax2],labels=x$ipca$rownames,...)
+if(eigen) graphics::par(mfrow=c(1,1))
 }

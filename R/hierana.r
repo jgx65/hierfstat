@@ -30,7 +30,7 @@ function (data, diploid = TRUE)
 "g.stats.glob" <-
 function (data, diploid = TRUE) 
 {
-    dum <- (1:dim(data)[1])[complete.cases(data[, -1])]
+    dum <- (1:dim(data)[1])[stats::complete.cases(data[, -1])]
     nl <- dim(data)[2] - 1
     g.stats.l <- vector(length = nl)
     g.stats <- 0

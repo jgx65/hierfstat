@@ -296,6 +296,6 @@ invisible(x)
 
 is.genind<-function (x) 
 {
-  res <- (is(x, "genind") & validObject(x))
+  res <- (methods::is(x, "genind") & methods::validObject(x))
   return(res)
 }

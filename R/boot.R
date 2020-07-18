@@ -13,7 +13,7 @@ boot.vc<-function (levels = levels, loci = loci, diploid = TRUE, nboot = 1000,
     }
     x <- varcomp.glob(levels = levels, loci = loci, diploid = diploid)
     x.loc <- data.frame(x$loc)
-    rows<-complete.cases(x.loc)
+    rows<-stats::complete.cases(x.loc)
     if(sum(rows)<5){
 	stop("Not enough polymorphic loci to bootstrap. Exiting")
     }
@@ -51,6 +51,6 @@ boot.vc<-function (levels = levels, loci = loci, diploid = TRUE, nboot = 1000,
     mat.res[, acc] <- mat.boot[, nlev]/nloc
     names.res[acc] <- "Hobs"
     names(mat.res) <- names.res
-    return(list(boot = round(mat.boot,digits=4), res = round(mat.res,digits=4), ci = round(apply(mat.res, 2, quantile, quant),digits=4)))
+    return(list(boot = round(mat.boot,digits=4), res = round(mat.res,digits=4), ci = round(apply(mat.res, 2, stats::quantile, quant),digits=4)))
 }
 

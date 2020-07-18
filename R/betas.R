@@ -42,14 +42,14 @@
 #'  
 #' #individual coancestries from the smallest population are large
 #' ind.coan<-betas(cbind(1:120,dat[,-1]),betaij=T)
-#' image(1:120,1:120,ind.coan,xlab="Inds",ylab="Inds")
+#' graphics::image(1:120,1:120,ind.coan,xlab="Inds",ylab="Inds")
 #' 
 #' #extracting individual inbreeding coefficients
 #' dat<-sim.genot(size=20,nbloc=100,nbal=20,mig=0.01,f=c(0,0.3,0.7))
 #' ind.coan<-betas(cbind(1:60,dat[,-1]),betaijT=TRUE)
 #' ind.inb<-(diag(ind.coan)*2-1)
-#' boxplot(ind.inb~dat[,1], main="Individual inbreeding coefficients")
-#' points(1:3,c(0,0.3,0.7),pch=16,col="red",cex=2)
+#' graphics::boxplot(ind.inb~dat[,1], main="Individual inbreeding coefficients")
+#' graphics::points(1:3,c(0,0.3,0.7),pch=16,col="red",cex=2)
 #' 
 #' }
 #'
@@ -122,7 +122,7 @@ betas<-function(dat,nboot=0,lim=c(0.025,0.975),diploid=TRUE,betaijT=FALSE){
           boot.bi[ib,ip]<-1-sum(Hi[ip,dum])/sum(Hb[dum])
           
     }}}
-    bi.ci<-apply(boot.bi,2,quantile,lim,na.rm=TRUE)
+    bi.ci<-apply(boot.bi,2,stats::quantile,lim,na.rm=TRUE)
     return(list(Hi=Hi,Hb=Hb,betaiovl=betai,betaW=betaW,ci=bi.ci))
   }
     

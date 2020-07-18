@@ -2,8 +2,8 @@
 #' 
 #' A simple diploid dataset, with allele encoded as one digit number
 #' 
-#'
-#a' @format A data frame with 44 rows and 6 columns:
+#' @usage data(diploid)
+#' @format A data frame with 44 rows and 6 columns:
 #' \describe{
 #'   \item{Pop}{Population identifier, from 1 to 6}
 #'   \item{loc-1}{genotype at loc-1 (only allele 4 present)}
@@ -27,8 +27,8 @@
 #' A simple diploid dataset, with allele encoded as one digit number.  
 #' Up to 4 alleles per locus 
 #' 
-#'
-#a' @format A data frame with 150 rows and 6 columns:
+#' @usage data(cont.isl)
+#' @format A data frame with 150 rows and 6 columns:
 #' \describe{
 #'   \item{Pop}{Population identifier, from 1 to 3}
 #'   \item{loc.1}{genotype at loc.1}
@@ -51,8 +51,8 @@
 #' A simple diploid dataset, with alleles encoded as two digits numbers.  
 #' Up to 99 alleles per locus 
 #' 
-#'
-#a' @format A data frame with 150 rows and 6 columns:
+#' @usage data(cont.isl99)
+#' @format A data frame with 150 rows and 6 columns:
 #' \describe{
 #'   \item{Pop}{Population identifier, from 1 to 3}
 #'   \item{loc.1}{genotype at loc.1}

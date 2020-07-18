@@ -171,14 +171,14 @@ eig.delta<-eigen(delta)
 vec.delta<-eig.delta$vectors*matrix(rep(eig.delta$values^0.5,n),nrow=n,byrow=TRUE)
 inertia<-eig.delta$values/sum(eig.delta$values)
 if (plotit) {
-par(mfrow=c(2,2))
-plot(1:n,inertia);abline(h=0)
-plot(vec.delta[,1],vec.delta[,2],type="n",xlab=paste("First axis (inertia=",round(inertia[1],2),")",sep=""),ylab=paste("Second axis (inertia=",round(inertia[2],2),")",sep=""))
-text(vec.delta[,1],vec.delta[,2],...)
-plot(vec.delta[,1],vec.delta[,3],type="n",xlab=paste("First axis (inertia=",round(inertia[1],2),")",sep=""),ylab=paste("Third axis (inertia=",round(inertia[3],2),")",sep=""))
-text(vec.delta[,1],vec.delta[,3],...)
+graphics::par(mfrow=c(2,2))
+graphics::plot(1:n,inertia);graphics::abline(h=0)
+graphics::plot(vec.delta[,1],vec.delta[,2],type="n",xlab=paste("First axis (inertia=",round(inertia[1],2),")",sep=""),ylab=paste("Second axis (inertia=",round(inertia[2],2),")",sep=""))
+graphics::text(vec.delta[,1],vec.delta[,2],...)
+graphics::plot(vec.delta[,1],vec.delta[,3],type="n",xlab=paste("First axis (inertia=",round(inertia[1],2),")",sep=""),ylab=paste("Third axis (inertia=",round(inertia[3],2),")",sep=""))
+graphics::text(vec.delta[,1],vec.delta[,3],...)
 
-par(mfrow=c(1,1))
+graphics::par(mfrow=c(1,1))
 }
 
 naxes<-min(100,sum(eig.delta$values>1.0e-7)) #to limit to max 100 axes

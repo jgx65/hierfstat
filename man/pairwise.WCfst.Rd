@@ -29,7 +29,7 @@ pairwise.WCfst(gtrunchier[,-2],diploid=TRUE)
 \references{
 Weir, B.S. (1996) Genetic Data Analysis II. Sinauer Associates.
 
-\href{http://www.jstor.org/stable/2408641?seq=1#references_tab_contents}{Weir B.S. and Cockerham C.C. (1984)} Estimating F-Statistics for the Analysis of Population Structure. Evolution 38:1358
+\href{http://www.jstor.org/stable/2408641}{Weir B.S. and Cockerham C.C. (1984)} Estimating F-Statistics for the Analysis of Population Structure. Evolution 38:1358
 }
 \seealso{
 \link{pairwise.neifst} \link{genet.dist}

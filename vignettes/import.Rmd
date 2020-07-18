@@ -88,7 +88,9 @@ head(genind2hierfstat(eHGDP))[,1:11]
 
 ## importing VCF files 
 
-[Variant Call Format (VCF)](https://samtools.github.io/hts-specs/) files have become a standard for genomic data. This is the storage format used for the [1000 genomes](https://www.internationalgenome.org/) for instance. VCF files can be imported in `hierfstat` using the function `read.VCF` , build from the `gaston` package function `read.vcf`:
+[Variant Call Format (VCF)](https://samtools.github.io/hts-specs/) files have become a standard for genomic data. This is the storage format used for the [1000 genomes](https://www.internationalgenome.org/) for instance. 
+
+* VCF files can be imported in `hierfstat` using the function `read.VCF`, built from the `gaston` package function `read.vcf`:
 
 
 ```{r,message=FALSE}
@@ -100,9 +102,9 @@ dim(x1)
 with(x1@snps,table(A1,A2))
 ```
 
-by default, `read.VCF` keeps only the bi-allelic SNPs (whereas `gaston::read.vcf` all variants), but you can choose to keep all variant by setting the argument `BiAllelic` to FALSE.  
+by default, `read.VCF` keeps only the bi-allelic SNPs (whereas `gaston::read.vcf` keeps all variants), but you can choose to keep all variant by setting the argument `BiAllelic` to FALSE.  
 
-`as.matrix(x1)` will then provide allelic dosages, suitable for analysis with several of the `hierfstat` functions. 
+`as.matrix(x1)` will then provide allelic dosages, suitable for analysis with several of the `hierfstat` functions, as described in the [hierfstat vignette]("./hierfstat.html"). 
 
 
 * Another route to import VCF files is via the `SNPRelate` package, and its function `snpgdsVCF2GDS` (As the function writes to a file, the two next code chunks will not be evaluated) 

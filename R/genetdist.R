@@ -11,8 +11,8 @@ genet.dist<-function(dat,diploid=TRUE,method="Dch"){
   if (is.na(method)) stop("Invalid distance method")
   if (method==-1) stop("Ambiguous distance method")
 
-  if (method==9) {gdist<-pairwise.neifst(dat,diploid); return(as.dist(gdist))}
-  if (method==10) {gdist<-pairwise.WCfst(dat,diploid);return(as.dist(gdist))}
+  if (method==9) {gdist<-pairwise.neifst(dat,diploid); return(stats::as.dist(gdist))}
+  if (method==10) {gdist<-pairwise.WCfst(dat,diploid);return(stats::as.dist(gdist))}
   
     
   pft<-pop.freq(dat,diploid)
@@ -63,5 +63,5 @@ genet.dist<-function(dat,diploid=TRUE,method="Dch"){
   if (method==6) gdist<-1/nlpp*apply(dist.loc,c(1,2),sum,na.rm=TRUE)
   if (method==7) gdist<-1/2/nlpp*apply(dist.loc,c(1,2),sum,na.rm=TRUE)
   if (method==8) gdist<-2/nlpp*apply(dist.loc,c(1,2),sum,na.rm=TRUE)
-  return(as.dist(gdist))      
+  return(stats::as.dist(gdist))      
 }

@@ -78,8 +78,8 @@ boot.ppfst<-function(dat=dat,nboot=100,quant=c(0.025,0.975),diploid=TRUE,...){
     bppfst[,,i]<-ovl[,,1]/apply(ovl,c(1,2),sum)
   }
   #browser()
-  ll<-apply(bppfst,c(1,2),quantile,quant[1],na.rm=TRUE)
-  hl<-apply(bppfst,c(1,2),quantile,quant[2],na.rm=TRUE)
+  ll<-apply(bppfst,c(1,2),stats::quantile,quant[1],na.rm=TRUE)
+  hl<-apply(bppfst,c(1,2),stats::quantile,quant[2],na.rm=TRUE)
   dimnames(ll)[[1]]<-dimnames(ll)[[2]]<-sort(x)
   dimnames(hl)<-dimnames(ll)
   res<-(list(call=cl,ll=ll,ul=hl,vc.per.loc=ppsl))
@@ -122,8 +122,8 @@ boot.ppfis<-function(dat=dat,nboot=100,quant=c(0.025,0.975),diploid=TRUE,dig=4,.
     x<-sample(nloc,replace=TRUE)
     my.boot[i,]<-1-colSums(Ho[x,],na.rm=TRUE)/colSums(Hs[x,],na.rm=TRUE)
   }
-  ll<-apply(my.boot,2,quantile,quant[1],na.rm=TRUE)
-  hl<-apply(my.boot,2,quantile,quant[2],na.rm=TRUE)
+  ll<-apply(my.boot,2,stats::quantile,quant[1],na.rm=TRUE)
+  hl<-apply(my.boot,2,stats::quantile,quant[2],na.rm=TRUE)
   res<-data.frame(ll=ll,hl=hl)
   return(list(call=cl,fis.ci=round(res,digits=dig)))
 }

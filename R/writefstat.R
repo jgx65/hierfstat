@@ -15,7 +15,7 @@ if (nu < 10) nd<-1 else {if (nu<100 ) nd<-2}
 write(c(np,nl,nu,nd),fname)
 write(names(dat)[-1],fname,append=TRUE,ncolumns=1)
 dat[is.na(dat)]<-0
-write.table(dat,fname,append=TRUE,row.names=FALSE,col.names=FALSE,quote=FALSE,sep="\t")
+utils::write.table(dat,fname,append=TRUE,row.names=FALSE,col.names=FALSE,quote=FALSE,sep="\t")
 }
 #################################################################################
 ##################

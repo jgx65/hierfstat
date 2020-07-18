@@ -126,8 +126,8 @@ aic<-AIc(dat)
 mAic1<-mean(aic[sex1])
 mAic2<-mean(aic[sex2])
 
-vAic1<-var(aic[sex1])
-vAic2<-var(aic[sex2])
+vAic1<-stats::var(aic[sex1])
+vAic2<-stats::var(aic[sex2])
 
 mAics<-data.frame(mAic1,mAic2)
 names(mAics)<-sexes
@@ -137,11 +137,11 @@ names(vAics)<-sexes
 
 if (is.null(nperm)){
   if (test==1){
-  tmAic<-t.test(aic[sex1],aic[sex2],alternative=alternative)
+  tmAic<-stats::t.test(aic[sex1],aic[sex2],alternative=alternative)
   res<-list(statistic=tmAic$statistic,p.value=tmAic$p.value)
   }
   if (test==2){
-    vAic<-var.test(aic[sex1],aic[sex2],alternative=alternative)
+    vAic<-stats::var.test(aic[sex1],aic[sex2],alternative=alternative)
     res<-list(statistic=vAic$statistic,p.value=vAic$p.value)
   }
   if (test==3 | test==4) stop("You must specify nperm for this test. Exiting")
@@ -150,11 +150,11 @@ else{
 res<-list()
 if (test==1){
 tstats<-numeric(nperm)
-tstats[1]<-t.test(aic[sex1],aic[sex2])$statistic
+tstats[1]<-stats::t.test(aic[sex1],aic[sex2])$statistic
 
 foo<-function(){
 dum<-samp.within(dat[,1])
-t.test(aic[dum][sex1],aic[dum][sex2])$statistic
+stats::t.test(aic[dum][sex1],aic[dum][sex2])$statistic
 }
 tstats[-1]<-replicate(nperm-1,foo())
 res$statistic<-tstats[1]
@@ -165,11 +165,11 @@ if (alt==3){res$p.value<-sum(tstats>=tstats[1])/nperm}
 
 if (test==2){
   fstats<-numeric(nperm)
-  fstats[1]<-var.test(aic[sex1],aic[sex2])$statistic
+  fstats[1]<-stats::var.test(aic[sex1],aic[sex2])$statistic
   
   foo<-function(){
     dum<-samp.within(dat[,1])
-    return(var.test(aic[dum][sex1],aic[dum][sex2])$statistic)
+    return(stats::var.test(aic[dum][sex1],aic[dum][sex2])$statistic)
   }
   fstats[-1]<-replicate(nperm-1,foo())
   res$statistic<-fstats[1]
@@ -212,19 +212,9 @@ if (test==4){
   if (alt==1){res$p.value<-sum(abs(fstats)>=abs(fstats[1]))/nperm}
   if (alt==2){res$p.value<-sum(fstats<=fstats[1])/nperm}
   if (alt==3){res$p.value<-sum(fstats>=fstats[1])/nperm}
+} 
   
 }
-  
-#if (plotit) {
-#par(mfrow=c(3,1))
-#yr<-c(floor(min(aic)),ceiling(max(aic)))
-#hist(aic[sex=="M"],breaks=yr[1]:yr[2],xlab="AIc Males",main="")
-#hist(aic[sex=="F"],breaks=yr[1]:yr[2],xlab="AIc Females",main="")
-#hist(tstats,xlab="T-statistic",main="Null distribution of T-stats");abline(v=tstats[1],col="red",lwd=2)
-#}
-#2 tailed for the time being
-}
-
 return(list(call=match.call(),statistic=res$statistic,p.value=res$p.value))
 
 }

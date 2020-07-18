@@ -36,7 +36,7 @@ write.ped<-function (dat, ilab = NULL, pop = NULL, fname = "dat",na.str="0",f.id
 	if(is.null(sex)) sex<-rep(0,nind)
     locnames <- paste("L", names(dat)[-1], sep = "")
 	mapf<-cbind(0,locnames,0,0)
-    write.table(mapf, paste(fname,".map",sep=""),quote=FALSE,sep="\t",row.names=FALSE,col.names=FALSE)
+    utils::write.table(mapf, paste(fname,".map",sep=""),quote=FALSE,sep="\t",row.names=FALSE,col.names=FALSE)
 	datn<-data.frame(fam.id=popid,ind.id=ind.id,f.id=f.id,m.id=m.id,sex=sex,pheno=rep(0,nind),ddum)
-	write.table(datn,paste(fname,".ped",sep=""),row.names=FALSE,col.names=FALSE,sep="\t",quote=FALSE)
+	utils::write.table(datn,paste(fname,".ped",sep=""),row.names=FALSE,col.names=FALSE,sep="\t",quote=FALSE)
 }
