@@ -22,7 +22,7 @@ Several functions have been written to simulate genetic data, or to import them 
 
 Weir, B.S. (1996) Genetic Data Analysis II. Sinauer Associates.
 
-\href{http://www.jstor.org/stable/2411227?seq=1#page_scan_tab_contents}{Yang, R.C. (1998)} Estimating hierarchical F-statistics. Evolution 52(4):950-956
+\href{https://www.jstor.org/stable/2411227}{Yang, R.C. (1998)} Estimating hierarchical F-statistics. Evolution 52(4):950-956
 
 
 }
