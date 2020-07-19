@@ -2,9 +2,21 @@
 % Please edit documentation in R/fsdosage.R
 \name{fs.dosage}
 \alias{fs.dosage}
+\alias{fst.dosage}
+\alias{fis.dosage}
+\alias{plot.fs.dosage}
+\alias{print.fs.dosage}
 \title{Estimates F-statistics from dosage data}
 \usage{
 fs.dosage(dos, pop, matching = FALSE)
+
+\method{plot}{fs.dosage}(x, ...)
+
+\method{print}{fs.dosage}(x, digits = 4, ...)
+
+fst.dosage(dos, pop, matching = FALSE)
+
+fis.dosage(dos, pop, matching = FALSE)
 }
 \arguments{
 \item{dos}{either a matrix with snps columns and individuals in rows containing allelic dosage (number [0,1 or 2] of alternate alleles); 
@@ -13,6 +25,12 @@ or a square matrix with as many rows and columns as the number of individuals an
 \item{pop}{a vector containing the identifier of the population to which the individual in the corresponding row belongs}
 
 \item{matching}{logical:TRUE if dos is a square matrix of allelic matching; FALSE otherwise}
+
+\item{x}{a fs.dosage object}
+
+\item{...}{further arguments to pass}
+
+\item{digits}{number of digits to print}
 }
 \value{
 Fi list of individual inbreeding coefficients, estimated with the reference being the population to which the individual belongs.
@@ -25,6 +43,13 @@ Fs The first row contains population specific and overall Fis, the second row po
 \description{
 Reports individual inbreeding coefficients, Population specific Fsts and Fiss from dosage data
 }
+\section{Methods (by generic)}{
+\itemize{
+\item \code{plot}: Plot function for fs.dosage class
+
+\item \code{print}: Print function for fs.dosage class
+}}
+
 \examples{
 \dontrun{
  dos<-matrix(sample(0:2,size=10000,replace=TRUE),ncol=100)

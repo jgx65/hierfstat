@@ -5,6 +5,7 @@
 #' 
 #' Reports individual inbreeding coefficients, Population specific Fsts and Fiss from dosage data 
 #' 
+#' @aliases fst.dosage fis.dosage
 #' @usage fs.dosage(dos, pop, matching = FALSE)
 #' 
 #' 
@@ -33,7 +34,7 @@
 #'  plot(fs.dosage(dos,pop=rep(1:5,each=20)))
 #' }
 #'
-#'@export
+#' @export
 #######################################
 fs.dosage<-function (dos, pop, matching = FALSE)
  #estimates Fis and Fst per population and overall
@@ -89,31 +90,11 @@ fs.dosage<-function (dos, pop, matching = FALSE)
     all.res
 }
 
-#' Print function for fs.dosage 
-#' 
-#' @usage print.fs.dosage(x,...)
-#'  
+#' @describeIn fs.dosage Plot function for fs.dosage class
 #' @param x a fs.dosage object
-#' @param ... further arguments to pass 
-#'    
-#' @method print fs.dosage    
-#' @export 
-#' 
-print.fs.dosage<-function(x,...){
-  print(x$Fs)
-  invisible(x)
-}
-
-#' Plot function for fs.dosage 
-#' 
-#' @usage plot.fs.dosage(x,...)
-#'  
-#' @param x a fs.dosage object
-#' @param ... further arguments to pass 
-#'    
+#' @param ... further arguments to pass
 #' @method plot fs.dosage    
 #' @export 
-#' 
 plot.fs.dosage<-function(x,...){
   graphics::par(mfrow=c(2,2))
   graphics::boxplot(x$Fi,xlab="pop",ylab=expression(F[i]),main="Individual Inbreeding coeff.",...)
@@ -125,42 +106,31 @@ plot.fs.dosage<-function(x,...){
 }
 
 
+#' @describeIn fs.dosage Print function for fs.dosage class 
+#' @inheritParams plot.fs.dosage
+#' @param digits number of digits to print
+#' @method print fs.dosage    
+#' @export 
+#' 
+print.fs.dosage<-function(x,digits=4,...){
+  print(round(x$Fs,digits=digits))
+  invisible(x)
+}
+
+
 ################
-#' Reports population Fsts from dosage data
-#' 
-#' Reports population Fsts from dosage data. see \link{fs.dosage}
-#' 
-#' @usage fst.dosage(dos, pop, matching = FALSE)
-#' 
-#' @param dos either a matrix with snps columns and individuals in rows containing allelic dosage (number [0,1 or 2] of alternate alleles); 
-#'     or a square matrix with as many rows and columns as the number of individuals and containing the proportion of matching alleles
-#' @param pop a vector containing the identifier of the population to which the individual in the corresponding row belongs
-#' @param matching logical:TRUE if dos is a square matrix of allelic matching; FALSE otherwise
-#' 
-#' @return  population specific and overall Fst.
+#' @rdname fs.dosage 
 #' @export
 ################
 
 
- fst.dosage<-function (dos, pop, matching = FALSE){
+ fst.dosage<-function(dos, pop, matching = FALSE){
    fs.dosage(dos,pop,matching)$Fs[2,]
  }
 
 
 ################
-#'  Reports population Fiss from dosage data
-#'
-#'Reports population Fiss from dosage data. see \link{fs.dosage}
-#'
-#'  @usage fis.dosage(dos, pop, matching = FALSE)
-#' 
-#' @param dos either a matrix with snps columns and individuals in rows containing allelic dosage (number [0,1 or 2] of alternate alleles); 
-#'     or a square matrix with as many rows and columns as the number of individuals and containing the proportion of matching alleles
-#' @param pop a vector containing the identifier of the population to which the individual in the corresponding row belongs
-#' @param matching logical:TRUE if dos is a square matrix of allelic matching; FALSE otherwise
-#' 
-#' @return  population specific and overall Fis.
-
+#' @rdname fs.dosage 
 #' @export
 ################
 

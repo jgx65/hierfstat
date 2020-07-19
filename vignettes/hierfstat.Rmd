@@ -15,7 +15,7 @@ This vignette documents the latest developments in `hierfstat`. Refer to the [hi
 
 # Loading data
 
-Data can be imported in `hierfstat`many different ways (fstat format, tabular format, dosage data, even VCF format), as described in the [import vignette]("./import.html").  `hierfstat` can now also read `genind` objects (from package `adegenet`). Note however that only some genetic data types will be properly converted and used.  The alleles need to be encoded either as integer (up to three digits per allele), or as nucleotides (`c("a","c","g","t","A","C","G","T")`).
+Data can be imported in `hierfstat`many different ways (fstat format, tabular format, dosage data, even VCF format), as described in the import vignette.  `hierfstat` can now also read `genind` objects (from package `adegenet`). Note however that only some genetic data types will be properly converted and used.  The alleles need to be encoded either as integer (up to three digits per allele), or as nucleotides (`c("a","c","g","t","A","C","G","T")`).
 
 ```{r,message=FALSE}
 library(adegenet)
@@ -123,7 +123,7 @@ Functions `betas` and `beta.dosage` give estimates of individual inbreeding coef
 image(beta.dosage(gt.dos),main="kinship and inbreeding \n in Galba truncatula",xlab="",ylab="")
 ```
 
-I do not advise using these individual statistics unless you have a large number of polymorphic markers ($\geq 1000$ at least, better if $\geq 10000$).
+This example is just for illustrating purposes, I do not advise using these individual statistics unless you have a large number of polymorphic markers ($\geq 1000$ at least, better if $\geq 10000$, see [Goudet, Kay & Weir (2018)](https://onlinelibrary.wiley.com/doi/full/10.1111/mec.14833)).
 
 # Simulating genetic data
 
@@ -132,16 +132,16 @@ It is now possible to simulate genetic data from a continent islands model, eith
 
 # Exporting to other programs
 
-(refer to [import vignette]("./import.html") to import data from other programs)
+(refer to the import vignette to import data from other programs)
 
-Other than the `fstat` format, `hierfstat`can now export to files suitable for [Bayescan](http://cmpg.unibe.ch/software/BayeScan/), [plink](https://www.cog-genomics.org/plink/2.0/) and [structure](https://web.stanford.edu/group/pritchardlab/structure.html). The functions to export to these programs are `write.bayescan`, `write.ped` and `write.struct` respectively.
+Other than the `fstat` format, `hierfstat`can now export to files in format suitable for [Bayescan](http://cmpg.unibe.ch/software/BayeScan/), [plink](https://www.cog-genomics.org/plink/2.0/) and [structure](https://web.stanford.edu/group/pritchardlab/structure.html). The functions to export to these programs are `write.bayescan`, `write.ped` and `write.struct` respectively.
 
 
 # Miscellaneous 
 
 ## Sex-biased dispersal
 
-A new function to detect sex-biased dispersal, `sexbias.test` based on [Goudet et al. (2002)](https://onlinelibrary.wiley.com/doi/10.1046/j.1365-294X.2002.01496.x/abstract) has been implemented. 
+A function to detect sex-biased dispersal, `sexbias.test` based on [Goudet et al. (2002)](https://onlinelibrary.wiley.com/doi/10.1046/j.1365-294X.2002.01496.x/abstract) has been implemented. 
 To illustrate its use, load the *Crocidura russula* data set. It consists of the genotypes and sexes of 140 shrews studied by [Favre et al. (1997)](https://rspb.royalsocietypublishing.org/content/264/1378/127). In this species, mark -recapture showed an excess of dispersal from females, an unusual pattern in mammals. This is confirmed using genetic data: 
 
 ```{r}
