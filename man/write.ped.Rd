@@ -2,7 +2,7 @@
 % Please edit documentation in R/writeped.R
 \name{write.ped}
 \alias{write.ped}
-\title{Write ped file plink analysis}
+\title{Write ped file for analyses with PLINK}
 \usage{
 write.ped(dat, ilab = NULL, pop = NULL, 
         fname = "dat",na.str="0",f.id=NULL,m.id=NULL,loc.pos=NULL,sex=NULL)
@@ -33,7 +33,7 @@ a ped file containing genotypes etc...
 }
 \description{
 write a ped and a map file suitable for analysis with 
-PLINK
+\href{https://www.cog-genomics.org/plink2}{PLINK}
 }
 \references{
 \href{https://academic.oup.com/gigascience/article/4/1/s13742-015-0047-8/2707533}{Chang et al. (2015)} 

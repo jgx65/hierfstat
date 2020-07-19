@@ -1,6 +1,6 @@
 Package: hierfstat
-Version: 0.5-04
-Date: 2020-07-17
+Version: 0.5-05
+Date: 2020-07-19
 Title: Estimation and Tests of Hierarchical F-Statistics
 Authors@R: c(person("Jerome","Goudet",role=c("aut","cre"),email="jerome.goudet@unil.ch"),
              person("Thibaut","Jombart",role="aut",email="t.jombart@imperial.ac.uk"),
@@ -26,7 +26,7 @@ Description: Estimates hierarchical F-statistics from haploid or
     algorithm of Yang (Evolution(1998), 52:950).
     Tests via randomisations the significance
     of each F and variance components, using the likelihood-ratio statistics G
-    (Goudet etal (1996) <https://www.genetics.org/content/144/4/1933>).
+    (Goudet et al. (1996) <https://www.genetics.org/content/144/4/1933>).
     Estimates genetic diversity statistics
     for haploid and diploid genetic datasets in various formats, including inbreeding and
     coancestry coefficients, and population specific F-statistics following
