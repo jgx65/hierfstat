@@ -48,7 +48,10 @@
 beta.dosage <- function (dos, inb = TRUE, Mb = FALSE) {
   #dos is a data frame with individuals in rows and allelic dosage for each locus in colums  
   #uses matching proba -same equation as for population i.e. Mij=[xiXj+(2-xi)(2-xj)]/4
-  dos <- as.matrix(dos)
+  if(!is.matrix(dos)){
+  if(class(dos)[[1]]=="bed.matrix") dos<-gaston::as.matrix(dos) 
+  else dos <- as.matrix(dos)
+  }
   lims <- range(dos, na.rm = TRUE)
   if ((lims[2] > 2) | (lims[1] < 0)) 
     stop("input dosage matrix should contains only 0, 1 and 2s")

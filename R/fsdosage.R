@@ -97,7 +97,7 @@ fs.dosage<-function (dos, pop, matching = FALSE)
 #' @export 
 plot.fs.dosage<-function(x,...){
   graphics::par(mfrow=c(2,2))
-  graphics::boxplot(x$Fi,xlab="pop",ylab=expression(F[i]),main="Individual Inbreeding coeff.",...)
+  graphics::boxplot(x$Fi,xlab="pop",ylab=expression(F[i]),main="Ind. Inb. coeff.",...)
   np<-dim(x$FsM)[1]
   graphics::image(1:np,1:np,x$FsM,main=expression(F[ST]^{XY}),xlab="Pop. X",ylab="Pop. Y")
   graphics::barplot(x$Fs[1,1:np],xlab="pop",ylab="Fis",main="",...);graphics::abline(h=x$Fs[1,np+1])
@@ -113,7 +113,7 @@ plot.fs.dosage<-function(x,...){
 #' @export 
 #' 
 print.fs.dosage<-function(x,digits=4,...){
-  print(round(x$Fs,digits=digits))
+  print(round(x$Fs,digits=digits,...))
   invisible(x)
 }
 
