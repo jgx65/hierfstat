@@ -56,13 +56,18 @@ beta.dosage <- function (dos, inb = TRUE, Mb = FALSE) {
   if ((lims[2] > 2) | (lims[1] < 0)) 
     stop("input dosage matrix should contains only 0, 1 and 2s")
   
-  na <- matrix(rep(1,prod(dim(dos))),ncol=ncol(dos))
-  ina<-which(is.na(dos))
-  na[ina]<-0
-  dos[ina]<-1
-  
-  Mij <- 1/2 * (1+1/tcrossprod(na) * tcrossprod(dos-1)) 
-  
+  if(sum(is.na(dos))>0){
+    na <- matrix(rep(1,prod(dim(dos))),ncol=ncol(dos))
+    ina<-which(is.na(dos))
+    na[ina]<-0
+    dos[ina]<-1
+    Mij <- 1/2 * (1+1/tcrossprod(na) * tcrossprod(dos-1)) 
+  }
+  else {
+      nl<-dim(dos)[2]
+      Mij<-1/2 * (1+tcrossprod(dos-1)/nl)
+  }
+
   Mii <- diag(Mij)
   diag(Mij) <- NA
   MB <- mean(Mij, na.rm = T)
