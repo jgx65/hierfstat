@@ -35,7 +35,7 @@ or a square matrix with as many rows and columns as the number of individuals an
 \value{
 Fi list of individual inbreeding coefficients, estimated with the reference being the population to which the individual belongs.
 
-Fsm matrix containing population specific FSTs on the diagonal. The off diagonal elements contains the average of the kinships 
+FsM matrix containing population specific FSTs on the diagonal. The off diagonal elements contains the average of the kinships 
 for pairs of individuals, one from each population, relative to the mean kinship for pairs of individuals between populations.
 
 Fs The first row contains population specific and overall Fis, the second row population specific and overall Fst.

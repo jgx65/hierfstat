@@ -1,6 +1,6 @@
 #' @title Write ped file plink analysis
 #' @description write a ped and a map file suitable for analysis with 
-#' \href{plink}{https://www.cog-genomics.org/plink2} 
+#' \href{https://www.cog-genomics.org/plink2}{PLINK} 
 #' @usage write.ped(dat, ilab = NULL, pop = NULL, 
 #'         fname = "dat",na.str="0",f.id=NULL,m.id=NULL,loc.pos=NULL,sex=NULL) 
 #' @param dat a hierfstat data frame
@@ -14,7 +14,7 @@
 #' @param sex the individual sex. default to unknown
 #' @return a map file containing the loci positions 
 #' @return a ped file containing genotypes etc... 
-#' @references \href{https://academic.oup.com/gigascience/article/4/1/s13742-015-0047-8/2707533}{Chang etal (2015)} 
+#' @references \href{https://academic.oup.com/gigascience/article/4/1/s13742-015-0047-8/2707533}{Chang et al. (2015)} 
 #' Second-generation PLINK: rising to the challenge of larger and richer datasets 
 #' @export  
 ####################################################################################

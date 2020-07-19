@@ -33,9 +33,9 @@ a ped file containing genotypes etc...
 }
 \description{
 write a ped and a map file suitable for analysis with 
-\href{plink}{https://www.cog-genomics.org/plink2}
+PLINK
 }
 \references{
-\href{https://academic.oup.com/gigascience/article/4/1/s13742-015-0047-8/2707533}{Chang etal (2015)} 
+\href{https://academic.oup.com/gigascience/article/4/1/s13742-015-0047-8/2707533}{Chang et al. (2015)} 
 Second-generation PLINK: rising to the challenge of larger and richer datasets
 }

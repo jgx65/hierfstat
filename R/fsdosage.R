@@ -15,7 +15,7 @@
 #' @param matching logical:TRUE if dos is a square matrix of allelic matching; FALSE otherwise
 #' 
 #' @return Fi list of individual inbreeding coefficients, estimated with the reference being the population to which the individual belongs. 
-#' @return Fsm matrix containing population specific FSTs on the diagonal. The off diagonal elements contains the average of the kinships 
+#' @return FsM matrix containing population specific FSTs on the diagonal. The off diagonal elements contains the average of the kinships 
 #' for pairs of individuals, one from each population, relative to the mean kinship for pairs of individuals between populations. 
 #' @return Fs The first row contains population specific and overall Fis, the second row population specific and overall Fst.
 #' 
@@ -100,8 +100,8 @@ plot.fs.dosage<-function(x,...){
   graphics::boxplot(x$Fi,xlab="pop",ylab=expression(F[i]),main="Individual Inbreeding coeff.",...)
   np<-dim(x$FsM)[1]
   graphics::image(1:np,1:np,x$FsM,main=expression(F[ST]^{XY}),xlab="Pop. X",ylab="Pop. Y")
-  graphics::barplot(x$Fs[1,],xlab="pop",ylab="Fis",main="",...)
-  graphics::barplot(x$Fs[2,],xlab="pop",ylab="Fst",main="",...)
+  graphics::barplot(x$Fs[1,1:np],xlab="pop",ylab="Fis",main="",...);graphics::abline(h=x$Fs[1,np+1])
+  graphics::barplot(x$Fs[2,1:np],xlab="pop",ylab="Fst",main="",...);graphics::abline(h=x$Fs[2,np+1])
   graphics::par(mfrow=c(1,1))
 }
 

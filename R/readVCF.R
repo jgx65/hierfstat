@@ -11,7 +11,7 @@
 #' @param ... other arguments to pass to the function    
 #'     
 #'    
-#' @return  A \code{\link[gaston]{bed.matrix}}   
+#' @return  A \code{\link[gaston]{bed.matrix-class}} object   
 #' 
 #' @seealso \code{\link[gaston]{read.vcf}} 
 #' 

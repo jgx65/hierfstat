@@ -15,7 +15,7 @@ otherwise, all variant are kept}
 \item{...}{other arguments to pass to the function}
 }
 \value{
-A \code{\link[gaston]{bed.matrix}}
+A \code{\link[gaston]{bed.matrix-class}} object
 }
 \description{
 Reads a \url{https://samtools.github.io/hts-specs/}{Variant Call Format (VCF)} file into a BED object,
