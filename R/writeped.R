@@ -1,4 +1,4 @@
-#' @title Write ped file plink analysis
+#' @title Write ped file for analyses with PLINK
 #' @description write a ped and a map file suitable for analysis with 
 #' \href{https://www.cog-genomics.org/plink2}{PLINK} 
 #' @usage write.ped(dat, ilab = NULL, pop = NULL, 
