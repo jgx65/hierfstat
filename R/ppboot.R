@@ -127,3 +127,49 @@ boot.ppfis<-function(dat=dat,nboot=100,quant=c(0.025,0.975),diploid=TRUE,dig=4,.
   res<-data.frame(ll=ll,hl=hl)
   return(list(call=cl,fis.ci=round(res,digits=dig)))
 }
+###########################################################################
+#' Estimates bootstrap confidence intervals for pairwise betas FST estimates
+#' 
+#' Estimates bootstrap confidence intervals for pairwise betas FST estimates. 
+#'
+#' @usage boot.ppbetas(dat=dat,nboot=100,quant=c(0.025,0.975),diploid=TRUE,digits=4)
+#' 
+#' @param dat A data frame containing population of origin as the first column 
+#' and multi-locus genotypes in following columns
+#' @param nboot the number of bootstrap samples to draw
+#' @param quant the limit of the confidence intervals
+#' @param diploid whether the data is from a diploid (default) or haploid organism
+#' @param digits how many digits to print out
+#' 
+#' @return a matrix with upper limit of the bootstrap CI
+#' above the diagonal and lower limit below the diagonal
+#' 
+#' @seealso \link{betas} \link{pairwise.betas}
+#' 
+#' @examples
+#' \dontrun{
+#' data(gtrunchier)
+#' boot.ppbetas(gtrunchier[,-2])
+#' }
+#' @export
+#####################################################################
+boot.ppbetas<-function(dat=dat,nboot=100,quant=c(0.025,0.975),diploid=TRUE,digits=4){
+  if (is.genind(dat)) dat<-genind2hierfstat(dat)
+  dat<-dat[order(dat[,1]),]
+  pops<-unique(dat[,1])
+  npop<-length(pops)
+  fstmat <- matrix(nrow=npop,ncol=npop,dimnames=list(pops,pops))
+  if (is.factor(dat[,1])) {
+    dat[,1]<-as.numeric(dat[,1])
+    pops<-as.numeric(pops)
+  }
+  for(a in 2:npop){
+    for(b in 1:(a-1)){
+      subdat <- dat[dat[,1] == pops[a] | dat[,1]==pops[b],]
+      tmp<-betas(subdat,nboot=nboot,lim=quant,diploid=diploid)$ci[,3]
+      fstmat[a,b]<-tmp[1]
+      fstmat[b,a]<-tmp[2]
+    }
+  }
+ round(fstmat,digits = digits) 
+}

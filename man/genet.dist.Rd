@@ -43,7 +43,7 @@ A matrix of pairwise genetic distance
 
 Nei, M. (1987) Molecular Evolutionary Genetics. Columbia University Press
 
-Weir, B.S. and Cockerham C.C. (1984) Estimating F-Statistics for the Analysis of Population Structure 38:1358-1370 \url{http://www.jstor.org/stable/2408641}
+\href{https://onlinelibrary.wiley.com/doi/10.1111/j.1558-5646.1984.tb05657.x}{Weir B.S. and Cockerham C.C. (1984)} Estimating F-Statistics for the Analysis of Population Structure. Evolution 38:1358
 }
 
 \author{Jerome Goudet \email{jerome.goudet@unil.ch}}

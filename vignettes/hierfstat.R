@@ -29,8 +29,20 @@ boot.vc(gtrunchier[,1],gtrunchier[,-c(1:2)])$ci
 #  pcoa(as.matrix(Ds))
 
 ## ------------------------------------------------------------------------
+barplot(betas(nancycats)$betaiovl)
+
+
+## ------------------------------------------------------------------------
+gt.dos<-fstat2dos(gtrunchier[,-c(1:2)]) #converts fstat format to dosage 
+fs.gt<-fs.dosage(gt.dos,pop=gtrunchier[,2]) 
+image(1:29,1:29,fs.gt$FsM,main=expression(F[ST]^{XY}))
+
+## ------------------------------------------------------------------------
 x<-indpca(gtrunchier[,-2],ind.labels=gtrunchier[,2])
-plot(x,col=gtrunchier[,1],cex=0.7)
+plot(x,col=gtrunchier[,1],cex=0.5)
+
+## ------------------------------------------------------------------------
+image(beta.dosage(gt.dos),main="kinship and inbreeding \n in Galba truncatula",xlab="",ylab="")
 
 ## ------------------------------------------------------------------------
 data("crocrussula")

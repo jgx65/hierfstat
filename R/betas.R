@@ -14,7 +14,7 @@
 #' 
 #' @param dat data frame with genetic data and pop identifier
 #' @param nboot number of bootstrap samples.
-#' @param lim width of the bootstrap confidence interfal
+#' @param lim width of the bootstrap confidence interval
 #' @param diploid whether the data comes from a diploid organism
 #' @param betaijT whether to estimate individual coancestries
 #' 
@@ -23,7 +23,7 @@
 #' @return betaiovl Average \eqn{\beta_i} over loci (Population specific FSTs)
 #' @return betaW Average of the betaiovl (overall population FST)
 #' @return ci The bootstrap confidence interval of population specific FSTs
-#' (only if more than 100 bootsraps requested and if more than 10 loci are present)
+#' (only if more than 100 bootstraps requested AND if more than 10 loci are present)
 #' @return if betaijT=TRUE, return the matrix of pairwise coancestries only. 
 #' 
 #' 
@@ -31,7 +31,8 @@
 #' 
 #' @author Jerome Goudet \email{jerome.goudet@@unil.ch}
 #' 
-#' @references \href{http://biorxiv.org/content/early/2016/11/17/088260}{Weir and Goudet } A unified characterization of population structure and relatedness.
+#' @references \href{https://www.genetics.org/content/206/4/2085}{Weir and Goudet, 2017 (Genetics)} 
+#' A unified characterization of population structure and relatedness.
 #'
 #' 
 #' @examples
@@ -42,11 +43,11 @@
 #'  
 #' #individual coancestries from the smallest population are large
 #' ind.coan<-betas(cbind(1:120,dat[,-1]),betaij=T)
-#' graphics::image(1:120,1:120,ind.coan,xlab="Inds",ylab="Inds")
+#' graphics::image(1:120,1:120,ind.coan$betaij,xlab="Inds",ylab="Inds")
 #' 
 #' #extracting individual inbreeding coefficients
 #' dat<-sim.genot(size=20,nbloc=100,nbal=20,mig=0.01,f=c(0,0.3,0.7))
-#' ind.coan<-betas(cbind(1:60,dat[,-1]),betaijT=TRUE)
+#' ind.coan<-betas(cbind(1:60,dat[,-1]),betaijT=TRUE)$betaij
 #' ind.inb<-(diag(ind.coan)*2-1)
 #' graphics::boxplot(ind.inb~dat[,1], main="Individual inbreeding coefficients")
 #' graphics::points(1:3,c(0,0.3,0.7),pch=16,col="red",cex=2)
@@ -93,18 +94,22 @@ betas<-function(dat,nboot=0,lim=c(0.025,0.975),diploid=TRUE,betaijT=FALSE){
     for (il in 1:nl) H[,,il]<-pfr2[[il]]
     betaij<-1+apply(H,c(1,2),ratio.Mij.Hb)
  	rownames(betaij)<-colnames(betaij)<-inames
-   return(betaij)
+   all.res<-list(betaijT=betaijT,betaij=betaij)
   }
-  if (nboot==0){return(list(Hi=Hi,Hb=Hb,betaiovl=betai,betaW=betaW))}
-  if (nboot<100){
+  else {
+  if (nboot==0L){
+    all.res<-list(betaijT=betaijT,Hi=Hi,Hb=Hb,betaiovl=betai,betaW=betaW)
+  }
+  else{
+ 
+  if (nboot<100L){
     warning("Less than 100 bootstrap requested, can't estimate Conf. Int.")
-    return(list(Hi=Hi,Hb=Hb,betaiovl=betai,betaW=betaW))
+    all.res<-list(betaijT=betaijT,Hi=Hi,Hb=Hb,betaiovl=betai,betaW=betaW)
   }
-  else
-  {
-    if (nl<10) {
+
+    if (nl<10L) {
       warning("Less than 10 loci, can't estimate Conf. Int.")
-      return(list(Hi=Hi,Hb=Hb,betaiovl=betai,betaW=betaW))
+      all.res<-list(betaijT=betaijT,Hi=Hi,Hb=Hb,betaiovl=betai,betaW=betaW)
       }
     
     boot.bi<-matrix(numeric(nboot*np),nrow=nboot)
@@ -121,9 +126,41 @@ betas<-function(dat,nboot=0,lim=c(0.025,0.975),diploid=TRUE,betaijT=FALSE){
           dum<-sample(nls[[ip]],replace=TRUE)
           boot.bi[ib,ip]<-1-sum(Hi[ip,dum])/sum(Hb[dum])
           
-    }}}
-    bi.ci<-apply(boot.bi,2,stats::quantile,lim,na.rm=TRUE)
-    return(list(Hi=Hi,Hb=Hb,betaiovl=betai,betaW=betaW,ci=bi.ci))
-  }
+        }}}
+    boot.bW<-rowMeans(boot.bi)
+    bi.ci<-apply(cbind(boot.bi,boot.bW),2,stats::quantile,lim,na.rm=TRUE)
     
+    all.res<-list(betaijT=betaijT,Hi=Hi,Hb=Hb,betaiovl=betai,betaW=betaW,ci=bi.ci)
+  }}
+  
+class(all.res)<-"betas"    
+all.res
 }
+
+#' @describeIn betas print function for betas class
+#' @param x a betas object
+#' @param digits number of digits to print
+#' @param ... further arguments to pass to print
+#' 
+#' @method print betas
+#' @export
+#' 
+#' 
+####################################################################################
+print.betas<-function(x,digits=4,...){
+  if (x$betaijT) {cat("   ***Kinship coefficients*** \n \n ")
+                      print(round(x$betaij,digits=digits,...))}
+  else {
+    cat("   ***Population specific and Overall Fst*** \n\n")
+    res<-c(x$betaiovl,x$betaW)
+    names(res)<-c(names(x$betaiovl),"Overall")
+    print(res,digits=digits,...)
+    if (!is.null(x$ci)){
+      cat("\n   ***Bootstrap CI for population specific and overall FSTs*** \n\n")
+      colnames(x$ci)<-names(res)
+      print(x$ci,digits=digits,...)
+    }
+  }
+  invisible(x)
+}
+

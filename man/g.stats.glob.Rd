@@ -30,6 +30,7 @@ Switzerland
 }
 \seealso{\code{\link{g.stats}}, \code{\link{samp.within}},\code{\link{samp.between}}.}
 \examples{
+\dontrun{
 data(gtrunchier)
 attach(gtrunchier)
 nperm<-99
@@ -68,5 +69,6 @@ p.globs.p
 #Are alleles associated at random among localities, keeping patches as one unit?
 #Tests differentiation among localities
 p.globs.l 
+}
 }
 \keyword{univar}

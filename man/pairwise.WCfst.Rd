@@ -7,7 +7,8 @@
 pairwise.WCfst(dat,diploid=TRUE)
 }
 \arguments{
-\item{dat}{A data frame containing population of origin as the first column and multi-locus genotypes in following columns}
+\item{dat}{A data frame containing population of origin as the first column 
+and multi-locus genotypes in following columns}
 
 \item{diploid}{whether the data is from a diploid (default) or haploid organism}
 }
@@ -29,7 +30,7 @@ pairwise.WCfst(gtrunchier[,-2],diploid=TRUE)
 \references{
 Weir, B.S. (1996) Genetic Data Analysis II. Sinauer Associates.
 
-\href{http://www.jstor.org/stable/2408641}{Weir B.S. and Cockerham C.C. (1984)} Estimating F-Statistics for the Analysis of Population Structure. Evolution 38:1358
+\href{https://onlinelibrary.wiley.com/doi/10.1111/j.1558-5646.1984.tb05657.x}{Weir B.S. and Cockerham C.C. (1984)} Estimating F-Statistics for the Analysis of Population Structure. Evolution 38:1358
 }
 \seealso{
 \link{pairwise.neifst} \link{genet.dist}

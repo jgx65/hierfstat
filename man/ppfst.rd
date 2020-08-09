@@ -15,7 +15,7 @@
 \item{vc.per.loc}{for each pair of population, the variance components per locus}
 }
 \references{
-Weir, B.S. and Cockerham C.C. (1984) Estimating F-Statistics for the Analysis of Population Structure 38:1358-1370 \url{http://www.jstor.org/stable/2408641}
+\href{https://onlinelibrary.wiley.com/doi/10.1111/j.1558-5646.1984.tb05657.x}{Weir B.S. and Cockerham C.C. (1984)} Estimating F-Statistics for the Analysis of Population Structure. Evolution 38:1358
 
 Weir, B.S. (1996) Genetic Data Analysis II. Sinauer Associates.
 }

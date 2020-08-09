@@ -7,7 +7,8 @@
 pairwise.neifst(dat,diploid=TRUE)
 }
 \arguments{
-\item{dat}{A data frame containing population of origin as the first column and multi-locus genotypes in following columns}
+\item{dat}{A data frame containing population of origin as the first column and 
+multi-locus genotypes in following columns}
 
 \item{diploid}{whether the data is from a diploid (default) or haploid organism}
 }
@@ -31,7 +32,7 @@ pairwise.neifst(gtrunchier[,-2],diploid=TRUE)
 Nei, M. (1987) Molecular Evolutionary Genetics. Columbia University Press
 }
 \seealso{
-\link{pairwise.WCfst} \link{genet.dist}
+\link{pairwise.WCfst} \link{genet.dist} \link{basic.stats}
 }
 \author{
 Jerome Goudet \email{jerome.goudet@unil.ch}
