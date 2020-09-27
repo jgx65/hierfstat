@@ -38,7 +38,9 @@ Fi list of individual inbreeding coefficients, estimated with the reference bein
 FsM matrix containing population specific FSTs on the diagonal. The off diagonal elements contains the average of the kinships 
 for pairs of individuals, one from each population, relative to the mean kinship for pairs of individuals between populations.
 
-Fs The first row contains population specific and overall Fis, the second row population specific and overall Fst.
+Fs The first row contains population specific and overall Fis, the second row population specific 
+(average \eqn{\hat{\beta_{ST}^i}} over loci)  FSTs and overall Fst \eqn{\hat{\beta_{ST}}} (see Table 3 of 
+\href{https://www.genetics.org/content/206/4/2085}{Weir and Goudet, 2017 (Genetics)})
 }
 \description{
 Reports individual inbreeding coefficients, Population specific Fsts and Fiss from dosage data
@@ -57,6 +59,9 @@ Reports individual inbreeding coefficients, Population specific Fsts and Fiss fr
  plot(fs.dosage(dos,pop=rep(1:5,each=20)))
 }
 
+}
+\seealso{
+\code{\link{betas}}
 }
 \author{
 Jerome Goudet \email{jerome.goudet@unil.ch}

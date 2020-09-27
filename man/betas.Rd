@@ -31,9 +31,10 @@ Hi Within population gene diversities (complement to 1 of matching probabilities
 
 Hb Between populations gene diversities
 
-betaiovl Average \eqn{\beta_i} over loci (Population specific FSTs)
+betaiovl Average \eqn{\hat{\beta_{WT}^i}} over loci (Population specific FSTs), Table 3 of 
+\href{https://www.genetics.org/content/206/4/2085}{Weir and Goudet, 2017 (Genetics)}
 
-betaW Average of the betaiovl (overall population FST)
+betaW Average of the betaiovl \eqn{\hat{\beta_{WT}}} over loci (overall population FST)
 
 ci The bootstrap confidence interval of population specific FSTs
 (only if more than 100 bootstraps requested AND if more than 10 loci are present)
@@ -78,6 +79,10 @@ graphics::points(1:3,c(0,0.3,0.7),pch=16,col="red",cex=2)
 \references{
 \href{https://www.genetics.org/content/206/4/2085}{Weir and Goudet, 2017 (Genetics)} 
 A unified characterization of population structure and relatedness.
+}
+\seealso{
+\code{\link{fs.dosage}}, \code{\link{beta.dosage}} for Fst estimates (not assuming Random Mating) 
+and kinship estimates from dosage data, respectively
 }
 \author{
 Jerome Goudet \email{jerome.goudet@unil.ch}
