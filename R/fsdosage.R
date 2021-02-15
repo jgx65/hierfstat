@@ -17,6 +17,7 @@
 #' @return Fi list of individual inbreeding coefficients, estimated with the reference being the population to which the individual belongs. 
 #' @return FsM matrix containing population specific FSTs on the diagonal. The off diagonal elements contains the average of the kinships 
 #' for pairs of individuals, one from each population, relative to the mean kinship for pairs of individuals between populations. 
+#' @return Fst2x2 matrix containing pairwise FSTs
 #' @return Fs The first row contains population specific and overall Fis, the second row population specific 
 #' (average \eqn{\hat{\beta_{ST}^i}} over loci)  FSTs and overall Fst \eqn{\hat{\beta_{ST}}} (see Table 3 of 
 #' \href{https://www.genetics.org/content/206/4/2085}{Weir and Goudet, 2017 (Genetics)}) 
@@ -40,56 +41,57 @@
 #' @export
 #######################################
 fs.dosage<-function (dos, pop, matching = FALSE)
- #estimates Fis and Fst per population and overall
- 
 {
     if (!matching) {
-        tmp<-beta.dosage(dos,inb=FALSE,Mb=TRUE)
-        Mij<-with(tmp,betas*(1-MB)+MB)
+        tmp <- beta.dosage(dos, inb = FALSE, Mb = TRUE)
+        Mij <- with(tmp, betas * (1 - MB) + MB)
         Mii <- (diag(Mij)) * 2 - 1
         diag(Mij) <- NA
     }
     else {
         Mij <- dos
-        Mii <- diag(Mij)*2-1
+        Mii <- diag(Mij) * 2 - 1
         diag(Mij) <- NA
     }
     pop <- factor(pop)
     x <- levels(pop)
-	npop<-length(x)
+    npop <- length(x)
     wil <- lapply(x, function(z) which(pop == z))
-	Fi<-lapply(wil,function(x) Mii[x])
+    Fi <- lapply(wil, function(x) Mii[x])
     Fsts <- unlist(lapply(wil, function(x) mean(Mij[x, x], na.rm = TRUE)))
-	Mb<-0.0
-	mMij<-matrix(numeric(npop^2),ncol=npop)
-# 	Mb.min<- 10000
-   for (i in 2:npop) {
-     p1 <- wil[[i]]
-	   for (j in 1:(i-1)){
-		    p2 <- wil[[j]]
-		    mMij[i,j]<-mMij[j,i]<-mean(Mij[p1,p2],na.rm=TRUE)
-		    Mb<-Mb+mMij[i,j]
-		    #		Mb.min<-min(Mb.min,mean(Mij[p1,p2]))
-    }}
+    Mb <- 0
+    mMij <- matrix(numeric(npop^2), ncol = npop)
+    for (i in 2:npop) {
+        p1 <- wil[[i]]
+        for (j in 1:(i - 1)) {
+            p2 <- wil[[j]]
+            mMij[i, j] <- mMij[j, i] <- mean(Mij[p1, p2], na.rm = TRUE)
+            Mb <- Mb + mMij[i, j]
+        }
+    }
+
+    diag(mMij) <- Fsts
+    Fst2x2<-matrix(NA,ncol=npop,nrow=npop)
+    for (i in 2:npop)
+     for (j in 1:(i-1))  Fst2x2[i,j]<-Fst2x2[j,i]<-((mMij[i,i]+mMij[j,j])/2-mMij[i,j])/(1-mMij[i,j])
+	 
+    Mb <- Mb * 2/(npop * (npop - 1))
+    resM <- (mMij - Mb)/(1 - Mb)
+
+    rownames(resM) <- colnames(resM) <- levels(pop)
+	rownames(Fst2x2)<-colnames(Fst2x2)<-levels(pop)
 	
-    Mb <- Mb*2/(npop*(npop-1)) #mean(Mij, na.rm = T)
-    diag(mMij)<-Fsts
-    resM<-(mMij-Mb)/(1-Mb)
-    rownames(resM)<-colnames(resM) <- levels(pop)
-    #Fsts <- (Fsts - Mb)/(1 - Mb)
-	for (i in 1:npop) Fi[[i]]<-(Fi[[i]] -Fsts[[i]])/(1-Fsts[[i]])
-	names(Fi)<-as.character(x)
-	Fis<-unlist(lapply(Fi,mean,na.rm=TRUE))
-	Fis<-c(Fis,mean(Fis,na.rm=TRUE))
-	
-    Fsts<- c((Fsts-Mb)/(1-Mb), mean((Fsts-Mb)/(1-Mb), na.rm = TRUE)) #res.Mb
-#	res.Mb.min<-c((Fsts-Mb.min)/(1-Mb.min),mean((Fsts-Mb.min)/(1-Mb.min),na.rm=TRUE))
-#	res<-data.frame(rbind(res.Mb,res.Mb.min))
-    res<-rbind(Fis,Fsts) 
+    for (i in 1:npop) Fi[[i]] <- (Fi[[i]] - Fsts[[i]])/(1 - Fsts[[i]])
+    names(Fi) <- as.character(x)
+    Fis <- unlist(lapply(Fi, mean, na.rm = TRUE))
+    Fis <- c(Fis, mean(Fis, na.rm = TRUE))
+    Fsts <- c((Fsts - Mb)/(1 - Mb), mean((Fsts - Mb)/(1 - Mb),
+        na.rm = TRUE))
+    res <- rbind(Fis, Fsts)
     colnames(res) <- c(levels(pop), "All")
-	rownames(res)<-c("Fis","Fst")
-    all.res<-(list(Fi=Fi,FsM=resM,Fs=res))
-    class(all.res)<-"fs.dosage"
+    rownames(res) <- c("Fis", "Fst")
+    all.res <- (list(Fi = Fi, FsM = resM, Fst2x2 = Fst2x2, Fs = res))
+    class(all.res) <- "fs.dosage"
     all.res
 }
 
@@ -140,3 +142,12 @@ print.fs.dosage<-function(x,digits=4,...){
  fis.dosage<-function(dos, pop, matching = FALSE){
    fs.dosage(dos,pop,matching)$Fs[1,] 
  }
+ 
+################
+#' @rdname pairwise.fst.dosage
+#' @export
+#################
+
+pairwise.fst.dosage<-function(dos, pop, matching = FALSE){
+     fs.dosage(dos,pop,matching)$Fst2x2
+}
