@@ -1,6 +1,6 @@
 Package: hierfstat
-Version: 0.5-8
-Date: 2020-08-09
+Version: 0.5-9
+Date: 2021-02-15
 Title: Estimation and Tests of Hierarchical F-Statistics
 Authors@R: c(person("Jerome","Goudet",role=c("aut","cre"),email="jerome.goudet@unil.ch"),
              person("Thibaut","Jombart",role="aut",email="t.jombart@imperial.ac.uk"),

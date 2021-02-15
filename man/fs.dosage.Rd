@@ -4,6 +4,7 @@
 \alias{fs.dosage}
 \alias{fst.dosage}
 \alias{fis.dosage}
+\alias{pairwise.fst.dosage}
 \alias{plot.fs.dosage}
 \alias{print.fs.dosage}
 \title{Estimates F-statistics from dosage data}
@@ -37,6 +38,8 @@ Fi list of individual inbreeding coefficients, estimated with the reference bein
 
 FsM matrix containing population specific FSTs on the diagonal. The off diagonal elements contains the average of the kinships 
 for pairs of individuals, one from each population, relative to the mean kinship for pairs of individuals between populations.
+
+Fst2x2 matrix containing pairwise FSTs
 
 Fs The first row contains population specific and overall Fis, the second row population specific 
 (average \eqn{\hat{\beta_{ST}^i}} over loci)  FSTs and overall Fst \eqn{\hat{\beta_{ST}}} (see Table 3 of 

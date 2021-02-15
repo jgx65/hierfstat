@@ -5,7 +5,7 @@
 #' 
 #' Reports individual inbreeding coefficients, Population specific Fsts and Fiss from dosage data 
 #' 
-#' @aliases fst.dosage fis.dosage
+#' @aliases fst.dosage fis.dosage pairwise.fst.dosage
 #' @usage fs.dosage(dos, pop, matching = FALSE)
 #' 
 #' 

@@ -42,6 +42,19 @@ Following a suggestion from Olivier Hardy, missing data are removed from the est
 \dontrun{
  dos<-matrix(sample(0:2,size=10000,replace=TRUE),ncol=100)
  beta.dosage(dos,inb=TRUE)
+ 
+ #matrix of kinship/inbreeding coeff
+ data(gtrunchier)
+ beta.dosage(fstat2dos(gtrunchier[,-c(1:2)]))
+ 
+ #individual inbreeding coefficients
+ dat<-sim.genot(size=100,nbloc=100,nbal=20,mig=0.01,f=c(0,0.3,0.7))
+ hist(diag(beta.dosage(fstat2dos(dat[,-1]))),breaks=-10:100/100,main="",xlab="",ylab="")
+ abline(v=c(0.0,0.3,0.7),col="red")
+ #only 20 loci
+ hist(diag(beta.dosage(fstat2dos(dat[,2:21]))),breaks=-5:20/20,main="",xlab="",ylab="")
+ abline(v=c(0.0,0.3,0.7),col="red")
+ 
 }
 }
 \references{

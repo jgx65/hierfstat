@@ -36,11 +36,11 @@ if (min(data[,true.loci]%/%100,na.rm=TRUE)>=10 & max(data[,true.loci]%%100,na.rm
 if (max(data[,true.loci],na.rm=TRUE)<100) modulo<-10
 firstal<-data[,-1] %/% modulo
 secal<-data[,-1] %% modulo
-ind<-vector(length=0)
+ind<-NULL
 nbpop <- length(unique(data[,1]))
 for (i in sort(unique(data[,1]))) {
 dum<-1:sum(data[,1]==i)
-if (i==1) ind<-dum else ind<-c(ind,dum)
+ind<-c(ind,dum)
 }
 ind<-rep(ind,2)
 if (x[2]==2)  data.al<-data.frame(pop=rep(data[,1],2),ind=ind,al=c(firstal,secal))

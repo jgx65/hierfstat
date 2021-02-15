@@ -39,7 +39,7 @@ betaW Average of the betaiovl \eqn{\hat{\beta_{WT}}} over loci (overall populati
 ci The bootstrap confidence interval of population specific FSTs
 (only if more than 100 bootstraps requested AND if more than 10 loci are present)
 
-if betaijT=TRUE, return the matrix of pairwise coancestries only.
+if betaijT=TRUE, return the matrix of pairwise kinships only.
 }
 \description{
 Estimate populations (Population specific FST) or individual coancestries 
@@ -64,15 +64,8 @@ betas(dat,nboot=100)
  
 #individual coancestries from the smallest population are large
 ind.coan<-betas(cbind(1:120,dat[,-1]),betaij=T)
+diag(ind.coan$betaij)<-NA
 graphics::image(1:120,1:120,ind.coan$betaij,xlab="Inds",ylab="Inds")
-
-#extracting individual inbreeding coefficients
-dat<-sim.genot(size=20,nbloc=100,nbal=20,mig=0.01,f=c(0,0.3,0.7))
-ind.coan<-betas(cbind(1:60,dat[,-1]),betaijT=TRUE)$betaij
-ind.inb<-(diag(ind.coan)*2-1)
-graphics::boxplot(ind.inb~dat[,1], main="Individual inbreeding coefficients")
-graphics::points(1:3,c(0,0.3,0.7),pch=16,col="red",cex=2)
-
 }
 
 }
