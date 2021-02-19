@@ -29,37 +29,42 @@
 #' 
 #####################################################
 
-fstat2dos<-function(dat,diploid=TRUE){
-#dat is a matrix or data frame containing genotypes encoded in the fstat format
-#with nrow  individuals and ncol multiallelic loci
-#fstat2dos will convert this into a dosage matrix with nrow individuals and 
-#the number of columns corresponding to the sum of the number of alleles.  
-
-lnames<-colnames(dat)
-
-if(diploid)
-dat<-getal.b(dat)
-
-n.loc<-dim(dat)[2]
-
-al.list<-lapply(apply(dat,2,table),function(x) as.integer(names(x)))
-nb.al<-cumsum(unlist(lapply(al.list,length)))
-
-#res<-matrix(NA,nrow=dim(dat)[1],ncol=nb.al[length(nb.al)])
-
-tally<-function(x) sapply(al.list[[x]],function(y) rowSums(dat[,x,]==y))
-
-res<-lapply(1:n.loc,tally)
-
-
-if(!is.null(lnames)){lnames<-unlist(lapply(1:n.loc,function(x) paste(lnames[[x]],al.list[[x]],sep=".")))} 
-else {lnames<-unlist(1:n.loc,function(x) paste("l",x,al.list[[x]],sep="."))}
-
-allres<-NULL
-for (i in 1:n.loc) allres<-cbind(allres,res[[i]])
-colnames(allres)<-lnames
-as.matrix(allres)
+fstat2dos<-function (dat, diploid = TRUE) 
+{
+  if (diploid) 
+    dat <- getal.b(dat)
+  lnames <- colnames(dat)
+  n.loc <- dim(dat)[2]
+  #to avoid getting an array in al.list rather than a list, 
+  #when all loci have the same number if alleles
+  all.count.p.loc<-apply(dat, 2, table)
+  if (!is.list(all.count.p.loc)){
+      tmp<-dim(dat)
+      tmp[2]<-tmp[2]+1
+      dat.tmp<-array(data=0,dim=tmp)
+      dat.tmp[,-(n.loc+1),]<-dat
+      all.count.p.loc<-apply(dat.tmp,2,table)[-(n.loc+1)]
+      rm(dat.tmp)
+  }
+  
+  al.list <- lapply(all.count.p.loc, function(x) as.integer(names(x)))
+  nb.al <- cumsum(unlist(lapply(al.list, length)))
+  tally <- function(x) sapply(al.list[[x]], function(y) rowSums(dat[, 
+    x, ] == y))
+  res <- lapply(1:n.loc, tally)
+  if (!is.null(lnames)) {
+    lnames <- unlist(lapply(1:n.loc, function(x) paste(lnames[[x]], 
+      al.list[[x]], sep = ".")))
+  }
+  else {
+    lnames <- unlist(lapply(1:n.loc, function(x) paste("l", x, 
+      al.list[[x]], sep = ".")))
+  }
+  allres<-matrix(unlist(res),nrow=dim(dat)[1])
+  colnames(allres) <- lnames
+  as.matrix(allres)
 }
+
 
 #################################################
 #'
