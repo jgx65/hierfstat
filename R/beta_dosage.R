@@ -1,3 +1,46 @@
+#' Estimates matching between pairs of individuals
+#' 
+#' Estimates matching between pairs of individuals (for each locus, gives 1 if the two individuals are homozygous
+#' for the same allele, 0 if they are homozygous for a different allele, and 1/2 if at least one individual 
+#' is heterozygous. Matching is the average of these 0, 1/2 and 1s)
+#'
+#' This function is written for dosage data, i.e., how many doses of an allele (0, 1 or 2) an individual carries.
+#' It should be use for bi-allelic markers only (e.g. SNPs), although you might "force" a k multiallelic locus to k 
+#' biallelic loci (see \code{\link{fstat2dos}}). 
+#'
+#' @usage matching(dos)
+#'
+#' @param dos A matrix of 0, 1 and 2s with loci (SNPs) in columns and individuals in rows. missing values are allowed
+#' 
+#' @return a matrix of pairwise matching
+#' 
+#' @export
+
+matching<-function(dos){
+  if(!is.matrix(dos)){
+    if(class(dos)[[1]]=="bed.matrix") dos<-gaston::as.matrix(dos) 
+    else dos <- as.matrix(dos)
+  }
+  lims <- range(dos, na.rm = TRUE)
+  if ((lims[2] > 2) | (lims[1] < 0)) 
+    stop("input dosage matrix should contains only 0, 1 and 2s")
+  
+  if(sum(is.na(dos))>0){
+    na <- matrix(rep(1,prod(dim(dos))),ncol=ncol(dos))
+    ina<-which(is.na(dos))
+    na[ina]<-0
+    dos[ina]<-1
+    Mij <- 1/2 * (1+1/tcrossprod(na) * tcrossprod(dos-1)) 
+  }
+  else {
+    nl<-dim(dos)[2]
+    Mij<-1/2 * (1+tcrossprod(dos-1)/nl)
+  }
+Mij  
+}
+  
+
+
 #' Estimates pairwise kinships and individual inbreeding coefficients from dosage data
 #'
 #' Estimates pairwise kinships (coancestries) and individual inbreeding coefficient 
@@ -5,9 +48,9 @@
 #' 
 #' This function is written for dosage data, i.e., how many doses of an allele (0, 1 or 2) an individual carries.
 #' It should be use for bi-allelic markers only (e.g. SNPs), although you might "force" a k multiallelic locus to k biallelic
-#' loci. 
+#' loci (see \code{\link{fstat2dos}}). 
 #' 
-#' Matching proportion can be obtained by the following equation: \eqn{M=\beta*(1-Mb)+Mb} 
+#' Matching proportions can be obtained by the following equation: \eqn{M=\beta*(1-Mb)+Mb} 
 #' 
 #' By default (inb=TRUE) the inbreeding coefficient is returned on the main diagonal.  With inb=FALSE, self coancestries are reported. 
 #' 
@@ -62,25 +105,8 @@
 beta.dosage <- function (dos, inb = TRUE, Mb = FALSE) {
   #dos is a data frame with individuals in rows and allelic dosage for each locus in colums  
   #uses matching proba -same equation as for population i.e. Mij=[xiXj+(2-xi)(2-xj)]/4
-  if(!is.matrix(dos)){
-  if(class(dos)[[1]]=="bed.matrix") dos<-gaston::as.matrix(dos) 
-  else dos <- as.matrix(dos)
-  }
-  lims <- range(dos, na.rm = TRUE)
-  if ((lims[2] > 2) | (lims[1] < 0)) 
-    stop("input dosage matrix should contains only 0, 1 and 2s")
+  Mij<-matching(dos)
   
-  if(sum(is.na(dos))>0){
-    na <- matrix(rep(1,prod(dim(dos))),ncol=ncol(dos))
-    ina<-which(is.na(dos))
-    na[ina]<-0
-    dos[ina]<-1
-    Mij <- 1/2 * (1+1/tcrossprod(na) * tcrossprod(dos-1)) 
-  }
-  else {
-      nl<-dim(dos)[2]
-      Mij<-1/2 * (1+tcrossprod(dos-1)/nl)
-  }
 
   Mii <- diag(Mij)
   diag(Mij) <- NA

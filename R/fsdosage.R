@@ -43,8 +43,9 @@
 fs.dosage<-function (dos, pop, matching = FALSE)
 {
     if (!matching) {
-        tmp <- beta.dosage(dos, inb = FALSE, Mb = TRUE)
-        Mij <- with(tmp, betas * (1 - MB) + MB)
+        Mij<-matching(dos)
+#        tmp <- beta.dosage(dos, inb = FALSE, Mb = TRUE)
+#        Mij <- with(tmp, betas * (1 - MB) + MB)
         Mii <- (diag(Mij)) * 2 - 1
         diag(Mij) <- NA
     }
