@@ -53,15 +53,15 @@ return(data.al)
 #' @export
 ################
 getal.b<-function(data){
-  if (is.genind(data)) data<-genind2hierfstat(data)
+  if (is.genind(data)) data<-genind2hierfstat(data)[,-1]
   
 x<-dim(data)
-if (max(data[,-1],na.rm=TRUE)>1000000) stop("allele encoding with 3 digits maximum")
-if (max(data[,-1],na.rm=TRUE)<1000000) modulo<-1000
-if (max(data[,-1],na.rm=TRUE)<10000) {
-if (min(data[,-1]%/%100,na.rm=TRUE)>=10 & max(data[,2]%%100,na.rm=TRUE)<10) modulo<-1000 else modulo<-100
+if (max(data,na.rm=TRUE)>1000000) stop("allele encoding with 3 digits maximum")
+if (max(data,na.rm=TRUE)<1000000) modulo<-1000
+if (max(data,na.rm=TRUE)<10000) {
+if (min(data%/%100,na.rm=TRUE)>=10 & max(data[,2]%%100,na.rm=TRUE)<10) modulo<-1000 else modulo<-100
 }
-if (max(data[,-1],na.rm=TRUE)<100) modulo<-10
+if (max(data,na.rm=TRUE)<100) modulo<-10
 firstal<-data %/% modulo
 secal<-data %% modulo
 y<-array(dim=c(x,2))
