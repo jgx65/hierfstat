@@ -291,6 +291,23 @@ print(list(perloc=x$perloc,overall=x$overall))
 invisible(x)
 }
 
+################
+#' @rdname basic.stats 
+#' @export
+################
+Hs<-function(data,...){
+  colMeans(basic.stats(data,...)$Hs,na.rm=TRUE)
+}
+
+################
+#' @rdname basic.stats 
+#' @export
+################
+
+Ho<-function(data,...){
+  colMeans(basic.stats(data,...)$Ho,na.rm=TRUE)
+}  
+
 #####################################################
 
 

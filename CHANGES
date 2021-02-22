@@ -1,4 +1,5 @@
 #version 0.5-9 22.02.2021
+-added function Hs and Ho to produce mean population gene diversities and observed heterozygosity respectively
 -created function matching, which estimates matching or allele sharing between pairs of inividuals
 -modified beta.dosage and fs.dosage to use matching
 -fs.dosage now also estimates pairwise fst

@@ -1,5 +1,7 @@
 \name{basic.stats}
 \alias{basic.stats}
+\alias{Hs}
+\alias{Ho}
 \alias{print.basic.stats}
 \title{Basic statistics}
 \description{Estimates individual counts, allelic frequencies, observed heterozygosities and genetic diversities per locus and population.
@@ -97,5 +99,7 @@ number and are corrected for heterozygosity.
 \examples{
 data(gtrunchier)
 basic.stats(gtrunchier[,-1])
+Hs(gtrunchier[,-2])
+Ho(gtrunchier[,-2])
 }
 \keyword{univar}
