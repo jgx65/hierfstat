@@ -4,7 +4,8 @@
 \name{diploid}
 \alias{diploid}
 \title{A genetic dataset from a diploid organism}
-\format{A data frame with 44 rows and 6 columns:
+\format{
+A data frame with 44 rows and 6 columns:
 \describe{
   \item{Pop}{Population identifier, from 1 to 6}
   \item{loc-1}{genotype at loc-1 (only allele 4 present)}
@@ -14,7 +15,8 @@
   \item{loc-5}{genotype at loc-1 (only allele 4)}
  
   ...
-}}
+}
+}
 \source{
 Given in Weir, B.S. Genetic Data Analysis. Sinauer
 }

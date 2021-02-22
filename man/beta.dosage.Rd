@@ -27,9 +27,9 @@ using Weir and Goudet (2017) beta estimator.
 \details{
 This function is written for dosage data, i.e., how many doses of an allele (0, 1 or 2) an individual carries.
 It should be use for bi-allelic markers only (e.g. SNPs), although you might "force" a k multiallelic locus to k biallelic
-loci.
+loci (see \code{\link{fstat2dos}}). 
 
-Matching proportion can be obtained by the following equation: \eqn{M=\beta*(1-Mb)+Mb}
+Matching proportions can be obtained by the following equation: \eqn{M=\beta*(1-Mb)+Mb} 
 
 By default (inb=TRUE) the inbreeding coefficient is returned on the main diagonal.  With inb=FALSE, self coancestries are reported.
 

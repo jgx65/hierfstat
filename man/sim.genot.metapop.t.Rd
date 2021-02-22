@@ -44,7 +44,7 @@ and receives a proportion of migrant alleles \eqn{m_{ji}} from population \eqn{j
 }
 \details{
 In this model, \eqn{\theta_t} can be written as a function of population size 
-\eqn{N_i}, migration rate \eqn{m_{ij}}, mutation rate \eqn{\mu} and \eqn{\theta_{(t-1)}}.
+\eqn{N_i}, migration rate \eqn{m_{ij}}, mutation rate \eqn{\mu} and \eqn{\theta_{(t-1)}}.  
 
 The rational is as follows:
  

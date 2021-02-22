@@ -4,7 +4,8 @@
 \name{cont.isl99}
 \alias{cont.isl99}
 \title{A genetic dataset from a diploid organism in a continent-island model}
-\format{A data frame with 150 rows and 6 columns:
+\format{
+A data frame with 150 rows and 6 columns:
 \describe{
   \item{Pop}{Population identifier, from 1 to 3}
   \item{loc.1}{genotype at loc.1}
@@ -14,7 +15,8 @@
   \item{loc.5}{genotype at loc.5}
  
   ...
-}}
+}
+}
 \source{
 generated with function sim.genot(nbal=99)
 }

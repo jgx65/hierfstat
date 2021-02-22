@@ -106,9 +106,10 @@ plot.fs.dosage<-function(x,...){
   graphics::boxplot(x$Fi,xlab="pop",ylab=expression(F[i]),main="Ind. Inb. coeff.",...)
   np<-dim(x$FsM)[1]
   graphics::image(1:np,1:np,x$FsM,main=expression(F[ST]^{XY}),xlab="Pop. X",ylab="Pop. Y")
-  graphics::barplot(x$Fs[1,1:np],xlab="pop",ylab="Fis",main="",...);graphics::abline(h=x$Fs[1,np+1])
+#  graphics::barplot(x$Fs[1,1:np],xlab="pop",ylab="Fis",main="",...);graphics::abline(h=x$Fs[1,np+1])
+  graphics::image(1:np,1:np,x$Fst2x2,main=expression(F[ST]^{pairwise}),xlab="Pop. X",ylab="Pop. Y")
   graphics::barplot(x$Fs[2,1:np],xlab="pop",ylab="Fst",main="",...);graphics::abline(h=x$Fs[2,np+1])
-  graphics::par(mfrow=c(1,1))
+    graphics::par(mfrow=c(1,1))
 }
 
 
