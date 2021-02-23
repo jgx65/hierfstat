@@ -18,13 +18,22 @@ head(dip)
 library(adegenet)
 data(nancycats)
 head(genind2hierfstat(nancycats)[,1:10]) # only the first 10 loci
-#basic.stats(nancycats)
-#genet.dist(nancycats)
 data(H3N2)
 head(genind2hierfstat(H3N2,pop=rep(1,dim(H3N2@tab)[1]))[,1:10]) # only the first 10 positions
-#basic.stats(genind2hierfstat(H3N2,pop=rep(1,dim(H3N2@tab)[1])),diploid=FALSE)
 data(eHGDP)
 head(genind2hierfstat(eHGDP))[,1:11] 
+
+## ----message=FALSE-------------------------------------------------------
+#basic.stats(nancycats)
+hierfstat::Hs(nancycats) #mean populations gene diversities
+hierfstat::Ho(nancycats) # mean populations observed heterozygosities
+#genet.dist(nancycats)
+
+## ----message=FALSE-------------------------------------------------------
+obj <-read.snp(system.file("files/exampleSnpDat.snp",package="adegenet"), chunk=2,quiet=TRUE)
+
+as.matrix(obj)
+
 
 ## ----message=FALSE-------------------------------------------------------
 library(gaston)

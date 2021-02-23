@@ -7,6 +7,8 @@
 #' 
 #' @aliases fst.dosage fis.dosage pairwise.fst.dosage
 #' @usage fs.dosage(dos, pop, matching = FALSE)
+#' @usage pairwise.fst.dosage(dos, pop, matching = FALSE)
+#'  
 #' 
 #' 
 #' @param dos either a matrix with snps columns and individuals in rows containing allelic dosage (number [0,1 or 2] of alternate alleles); 
@@ -150,6 +152,6 @@ print.fs.dosage<-function(x,digits=4,...){
 #' @export
 #################
 
-pairwise.fst.dosage<-function(dos, pop, matching = FALSE){
+ pairwise.fst.dosage<-function(dos, pop, matching = FALSE){
      fs.dosage(dos,pop,matching)$Fst2x2
 }

@@ -11,6 +11,8 @@
 \usage{
 fs.dosage(dos, pop, matching = FALSE)
 
+pairwise.fst.dosage(dos, pop, matching = FALSE)
+
 \method{plot}{fs.dosage}(x, ...)
 
 \method{print}{fs.dosage}(x, digits = 4, ...)
