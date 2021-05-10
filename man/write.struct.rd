@@ -7,7 +7,7 @@
 \item{dat}{a genotype dataframe}
 \item{ilab}{an (optional) column with individual labels}
 \item{pop}{an (optional) column with population identifiers}
-\item{MARKERNAMES}{an (optional) row  with marker names}
+\item{MARKERNAMES}{whether to add a row  with marker names. If TRUE, takes the loci names from dat}
 \item{MISSING}{The code for missing alleles}
 \item{fname}{a string containing the file name (default to "dat.str")}}
 \value{a text file in the structure format}
