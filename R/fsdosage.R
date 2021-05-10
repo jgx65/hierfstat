@@ -3,11 +3,10 @@
 #' Estimates F-statistics from dosage data
 #' 
 #' 
-#' Reports individual inbreeding coefficients, Population specific Fsts and Fiss from dosage data 
+#' Reports individual inbreeding coefficients, Population specific and pairwise Fsts, and Fiss from dosage data 
 #' 
 #' @aliases fst.dosage fis.dosage pairwise.fst.dosage
 #' @usage fs.dosage(dos, pop, matching = FALSE)
-#' @usage pairwise.fst.dosage(dos, pop, matching = FALSE)
 #'  
 #' 
 #' 
@@ -148,7 +147,7 @@ print.fs.dosage<-function(x,digits=4,...){
  }
  
 ################
-#' @rdname pairwise.fst.dosage
+#' @rdname fs.dosage
 #' @export
 #################
 

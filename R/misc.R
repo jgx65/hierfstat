@@ -69,11 +69,19 @@ y[,,1]<-as.matrix(firstal)
 y[,,2]<-as.matrix(secal)
 return(y)
 }
+
 #########################################################################
 ################
 #' @export
 ################
-pop.freq<-function(data,diploid=TRUE)
+pop.freq<-function(dat,diploid=TRUE){
+  lapply(allele.count(dat,diploid),function(x) sweep(x,2,colSums(x,na.rm=TRUE),FUN="/"))
+}
+#########################################################################
+################
+
+################
+pop.freq.o<-function(data,diploid=TRUE)
 {
 if (is.genind(data)) data<-genind2hierfstat(data)
 nbloc<-dim(data)[2]-1
