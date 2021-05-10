@@ -81,9 +81,11 @@ if(!is.null(ilab)){
 
 
 if (MARKERNAMES) {
-  locnames<-paste("L",names(dat)[-1],sep="",collapse=" ")
+  locnames<-paste(names(dat)[-1],collapse=" ")
+  
   write(locnames,fname)
 }
+else write(NULL,fname)
 
 popid<-paste(ilab,pop,sep=" ")
 
