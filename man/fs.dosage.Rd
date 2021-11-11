@@ -11,8 +11,6 @@
 \usage{
 fs.dosage(dos, pop, matching = FALSE)
 
-pairwise.fst.dosage(dos, pop, matching = FALSE)
-
 \method{plot}{fs.dosage}(x, ...)
 
 \method{print}{fs.dosage}(x, digits = 4, ...)
@@ -20,6 +18,8 @@ pairwise.fst.dosage(dos, pop, matching = FALSE)
 fst.dosage(dos, pop, matching = FALSE)
 
 fis.dosage(dos, pop, matching = FALSE)
+
+pairwise.fst.dosage(dos, pop, matching = FALSE)
 }
 \arguments{
 \item{dos}{either a matrix with snps columns and individuals in rows containing allelic dosage (number [0,1 or 2] of alternate alleles); 
@@ -48,7 +48,7 @@ Fs The first row contains population specific and overall Fis, the second row po
 \href{https://www.genetics.org/content/206/4/2085}{Weir and Goudet, 2017 (Genetics)})
 }
 \description{
-Reports individual inbreeding coefficients, Population specific Fsts and Fiss from dosage data
+Reports individual inbreeding coefficients, Population specific and pairwise Fsts, and Fiss from dosage data
 }
 \section{Methods (by generic)}{
 \itemize{

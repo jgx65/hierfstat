@@ -8,9 +8,10 @@ write.ped(dat, ilab = NULL, pop = NULL,
         fname = "dat",na.str="0",f.id=NULL,m.id=NULL,loc.pos=NULL,sex=NULL)
 }
 \arguments{
-\item{dat}{a hierfstat data frame}
+\item{dat}{a hierfstat data frame. if pop=NULL, the first column should contain the population identifier, 
+otherwise it contains the first locus}
 
-\item{ilab}{individal labels}
+\item{ilab}{individual labels}
 
 \item{pop}{population id}
 
