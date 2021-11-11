@@ -63,5 +63,8 @@ genet.dist<-function(dat,diploid=TRUE,method="Dch"){
   if (method==6) gdist<-1/nlpp*apply(dist.loc,c(1,2),sum,na.rm=TRUE)
   if (method==7) gdist<-1/2/nlpp*apply(dist.loc,c(1,2),sum,na.rm=TRUE)
   if (method==8) gdist<-2/nlpp*apply(dist.loc,c(1,2),sum,na.rm=TRUE)
+  
+  dimnames(gdist)[[1]]<-dimnames(gdist)[[2]]<-names(table(dat[,1]))
   return(stats::as.dist(gdist))      
 }
+
