@@ -9,7 +9,7 @@ write.ped(dat, ilab = NULL, pop = NULL,
 }
 \arguments{
 \item{dat}{a hierfstat data frame. if pop=NULL, the first column should contain the population identifier, 
-otherwise it contains the first locus}
+otherwise it contains genotypes at the first locus}
 
 \item{ilab}{individual labels}
 

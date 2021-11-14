@@ -10,7 +10,8 @@
 #'
 #' @usage matching(dos)
 #'
-#' @param dos A matrix of 0, 1 and 2s with loci (SNPs) in columns and individuals in rows. missing values are allowed
+#' @param dos A matrix of 0, 1 and 2s with loci (SNPs) in columns and individuals in rows. 
+#' missing values are allowed
 #' 
 #' @return a matrix of pairwise matching
 #' 
@@ -52,24 +53,30 @@ Mij
 #' 
 #' Matching proportions can be obtained by the following equation: \eqn{M=\beta*(1-Mb)+Mb} 
 #' 
-#' By default (inb=TRUE) the inbreeding coefficient is returned on the main diagonal.  With inb=FALSE, self coancestries are reported. 
+#' By default (\code{inb=TRUE}) the inbreeding coefficient is returned on the main diagonal.  
+#' With \code{inb=FALSE}, self coancestries are reported. 
 #' 
-#' @usage beta.dosage(dos,inb=TRUE,Mb=FALSE)
+#' @usage beta.dosage(dos,inb=TRUE,Mb=FALSE,MATCHING=FALSE)
 #'
-#' @param dos A matrix of 0, 1 and 2s with loci (SNPs) in columns and individuals in rows. missing values are allowed
+#' @param dos A matrix of 0, 1 and 2s with loci (SNPs) in columns and individuals in rows. 
+#' Missing values are allowed
 #' @param inb whether individual inbreeding coefficient should be estimated (rather than self-coancestries)
 #' @param Mb whether to output the mean matching 
+#' @param MATCHING if \code{MATCHING=FALSE}, \code{dos} is a (ni x nl) dosage matrix; 
+#' if \code{MATCHING=TRUE}, dos is a (ni x ni) matrix 
+#' of matching proportions, as obtained from a call to the \code{\link{maching}} function 
 #' 
 #' @return if \code{Mb}=FALSE, a matrix of pairwise kinships and inbreeding coefficients (if \code{inb}=TRUE) or self-coancestries 
 #' (\code{inb}=FALSE);  
-#' if \code{Mb}=FALSE, a list with elements \code{inb} (whether inbreeding coefficients rather than kinships should 
+#' if \code{Mb}=TRUE, a list with elements \code{inb} (whether inbreeding coefficients rather than kinships should 
 #' be returned on the main diagonal),
 #' \code{MB} (the average off-diagonal matching) and \code{betas} the kinships or inbreeding coefficients.
 #'
 #' @details 
 #' Twice the betas with self-coancestries on the diagonal gives the Genomic Relationship Matrix (GRM)     
 #' 
-#' Following a suggestion from Olivier Hardy, missing data are removed from the estimation procedure, rather than imputed (this is taken care off automatically) 
+#' Following a suggestion from Olivier Hardy, missing data are removed from the estimation procedure, 
+#' rather than imputed (this is taken care off automatically) 
 #'
 #' @author Jerome Goudet \email{jerome.goudet@@unil.ch}
 #' @references 
@@ -102,10 +109,11 @@ Mij
 #' @export
 
 
-beta.dosage <- function (dos, inb = TRUE, Mb = FALSE) {
+beta.dosage <- function (dos, inb = TRUE, Mb = FALSE, MATCHING=FALSE) {
   #dos is a data frame with individuals in rows and allelic dosage for each locus in colums  
   #uses matching proba -same equation as for population i.e. Mij=[xiXj+(2-xi)(2-xj)]/4
-  Mij<-matching(dos)
+
+  if(!MATCHING)  {Mij<-matching(dos)} else Mij<-dos
   
 
   Mii <- diag(Mij)

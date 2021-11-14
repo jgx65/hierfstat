@@ -7,7 +7,8 @@
 matching(dos)
 }
 \arguments{
-\item{dos}{A matrix of 0, 1 and 2s with loci (SNPs) in columns and individuals in rows. missing values are allowed}
+\item{dos}{A matrix of 0, 1 and 2s with loci (SNPs) in columns and individuals in rows. 
+missing values are allowed}
 }
 \value{
 a matrix of pairwise matching
