@@ -27,6 +27,6 @@ pairwise.betas(gtrunchier[,-2],diploid=TRUE)
 \author{
 Jerome Goudet \email{jerome.goudet@unil.ch}
 
-\href{http://www.genetics.org/content/206/4/2085}{Weir, BS and Goudet J. 2017} A Unified Characterization 
+\href{https://www.genetics.org/content/206/4/2085}{Weir, BS and Goudet J. 2017} A Unified Characterization 
 of Population Structure and Relatedness. Genetics (2017) 206:2085
 }
