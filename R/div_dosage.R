@@ -69,9 +69,7 @@ if(is.null(L)) SegSites/a else 1/L*SegSites/a
 #' @references
 #' 
 #' \href{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1203831/}{Tajima F. 1989} 
-#' Statistical Method for Testing the Neutral Mutation Hypothesis by DNA Polymorphism. Genetics 123:585–595. 
-#' 
-#' @example 
+#' Statistical Method for Testing the Neutral Mutation Hypothesis by DNA Polymorphism. Genetics 123:585-595. 
 #' 
 #' 
 #####################################################
