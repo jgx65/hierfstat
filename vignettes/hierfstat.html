@@ -201,9 +201,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Confidence intervals on these statistics can be obtained via <code>boot.vc</code>:</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boot.vc</span>(gtrunchier[,<span class="dv">1</span>],gtrunchier[,<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>)])<span class="sc">$</span>ci</span></code></pre></div>
 <pre><code>##       H-Total F-Pop/Total F-Ind/Total  H-Pop F-Ind/Pop   Hobs
-## 2.5%   0.6575      0.4816      0.9045 0.2686    0.7684 0.0557
-## 50%    0.7485      0.5390      0.9149 0.3416    0.8153 0.0631
-## 97.5%  0.8162      0.6145      0.9265 0.4105    0.8497 0.0704</code></pre>
+## 2.5%   0.6676      0.4816      0.9045 0.2707    0.7677 0.0554
+## 50%    0.7453      0.5389      0.9146 0.3414    0.8145 0.0632
+## 97.5%  0.8163      0.6160      0.9270 0.4121    0.8497 0.0700</code></pre>
 <p><code>boot.ppfis</code>and <code>boot.ppfst</code> provide bootstrap confidence intervals (bootstrapping over loci) for population specific <span class="math inline">\(F_{IS}\)</span> and pairwise <span class="math inline">\(F_{ST}\)</span> respectively.</p>
 <div id="hierarchical-analyses" class="section level2">
 <h2>Hierarchical analyses</h2>
@@ -270,7 +270,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1>Miscellaneous</h1>
 <div id="sex-biased-dispersal" class="section level2">
 <h2>Sex-biased dispersal</h2>
-<p>A function to detect sex-biased dispersal, <code>sexbias.test</code> based on <a href="https://onlinelibrary.wiley.com/doi/10.1046/j.1365-294X.2002.01496.x/abstract">Goudet et al. (2002)</a> has been implemented. To illustrate its use, load the <em>Crocidura russula</em> data set. It consists of the genotypes and sexes of 140 shrews studied by <a href="https://rspb.royalsocietypublishing.org/content/264/1378/127">Favre et al. (1997)</a>. In this species, mark -recapture showed an excess of dispersal from females, an unusual pattern in mammals. This is confirmed using genetic data:</p>
+<p>A function to detect sex-biased dispersal, <code>sexbias.test</code> based on <a href="https://onlinelibrary.wiley.com/doi/abs/10.1046/j.1365-294X.2002.01496.x">Goudet et al. (2002)</a> has been implemented. To illustrate its use, load the <em>Crocidura russula</em> data set. It consists of the genotypes and sexes of 140 shrews studied by <a href="https://royalsocietypublishing.org/doi/10.1098/rspb.1997.0019">Favre et al. (1997)</a>. In this species, mark -recapture showed an excess of dispersal from females, an unusual pattern in mammals. This is confirmed using genetic data:</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;crocrussula&quot;</span>)</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>aic<span class="ot">&lt;-</span><span class="fu">AIc</span>(crocrussula<span class="sc">$</span>genot)</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(aic<span class="sc">~</span>crocrussula<span class="sc">$</span>sex)</span></code></pre></div>

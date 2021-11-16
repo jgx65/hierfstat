@@ -29,7 +29,7 @@ p.value the p-value of the hypothesis
 \description{
 Test whether one
 sex disperses more than the other using the method described in 
-\href{http://onlinelibrary.wiley.com/doi/10.1046/j.1365-294X.2002.01496.x/abstract}{Goudet etal. (2002)}
+\href{https://onlinelibrary.wiley.com/doi/abs/10.1046/j.1365-294X.2002.01496.x}{Goudet etal. (2002)}
 }
 \examples{
   data(crocrussula)
@@ -42,7 +42,7 @@ sex disperses more than the other using the method described in
   }
 }
 \references{
-\href{http://onlinelibrary.wiley.com/doi/10.1046/j.1365-294X.2002.01496.x/abstract}{Goudet J, Perrin N, Waser P (2002)} Tests for sex-biased dispersal 
+\href{https://onlinelibrary.wiley.com/doi/abs/10.1046/j.1365-294X.2002.01496.x}{Goudet J, Perrin N, Waser P (2002)} Tests for sex-biased dispersal 
  using bi-parentally inherited genetic markers 11, 1103:1114
 }
 \author{

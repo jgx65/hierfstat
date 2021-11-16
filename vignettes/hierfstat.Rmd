@@ -141,8 +141,8 @@ Other than the `fstat` format, `hierfstat`can now export to files in format suit
 
 ## Sex-biased dispersal
 
-A function to detect sex-biased dispersal, `sexbias.test` based on [Goudet et al. (2002)](https://onlinelibrary.wiley.com/doi/10.1046/j.1365-294X.2002.01496.x/abstract) has been implemented. 
-To illustrate its use, load the *Crocidura russula* data set. It consists of the genotypes and sexes of 140 shrews studied by [Favre et al. (1997)](https://rspb.royalsocietypublishing.org/content/264/1378/127). In this species, mark -recapture showed an excess of dispersal from females, an unusual pattern in mammals. This is confirmed using genetic data: 
+A function to detect sex-biased dispersal, `sexbias.test` based on [Goudet et al. (2002)](https://onlinelibrary.wiley.com/doi/abs/10.1046/j.1365-294X.2002.01496.x) has been implemented. 
+To illustrate its use, load the *Crocidura russula* data set. It consists of the genotypes and sexes of 140 shrews studied by [Favre et al. (1997)](https://royalsocietypublishing.org/doi/10.1098/rspb.1997.0019). In this species, mark -recapture showed an excess of dispersal from females, an unusual pattern in mammals. This is confirmed using genetic data: 
 
 ```{r}
 data("crocrussula")

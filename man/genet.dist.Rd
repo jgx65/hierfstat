@@ -39,7 +39,10 @@ This distance is used as default since Takezaki & Nei (1996) found that it was t
 \value{
 A matrix of pairwise genetic distance
 }
-\references{Takezaki & Nei (1996) Genetic distances and reconstruction of Phylogenetic trees from microsatellite DNA. Genetics 144:389-399. \url{http://www.genetics.org/content/144/1/389}
+\references{
+
+ 
+\href{https://www.genetics.org/content/144/1/389}{Takezaki & Nei (1996)} Genetic distances and reconstruction of Phylogenetic trees from microsatellite DNA. Genetics 144:389-399
 
 Nei, M. (1987) Molecular Evolutionary Genetics. Columbia University Press
 

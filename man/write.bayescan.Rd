@@ -21,7 +21,7 @@ write the genotypes in a format suitable for
 analysis with bayescan
 }
 \references{
-\href{http://www.genetics.org/content/180/2/977.abstract}{Foll M and OE Gaggiotti (2008) 
+\href{https://www.genetics.org/content/180/2/977.abstract}{Foll M and OE Gaggiotti (2008) 
  Genetics 180: 977-993}
 
 

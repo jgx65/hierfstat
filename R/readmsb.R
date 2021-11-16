@@ -25,7 +25,7 @@
 #'  
 #' 
 #' @author Jerome Goudet \email{jerome.goudet@@unil.ch}
-#' @references \href{http://bioinformatics.oxfordjournals.org/content/18/2/337.short}{Hudson, R. R. (2002) Generating samples under a Wright-Fisher neutral model of genetic variation}. Bioinformatics 18 : 337-338.
+#' @references \href{https://academic.oup.com/bioinformatics/article-abstract/18/2/337/225783}{Hudson, R. R. (2002) Generating samples under a Wright-Fisher neutral model of genetic variation}. Bioinformatics 18 : 337-338.
 #'
 #' @examples 
 #' \dontrun{

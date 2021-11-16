@@ -11,9 +11,9 @@ Several functions have been written to simulate genetic data, or to import them 
 }
 
 \references{
-\href{http://www2.unil.ch/popgen/research/reprints/goudet_men_2005.pdf}{Goudet J. (2005)} Hierfstat, a package for R to compute and test variance components and F-statistics. Molecular Ecology Notes. 5:184-186
+\href{https://www2.unil.ch/popgen/research/reprints/goudet_men_2005.pdf}{Goudet J. (2005)} Hierfstat, a package for R to compute and test variance components and F-statistics. Molecular Ecology Notes. 5:184-186
 
-\href{http://www.ncbi.nlm.nih.gov/pmc/articles/PMC1207740/pdf/ge14441933.pdf}{Goudet J., Raymond, M., DeMeeus, T. and Rousset F. (1996)} Testing differentiation in diploid populations. Genetics. 144: 1933-1940 
+\href{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1207740/pdf/ge14441933.pdf}{Goudet J., Raymond, M., DeMeeus, T. and Rousset F. (1996)} Testing differentiation in diploid populations. Genetics. 144: 1933-1940 
 
 \href{https://www.genetics.org/content/206/4/2085}{Weir B.S. and Goudet J. (2017)} A Unified Characterization of Population Structure and Relatedness. Genetics. 206: 2085-2103
 
