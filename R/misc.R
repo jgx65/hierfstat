@@ -213,6 +213,17 @@ allelic.richness<-function (data, min.n = NULL, diploid = TRUE)
     return(list(min.all = min.n, Ar = Ar))
 }
 #########################################################################
+# Basic diversity and differentiation statistics
+#
+# Estimates individual counts, allelic frequencies, observed heterozygosities 
+# and genetic diversities per locus and population.
+# Also Estimates mean observed heterozygosities, mean gene diversities within population Hs, 
+# Gene diversities overall Ht and corrected Htp, and Dst, Dstp.
+# Finally, estimates Fst and Fstp as well as Fis following Nei (1987) per locus and overall loci
+#
+# @aliases Hs, Ho, 
+#
+#
 ################
 #' @export
 ################

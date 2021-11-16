@@ -33,7 +33,7 @@ if(is.null(L)) sum(pis,na.rm=TRUE) else sum(pis,na.rm=TRUE)/L
 #' @title Estimates \eqn{\theta_{Watterson}} from dosage data
 #' @description Estimates \eqn{\theta_{Watterson}=S/a}, where \eqn{S} is the number of segregating sites
 #' in a set of sequences and \eqn{a=1/\sum_i^{n-1} i}.  
-#' @usage theta.Watt.dosage(dos)
+#' @usage theta.Watt.dosage(dos,L=NULL)
 #' @param dos  a ni X nl dosage matrix containing the number of derived/alternate alleles each individual carries
 #' at each SNP
 #' @param L the length of the sequence

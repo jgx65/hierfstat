@@ -1,39 +1,55 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <meta name="author" content="Jerome Goudet" />
 
-<meta name="date" content="2021-02-23" />
+<meta name="date" content="2021-11-16" />
 
 <title>Importing data in Hierfstat</title>
 
+<script src="data:application/javascript;base64,Ly8gUGFuZG9jIDIuOSBhZGRzIGF0dHJpYnV0ZXMgb24gYm90aCBoZWFkZXIgYW5kIGRpdi4gV2UgcmVtb3ZlIHRoZSBmb3JtZXIgKHRvCi8vIGJlIGNvbXBhdGlibGUgd2l0aCB0aGUgYmVoYXZpb3Igb2YgUGFuZG9jIDwgMi44KS4KZG9jdW1lbnQuYWRkRXZlbnRMaXN0ZW5lcignRE9NQ29udGVudExvYWRlZCcsIGZ1bmN0aW9uKGUpIHsKICB2YXIgaHMgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yQWxsKCJkaXYuc2VjdGlvbltjbGFzcyo9J2xldmVsJ10gPiA6Zmlyc3QtY2hpbGQiKTsKICB2YXIgaSwgaCwgYTsKICBmb3IgKGkgPSAwOyBpIDwgaHMubGVuZ3RoOyBpKyspIHsKICAgIGggPSBoc1tpXTsKICAgIGlmICghL15oWzEtNl0kL2kudGVzdChoLnRhZ05hbWUpKSBjb250aW51ZTsgIC8vIGl0IHNob3VsZCBiZSBhIGhlYWRlciBoMS1oNgogICAgYSA9IGguYXR0cmlidXRlczsKICAgIHdoaWxlIChhLmxlbmd0aCA+IDApIGgucmVtb3ZlQXR0cmlidXRlKGFbMF0ubmFtZSk7CiAgfQp9KTsK"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
 
 
-<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
 <style type="text/css" data-origin="pandoc">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -53,7 +69,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -110,189 +126,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 
-<style type="text/css">body {
-background-color: #fff;
-margin: 1em auto;
-max-width: 700px;
-overflow: visible;
-padding-left: 2em;
-padding-right: 2em;
-font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-font-size: 14px;
-line-height: 1.35;
-}
-#header {
-text-align: center;
-}
-#TOC {
-clear: both;
-margin: 0 0 10px 10px;
-padding: 4px;
-width: 400px;
-border: 1px solid #CCCCCC;
-border-radius: 5px;
-background-color: #f6f6f6;
-font-size: 13px;
-line-height: 1.3;
-}
-#TOC .toctitle {
-font-weight: bold;
-font-size: 15px;
-margin-left: 5px;
-}
-#TOC ul {
-padding-left: 40px;
-margin-left: -1.5em;
-margin-top: 5px;
-margin-bottom: 5px;
-}
-#TOC ul ul {
-margin-left: -2em;
-}
-#TOC li {
-line-height: 16px;
-}
-table {
-margin: 1em auto;
-border-width: 1px;
-border-color: #DDDDDD;
-border-style: outset;
-border-collapse: collapse;
-}
-table th {
-border-width: 2px;
-padding: 5px;
-border-style: inset;
-}
-table td {
-border-width: 1px;
-border-style: inset;
-line-height: 18px;
-padding: 5px 5px;
-}
-table, table th, table td {
-border-left-style: none;
-border-right-style: none;
-}
-table thead, table tr.even {
-background-color: #f7f7f7;
-}
-p {
-margin: 0.5em 0;
-}
-blockquote {
-background-color: #f6f6f6;
-padding: 0.25em 0.75em;
-}
-hr {
-border-style: solid;
-border: none;
-border-top: 1px solid #777;
-margin: 28px 0;
-}
-dl {
-margin-left: 0;
-}
-dl dd {
-margin-bottom: 13px;
-margin-left: 13px;
-}
-dl dt {
-font-weight: bold;
-}
-ul {
-margin-top: 0;
-}
-ul li {
-list-style: circle outside;
-}
-ul ul {
-margin-bottom: 0;
-}
-pre, code {
-background-color: #f7f7f7;
-border-radius: 3px;
-color: #333;
-white-space: pre-wrap; 
-}
-pre {
-border-radius: 3px;
-margin: 5px 0px 10px 0px;
-padding: 10px;
-}
-pre:not([class]) {
-background-color: #f7f7f7;
-}
-code {
-font-family: Consolas, Monaco, 'Courier New', monospace;
-font-size: 85%;
-}
-p > code, li > code {
-padding: 2px 0px;
-}
-div.figure {
-text-align: center;
-}
-img {
-background-color: #FFFFFF;
-padding: 2px;
-border: 1px solid #DDDDDD;
-border-radius: 3px;
-border: 1px solid #CCCCCC;
-margin: 0 5px;
-}
-h1 {
-margin-top: 0;
-font-size: 35px;
-line-height: 40px;
-}
-h2 {
-border-bottom: 4px solid #f7f7f7;
-padding-top: 10px;
-padding-bottom: 2px;
-font-size: 145%;
-}
-h3 {
-border-bottom: 2px solid #f7f7f7;
-padding-top: 10px;
-font-size: 120%;
-}
-h4 {
-border-bottom: 1px solid #f7f7f7;
-margin-left: 8px;
-font-size: 105%;
-}
-h5, h6 {
-border-bottom: 1px solid #ccc;
-font-size: 105%;
-}
-a {
-color: #0033dd;
-text-decoration: none;
-}
-a:hover {
-color: #6666ff; }
-a:visited {
-color: #800080; }
-a:visited:hover {
-color: #BB00BB; }
-a[href^="http:"] {
-text-decoration: underline; }
-a[href^="https:"] {
-text-decoration: underline; }
 
-code > span.kw { color: #555; font-weight: bold; } 
-code > span.dt { color: #902000; } 
-code > span.dv { color: #40a070; } 
-code > span.bn { color: #d14; } 
-code > span.fl { color: #d14; } 
-code > span.ch { color: #d14; } 
-code > span.st { color: #d14; } 
-code > span.co { color: #888888; font-style: italic; } 
-code > span.ot { color: #007020; } 
-code > span.al { color: #ff0000; font-weight: bold; } 
-code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61717; background-color: #e3d2d2; } 
-</style>
+<link rel="stylesheet" href="data:text/css,body%20%7B%0Abackground%2Dcolor%3A%20%23fff%3B%0Amargin%3A%201em%20auto%3B%0Amax%2Dwidth%3A%20700px%3B%0Aoverflow%3A%20visible%3B%0Apadding%2Dleft%3A%202em%3B%0Apadding%2Dright%3A%202em%3B%0Afont%2Dfamily%3A%20%22Open%20Sans%22%2C%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20Arial%2C%20sans%2Dserif%3B%0Afont%2Dsize%3A%2014px%3B%0Aline%2Dheight%3A%201%2E35%3B%0A%7D%0A%23TOC%20%7B%0Aclear%3A%20both%3B%0Amargin%3A%200%200%2010px%2010px%3B%0Apadding%3A%204px%3B%0Awidth%3A%20400px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Aborder%2Dradius%3A%205px%3B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Afont%2Dsize%3A%2013px%3B%0Aline%2Dheight%3A%201%2E3%3B%0A%7D%0A%23TOC%20%2Etoctitle%20%7B%0Afont%2Dweight%3A%20bold%3B%0Afont%2Dsize%3A%2015px%3B%0Amargin%2Dleft%3A%205px%3B%0A%7D%0A%23TOC%20ul%20%7B%0Apadding%2Dleft%3A%2040px%3B%0Amargin%2Dleft%3A%20%2D1%2E5em%3B%0Amargin%2Dtop%3A%205px%3B%0Amargin%2Dbottom%3A%205px%3B%0A%7D%0A%23TOC%20ul%20ul%20%7B%0Amargin%2Dleft%3A%20%2D2em%3B%0A%7D%0A%23TOC%20li%20%7B%0Aline%2Dheight%3A%2016px%3B%0A%7D%0Atable%20%7B%0Amargin%3A%201em%20auto%3B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dcolor%3A%20%23DDDDDD%3B%0Aborder%2Dstyle%3A%20outset%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0A%7D%0Atable%20th%20%7B%0Aborder%2Dwidth%3A%202px%3B%0Apadding%3A%205px%3B%0Aborder%2Dstyle%3A%20inset%3B%0A%7D%0Atable%20td%20%7B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dstyle%3A%20inset%3B%0Aline%2Dheight%3A%2018px%3B%0Apadding%3A%205px%205px%3B%0A%7D%0Atable%2C%20table%20th%2C%20table%20td%20%7B%0Aborder%2Dleft%2Dstyle%3A%20none%3B%0Aborder%2Dright%2Dstyle%3A%20none%3B%0A%7D%0Atable%20thead%2C%20table%20tr%2Eeven%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Ap%20%7B%0Amargin%3A%200%2E5em%200%3B%0A%7D%0Ablockquote%20%7B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Apadding%3A%200%2E25em%200%2E75em%3B%0A%7D%0Ahr%20%7B%0Aborder%2Dstyle%3A%20solid%3B%0Aborder%3A%20none%3B%0Aborder%2Dtop%3A%201px%20solid%20%23777%3B%0Amargin%3A%2028px%200%3B%0A%7D%0Adl%20%7B%0Amargin%2Dleft%3A%200%3B%0A%7D%0Adl%20dd%20%7B%0Amargin%2Dbottom%3A%2013px%3B%0Amargin%2Dleft%3A%2013px%3B%0A%7D%0Adl%20dt%20%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Aul%20%7B%0Amargin%2Dtop%3A%200%3B%0A%7D%0Aul%20li%20%7B%0Alist%2Dstyle%3A%20circle%20outside%3B%0A%7D%0Aul%20ul%20%7B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Apre%2C%20code%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0Aborder%2Dradius%3A%203px%3B%0Acolor%3A%20%23333%3B%0Awhite%2Dspace%3A%20pre%2Dwrap%3B%20%0A%7D%0Apre%20%7B%0Aborder%2Dradius%3A%203px%3B%0Amargin%3A%205px%200px%2010px%200px%3B%0Apadding%3A%2010px%3B%0A%7D%0Apre%3Anot%28%5Bclass%5D%29%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Acode%20%7B%0Afont%2Dfamily%3A%20Consolas%2C%20Monaco%2C%20%27Courier%20New%27%2C%20monospace%3B%0Afont%2Dsize%3A%2085%25%3B%0A%7D%0Ap%20%3E%20code%2C%20li%20%3E%20code%20%7B%0Apadding%3A%202px%200px%3B%0A%7D%0Adiv%2Efigure%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0Aimg%20%7B%0Abackground%2Dcolor%3A%20%23FFFFFF%3B%0Apadding%3A%202px%3B%0Aborder%3A%201px%20solid%20%23DDDDDD%3B%0Aborder%2Dradius%3A%203px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Amargin%3A%200%205px%3B%0A%7D%0Ah1%20%7B%0Amargin%2Dtop%3A%200%3B%0Afont%2Dsize%3A%2035px%3B%0Aline%2Dheight%3A%2040px%3B%0A%7D%0Ah2%20%7B%0Aborder%2Dbottom%3A%204px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Apadding%2Dbottom%3A%202px%3B%0Afont%2Dsize%3A%20145%25%3B%0A%7D%0Ah3%20%7B%0Aborder%2Dbottom%3A%202px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Afont%2Dsize%3A%20120%25%3B%0A%7D%0Ah4%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23f7f7f7%3B%0Amargin%2Dleft%3A%208px%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Ah5%2C%20h6%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23ccc%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Aa%20%7B%0Acolor%3A%20%230033dd%3B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0Aa%3Ahover%20%7B%0Acolor%3A%20%236666ff%3B%20%7D%0Aa%3Avisited%20%7B%0Acolor%3A%20%23800080%3B%20%7D%0Aa%3Avisited%3Ahover%20%7B%0Acolor%3A%20%23BB00BB%3B%20%7D%0Aa%5Bhref%5E%3D%22http%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0Aa%5Bhref%5E%3D%22https%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0A%0Acode%20%3E%20span%2Ekw%20%7B%20color%3A%20%23555%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Edt%20%7B%20color%3A%20%23902000%3B%20%7D%20%0Acode%20%3E%20span%2Edv%20%7B%20color%3A%20%2340a070%3B%20%7D%20%0Acode%20%3E%20span%2Ebn%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Efl%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Ech%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Est%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Eco%20%7B%20color%3A%20%23888888%3B%20font%2Dstyle%3A%20italic%3B%20%7D%20%0Acode%20%3E%20span%2Eot%20%7B%20color%3A%20%23007020%3B%20%7D%20%0Acode%20%3E%20span%2Eal%20%7B%20color%3A%20%23ff0000%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Efu%20%7B%20color%3A%20%23900%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Eer%20%7B%20color%3A%20%23a61717%3B%20background%2Dcolor%3A%20%23e3d2d2%3B%20%7D%20%0A" type="text/css" />
 
 
 
@@ -306,7 +141,7 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 
 <h1 class="title toc-ignore">Importing data in Hierfstat</h1>
 <h4 class="author">Jerome Goudet</h4>
-<h4 class="date">2021-02-23</h4>
+<h4 class="date">2021-11-16</h4>
 
 
 
@@ -320,9 +155,9 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <p>The basic data structure required by most <code>Hierfstat</code> function is a data frame with the first column containing a population identifier (preferably a number), and the next <span class="math inline">\(nl\)</span> columns the genotype at each of <span class="math inline">\(nl\)</span> loci.</p>
 <p>In <code>hierfstat</code>, alleles are encoded as 1, 2 or 3 digits numbers, and genotypes are encoded as numbers with the two alleles collated (as in pasted together). Other type of data can be imported (see below) but for the time being we focus on the primary data type. Thus imagine that you have an individual genotyped at a microsatellite locus with allele length <code>120</code> and <code>124</code>, the way to encode it for <code>hierfstat</code> is either <code>120124</code>or <code>124120</code>. If the data are SNPs, each allele at a locus could be encoded as <code>1</code> and <code>2</code>, or you may decide to keep the correspondence between nucleotides and alleles (e.g. <code>1, 2, 3, 4</code> for <code>A, C, G, T</code>). Thus, if the two alleles at a SNP locus are <code>A</code> and <code>T</code> and an individual is heterozygote, it could be encoded as <code>14</code>or <code>41</code>.</p>
 <p>Example data sets are included in <code>hierfstat</code>. For instance:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">library</span>(hierfstat) <span class="co">#load the library</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="kw">data</span>(diploid) <span class="co"># info about this data set with ?diploid</span></span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="kw">head</span>(diploid)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(hierfstat) <span class="co">#load the library</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(diploid) <span class="co"># info about this data set with ?diploid</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(diploid)</span></code></pre></div>
 <pre><code>##   Pop loc-1 loc-2 loc-3 loc-4 loc-5
 ## 1   1    44    43    43    33    44
 ## 2   1    44    44    43    33    44
@@ -333,13 +168,13 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <p>The first individual (first row of the diploid data frame) belongs to population 1. Its genotype at <code>loc-1</code> is <code>44</code>, thus homozygote for allele <code>4</code>. It is heterozygote for alleles <code>3</code>and <code>4</code> at both <code>loc-2</code> and <code>loc-3</code>, and homozygote for allele <code>3</code> at <code>loc-4</code> and finaly homozygote for allele <code>4</code> at <code>loc-5</code>. In fact, <code>loc-1</code> and <code>loc-4</code> are monomorphic, meaning that only one allele is present in all individuals from all populations.</p>
 <p>If a genotype is missing, it is encoded as <code>NA</code>. For instance, the fourth individual has not been typed at <code>loc-3</code>, nor did the 6th individual for the same locus.</p>
 <p>The first column of this dataframe contains the identifier of the population to which the individual belongs. We can find how many individuals were typed in each population by using the command table:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">table</span>(diploid[,<span class="dv">1</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(diploid[,<span class="dv">1</span>])</span></code></pre></div>
 <pre><code>## 
 ## 1 2 3 4 5 6 
 ## 8 8 5 7 9 7</code></pre>
 <p>As another example, we look at dataset <code>cont.isl99</code>, a data frame where alleles are encoded as 2 digits numbers:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">data</span>(cont.isl99)</span>
-<span id="cb5-2"><a href="#cb5-2"></a><span class="kw">head</span>(cont.isl99)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(cont.isl99)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cont.isl99)</span></code></pre></div>
 <pre><code>##   Pop loc.1 loc.2 loc.3 loc.4 loc.5
 ## 1   1  7474  1955  9168  4051  9251
 ## 2   1  7474  3175  9168  2410  2327
@@ -356,8 +191,8 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <div id="importing-fstat-data-files" class="section level2">
 <h2>Importing FSTAT data files</h2>
 <p>If the data are in the <code>FSTAT</code> format, they can be readily imported using the function <code>read.fstat</code>:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>dip&lt;-hierfstat<span class="op">::</span><span class="kw">read.fstat</span>(<span class="kw">system.file</span>(<span class="st">&quot;extdata&quot;</span>,<span class="st">&quot;diploid.dat&quot;</span>,<span class="dt">package=</span><span class="st">&quot;hierfstat&quot;</span>))</span>
-<span id="cb7-2"><a href="#cb7-2"></a><span class="kw">head</span>(dip)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>dip<span class="ot">&lt;-</span>hierfstat<span class="sc">::</span><span class="fu">read.fstat</span>(<span class="fu">system.file</span>(<span class="st">&quot;extdata&quot;</span>,<span class="st">&quot;diploid.dat&quot;</span>,<span class="at">package=</span><span class="st">&quot;hierfstat&quot;</span>))</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dip)</span></code></pre></div>
 <pre><code>##   Pop loc-1 loc-2 loc-3 loc-4 loc-5
 ## 1   1    44    43    43    33    44
 ## 2   1    44    44    43    33    44
@@ -369,9 +204,9 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <div id="importing-from-adegenet-genind-objects" class="section level2">
 <h2>Importing from adegenet: genind objects</h2>
 <p><code>adegenet</code> is another population genetics analysis package, with the ability to import from several data format. <code>hierfstat</code> can import and work directly with <code>genind</code> objects generated by <code>adegenet</code>:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="kw">library</span>(adegenet)</span>
-<span id="cb9-2"><a href="#cb9-2"></a><span class="kw">data</span>(nancycats)</span>
-<span id="cb9-3"><a href="#cb9-3"></a><span class="kw">head</span>(<span class="kw">genind2hierfstat</span>(nancycats)[,<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>]) <span class="co"># only the first 10 loci</span></span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(adegenet,<span class="at">quietly=</span><span class="cn">TRUE</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(nancycats)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">genind2hierfstat</span>(nancycats)[,<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]) <span class="co"># only the first 10 loci</span></span></code></pre></div>
 <pre><code>##      pop   fca8  fca23  fca43  fca45  fca77  fca78  fca90  fca96  fca37
 ## N215 P01     NA 136146 139139 116120 156156 142148 199199 113113 208208
 ## N216 P01     NA 146146 139145 120126 156156 142148 185199 113113 208208
@@ -379,8 +214,8 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 ## N218 P01 133135 138138 139141 116126 150150 142148 199199  91105 208208
 ## N219 P01 133135 140146 141145 126126 152152 142148 193199 113113 208208
 ## N220 P01 135143 136146 145149 120126 150156 148148 193195  91113 208208</code></pre>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="kw">data</span>(H3N2)</span>
-<span id="cb11-2"><a href="#cb11-2"></a><span class="kw">head</span>(<span class="kw">genind2hierfstat</span>(H3N2,<span class="dt">pop=</span><span class="kw">rep</span>(<span class="dv">1</span>,<span class="kw">dim</span>(H3N2<span class="op">@</span>tab)[<span class="dv">1</span>]))[,<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>]) <span class="co"># only the first 10 positions</span></span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(H3N2)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">genind2hierfstat</span>(H3N2,<span class="at">pop=</span><span class="fu">rep</span>(<span class="dv">1</span>,<span class="fu">dim</span>(H3N2<span class="sc">@</span>tab)[<span class="dv">1</span>]))[,<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]) <span class="co"># only the first 10 positions</span></span></code></pre></div>
 <pre><code>##          pop X6 X17 X39 X42 X45 X51 X60 X72 X73
 ## AB434107   1  1   1   3   2   3   2   3   3   2
 ## AB434108   1  1   1   3   2   3   2   3   3   2
@@ -388,39 +223,32 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 ## AB438243   1 NA  NA  NA  NA  NA  NA   3   3   2
 ## AB438244   1 NA  NA  NA  NA  NA  NA   3   3   2
 ## AB438245   1 NA  NA  NA  NA  NA  NA   3   3   2</code></pre>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="kw">data</span>(eHGDP)</span>
-<span id="cb13-2"><a href="#cb13-2"></a><span class="kw">head</span>(<span class="kw">genind2hierfstat</span>(eHGDP))[,<span class="dv">1</span><span class="op">:</span><span class="dv">11</span>] </span></code></pre></div>
-<pre><code>##   pop  loc.1  loc.2  loc.3  loc.4  loc.5  loc.6  loc.7  loc.8  loc.9
-## 1   1 129155 264292 142146 156156 157166 171179 205205 183187 196196
-## 2   1 145150 288292 138142 168172 157166 171175 205210 195203 196196
-## 3   1 155155 292300 138142 156156 157169 167171 205205 183199 184196
-## 4   1 150155 264292 142146 156176 157163 171175 205205 187187 196196
-## 5   1 150155 292300 138146 156160 157166 171171 205205 183207 187190
-## 6   1 155155 296296 146146 152176 157157 167171 205210 179183 196196
-##   loc.10
-## 1 137140
-## 2 128134
-## 3 137140
-## 4 140140
-## 5 128128
-## 6 128140</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(eHGDP)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">genind2hierfstat</span>(eHGDP))[,<span class="dv">1</span><span class="sc">:</span><span class="dv">11</span>] </span></code></pre></div>
+<pre><code>##   pop  loc.1  loc.2  loc.3  loc.4  loc.5  loc.6  loc.7  loc.8  loc.9 loc.10
+## 1   1 129155 264292 142146 156156 157166 171179 205205 183187 196196 137140
+## 2   1 145150 288292 138142 168172 157166 171175 205210 195203 196196 128134
+## 3   1 155155 292300 138142 156156 157169 167171 205205 183199 184196 137140
+## 4   1 150155 264292 142146 156176 157163 171175 205205 187187 196196 140140
+## 5   1 150155 292300 138146 156160 157166 171171 205205 183207 187190 128128
+## 6   1 155155 296296 146146 152176 157157 167171 205210 179183 196196 128140</code></pre>
 <p>The example below shows how to estimate gene diversities (expected heterozygosities), observed heterozygosities, or estimate genetic distances directly from a <code>genind</code> object:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="co">#basic.stats(nancycats)</span></span>
-<span id="cb15-2"><a href="#cb15-2"></a>hierfstat<span class="op">::</span><span class="kw">Hs</span>(nancycats) <span class="co">#mean populations gene diversities</span></span></code></pre></div>
-<pre><code>##       P01       P02       P03       P04       P05       P06       P07 
-## 0.6531333 0.7043000 0.7239111 0.7525222 0.6431222 0.7510000 0.6719333 
-##       P08       P09       P10       P11       P12       P13       P14 
-## 0.7598556 0.6913667 0.7020111 0.7867667 0.6718333 0.6883889 0.7928556 
-##       P15       P16       P17 
-## 0.7217111 0.7016222 0.6046375</code></pre>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>hierfstat<span class="op">::</span><span class="kw">Ho</span>(nancycats) <span class="co"># mean populations observed heterozygosities</span></span></code></pre></div>
-<pre><code>##       P01       P02       P03       P04       P05       P06       P07 
-## 0.5722222 0.5707111 0.6111111 0.6280222 0.5629667 0.6262667 0.5458556 
-##       P08       P09       P10       P11       P12       P13       P14 
-## 0.6111111 0.7407556 0.6262667 0.6627444 0.5570000 0.6752222 0.6836667 
-##       P15       P16       P17 
-## 0.7474889 0.6759222 0.5980875</code></pre>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="co">#genet.dist(nancycats)</span></span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">#basic.stats(nancycats)</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>hierfstat<span class="sc">::</span><span class="fu">Hs</span>(nancycats) <span class="co">#mean populations gene diversities</span></span></code></pre></div>
+<pre><code>##       P01       P02       P03       P04       P05       P06       P07       P08 
+## 0.6531333 0.7043000 0.7239111 0.7525222 0.6431222 0.7510000 0.6719333 0.7598556 
+##       P09       P10       P11       P12       P13       P14       P15       P16 
+## 0.6913667 0.7020111 0.7867667 0.6718333 0.6883889 0.7928556 0.7217111 0.7016222 
+##       P17 
+## 0.6046375</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>hierfstat<span class="sc">::</span><span class="fu">Ho</span>(nancycats) <span class="co"># mean populations observed heterozygosities</span></span></code></pre></div>
+<pre><code>##       P01       P02       P03       P04       P05       P06       P07       P08 
+## 0.5722222 0.5707111 0.6111111 0.6280222 0.5629667 0.6262667 0.5458556 0.6111111 
+##       P09       P10       P11       P12       P13       P14       P15       P16 
+## 0.7407556 0.6262667 0.6627444 0.5570000 0.6752222 0.6836667 0.7474889 0.6759222 
+##       P17 
+## 0.5980875</code></pre>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">#genet.dist(nancycats)</span></span></code></pre></div>
 </div>
 </div>
 <div id="allelic-dosages" class="section level1">
@@ -429,21 +257,15 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <div id="importing-from-adegenet-genlight-objects" class="section level2">
 <h2>Importing from adegenet: genlight objects</h2>
 <p>To import genlight objects from <code>adegenet</code>, just wrap the object’s name in an <code>as.matrix</code>:</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>obj &lt;-<span class="kw">read.snp</span>(<span class="kw">system.file</span>(<span class="st">&quot;files/exampleSnpDat.snp&quot;</span>,<span class="dt">package=</span><span class="st">&quot;adegenet&quot;</span>), <span class="dt">chunk=</span><span class="dv">2</span>,<span class="dt">quiet=</span><span class="ot">TRUE</span>)</span>
-<span id="cb20-2"><a href="#cb20-2"></a></span>
-<span id="cb20-3"><a href="#cb20-3"></a><span class="kw">as.matrix</span>(obj)</span></code></pre></div>
-<pre><code>##                                                    1.a/t 8.g/c 11.a/c
-## foo                                                    1     0      2
-## bar                                                    0     0      1
-## toto                                                   1     0     NA
-## Nyarlathotep                                           0     1      2
-## an even longer label but OK since on a single line     1     1      0
-##                                                    43.t/a
-## foo                                                     0
-## bar                                                     2
-## toto                                                    0
-## Nyarlathotep                                            0
-## an even longer label but OK since on a single line      0</code></pre>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>obj <span class="ot">&lt;-</span><span class="fu">read.snp</span>(<span class="fu">system.file</span>(<span class="st">&quot;files/exampleSnpDat.snp&quot;</span>,<span class="at">package=</span><span class="st">&quot;adegenet&quot;</span>), <span class="at">chunk=</span><span class="dv">2</span>,<span class="at">quiet=</span><span class="cn">TRUE</span>)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="fu">as.matrix</span>(obj)</span></code></pre></div>
+<pre><code>##                                                    1.a/t 8.g/c 11.a/c 43.t/a
+## foo                                                    1     0      2      0
+## bar                                                    0     0      1      2
+## toto                                                   1     0     NA      0
+## Nyarlathotep                                           0     1      2      0
+## an even longer label but OK since on a single line     1     1      0      0</code></pre>
 </div>
 <div id="importing-vcf-files" class="section level2">
 <h2>importing VCF files</h2>
@@ -451,19 +273,19 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <ul>
 <li>VCF files can be imported in <code>hierfstat</code> using the function <code>read.VCF</code>, built from the <code>gaston</code> package function <code>read.vcf</code>:</li>
 </ul>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="kw">library</span>(gaston)</span>
-<span id="cb22-2"><a href="#cb22-2"></a>filepath &lt;-<span class="kw">system.file</span>(<span class="st">&quot;extdata&quot;</span>, <span class="st">&quot;LCT.vcf.gz&quot;</span>, <span class="dt">package=</span><span class="st">&quot;gaston&quot;</span>)</span>
-<span id="cb22-3"><a href="#cb22-3"></a>x1 &lt;-<span class="st"> </span><span class="kw">read.VCF</span>( filepath )</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gaston,<span class="at">quietly=</span><span class="cn">TRUE</span>)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>filepath <span class="ot">&lt;-</span><span class="fu">system.file</span>(<span class="st">&quot;extdata&quot;</span>, <span class="st">&quot;LCT.vcf.gz&quot;</span>, <span class="at">package=</span><span class="st">&quot;gaston&quot;</span>)</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>x1 <span class="ot">&lt;-</span> <span class="fu">read.VCF</span>( filepath )</span></code></pre></div>
 <pre><code>## ped stats and snps stats have been set. 
 ## &#39;p&#39; has been set. 
 ## &#39;mu&#39; and &#39;sigma&#39; have been set.</code></pre>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a>x1</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>x1</span></code></pre></div>
 <pre><code>## A bed.matrix with 503 individuals and 607 markers.
 ## snps stats are set
 ## ped stats are set</code></pre>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a><span class="kw">dim</span>(x1)</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(x1)</span></code></pre></div>
 <pre><code>## [1] 503 607</code></pre>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a><span class="kw">with</span>(x1<span class="op">@</span>snps,<span class="kw">table</span>(A1,A2))</span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(x1<span class="sc">@</span>snps,<span class="fu">table</span>(A1,A2))</span></code></pre></div>
 <pre><code>##    A2
 ## A1    A   C   G   T
 ##   A   0  25  94  22
@@ -475,15 +297,15 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <ul>
 <li>Another route to import VCF files is via the <code>SNPRelate</code> package, and its function <code>snpgdsVCF2GDS</code> (As the function writes to a file, the two next code chunks will not be evaluated)</li>
 </ul>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a><span class="kw">library</span>(SNPRelate)</span>
-<span id="cb30-2"><a href="#cb30-2"></a><span class="kw">snpgdsVCF2GDS</span>(filepath, <span class="st">&quot;test1.gds&quot;</span>, <span class="dt">method=</span><span class="st">&quot;biallelic.only&quot;</span>)</span>
-<span id="cb30-3"><a href="#cb30-3"></a><span class="kw">snpgdsSummary</span>(<span class="st">&quot;test1.gds&quot;</span>)</span>
-<span id="cb30-4"><a href="#cb30-4"></a>f&lt;-<span class="kw">snpgdsOpen</span>(<span class="st">&quot;test1.gds&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(SNPRelate)</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">snpgdsVCF2GDS</span>(filepath, <span class="st">&quot;test1.gds&quot;</span>, <span class="at">method=</span><span class="st">&quot;biallelic.only&quot;</span>)</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="fu">snpgdsSummary</span>(<span class="st">&quot;test1.gds&quot;</span>)</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>f<span class="ot">&lt;-</span><span class="fu">snpgdsOpen</span>(<span class="st">&quot;test1.gds&quot;</span>)</span></code></pre></div>
 <p><code>snpgdsVCF2GDS</code> stores the number of reference alleles, we want the the number of alternate alleles:</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a>x2&lt;-<span class="dv">2</span><span class="op">-</span><span class="kw">snpgdsGetGeno</span>(f) </span>
-<span id="cb31-2"><a href="#cb31-2"></a></span>
-<span id="cb31-3"><a href="#cb31-3"></a><span class="co">#check that allele frequencies are the same with the two methods</span></span>
-<span id="cb31-4"><a href="#cb31-4"></a><span class="kw">all.equal</span>(<span class="kw">colMeans</span>(x2)<span class="op">/</span><span class="dv">2</span>,<span class="kw">colMeans</span>(<span class="kw">as.matrix</span>(x1)<span class="op">/</span><span class="dv">2</span>),<span class="dt">check.names=</span><span class="ot">FALSE</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>x2<span class="ot">&lt;-</span><span class="dv">2</span><span class="sc">-</span><span class="fu">snpgdsGetGeno</span>(f) </span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="co">#check that allele frequencies are the same with the two methods</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="fu">all.equal</span>(<span class="fu">colMeans</span>(x2)<span class="sc">/</span><span class="dv">2</span>,<span class="fu">colMeans</span>(<span class="fu">as.matrix</span>(x1)<span class="sc">/</span><span class="dv">2</span>),<span class="at">check.names=</span><span class="cn">FALSE</span>) </span></code></pre></div>
 <ul>
 <li>Last, we could import a <code>bed</code> file using <code>gaston</code>, and use an external program, <a href="https://www.cog-genomics.org/plink/2.0/">plink</a>, to convert the VCF file into a BED file.</li>
 </ul>
@@ -496,12 +318,12 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <div id="importing-from-quantinemo" class="section level2">
 <h2>Importing from Quantinemo</h2>
 <p><a href="https://www2.unil.ch/popgen/softwares/quantinemo/">QuantiNemo</a> is a genetic simulation program for markers and traits. Data generated by <code>Quantinemo</code> can be imported using the function <code>read.fstat</code> if the <code>save_genotype</code> setting in <code>quantinemo</code> is set to <span class="math inline">\(1\)</span>. If the <code>QuantiNemo</code> output is set to <span class="math inline">\(2\)</span> (extended), 6 extra columns are outputed and these can be read with <code>hierfstat</code>using the function <code>qn2.read.fstat</code>. The component <code>$dat</code> of the object return by this function contains the genotypes of the individuals simulated, while the component <code>$sex</code>contains its sex, the component <code>$ped</code> the individuals’ pedigree and the component <code>$w</code> their fitness. For more details about the extended <code>FSTAT</code> format of <code>QuantiNemo</code>, see its manual.</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a>dat&lt;-<span class="kw">qn2.read.fstat</span>(<span class="kw">system.file</span>(<span class="st">&quot;extdata&quot;</span>,<span class="st">&quot;qn2_sex.dat&quot;</span>,<span class="dt">package=</span><span class="st">&quot;hierfstat&quot;</span>))</span>
-<span id="cb32-2"><a href="#cb32-2"></a><span class="kw">names</span>(dat)</span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>dat<span class="ot">&lt;-</span><span class="fu">qn2.read.fstat</span>(<span class="fu">system.file</span>(<span class="st">&quot;extdata&quot;</span>,<span class="st">&quot;qn2_sex.dat&quot;</span>,<span class="at">package=</span><span class="st">&quot;hierfstat&quot;</span>))</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(dat)</span></code></pre></div>
 <pre><code>## [1] &quot;dat&quot; &quot;sex&quot; &quot;ped&quot; &quot;W&quot;</code></pre>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a><span class="kw">head</span>(dat<span class="op">$</span>sex)</span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dat<span class="sc">$</span>sex)</span></code></pre></div>
 <pre><code>## [1] &quot;F&quot; &quot;F&quot; &quot;F&quot; &quot;F&quot; &quot;F&quot; &quot;F&quot;</code></pre>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a><span class="kw">head</span>(dat<span class="op">$</span>dat[,<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dat<span class="sc">$</span>dat[,<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>])</span></code></pre></div>
 <pre><code>##   Pop trait-1_locus-1 trait-1_locus-2 trait-1_locus-3 trait-1_locus-4
 ## 1   1             606            1515             101             404
 ## 2   1             606            1515             101             404
@@ -523,7 +345,7 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 ## 4             808
 ## 5             808
 ## 6             808</code></pre>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a><span class="co">#sexbias.test(dat[[1]],sex=dat[[2]])</span></span></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co">#sexbias.test(dat[[1]],sex=dat[[2]])</span></span></code></pre></div>
 </div>
 <div id="importing-from-ms" class="section level2">
 <h2>Importing from ms</h2>
@@ -539,8 +361,8 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <p>The first line is the <code>ms</code> command line, and it instructed the program to simulate 2 populations, with <span class="math inline">\(\theta=2N_0\mu=20\)</span>. The 2 populations differ in size and the smallest (the second) is a 100th of the first. The two populations exchange <span class="math inline">\(4Nm=40\)</span> migrants per generation. 100 chromosomes are sampled from each population, and this is repeated a 100 times.</p>
 <p>The genetic data itself comes as a serie of 0 and 1, collated one to the other. These are the SNP sites, with 0 being the ancestral state and 1 the derived state.</p>
 <p>the function <code>ms2bed</code> will convert ms output to a bed object:</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1"></a>bed&lt;-<span class="kw">ms2bed</span>(<span class="kw">system.file</span>(<span class="st">&quot;extdata&quot;</span>,<span class="st">&quot;2pops_asspop.txt&quot;</span>,<span class="dt">package=</span><span class="st">&quot;hierfstat&quot;</span>))</span>
-<span id="cb39-2"><a href="#cb39-2"></a><span class="kw">head</span>(<span class="kw">as.matrix</span>(bed[,<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>])) <span class="co">#first 10 columns of bed matrix</span></span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>bed<span class="ot">&lt;-</span><span class="fu">ms2bed</span>(<span class="fu">system.file</span>(<span class="st">&quot;extdata&quot;</span>,<span class="st">&quot;2pops_asspop.txt&quot;</span>,<span class="at">package=</span><span class="st">&quot;hierfstat&quot;</span>))</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">as.matrix</span>(bed[,<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>])) <span class="co">#first 10 columns of bed matrix</span></span></code></pre></div>
 <pre><code>##   M_1 M_2 M_3 M_4 M_5 M_6 M_7 M_8 M_9 M_10
 ## 1   0   0   1   0   1   0   0   2   1    0
 ## 2   1   0   0   0   1   0   0   1   0    0
@@ -548,17 +370,17 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 ## 4   0   0   0   0   2   0   0   2   0    0
 ## 5   0   0   0   0   0   0   0   2   0    0
 ## 6   0   0   0   0   1   0   0   2   0    0</code></pre>
-<p>Take some time to explore the structure of the <code>bed</code> s4 object (<code>str(bed)</code>), it is very useful. the <code>@ped</code> slot contains info relevant to the individuals (their names, family id etc…), while the <code>@snps</code> slot contains info relevant to the SNPs (their name, position, chromosome, etc…). The dosage matrix is extracted with <code>as.matrix(bed)</code>.This can be used as argument to function <code>fs.dosage</code> for instance, and will produce estimates of populations specific <span class="math inline">\(F_{is}\)</span> and <span class="math inline">\(F_{ST}\)</span>.</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1"></a><span class="kw">fs.dosage</span>(<span class="kw">as.matrix</span>(bed),<span class="dt">pop=</span><span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>,<span class="dt">each=</span><span class="dv">50</span>)) <span class="co"># population specific FSTs</span></span></code></pre></div>
+<p>Take some time to explore the structure of the <code>bed</code> s4 object (<code>str(bed)</code>), it is very useful. the <code>@ped</code> slot contains info relevant to the individuals (their names, family id etc…), while the <code>@snps</code> slot contains info relevant to the SNPs (their name, position, chromosome, etc…). The dosage matrix is extracted with <code>as.matrix(bed)</code>.This can be used as argument to all functions containing <code>dosage</code>in their names, such as <code>beta.dosage, pi.dosage, theta.Watt.dosage, TajimaD.dosage</code>. For instance, <code>fs.dosage</code> will produce estimates of populations specific <span class="math inline">\(F_{IS}\)</span> and <span class="math inline">\(F_{ST}\)</span>.</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fs.dosage</span>(<span class="fu">as.matrix</span>(bed),<span class="at">pop=</span><span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>,<span class="at">each=</span><span class="dv">50</span>)) <span class="co"># population specific FSTs</span></span></code></pre></div>
 <pre><code>##           1      2    All
 ## Fis -0.0046 0.0342 0.0148
 ## Fst -0.1616 0.6179 0.2282</code></pre>
 <p>As a more interesting example, we can reuse the <code>eHGDP</code> dataset we’ve encountered previously (see <code>?eHGDP</code>), and after having converted it to dosage data with the <code>fstat2dos</code> function (there is a total of <span class="math inline">\(8170\)</span> alleles in the data set), we can look at inbreeding within populations and population structure using <code>fs.dosage</code>:</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1"></a>dat.HGDP&lt;-<span class="kw">genind2hierfstat</span>(eHGDP)</span>
-<span id="cb43-2"><a href="#cb43-2"></a>dos.HGDP&lt;-<span class="kw">fstat2dos</span>(dat.HGDP[,<span class="op">-</span><span class="dv">1</span>])</span>
-<span id="cb43-3"><a href="#cb43-3"></a>fs.HGDP&lt;-<span class="kw">fs.dosage</span>(dos.HGDP,<span class="dt">pop=</span>dat.HGDP[,<span class="dv">1</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>dat.HGDP<span class="ot">&lt;-</span><span class="fu">genind2hierfstat</span>(eHGDP)</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>dos.HGDP<span class="ot">&lt;-</span><span class="fu">fstat2dos</span>(dat.HGDP[,<span class="sc">-</span><span class="dv">1</span>])</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>fs.HGDP<span class="ot">&lt;-</span><span class="fu">fs.dosage</span>(dos.HGDP,<span class="at">pop=</span>dat.HGDP[,<span class="dv">1</span>])</span></code></pre></div>
 <p>We may be interested in finding which populations have either a large <span class="math inline">\(F_{ST}^P&gt;0.15\)</span> or a low one <span class="math inline">\(F_{ST}^P &lt;0\)</span>:</p>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1"></a>eHGDP<span class="op">@</span>other<span class="op">$</span>popInfo[<span class="kw">which</span>(fs.HGDP<span class="op">$</span>Fs[<span class="dv">2</span>,]<span class="op">&gt;</span><span class="fl">0.15</span>),]</span></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>eHGDP<span class="sc">@</span>other<span class="sc">$</span>popInfo[<span class="fu">which</span>(fs.HGDP<span class="sc">$</span>Fs[<span class="dv">2</span>,]<span class="sc">&gt;</span><span class="fl">0.15</span>),]</span></code></pre></div>
 <pre><code>##        Population  Region Label Latitude Longitude
 ## 23      Colombian AMERICA    23      3.0     -68.0
 ## 24      Karitiana AMERICA    24    -10.0     -63.0
@@ -572,7 +394,7 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 ## 75    TicunaArara AMERICA    75     -4.0     -70.0
 ## 76 TicunaTarapaca AMERICA    76     -4.0     -70.0
 ## 79        Arhuaco AMERICA    79     11.0     -73.8</code></pre>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1"></a>eHGDP<span class="op">@</span>other<span class="op">$</span>popInfo[<span class="kw">which</span>(fs.HGDP<span class="op">$</span>Fs[<span class="dv">2</span>,]<span class="op">&lt;</span><span class="fl">0.0</span>),]</span></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>eHGDP<span class="sc">@</span>other<span class="sc">$</span>popInfo[<span class="fu">which</span>(fs.HGDP<span class="sc">$</span>Fs[<span class="dv">2</span>,]<span class="sc">&lt;</span><span class="fl">0.0</span>),]</span></code></pre></div>
 <pre><code>##        Population Region Label Latitude Longitude
 ## 27     BantuKenya AFRICA    27     -3.0      37.0
 ## 28 BantuSouthWest AFRICA    28    -21.0      18.7

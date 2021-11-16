@@ -115,7 +115,7 @@ plot.fs.dosage<-function(x,...){
 
 
 #' @describeIn fs.dosage Print function for fs.dosage class 
-#' @inheritParams plot.fs.dosage
+# @inheritParams plot.fs.dosage
 #' @param digits number of digits to print
 #' @method print fs.dosage    
 #' @export 

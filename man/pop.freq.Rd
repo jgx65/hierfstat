@@ -2,9 +2,9 @@
 \alias{pop.freq}
 \title{Allelic frequencies}
 \description{Estimates allelic frequencies for each population and locus}
-\usage{pop.freq(data,diploid=TRUE)}
+\usage{pop.freq(dat,diploid=TRUE)}
 \arguments{
-\item{data}{a data frame where the first column contains the population to which the different individuals belong, and the following columns contain the genotype of the individuals -one locus per column- }
+\item{dat}{a data frame where the first column contains the population to which the different individuals belong, and the following columns contain the genotype of the individuals -one locus per column- }
 \item{diploid}{specify whether the data set consists of diploid (default) or haploid data}
 }
 

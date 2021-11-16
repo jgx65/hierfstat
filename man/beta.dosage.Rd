@@ -16,7 +16,7 @@ Missing values are allowed}
 
 \item{MATCHING}{if \code{MATCHING=FALSE}, \code{dos} is a (ni x nl) dosage matrix; 
 if \code{MATCHING=TRUE}, dos is a (ni x ni) matrix 
-of matching proportions, as obtained from a call to the \code{\link{maching}} function}
+of matching proportions, as obtained from a call to the \code{\link{matching}} function}
 }
 \value{
 if \code{Mb}=FALSE, a matrix of pairwise kinships and inbreeding coefficients (if \code{inb}=TRUE) or self-coancestries 

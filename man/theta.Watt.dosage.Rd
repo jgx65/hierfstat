@@ -4,7 +4,7 @@
 \alias{theta.Watt.dosage}
 \title{Estimates \eqn{\theta_{Watterson}} from dosage data}
 \usage{
-theta.Watt.dosage(dos)
+theta.Watt.dosage(dos,L=NULL)
 }
 \arguments{
 \item{dos}{a ni X nl dosage matrix containing the number of derived/alternate alleles each individual carries
