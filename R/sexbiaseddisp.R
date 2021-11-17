@@ -12,12 +12,15 @@ subsamp.within<-function (lev,ni=10) {
 }
 ##################################################################################
 #' @title Calculates corrected Assignment Index
-#' @description Calculates corrected Assignment Index as described in \href{https://onlinelibrary.wiley.com/doi/10.1046/j.1365-294X.2002.01496.x/abstract}{Goudet etal. (2002)}
+#' @description Calculates corrected Assignment Index as described in 
+#' \href{https://onlinelibrary.wiley.com/doi/abs/10.1046/j.1365-294X.2002.01496.x}{Goudet etal. (2002)}
 #' @usage AIc(dat)
 #' @param dat a data frane with nlocs+1 columns, 
 #' @return aic  The corrected assignment index of each individual
 #' @author Jerome Goudet \email{jerome.goudet@@unil.ch}
-#' @references \href{https://onlinelibrary.wiley.com/doi/abs/10.1046/j.1365-294X.2002.01496.x}{Goudet J, Perrin N, Waser P (2002)} Tests for sex-biased dispersal 
+#' @references 
+#' \href{https://onlinelibrary.wiley.com/doi/abs/10.1046/j.1365-294X.2002.01496.x}{Goudet J, Perrin N, Waser P (2002)} 
+#' Tests for sex-biased dispersal 
 #'  using bi-parentally inherited genetic markers 11, 1103:1114
 #' @export
 ##################################################################################
