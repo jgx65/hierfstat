@@ -75,6 +75,7 @@ return(y)
 #' @export
 ################
 pop.freq<-function(dat,diploid=TRUE){
+  if (is.genind(data)) data<-genind2hierfstat(data)
   lapply(allele.count(dat,diploid),function(x) sweep(x,2,colSums(x,na.rm=TRUE),FUN="/"))
 }
 #########################################################################

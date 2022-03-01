@@ -34,6 +34,7 @@
 #########################################################################
 
 pairwise.neifst <- function(dat,diploid=TRUE){
+  if (is.genind(dat)) dat<-genind2hierfstat(dat)
   dat<-dat[order(dat[,1]),]
   pops<-unique(dat[,1])
   npop<-length(pops)
@@ -91,6 +92,7 @@ fstmat
 #########################################################################
 
 pairwise.WCfst <- function(dat,diploid=TRUE){
+  if (is.genind(dat)) dat<-genind2hierfstat(dat)
   dat<-dat[order(dat[,1]),]
   pops<-unique(dat[,1])
   npop<-length(pops)
