@@ -189,7 +189,7 @@ allelic.richness<-function (data, min.n = NULL, diploid = TRUE)
 {
     raref <- function(x) {
         nn <- sum(x)
-        dum <- choose(nn - x, min.n)/choose(nn, min.n)
+        dum <- exp(lchoose(nn - x, min.n)-lchoose(nn, min.n))
         dum[is.na(dum)] <- 0
         return(sum(1 - dum))
     }
