@@ -1,3 +1,8 @@
+#version 0.5-11 03.05.2022
+-Fixed bug in allelic richness
+-added automatic conversion to genind objects in several functions
+-Fixed syntax in several help pages
+
 #version 0.5-10 16.11.2021
 -added functions pi.dosage, thetaWatt.dosage and TajimaD.dosage to calculate these quantities from dosage data
 -fixed a bug in write.ped when the argument pop!=NULL, the first column contains the genotypes at the first locus
