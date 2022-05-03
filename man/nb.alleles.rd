@@ -9,7 +9,7 @@
 }
 
 \value{
-\item{}{A table, --with np (number of populations) columns and nl (number of loci) rows-- of the number of different alleles}
+A table, --with np (number of populations) columns and nl (number of loci) rows-- of the number of different alleles
 }
 %\references{}
 \author{Jerome Goudet \email{jerome.goudet@unil.ch}}

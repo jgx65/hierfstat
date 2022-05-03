@@ -9,8 +9,8 @@
 }
 
 \value{
-\item{}{A list containing allele frequencies. Each element of the list is one locus.
-For each locus, Populations are in columns and alleles in rows}
+A list containing allele frequencies. Each element of the list is one locus.
+For each locus, Populations are in columns and alleles in rows
 } 
 %\references{}
 \author{Jerome Goudet \email{jerome.goudet@unil.ch}}

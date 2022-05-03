@@ -9,7 +9,7 @@ individuals (ni) and as many columns as loci (nl) into an array [ni,nl,2] of all
 }
 
 \value{
-\item{}{an array [ni,nl,2] of alleles. The two alleles are stored in the third dimension of the array}
+an array [ni,nl,2] of alleles. The two alleles are stored in the third dimension of the array
 } 
 %\references{}
 \author{Jerome Goudet \email{jerome.goudet@unil.ch}}

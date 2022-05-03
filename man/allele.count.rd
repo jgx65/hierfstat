@@ -9,8 +9,9 @@
 }
 
 \value{
-\item{}{A list of tables, --each with np (number of populations) columns and nl (number of loci) rows-- of the count of each allele}
+A list of tables, --each with np (number of populations) columns and nl (number of loci) rows-- of the count of each allele
 }
+
 %\references{}
 \author{Jerome Goudet \email{jerome.goudet@unil.ch}}
 

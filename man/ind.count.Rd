@@ -8,7 +8,7 @@
 }
 
 \value{
-\item{}{A table --with np (number of populations) columns and nl (number of loci) rows-- of genotype counts}
+A table --with np (number of populations) columns and nl (number of loci) rows-- of genotype counts
 }
 %\references{}
 \author{Jerome Goudet \email{jerome.goudet@unil.ch}}
