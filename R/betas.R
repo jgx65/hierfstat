@@ -21,7 +21,7 @@
 #' @return Hi Within population gene diversities (complement to 1 of matching probabilities)
 #' @return Hb Between populations gene diversities 
 #' @return betaiovl Average \eqn{\hat{\beta_{WT}^i}} over loci (Population specific FSTs), Table 3 of 
-#' \href{https://www.genetics.org/content/206/4/2085}{Weir and Goudet, 2017 (Genetics)}
+#' \href{https://academic.oup.com/genetics/article/206/4/2085/6072590}{Weir and Goudet, 2017 (Genetics)}
 #' @return betaW Average of the betaiovl \eqn{\hat{\beta_{WT}}} over loci (overall population FST)
 #' @return ci The bootstrap confidence interval of population specific FSTs
 #' (only if more than 100 bootstraps requested AND if more than 10 loci are present)
