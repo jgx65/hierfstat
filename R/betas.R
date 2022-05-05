@@ -34,7 +34,7 @@
 #' 
 #' @author Jerome Goudet \email{jerome.goudet@@unil.ch}
 #' 
-#' @references \href{https://www.genetics.org/content/206/4/2085}{Weir and Goudet, 2017 (Genetics)} 
+#' @references \href{https://academic.oup.com/genetics/article/206/4/2085/6072590}{Weir and Goudet, 2017 (Genetics)} 
 #' A unified characterization of population structure and relatedness.
 #'
 #' 

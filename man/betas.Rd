@@ -70,7 +70,7 @@ graphics::image(1:120,1:120,ind.coan$betaij,xlab="Inds",ylab="Inds")
 
 }
 \references{
-\href{https://www.genetics.org/content/206/4/2085}{Weir and Goudet, 2017 (Genetics)} 
+\href{https://academic.oup.com/genetics/article/206/4/2085/6072590}{Weir and Goudet, 2017 (Genetics)} 
 A unified characterization of population structure and relatedness.
 }
 \seealso{
