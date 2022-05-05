@@ -101,7 +101,9 @@ fs.gt<-fs.dosage(gt.dos,pop=gtrunchier[,2])
 image(1:29,1:29,fs.gt$FsM,main=expression(F[ST]^{XY}))
 ```
 
-We clearly see the block structure of patches within locality, with the second block along the diagonal showing higher similarity than the others. Blocks off the main diagonal are lighter, showing less genetic similarity between localities than within.     
+We clearly see the block structure of patches within locality, with the second block along the diagonal showing higher similarity than the others. Blocks off the main diagonal are lighter, showing less genetic similarity between localities than within.   
+
+Functions `pi.dosage`, `theta.Watt.dosage`  and `TajimaD.dosage` calculate nucleotide diversity, Watterson's $\theta_W$ and Tajima's $D$ respectively, from dosage data. 
 
 # Individual statistics
 
