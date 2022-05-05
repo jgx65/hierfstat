@@ -45,7 +45,7 @@ Fst2x2 matrix containing pairwise FSTs
 
 Fs The first row contains population specific and overall Fis, the second row population specific 
 (average \eqn{\hat{\beta_{ST}^i}} over loci)  FSTs and overall Fst \eqn{\hat{\beta_{ST}}} (see Table 3 of 
-\href{https://www.genetics.org/content/206/4/2085}{Weir and Goudet, 2017 (Genetics)})
+\href{https://academic.oup.com/genetics/article/206/4/2085/6072590}{Weir and Goudet, 2017 (Genetics)})
 }
 \description{
 Reports individual inbreeding coefficients, Population specific and pairwise Fsts, and Fiss from dosage data
@@ -71,6 +71,6 @@ Reports individual inbreeding coefficients, Population specific and pairwise Fst
 \author{
 Jerome Goudet \email{jerome.goudet@unil.ch}
 
-\href{https://www.genetics.org/content/206/4/2085}{Weir, BS and Goudet J. 2017} A Unified Characterization 
+\href{https://academic.oup.com/genetics/article/206/4/2085/6072590}{Weir, BS and Goudet J. 2017} A Unified Characterization 
 of Population Structure and Relatedness. Genetics (2017) 206:2085
 }

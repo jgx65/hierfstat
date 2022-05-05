@@ -13,7 +13,7 @@
 #' 
 #' @author Jerome Goudet \email{jerome.goudet@@unil.ch}
 #' 
-#' @references \href{https://www.genetics.org/content/180/2/977.abstract}{Foll M and OE Gaggiotti (2008) 
+#' @references \href{https://academic.oup.com/genetics/article/180/2/977/6073889}{Foll M and OE Gaggiotti (2008) 
 #'  Genetics 180: 977-993}
 #'
 #' 

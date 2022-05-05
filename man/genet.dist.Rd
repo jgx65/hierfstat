@@ -42,7 +42,7 @@ A matrix of pairwise genetic distance
 \references{
 
  
-\href{https://www.genetics.org/content/144/1/389}{Takezaki & Nei (1996)} Genetic distances and reconstruction of Phylogenetic trees from microsatellite DNA. Genetics 144:389-399
+\href{https://academic.oup.com/genetics/article/144/1/389/6016981}{Takezaki & Nei (1996)} Genetic distances and reconstruction of Phylogenetic trees from microsatellite DNA. Genetics 144:389-399
 
 Nei, M. (1987) Molecular Evolutionary Genetics. Columbia University Press
 

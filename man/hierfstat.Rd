@@ -15,7 +15,7 @@ Several functions have been written to simulate genetic data, or to import them 
 
 \href{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1207740/pdf/ge14441933.pdf}{Goudet J., Raymond, M., DeMeeus, T. and Rousset F. (1996)} Testing differentiation in diploid populations. Genetics. 144: 1933-1940 
 
-\href{https://www.genetics.org/content/206/4/2085}{Weir B.S. and Goudet J. (2017)} A Unified Characterization of Population Structure and Relatedness. Genetics. 206: 2085-2103
+\href{https://academic.oup.com/genetics/article/206/4/2085/6072590}{Weir B.S. and Goudet J. (2017)} A Unified Characterization of Population Structure and Relatedness. Genetics. 206: 2085-2103
 
 \href{https://onlinelibrary.wiley.com/doi/full/10.1111/mec.14833}{Goudet J., Kay T. and Weir B.S. (2018)} How to estimate kinship. Molecular Ecology.  27: 4121:4135
 
