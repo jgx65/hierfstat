@@ -94,7 +94,7 @@ hierfstat::Ho(nancycats) # mean populations observed heterozygosities
 
 # Allelic dosages
 
-Genomic datasets are composed of (very) large numbers of bi-allelic loci, called Simgle Nucleotide  Polymorhisms, or SNP.  A convenient and efficient format for storing SNP data is allelic dosage, the number of alternative alleles and individual carries at a locus. For a diploid locus, this number can be 0 if the individual carries two reference alleles, 1 if he is heterozygote or 2 if he carries 2 alternate alleles. The allelic dosage format is suitable for analyses with several of the `hierfstat` functions, as described in the `hierfstat` vignette. 
+Genomic datasets are composed of (very) large numbers of bi-allelic loci, called Single Nucleotide  Polymorhisms, or SNP.  A convenient and efficient format for storing SNP data is allelic dosage, the number of alternative alleles and individual carries at a locus. For a diploid locus, this number can be 0 if the individual carries two reference alleles, 1 if he is heterozygote or 2 if he carries 2 alternate alleles. The allelic dosage format is suitable for analyses with several of the `hierfstat` functions, as described in the `hierfstat` vignette. 
 
 
 ## Importing from adegenet: genlight objects
@@ -129,7 +129,7 @@ by default, `read.VCF` keeps only the bi-allelic SNPs (whereas `gaston::read.vcf
 `as.matrix(x1)` will then provide allelic dosages.
 
 
-* Another route to import VCF files is via the `SNPRelate` package, and its function `snpgdsVCF2GDS` (As the function writes to a file, the two next code chunks will not be evaluated) 
+* Another route to import VCF files is via the `SNPRelate` package, and its function `snpgdsVCF2GDS` (as the function writes to a file, the two next code chunks will not be evaluated) 
 
 ```{r,eval=FALSE}
 library(SNPRelate)
@@ -173,27 +173,35 @@ head(dat$dat[,1:10])
 
 ## Importing from ms
 
-The program [ms](http://home.uchicago.edu/~rhudson1/source/mksamples.html) of Hudson is commonly used to generate genomic data.   
+The program [ms](http://home.uchicago.edu/~rhudson1/source/mksamples.html) of Hudson is commonly used to generate genomic data, and the program [msprime](https://tskit.dev/msprime/docs/stable/intro.html) has a wrapper for `ms` named [mspms](https://tskit.dev/msprime/docs/stable/cli.html#sec-mspms).   
 
-I briefly discussed the `ms` software.  its output looks like this:
+I very briefly discussed the output of the `ms` software below, see its [documentation](https://uchicago.app.box.com/s/l3e5uf13tikfjm7e1il1eujitlsjdx13/file/245765534272) for more informations and details of arguments to be passed to `ms`.  
 
-  ms 200 100 -t 20 -I 2 100 100 40 -n 2 0.01 
-  
-  29161
-  
-  //
-  
-  segsites: 23
-  
-  positions: 0.0689 0.2534 0.3219 0.3350 0.3547 0.3768 0.4339 0.4359 0.4388 0.4694 0.5003 0.5422 0.6575 0.6985 0.7059 0.7147 0.7453 0.7709 0.7891 0.8439 0.8779 0.8857 0.9380 
-  
-  00100001100000000000000
-  
-  00001001000000000001000
+The output looks like this:
 
-The first line is the `ms` command line, and it instructed the program to simulate 2 populations, with $\theta=2N_0\mu=20$.  The 2 populations differ in size and the smallest (the second) is a 100th of the first. The two populations exchange $4Nm=40$ migrants per generation.  100 chromosomes are sampled from each population, and this is repeated a 100 times. 
+>  ms 200 100 -t 20 -I 2 100 100 40 -n 2 0.01 
+>  
+>  29161
+>  
+>  //
+>  
+>  segsites: 23
+>  
+>  positions: 0.0689 0.2534 0.3219 0.3350 0.3547 0.3768 0.4339 0.4359 0.4388 0.4694 0.5003 0.5422 0.6575 0.6985 0.7059 0.7147 0.7453 0.7709 0.7891 0.8439 0.8779 0.8857 0.9380 
+>  
+>  00100001100000000000000
+>  
+>  00001001000000000001000
 
-The genetic data itself comes as a serie of 0 and 1, collated one to the other.  These are the SNP sites, with 0 being the ancestral state and 1 the derived state. 
+The first line is the `ms` command line. It instructs the program to simulate 2 populations (`-I 2`) , with $\theta=2N_0\mu=20$ (`-t 20`).  The 2 populations differ in size and the smallest (the second) is a 100th of the first (`-n 2 0.01`). The two populations exchange $4Nm=40$ migrants per generation and  100 chromosomes are sampled from each population (`-I 2 100 100 40`), and this is repeated a 100 times (hence `ms 200 100`). 
+
+The second line is a random number allowing to reapeat exactly the same sequence
+
+The third line is a line of comments
+
+The fourth line contains the positions of the different segregating sites
+
+The fifth and following lines contain the genetic data, as a serie of 0 and 1 (0 is the ancestral and 1 the derived allele), collated one to the other.  These are the SNP sites, with 0 being the ancestral state and 1 the derived state. 
 
 the function `ms2bed` will convert ms output to a bed object:
 
@@ -202,7 +210,7 @@ bed<-ms2bed(system.file("extdata","2pops_asspop.txt",package="hierfstat"))
 head(as.matrix(bed[,1:10])) #first 10 columns of bed matrix
 ```
 
-Take some time to explore the structure of the `bed` s4 object (`str(bed)`), it is very useful. the `@ped` slot contains info relevant to the individuals (their names, family id etc...), while the `@snps` slot contains info relevant to the SNPs (their name, position, chromosome, etc...). The dosage matrix is extracted with `as.matrix(bed)`.This can be used as argument to all functions containing `dosage`in their names, such as  `beta.dosage, pi.dosage, theta.Watt.dosage, TajimaD.dosage`.  For instance, `fs.dosage`  will produce estimates of populations specific $F_{IS}$ and $F_{ST}$.
+Take some time to explore the structure of the `bed` s4 object (`str(bed)`), it is very useful. the `@ped` slot contains info relevant to the individuals (their names, family id etc...), while the `@snps` slot contains info relevant to the SNPs (their name, position, chromosome, etc...). The dosage matrix is extracted with `as.matrix(bed)`.  This can be used as argument to all functions containing `dosage`in their names, such as  `beta.dosage, pi.dosage, theta.Watt.dosage, TajimaD.dosage`.  For instance, `fs.dosage`  will produce estimates of populations specific $F_{IS}$ and $F_{ST}$.
 
 
 

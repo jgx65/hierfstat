@@ -86,25 +86,33 @@ read.ms<-function(fname,what=c("SNP","Haplotype")){
 ####
 #' Import \code{ms} output
 #' 
-#' Import the output of the \code{ms} program into suitable format for further manipulation
+#' Import the output of the \code{ms} program into suitable format for further manipulations
 #' 
-#' @usage ms2dos(fname)
+#' @usage ms2dos(fname,chrom=NULL)
 #' 
 #' @param fname a text file containing the output of the \code{ms program}
+#' @param chrom  the chromosomes (replicates) to be imported. default to all
 #' 
 #' @return alldat a matrix with as many row as (haploid) individuals and as many columns as SNPs
+#' @pop a vector containing individuals population identifier
 #' @return bim a data frame with two components
-#'  chr contains the chromosome (replicate) id; pos contains the SNPs posoition on the chromosome
-#'   
+#'  chr contains the chromosome (replicate) id; 
+#'  pos contains the SNPs positions on the chromosome
+#'  
 #'       
 #' @export
 ####
 
 
-ms2dos<-function(fname){
+ms2dos<-function(fname,chrom=NULL){
   #take an ms file as input
   #return a matrix of haploid gametes
   #for loop rather than lapply for speeding up if nrep too large
+  
+  char2int<-function(datas){
+    tmp<-strsplit(datas,"")
+    matrix(as.integer(unlist(tmp)),nrow=length(datas),byrow=TRUE)
+  }
   
   dat<-readLines(fname)
   tmp<-strsplit(dat[1],split=" ")[[1]]
@@ -113,7 +121,10 @@ ms2dos<-function(fname){
     np<-as.integer(tmp[pos.i+1])
     ni<-as.integer(tmp[(pos.i+2):(pos.i+1+np)])
   }
-  else ni<-as.integer(tmp[2])
+  else {
+    np<-1
+    ni<-as.integer(tmp[2])
+  }
   pos.i<-which(tmp=="-r")
   if (length(pos.i)>0){
     nbp<-as.integer(tmp[pos.i+2])
@@ -123,17 +134,37 @@ ms2dos<-function(fname){
   dat1<-grep("^[0,1]",dat[-c(1:4)],value=TRUE)
   nt<-sum(ni)
   dats<-split(dat1,rep(1:nrep,each=nt))
-  nsnps<-as.integer(unlist(lapply(strsplit(grep("segsites:",dat,value=TRUE),split=":"),function(x) x[[2]])))
-  if (!is.null(nbp)) 
-    pos<-round(unlist(lapply(lapply(strsplit(grep("positions",dat,value=T),split=":"),function(x) strsplit(x[[2]],split=" ")),function(y) as.numeric(y[[1]][-1])))*nbp,0)
-  else pos<-unlist(lapply(nsnps,function(x) 1:x))
-    dats1<-lapply(dats,strsplit,"")
-  dats2<-lapply(dats1,function(x) matrix(as.integer(unlist(x)),nrow=nt,byrow=TRUE))
+  
+  if (!is.null(chrom)) dats<-dats[chrom] else chrom<-1:nrep
+  
+  nsnps<-as.integer(unlist(lapply(strsplit(grep("segsites:",dat,value=TRUE),split=":"),function(x) x[[2]])))[chrom]
+  if (!is.null(nbp)){ 
+    pos<-round(unlist(lapply(lapply(strsplit(grep("positions",dat,value=T),split=":"),
+            function(x) strsplit(x[[2]],split=" ")),function(y) as.numeric(y[[1]][-1]))[chrom])*nbp,0)
+    } else {
+    pos<-unlist(lapply(nsnps,function(x) 1:x))
+    }
+  
+   if((1.0*nsnps[1]*nt) <1.0e+8){
+     dats2<-lapply(dats,char2int)
+   } else{
+    nblocks<-ceiling(1.0*max(nsnps)*nt /1.0e+8)
+    indgroups<-split(1:nt,cut(1:nt,nblocks))
+    dats2<-list(length=length(chrom))
+    for (ic in 1:length(chrom)){
+      dats1<-NULL
+      dum<-lapply(indgroups,function(ii) char2int(dats[[ic]][ii])) 
+      for (ib in 1:nblocks) dats1<-rbind(dats1,dum[[ib]])
+      dats2[[ic]]<-dats1
+      gc()
+    }
+    
+  }
   alldat<-NULL
-  for (i in 1:nrep)
+  for (i in 1:length(dats2))
     alldat<-cbind(alldat,dats2[[i]])
-
-      return(list(alldat=alldat,bim=data.frame(chr=rep(1:nrep,nsnps),pos=pos)))
+  gc()
+  return(list(alldat=alldat,pop=rep(1:np,ni),bim=data.frame(chr=rep(chrom,nsnps),pos=pos)))
 }
 
 ####
@@ -142,19 +173,28 @@ ms2dos<-function(fname){
 #' Import the output of the \code{ms} program into a \code{BED} object, as defined in the 
 #' \href{https://cran.r-project.org/package=gaston}{gaston} package
 #' 
+#' @usage ms2bed(fname,chrom=NULL)
+#' 
 #' @param  fname the name of the text file containing \code{ms} output
+#' @param chrom  the number of chromosomes (replicates) to import (default to all)
+#' 
 #' 
 #' @return a bed object
 #' 
+#' @details \code{ms2bed} relies on \code{\link{ms2dos}}. 
+#' The population identifier is in bed@@ped$famid
+#' 
 #' @export
 ####
-ms2bed<-function(fname){
-  dos<-ms2dos(fname)
+ms2bed<-function(fname,chrom=NULL){
+  dos<-ms2dos(fname,chrom)
   x<-0:(dim(dos$alldat)[1]%/%2-1)
   dos2<-dos$alldat[x*2+1,]+dos$alldat[x*2+2,]
   bed<-gaston::as.bed.matrix(dos2)
+  bed@ped$famid<-dos$pop[x*2+1]
   bed@snps$pos<-dos$bim$pos
   bed@snps$chr<-dos$bim$chr
+  gc()
   return(bed)
 }
 
