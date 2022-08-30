@@ -21,11 +21,8 @@ pp.fst<-function(dat=dat,diploid=TRUE,...){
   Pop<-dat[,1]
   npop<-length(unique(Pop))
   nloc<-dim(dat)[2]-1
-  if (diploid) {
-    ppsl<-array(numeric(npop*npop*nloc*3),dim=c(npop,npop,nloc,3))
-  }else {
-    ppsl<-array(numeric(npop*npop*nloc*2),dim=c(npop,npop,nloc,2))
-  }
+  if (diploid) nvc<-3 else nvc<-2
+  ppsl<-array(numeric(npop*npop*nloc*nvc),dim=c(npop,npop,nloc,nvc))
   for (i in 1:(npop-1))
     for (j in (i+1):npop){
       #cat(i," ",j,"\n") #for debugging
@@ -59,11 +56,8 @@ boot.ppfst<-function(dat=dat,nboot=100,quant=c(0.025,0.975),diploid=TRUE,...){
     #Pop<-dat[,1]
     npop<-length(table(dat[,1]))
     nloc<-dim(dat)[2]-1
-    if (diploid) {
-      ppsl<-array(numeric(npop*npop*nloc*3),dim=c(npop,npop,nloc,3))
-    } else {
-      ppsl<-array(numeric(npop*npop*nloc*2),dim=c(npop,npop,nloc,2))
-    }
+    if (diploid) nvc<-3 else nvc<-2
+    ppsl<-array(numeric(npop*npop*nloc*nvc),dim=c(npop,npop,nloc,nvc))
     x<-unique(dat[,1])
     if(is.factor(dat[,1])) dat[,1]<-as.integer(dat[,1])
     for (i in 1:(npop-1)) { 
