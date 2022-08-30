@@ -24,7 +24,7 @@ pp.fst<-function(dat=dat,diploid=TRUE,...){
   if (diploid) {
     ppsl<-array(numeric(npop*npop*nloc*3),dim=c(npop,npop,nloc,3))
   }else {
-    ppsl<-array(numeric(npop*npop*nloc*3),dim=c(npop,npop,nloc,3))
+    ppsl<-array(numeric(npop*npop*nloc*2),dim=c(npop,npop,nloc,2))
   }
   for (i in 1:(npop-1))
     for (j in (i+1):npop){
