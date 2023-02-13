@@ -2,7 +2,7 @@
 \alias{boot.ppfst}
 \alias{print.boot.ppfst}
 \title{Performs bootstrapping over loci of pairwise Fst}
-\description{Performs bootstrapping over loci of pairwise Fst}
+\description{Performs bootstrapping over loci of pairwise Fst using Weir and Cockerham (1984) estimator of Fst}
 \usage{boot.ppfst(dat=dat,nboot=100,quant=c(0.025,0.975),diploid=TRUE,...)}
 \arguments{
 \item{dat}{a genetic data frame}
