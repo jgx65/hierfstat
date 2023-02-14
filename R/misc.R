@@ -232,6 +232,7 @@ basic.stats<-function (data, diploid = TRUE, digits = 4)
 {
   if (adegenet::is.genind(data)) 
     data <- genind2hierfstat(data)
+  dum.pop<-FALSE
   if (length(table(data[, 1])) < 2){ 
     data[dim(data)[1] + 1, 1] <- "DumPop"
     dum.pop<-TRUE
