@@ -1,6 +1,6 @@
 #' Estimates matching between pairs of individuals
 #' 
-#' Estimates matching between pairs of individuals (for each locus, gives 1 if the two individuals are homozygous
+#' Estimates matching (or Allele Sharing) between pairs of individuals (for each locus, gives 1 if the two individuals are homozygous
 #' for the same allele, 0 if they are homozygous for a different allele, and 1/2 if at least one individual 
 #' is heterozygous. Matching is the average of these 0, 1/2 and 1s)
 #'
@@ -13,7 +13,7 @@
 #' @param dos A matrix of 0, 1 and 2s with loci (SNPs) in columns and individuals in rows. 
 #' missing values are allowed
 #' 
-#' @return a matrix of pairwise matching
+#' @return a matrix of pairwise matching / Allele Sharing
 #' 
 #' @export
 
@@ -40,7 +40,9 @@ matching<-function(dos){
 Mij  
 }
   
+#' @rdname matching
 
+AlleleSharing <- matching
 
 #' Estimates pairwise kinships and individual inbreeding coefficients from dosage data
 #'
