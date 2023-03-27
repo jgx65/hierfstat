@@ -2,19 +2,22 @@
 % Please edit documentation in R/beta_dosage.R
 \name{matching}
 \alias{matching}
+\alias{AlleleSharing}
 \title{Estimates matching between pairs of individuals}
 \usage{
 matching(dos)
+
+AlleleSharing(dos)
 }
 \arguments{
 \item{dos}{A matrix of 0, 1 and 2s with loci (SNPs) in columns and individuals in rows. 
 missing values are allowed}
 }
 \value{
-a matrix of pairwise matching
+a matrix of pairwise matching / Allele Sharing
 }
 \description{
-Estimates matching between pairs of individuals (for each locus, gives 1 if the two individuals are homozygous
+Estimates matching (or Allele Sharing) between pairs of individuals (for each locus, gives 1 if the two individuals are homozygous
 for the same allele, 0 if they are homozygous for a different allele, and 1/2 if at least one individual 
 is heterozygous. Matching is the average of these 0, 1/2 and 1s)
 }
