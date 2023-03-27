@@ -2,9 +2,12 @@
 % Please edit documentation in R/beta_dosage.R
 \name{beta.dosage}
 \alias{beta.dosage}
+\alias{kas.dosage}
 \title{Estimates pairwise kinships and individual inbreeding coefficients from dosage data}
 \usage{
-beta.dosage(dos,inb=TRUE,Mb=FALSE,MATCHING=FALSE)
+beta.dosage(dos,inb=TRUE,Mb=FALSE,matching=FALSE)
+
+kas.dosage(dos, inb = TRUE, Mb = FALSE, matching = FALSE)
 }
 \arguments{
 \item{dos}{A matrix of 0, 1 and 2s with loci (SNPs) in columns and individuals in rows. 
@@ -12,10 +15,10 @@ Missing values are allowed}
 
 \item{inb}{whether individual inbreeding coefficient should be estimated (rather than self-coancestries)}
 
-\item{Mb}{whether to output the mean matching}
+\item{Mb}{whether to output the mean matching of off-diagonal elements}
 
-\item{MATCHING}{if \code{MATCHING=FALSE}, \code{dos} is a (ni x nl) dosage matrix; 
-if \code{MATCHING=TRUE}, dos is a (ni x ni) matrix 
+\item{matching}{if \code{matching=FALSE}, \code{dos} is a (ni x nl) dosage matrix; 
+if \code{matching=TRUE}, dos is a (ni x ni) matrix 
 of matching proportions, as obtained from a call to the \code{\link{matching}} function}
 }
 \value{
@@ -63,6 +66,7 @@ rather than imputed (this is taken care off automatically)
  abline(v=c(0.0,0.3,0.7),col="red")
  
 }
+
 }
 \references{
 \href{https://academic.oup.com/genetics/article/206/4/2085/6072590}{Weir, BS and Goudet J. 2017} A Unified Characterization 

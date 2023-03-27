@@ -52,11 +52,11 @@ Reports individual inbreeding coefficients, Population specific and pairwise Fst
 }
 \section{Methods (by generic)}{
 \itemize{
-\item \code{plot}: Plot function for fs.dosage class
+\item \code{plot(fs.dosage)}: Plot function for fs.dosage class
 
-\item \code{print}: Print function for fs.dosage class
+\item \code{print(fs.dosage)}: Print function for fs.dosage class
+
 }}
-
 \examples{
 \dontrun{
  dos<-matrix(sample(0:2,size=10000,replace=TRUE),ncol=100)

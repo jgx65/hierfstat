@@ -53,9 +53,9 @@ and substracting 1.
 }
 \section{Methods (by generic)}{
 \itemize{
-\item \code{print}: print function for betas class
-}}
+\item \code{print(betas)}: print function for betas class
 
+}}
 \examples{
 \dontrun{
 #3 different population sizes lead to 3 different betais

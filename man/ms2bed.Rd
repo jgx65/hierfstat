@@ -4,10 +4,12 @@
 \alias{ms2bed}
 \title{Import the output of the \code{ms} program in a \code{BED} object}
 \usage{
-ms2bed(fname)
+ms2bed(fname,chrom=NULL)
 }
 \arguments{
 \item{fname}{the name of the text file containing \code{ms} output}
+
+\item{chrom}{the number of chromosomes (replicates) to import (default to all)}
 }
 \value{
 a bed object
@@ -15,4 +17,8 @@ a bed object
 \description{
 Import the output of the \code{ms} program into a \code{BED} object, as defined in the 
 \href{https://cran.r-project.org/package=gaston}{gaston} package
+}
+\details{
+\code{ms2bed} relies on \code{\link{ms2dos}}. 
+The population identifier is in bed@ped$famid
 }

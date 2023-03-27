@@ -4,17 +4,20 @@
 \alias{ms2dos}
 \title{Import \code{ms} output}
 \usage{
-ms2dos(fname)
+ms2dos(fname,chrom=NULL)
 }
 \arguments{
 \item{fname}{a text file containing the output of the \code{ms program}}
+
+\item{chrom}{the chromosomes (replicates) to be imported. default to all}
 }
 \value{
 alldat a matrix with as many row as (haploid) individuals and as many columns as SNPs
 
 bim a data frame with two components
- chr contains the chromosome (replicate) id; pos contains the SNPs posoition on the chromosome
+ chr contains the chromosome (replicate) id; 
+ pos contains the SNPs positions on the chromosome
 }
 \description{
-Import the output of the \code{ms} program into suitable format for further manipulation
+Import the output of the \code{ms} program into suitable format for further manipulations
 }
