@@ -31,7 +31,9 @@ x<-dim(data)
 if (max(data[,true.loci],na.rm=TRUE)>1000000) stop("allele encoding with 3 digits maximum")
 if (max(data[,true.loci],na.rm=TRUE)<1000000) modulo<-1000
 if (max(data[,true.loci],na.rm=TRUE)<10000) {
-if (min(data[,true.loci]%/%100,na.rm=TRUE)>=10 & max(data[,true.loci]%%100,na.rm=TRUE)<10) modulo<-1000 else modulo<-100
+if (min(data[,true.loci]%/%100,na.rm=TRUE)>=10 
+  & median(as.matrix(data[,true.loci]%%100),na.rm=TRUE)<10) modulo<-1000 
+else modulo<-100
 }
 if (max(data[,true.loci],na.rm=TRUE)<100) modulo<-10
 firstal<-data[,-1] %/% modulo
@@ -59,7 +61,7 @@ x<-dim(data)
 if (max(data,na.rm=TRUE)>1000000) stop("allele encoding with 3 digits maximum")
 if (max(data,na.rm=TRUE)<1000000) modulo<-1000
 if (max(data,na.rm=TRUE)<10000) {
-if (min(data%/%100,na.rm=TRUE)>=10 & max(data[,2]%%100,na.rm=TRUE)<10) modulo<-1000 else modulo<-100
+if (min(data%/%100,na.rm=TRUE)>=10 & median(as.matrix(data%%100),na.rm=TRUE)<10) modulo<-1000 else modulo<-100
 }
 if (max(data,na.rm=TRUE)<100) modulo<-10
 firstal<-data %/% modulo
