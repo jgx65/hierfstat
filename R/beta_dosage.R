@@ -56,14 +56,14 @@ Mij
 #' By default (\code{inb=TRUE}) the inbreeding coefficient is returned on the main diagonal.  
 #' With \code{inb=FALSE}, self coancestries are reported. 
 #' 
-#' @usage beta.dosage(dos,inb=TRUE,Mb=FALSE,MATCHING=FALSE)
+#' @usage beta.dosage(dos,inb=TRUE,Mb=FALSE,matching=FALSE)
 #'
 #' @param dos A matrix of 0, 1 and 2s with loci (SNPs) in columns and individuals in rows. 
 #' Missing values are allowed
 #' @param inb whether individual inbreeding coefficient should be estimated (rather than self-coancestries)
-#' @param Mb whether to output the mean matching 
-#' @param MATCHING if \code{MATCHING=FALSE}, \code{dos} is a (ni x nl) dosage matrix; 
-#' if \code{MATCHING=TRUE}, dos is a (ni x ni) matrix 
+#' @param Mb whether to output the mean matching of off-diagonal elements
+#' @param matching if \code{matching=FALSE}, \code{dos} is a (ni x nl) dosage matrix; 
+#' if \code{matching=TRUE}, dos is a (ni x ni) matrix 
 #' of matching proportions, as obtained from a call to the \code{\link{matching}} function 
 #' 
 #' @return if \code{Mb}=FALSE, a matrix of pairwise kinships and inbreeding coefficients (if \code{inb}=TRUE) or self-coancestries 
@@ -106,14 +106,16 @@ Mij
 
 #'  
 #' }
+#' 
 #' @export
+#' 
 
 
-beta.dosage <- function (dos, inb = TRUE, Mb = FALSE, MATCHING=FALSE) {
-  #dos is a data frame with individuals in rows and allelic dosage for each locus in colums  
+beta.dosage <- function (dos, inb = TRUE, Mb = FALSE, matching=FALSE) {
+  #dos is a data frame with individuals in rows and allelic dosage for each locus in columns  
   #uses matching proba -same equation as for population i.e. Mij=[xiXj+(2-xi)(2-xj)]/4
 
-  if(!MATCHING)  {Mij<-matching(dos)} else Mij<-dos
+  if(!matching)  {Mij<-matching(dos)} else Mij<-dos
   
 
   Mii <- diag(Mij)
@@ -132,3 +134,6 @@ beta.dosage <- function (dos, inb = TRUE, Mb = FALSE, MATCHING=FALSE) {
 }
 
 
+#' @rdname beta.dosage
+
+kas.dosage <- beta.dosage
