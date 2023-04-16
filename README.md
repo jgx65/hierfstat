@@ -2,9 +2,7 @@
 
 <!-- badges: start -->
 [![CRAN Status Badge](https://www.r-pkg.org/badges/version/hierfstat)](https://cran.r-project.org/package=hierfstat)
-
 [![CRAN Downloads](https://cranlogs.r-pkg.org/badges/hierfstat)](https://cran.r-project.org/package=hierfstat)
-
 [![Downloads from Rstudio mirror](https://cranlogs.r-pkg.org/badges/grand-total/hierfstat)](https://cran.r-project.org/package=hierfstat)
 
   <!-- badges: end -->
