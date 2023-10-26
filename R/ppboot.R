@@ -114,6 +114,11 @@ print.boot.ppfst<-function(x,...){
 boot.ppfis<-function(dat=dat,nboot=100,quant=c(0.025,0.975),diploid=TRUE,dig=4,...){
   cl<-match.call()
   if (is.genind(dat)) dat<-genind2hierfstat(dat)
+  if (length(table(dat[, 1])) < 2){
+    dat[dim(dat)[1] + 1, 1] <- "DumPop"
+    dum.pop<-TRUE
+  }
+  
   bs<-basic.stats(dat)
   Ho<-bs$Ho
   Hs<-bs$Hs
@@ -127,7 +132,8 @@ boot.ppfis<-function(dat=dat,nboot=100,quant=c(0.025,0.975),diploid=TRUE,dig=4,.
   ll<-apply(my.boot,2,stats::quantile,quant[1],na.rm=TRUE)
   hl<-apply(my.boot,2,stats::quantile,quant[2],na.rm=TRUE)
   res<-data.frame(ll=ll,hl=hl)
-  return(list(call=cl,fis.ci=round(res,digits=dig)))
+  if (dum.pop) return(list(call=cl,fis.ci=round(res,digits=dig)[1,]))
+  else return(list(call=cl,fis.ci=round(res,digits=dig)))
 }
 ###########################################################################
 #' Estimates bootstrap confidence intervals for pairwise betas FST estimates
