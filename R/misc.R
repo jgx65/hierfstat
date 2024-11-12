@@ -77,7 +77,7 @@ return(y)
 #' @export
 ################
 pop.freq<-function(dat,diploid=TRUE){
-  if (is.genind(data)) data<-genind2hierfstat(data)
+  if (is.genind(dat)) dat<-genind2hierfstat(dat)
   lapply(allele.count(dat,diploid),function(x) sweep(x,2,colSums(x,na.rm=TRUE),FUN="/"))
 }
 #########################################################################
@@ -232,7 +232,7 @@ allelic.richness<-function (data, min.n = NULL, diploid = TRUE)
 ################
 basic.stats<-function (data, diploid = TRUE, digits = 4) 
 {
-  if (adegenet::is.genind(data)) 
+  if (is.genind(data)) 
     data <- genind2hierfstat(data)
   dum.pop<-FALSE
   if (length(table(data[, 1])) < 2){ 
@@ -349,10 +349,23 @@ Ho<-function(data,...){
 }  
 
 #####################################################
+#' Test if object is of class \code{\link[adegenet]{genind}}
+#' 
+#' Test if the argument to the function is of class 
+#' \code{\link[adegenet]{genind}}, a class from 
+#' the \code{\link[adegenet]{adegenet}} library
+#'  
+#' @usage is.genind(dat)
+#' 
+#' @param dat  an object
+#' 
+#' @returns TRUE or FALSE
+#' 
+#' 
+#' @export
 
-
-is.genind<-function (x) 
+is.genind<-function (dat) 
 {
-  res <- (methods::is(x, "genind") & methods::validObject(x))
+  res <- (methods::is(dat, "genind") & methods::validObject(dat))
   return(res)
 }
