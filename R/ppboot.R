@@ -113,6 +113,7 @@ print.boot.ppfst<-function(x,...){
 ################################################################################
 boot.ppfis<-function(dat=dat,nboot=100,quant=c(0.025,0.975),diploid=TRUE,dig=4,...){
   cl<-match.call()
+  dum.pop<-FALSE
   if (is.genind(dat)) dat<-genind2hierfstat(dat)
   if (length(table(dat[, 1])) < 2){
     dat[dim(dat)[1] + 1, 1] <- "DumPop"
