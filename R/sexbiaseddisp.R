@@ -176,7 +176,7 @@ if (test==2){
   }
   fstats[-1]<-replicate(nperm-1,foo())
   res$statistic<-fstats[1]
-  if (alt==1){res$p.value<-sum(abs(fstats)>=abs(fstats[1]))/nperm}
+  if (alt==1){res$p.value<-sum(pmax(fstats,1/fstats)>=max(fstats[1],1/fstats[1]))/nperm}
   if (alt==2){res$p.value<-sum(fstats<=fstats[1])/nperm}
   if (alt==3){res$p.value<-sum(fstats>=fstats[1])/nperm}
   
