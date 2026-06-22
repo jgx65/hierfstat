@@ -3,7 +3,7 @@
 \title{Bootstrap confidence intervals for variance components}
 \description{Provides a bootstrap confidence interval (over loci) for sums of the different variance components (equivalent to gene diversity estimates at the different levels), and the  derived F-statistics, as suggested by Weir and Cockerham (1984). Will not run with less than 5 loci. Raymond and Rousset (199X) points out shortcomings of this method.}
 \usage{
-boot.vc(levels=levels,loci=loci,diploid=TRUE,nboot=1000,quant=c(0.025,0.5,0.975))
+boot.vc(levels=levels,loci=loci,diploid=TRUE,nboot=1000,quant=c(0.025,0.5,0.975),n.cores=1)
 }
 \arguments{
 \item{levels}{a data frame containing the different levels (factors) from the outermost (e.g. region) to the innermost before the individual}
@@ -11,6 +11,7 @@ boot.vc(levels=levels,loci=loci,diploid=TRUE,nboot=1000,quant=c(0.025,0.5,0.975)
 \item{diploid}{Specify whether the data are coming from diploid or haploid organisms (diploid is the default)}
 \item{nboot}{Specify the number of bootstrap to carry out. Default is 1000}
 \item{quant}{Specify which quantile to produce. Default is c(0.025,0.5,0.975) giving the percentile 95\% CI and the median}
+\item{n.cores}{number of threads to perform the calculation (default is n.cores=1)}
 }
 \value{
 \item{boot}{a data frame with the bootstrapped variance components. Could be used for obtaining bootstrap ci of statistics not listed here.}

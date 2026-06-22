@@ -3,12 +3,13 @@
 \title{Estimate variance components and hierarchical F-statistics over all loci}
 \description{Return multilocus estimators of variance components and F-statistics}
 \usage{
-varcomp.glob(levels=levels,loci=loci,diploid=TRUE)
+varcomp.glob(levels=levels,loci=loci,diploid=TRUE, n.cores=1)
 }
 \arguments{
 \item{levels}{a data frame containing the different levels (factors) from the outermost (e.g. region) to the innermost before the individual}
 \item{loci}{a data frame containing the different loci}
 \item{diploid}{Specify whether the data are coming from diploid or haploid organisms (diploid is the default)}
+\item{n.cores}{number of threads to perform the calculation (default is n.cores=1)}
 }
 \value{
 \item{loc}{The variance components for each locus}

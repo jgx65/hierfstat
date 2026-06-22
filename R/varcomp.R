@@ -90,35 +90,66 @@
 #'@export
 
 "varcomp.glob" <-
-  function (levels = levels, loci = loci, diploid = TRUE) 
-  {
-    lnames <- names(loci)
-    if (is.null(dim(levels))) {
-      fnames <- "Pop"
-    }
-    else fnames <- names(levels)
-    if (diploid) {
-      fnames <- c(fnames, "Ind")
-    }
-    res <- varcomp(cbind(levels, loci[, 1]),diploid)$overall #OPT: remove cbind and rbind
-    nloc <- dim(loci)[2]
-    for (i in 2:nloc) res <- rbind(res, varcomp(cbind(levels, 
-                                                      loci[, i]),diploid)$overall) #OPT
-    tot <- apply(res, 2, sum, na.rm = TRUE)
-    nblevels <- length(tot)
-    f <- matrix(rep(0, (nblevels - 1)^2), ncol = (nblevels - 
-                                                    1))
-    for (i in 1:(nblevels - 1)) {
-      for (j in i:(nblevels - 1)) {
-        f[i, j] <- sum(tot[i:j])/sum(tot[i:nblevels])
-      }
-    }
-    fnames
-    row.names(res) <- lnames
-    names(tot) <- c(fnames, "Error")
-    tf <- t(f)
-    row.names(tf) <- fnames
-    f <- t(tf)
-    row.names(f) <- c("Total", fnames[-length(fnames)])
-    return(list(loc = res, overall = tot, F = f))
+  function (levels = levels, loci = loci, diploid = TRUE, n.cores = 1) 
+{
+  lnames <- names(loci)
+  if (is.null(dim(levels))) {
+    fnames <- "Pop"
   }
+  else fnames <- names(levels)
+  if (diploid) {
+    fnames <- c(fnames, "Ind")
+  }
+  
+  nloc <- dim(loci)[2]
+  
+  if (!is.null(n.cores) && n.cores > 1) {
+    
+    cores.disponiveis <- parallel::detectCores()
+    
+    if (n.cores >= cores.disponiveis) {
+      n.cores <- max(1, cores.disponiveis - 1)
+      message(paste("Adjusting n.cores to", n.cores, "to prevent system crash."))
+    }
+    
+    message(paste("Processing", nloc, "loci using", n.cores, "cores..."))
+    
+    if (.Platform$OS.type == "unix") {
+      lista_res <- parallel::mclapply(1:nloc, function(i) {
+        varcomp(cbind(levels, loci[, i]), diploid)$overall
+      }, mc.cores = n.cores)
+    } else {
+      cl <- parallel::makeCluster(n.cores)
+      on.exit(parallel::stopCluster(cl))       
+      parallel::clusterExport(cl, varlist = c("levels", "loci", "diploid"), envir = environment())
+      parallel::clusterEvalQ(cl, library(hierfstat))
+      
+      lista_res <- parallel::parLapply(cl, 1:nloc, function(i) {
+        varcomp(cbind(levels, loci[, i]), diploid)$overall
+      })
+    }
+    res <- do.call(rbind, lista_res)
+    
+  } else {
+    lista_res <- lapply(1:nloc, function(i) {
+      varcomp(cbind(levels, loci[, i]), diploid)$overall
+    })
+    res <- do.call(rbind, lista_res)
+  }
+  
+  tot <- apply(res, 2, sum, na.rm = TRUE)
+  nblevels <- length(tot)
+  f <- matrix(rep(0, (nblevels - 1)^2), ncol = (nblevels - 1))
+  for (i in 1:(nblevels - 1)) {
+    for (j in i:(nblevels - 1)) {
+      f[i, j] <- sum(tot[i:j])/sum(tot[i:nblevels])
+    }
+  }
+  row.names(res) <- lnames
+  names(tot) <- c(fnames, "Error")
+  tf <- t(f)
+  row.names(tf) <- fnames
+  f <- t(tf)
+  row.names(f) <- c("Total", fnames[-length(fnames)])
+  return(list(loc = res, overall = tot, F = f))
+}

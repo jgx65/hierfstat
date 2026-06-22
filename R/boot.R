@@ -2,7 +2,7 @@
 
 #' @export
 boot.vc<-function (levels = levels, loci = loci, diploid = TRUE, nboot = 1000, 
-    quant = c(0.025, 0.5, 0.975)) 
+    quant = c(0.025, 0.5, 0.975), n.cores=1) 
 {
     gf <- function(dat, num, den) {
         sum(dat[num])/sum(dat[den])
@@ -11,7 +11,7 @@ boot.vc<-function (levels = levels, loci = loci, diploid = TRUE, nboot = 1000,
     if (nloc < 5) {
         stop("Not enough loci to bootstrap. Exiting")
     }
-    x <- varcomp.glob(levels = levels, loci = loci, diploid = diploid)
+    x <- varcomp.glob(levels = levels, loci = loci, diploid = diploid, n.cores=n.cores)
     x.loc <- data.frame(x$loc)
     rows<-stats::complete.cases(x.loc)
     if(sum(rows)<5){
