@@ -18,7 +18,7 @@ otherwise, all variant are kept}
 A \code{\link[gaston]{bed.matrix-class}} object
 }
 \description{
-Reads a \url{https://samtools.github.io/hts-specs/}{Variant Call Format (VCF)} file into a BED object,
+Reads a \href{https://samtools.github.io/hts-specs/}{Variant Call Format (VCF)} file into a BED object,
 retaining bi-allelic SNPs only
 }
 \examples{
