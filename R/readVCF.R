@@ -1,6 +1,6 @@
 #' Reads a VCF file into a BED object
 #' 
-#' Reads a \url{https://samtools.github.io/hts-specs/}{Variant Call Format (VCF)} file into a BED object,
+#' Reads a \href{https://samtools.github.io/hts-specs/}{Variant Call Format (VCF)} file into a BED object,
 #' retaining bi-allelic SNPs only
 #'
 #' @usage read.VCF(fname,BiAllelic=TRUE,...)
