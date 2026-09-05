@@ -17,7 +17,9 @@ Ho(data,...)
 }
 \arguments{
 \item{data}{a data frame where the first column contains the population to which the different individuals belong, and the following columns contain the genotype of the individuals -one locus per column- }
-\item{diploid}{Whether individuals are diploids (default) or haploids}
+\item{diploid}{Whether individuals are diploids (default) or haploids.
+For haploid input, Ho and Fis are not defined and are returned as scalar NA,
+including for a single population.}
 \item{digits}{how many digits to print out in the output (default is 4)}
 \item{x}{an object of class basic.stats}
 \item{...}{further arguments to pass to print.bas.stats}

@@ -235,8 +235,11 @@ basic.stats<-function (data, diploid = TRUE, digits = 4)
   if (is.genind(data)) 
     data <- genind2hierfstat(data)
   dum.pop<-FALSE
-  if (length(table(data[, 1])) < 2){ 
-    data[dim(data)[1] + 1, 1] <- "DumPop"
+  if (length(unique(data[!is.na(data[, 1]), 1])) < 2){
+    data[, 1] <- as.character(data[, 1])
+    dummy.pop <- "DumPop"
+    while (dummy.pop %in% data[, 1]) dummy.pop <- paste0(dummy.pop, "_")
+    data[dim(data)[1] + 1, 1] <- dummy.pop
     dum.pop<-TRUE
   }
   if (dim(data)[2] == 2) 
@@ -309,11 +312,11 @@ basic.stats<-function (data, diploid = TRUE, digits = 4)
     overall[c(1, 9)] <- NA
   }
   if(dum.pop){
-    ToBeRemoved<-which(dimnames(Hs)[[2]]=="DumPop")
+    ToBeRemoved<-which(dimnames(Hs)[[2]]==dummy.pop)
     n<-n[,-ToBeRemoved,drop=FALSE]
     Hs<-Hs[,-ToBeRemoved,drop=FALSE]
     if (diploid) sHo<-sHo[,-ToBeRemoved,drop=FALSE]
-    Fis<-Fis[,-ToBeRemoved,drop=FALSE]
+    if (diploid) Fis<-Fis[,-ToBeRemoved,drop=FALSE]
     p<-lapply(p,function(x) x[,-ToBeRemoved,drop=FALSE])
   }
   all.res <- list(n.ind.samp = n, pop.freq = lapply(p, round, 
