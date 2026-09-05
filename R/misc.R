@@ -28,16 +28,11 @@ nc<-dim(data)[2]
 true.loci<-2:nc
 if (names(data)[nc]=="dummy.loc") true.loci<-2:(nc-1) 
 x<-dim(data)
-if (max(data[,true.loci],na.rm=TRUE)>1000000) stop("allele encoding with 3 digits maximum")
-if (max(data[,true.loci],na.rm=TRUE)<1000000) modulo<-1000
-if (max(data[,true.loci],na.rm=TRUE)<10000) {
-if (min(data[,true.loci]%/%100,na.rm=TRUE)>=10 
-  & median(as.matrix(data[,true.loci]%%100),na.rm=TRUE)<10) modulo<-1000 
-else modulo<-100
-}
-if (max(data[,true.loci],na.rm=TRUE)<100) modulo<-10
-firstal<-data[,-1] %/% modulo
-secal<-data[,-1] %% modulo
+# Use the same per-locus decoder as heterozygosity calculations.
+decoded<-getal.b(data[,-1,drop=FALSE])
+firstal<-secal<-data[,-1]
+firstal[]<-decoded[,,1]
+secal[]<-decoded[,,2]
 ind<-NULL
 nbpop <- length(unique(data[,1]))
 for (i in sort(unique(data[,1]))) {
@@ -55,21 +50,26 @@ return(data.al)
 #' @export
 ################
 getal.b<-function(data){
-  if (is.genind(data)) data<-genind2hierfstat(data)[,-1]
-  
-x<-dim(data)
-if (max(data,na.rm=TRUE)>1000000) stop("allele encoding with 3 digits maximum")
-if (max(data,na.rm=TRUE)<1000000) modulo<-1000
-if (max(data,na.rm=TRUE)<10000) {
-if (min(data%/%100,na.rm=TRUE)>=10 & median(as.matrix(data%%100),na.rm=TRUE)<10) modulo<-1000 else modulo<-100
-}
-if (max(data,na.rm=TRUE)<100) modulo<-10
-firstal<-data %/% modulo
-secal<-data %% modulo
-y<-array(dim=c(x,2))
-y[,,1]<-as.matrix(firstal)
-y[,,2]<-as.matrix(secal)
-return(y)
+  if (is.genind(data)) data<-genind2hierfstat(data)[,-1,drop=FALSE]
+  # Per-locus decoding follows Timothee Flutre's proposal in PR #34.
+  x<-dim(data)
+  y<-array(NA_real_,dim=c(x,2))
+  for (j in seq_len(ncol(data))) {
+    values<-data[,j]
+    observed<-values[!is.na(values)]
+    if (!length(observed)) next
+    if (any(!is.finite(observed)) || max(observed)>=1000000)
+      stop("allele encoding with 3 digits maximum")
+    modulo<-1000
+    if (max(observed)<10000) {
+      if (min(observed%/%100)>=10 & median(observed%%100)<10)
+        modulo<-1000 else modulo<-100
+    }
+    if (max(observed)<100) modulo<-10
+    y[,j,1]<-values %/% modulo
+    y[,j,2]<-values %% modulo
+  }
+  return(y)
 }
 
 #########################################################################
