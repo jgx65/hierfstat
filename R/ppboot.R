@@ -53,13 +53,16 @@ boot.ppfst<-function(dat=dat,nboot=100,quant=c(0.025,0.975),diploid=TRUE,...){
   if (is.genind(dat)) dat<-genind2hierfstat(dat)
   typ<-dim(dat)
   if(length(dim(dat))==2){
-    #Pop<-dat[,1]
-    npop<-length(table(dat[,1]))
+    if (anyNA(dat[,1])) stop("population identifiers must be non-missing")
+    # Map observed labels to the consecutive integers used by the pair loop.
+    # Preserve factor ordering, but do not count unused levels as populations.
+    x<-sort(unique(dat[,1]))
+    npop<-length(x)
+    if (npop < 2L) stop("at least two populations are required")
+    dat[,1]<-match(dat[,1],x)
     nloc<-dim(dat)[2]-1
     if (diploid) nvc<-3 else nvc<-2
     ppsl<-array(numeric(npop*npop*nloc*nvc),dim=c(npop,npop,nloc,nvc))
-    x<-unique(dat[,1])
-    if(is.factor(dat[,1])) dat[,1]<-as.integer(dat[,1])
     for (i in 1:(npop-1)) { 
       for (j in (i+1):npop) {
         #cat(i," ",j,"\n") #for debugging
