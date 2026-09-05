@@ -9,12 +9,19 @@
 #' 
 #' @usage fstat2dos(dat,diploid=TRUE)
 #' 
-#' @param dat data frame with genetic data without the first column (population identifier)
+#' @param dat data frame or numeric matrix with genetic data without the first
+#' column (population identifier). For haploids, entries are positive integer
+#' allele identifiers, with NA for missing calls.
 #' @param diploid whether the data set is from a diploid organism
 #' 
 #' @return a matrix with \eqn{\sum_l n_l^a} columns (where \eqn{n_l^a} is the number of alleles 
 #' at locus l), as many rows as individuals, and containing the number of copies (dosage) of the 
 #' corresponding allele
+#' For haploids, dosages are 0 or 1; missing calls remain NA for all observed
+#' alleles at that locus. Alleles are ordered numerically within each locus.
+#' A haploid locus with no observed alleles contributes no output columns.
+#' Haploid conversion does not imply that downstream diploid estimators can
+#' be applied to the resulting matrix.
 #' 
 #' @examples
 #' \dontrun{
@@ -31,6 +38,30 @@
 
 fstat2dos<-function (dat, diploid = TRUE) 
 {
+  if (!diploid) {
+    if (!is.matrix(dat) && !is.data.frame(dat))
+      stop("haploid dat must be a numeric matrix or data frame")
+    dat <- as.matrix(dat)
+    if (!is.numeric(dat) && !(is.logical(dat) && all(is.na(dat))))
+      stop("haploid allele identifiers must be positive integers or NA")
+    observed <- dat[!is.na(dat)]
+    if (any(!is.finite(observed) | observed <= 0 | observed != floor(observed)))
+      stop("haploid allele identifiers must be positive integers or NA")
+    locus.names <- colnames(dat)
+    if (is.null(locus.names)) locus.names <- paste0("l.", seq_len(ncol(dat)))
+    blocks <- lapply(seq_len(ncol(dat)), function(i) {
+      alleles <- sort(unique(dat[,i][!is.na(dat[,i])]))
+      dosage <- outer(dat[,i], alleles, "==") * 1
+      dimnames(dosage) <- list(rownames(dat),
+        if (length(alleles)) paste(locus.names[i], alleles, sep=".")
+        else character())
+      dosage
+    })
+    if (!length(blocks))
+      return(matrix(numeric(), nrow=nrow(dat), ncol=0,
+                    dimnames=list(rownames(dat), NULL)))
+    return(do.call(cbind, blocks))
+  }
   if (diploid) 
     dat <- getal.b(dat)
   lnames <- colnames(dat)

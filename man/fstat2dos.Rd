@@ -7,14 +7,20 @@
 fstat2dos(dat,diploid=TRUE)
 }
 \arguments{
-\item{dat}{data frame with genetic data without the first column (population identifier)}
-
+\item{dat}{data frame or numeric matrix with genetic data without the first
+column (population identifier). For haploids, entries are positive integer
+allele identifiers, with NA for missing calls.}
 \item{diploid}{whether the data set is from a diploid organism}
 }
 \value{
 a matrix with \eqn{\sum_l n_l^a} columns (where \eqn{n_l^a} is the number of alleles 
 at locus l), as many rows as individuals, and containing the number of copies (dosage) of the 
 corresponding allele
+For haploids, dosages are 0 or 1; missing calls remain NA for all observed
+alleles at that locus. Alleles are ordered numerically within each locus.
+A haploid locus with no observed alleles contributes no output columns.
+Haploid conversion does not imply that downstream diploid estimators can
+be applied to the resulting matrix.
 }
 \description{
 Converts a hierfstat genetic data frame to dosage. For each allele at each locus, 
@@ -28,6 +34,5 @@ dos<-fstat2dos(dat[,-1])
 dim(dos) 
 wc(dat)
 fst.dosage(dos,pop=dat[,1])
-
 } 
 }
