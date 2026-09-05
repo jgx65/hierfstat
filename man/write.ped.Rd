@@ -10,26 +10,21 @@ write.ped(dat, ilab = NULL, pop = NULL,
 \arguments{
 \item{dat}{a hierfstat data frame. if pop=NULL, the first column should contain the population identifier, 
 otherwise it contains genotypes at the first locus}
-
 \item{ilab}{individual labels}
-
 \item{pop}{population id}
-
 \item{fname}{filename for ped file}
-
 \item{na.str}{character string to use for missing values}
-
 \item{f.id}{father id. default to unknown}
-
 \item{m.id}{mother id. default to unknown}
-
-\item{loc.pos}{the loci position default to unknown}
-
+\item{loc.pos}{numeric vector of physical positions in base pairs, one per
+locus in genotype-column order (names are not used for matching). Values
+must be finite, non-negative whole numbers. NULL writes zero for unknown
+positions. Positions are written to column four of the MAP file;
+chromosome and genetic-distance columns remain zero.}
 \item{sex}{the individual sex. default to unknown}
 }
 \value{
 a map file containing the loci positions
-
 a ped file containing genotypes etc...
 }
 \description{
