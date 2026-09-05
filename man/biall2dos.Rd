@@ -8,12 +8,14 @@ biall2dos(dat,diploid=TRUE)
 }
 \arguments{
 \item{dat}{a hierfstat data frame without the first column (the population identifier), 
-individuals in rows, columns with individual genotypes encoded as 11, 12, 21 and 22}
-
+individuals in rows, columns with individual genotypes encoded as 11, 12, 21 and 22.
+A numeric matrix is also accepted. For haploid data, use allele codes 1 and 2.
+Missing calls must be NA; zero, partial calls and other codes are rejected.}
 \item{diploid}{whether the data set is from a diploid organism}
 }
 \value{
-a matrix containing allelic dosages
+a matrix containing allelic dosages (0, 1 or 2 for diploids;
+0 or 1 for haploids), preserving missing values and dimension names
 }
 \description{
 Converts bi-allelic SNPs hierfstat format to dosage format, the number of alternate allele copies at a locus
@@ -23,5 +25,4 @@ for an individual, i.e. 11 -> 0; 12 or 21 >1 and 22 ->2
 \dontrun{
 biall2dos(sim.genot(nbal=2,nbloc=10)[,-1])  # a 10 column matrix
 }
-
 }

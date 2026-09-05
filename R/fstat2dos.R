@@ -76,10 +76,13 @@ fstat2dos<-function (dat, diploid = TRUE)
 #' @usage biall2dos(dat,diploid=TRUE)
 #' 
 #' @param dat a hierfstat data frame without the first column (the population identifier), 
-#' individuals in rows, columns with individual genotypes encoded as 11, 12, 21 and 22
+#' individuals in rows, columns with individual genotypes encoded as 11, 12, 21 and 22.
+#' A numeric matrix is also accepted. For haploid data, use allele codes 1 and 2.
+#' Missing calls must be NA; zero, partial calls and other codes are rejected.
 #' @param diploid whether the data set is from a diploid organism
 #' 
-#' @return a matrix containing allelic dosages
+#' @return a matrix containing allelic dosages (0, 1 or 2 for diploids;
+#' 0 or 1 for haploids), preserving missing values and dimension names
 #' 
 #' @examples
 #' \dontrun{
@@ -91,10 +94,17 @@ fstat2dos<-function (dat, diploid = TRUE)
 #########################################################
 
 biall2dos<-function(dat,diploid=TRUE){
+  if (!is.logical(diploid) || length(diploid)!=1L || is.na(diploid))
+    stop("diploid must be TRUE or FALSE")
+  if (!is.matrix(dat) && !is.data.frame(dat))
+    stop("dat must be a numeric matrix or data frame")
+  dat <- as.matrix(dat)
+  if (!is.numeric(dat) && !(is.logical(dat) && all(is.na(dat))))
+    stop("dat must contain numeric genotype codes")
+  allowed <- if (diploid) c(11,12,21,22) else c(1,2)
+  if (any(!is.na(dat) & !(dat %in% allowed)))
+    stop(if (diploid) "genotypes must be encoded as 11, 12, 21 or 22"
+         else "haploid alleles must be encoded as 1 or 2")
   if (!diploid) return(dat-1)
-  else{
-  if (max(dat)>22) stop("genotypes must be encoded as 11, 12, 21 or 22")
-  
-  return(as.matrix(dat%/%10+dat%%10-2))
-  }
+  return(dat%/%10+dat%%10-2)
 }
