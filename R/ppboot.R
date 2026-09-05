@@ -113,28 +113,38 @@ print.boot.ppfst<-function(x,...){
 ################################################################################
 boot.ppfis<-function(dat=dat,nboot=100,quant=c(0.025,0.975),diploid=TRUE,dig=4,...){
   cl<-match.call()
-  dum.pop<-FALSE
-  if (is.genind(dat)) dat<-genind2hierfstat(dat)
-  if (length(table(dat[, 1])) < 2){
+  if (is.genind(dat)) {
+    # Character labels avoid the converter's artificial single-factor population.
+    pop <- adegenet::pop(dat)
+    if (is.null(pop)) stop("population factor must be defined")
+    dat<-genind2hierfstat(dat, pop=as.character(pop))
+  }
+  # Use internal labels so factors and a real population named DumPop are safe.
+  pop.labels <- sort(unique(dat[, 1]))
+  if (!length(pop.labels) || anyNA(dat[, 1]))
+    stop("population identifiers must be present and non-missing")
+  dat[, 1] <- as.character(match(dat[, 1], pop.labels))
+  if (length(pop.labels) == 1L){
     dat[dim(dat)[1] + 1, 1] <- "DumPop"
-    dum.pop<-TRUE
   }
   
   bs<-basic.stats(dat)
-  Ho<-bs$Ho
-  Hs<-bs$Hs
+  # Select genuine populations explicitly, never by the dummy's sorted position.
+  keep <- match(as.character(seq_along(pop.labels)), colnames(bs$Hs))
+  Ho<-bs$Ho[,keep,drop=FALSE]
+  Hs<-bs$Hs[,keep,drop=FALSE]
   nloc<-dim(Hs)[1]
   npop<-dim(Hs)[2]
   my.boot<-matrix(numeric(nboot*npop),ncol=npop)
   for (i in 1:nboot){
     x<-sample(nloc,replace=TRUE)
-    my.boot[i,]<-1-colSums(Ho[x,],na.rm=TRUE)/colSums(Hs[x,],na.rm=TRUE)
+    my.boot[i,]<-1-colSums(Ho[x,,drop=FALSE],na.rm=TRUE)/colSums(Hs[x,,drop=FALSE],na.rm=TRUE)
   }
   ll<-apply(my.boot,2,stats::quantile,quant[1],na.rm=TRUE)
   hl<-apply(my.boot,2,stats::quantile,quant[2],na.rm=TRUE)
   res<-data.frame(ll=ll,hl=hl)
-  if (dum.pop) return(list(call=cl,fis.ci=round(res,digits=dig)[1,]))
-  else return(list(call=cl,fis.ci=round(res,digits=dig)))
+  rownames(res) <- as.character(pop.labels)
+  return(list(call=cl,fis.ci=round(res,digits=dig)))
 }
 ###########################################################################
 #' Estimates bootstrap confidence intervals for pairwise betas FST estimates

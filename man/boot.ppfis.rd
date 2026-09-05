@@ -11,13 +11,13 @@
 \item{dig}{digits to print}
 \item{...}{further arguments to pass to the function}
 }
-
 \value{
 \item{call}{function call}
-\item{fis.ci}{Bootstrap ci of Fis per population}
+\item{fis.ci}{Bootstrap ci of Fis per population, with population identifiers
+as row names. Single-population input is supported for numeric, character,
+and factor identifiers.}
 }
 \author{Jerome Goudet \email{jerome.goudet@unil.ch}}
-
 \examples{
 dat<-sim.genot(nbpop=4,nbloc=20,nbal=10,f=c(0,0.2,0.4,0.6))
 boot.ppfis(dat)
